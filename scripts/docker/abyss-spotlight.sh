@@ -19,6 +19,7 @@ STAGE_DIR="/tmp/abyss-stage"
 BRANDING_FILE="/config/config/branding.xml"
 THEME_CACHE_BUSTER="$(date +%s)"
 CUSTOM_CSS="@import url('/web/ui/abyss.css?v=${THEME_CACHE_BUSTER}');"
+EXPECTED_CSS_MARKER="tvOS Detail Page v4"
 
 THEME_FILES=(
     "abyss.css"
@@ -43,6 +44,12 @@ download_theme_files() {
             exit 1
         fi
     done
+
+    if ! grep -q "$EXPECTED_CSS_MARKER" "${STAGE_DIR}/abyss.css"; then
+        log "ERROR: Downloaded abyss.css does not contain '${EXPECTED_CSS_MARKER}'"
+        log "ERROR: Push the latest repo changes to ${REPO}:${BRANCH}, then restart the container"
+        exit 1
+    fi
 }
 
 install_ui_files() {
@@ -59,6 +66,13 @@ install_ui_files() {
             log "Unchanged: /web/ui/${f}"
         fi
     done
+
+    if grep -q "$EXPECTED_CSS_MARKER" "${UI_DIR}/abyss.css"; then
+        log "Verified: /web/ui/abyss.css contains ${EXPECTED_CSS_MARKER}"
+    else
+        log "ERROR: Installed /web/ui/abyss.css is missing ${EXPECTED_CSS_MARKER}"
+        exit 1
+    fi
 }
 
 patch_branding_css_with_python() {

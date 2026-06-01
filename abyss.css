@@ -2664,18 +2664,18 @@ div[data-type="UserView"] .cardText-secondary {
 #indexPage .homeSectionsContainer .itemsContainer:has([data-type="CollectionFolder"]),
 #indexPage .homeSectionsContainer .itemsContainer:has([data-type="UserView"]) {
     display: grid !important;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 250px)) !important;
+    grid-template-columns: repeat(auto-fill, 180px) !important;
     align-items: start !important;
-    gap: clamp(18px, 2vw, 34px) !important;
+    gap: clamp(16px, 1.8vw, 28px) !important;
 }
 
 #indexPage .homeSectionsContainer .itemsContainer:has([data-type="CollectionFolder"]) > .card,
 #indexPage .homeSectionsContainer .itemsContainer:has([data-type="UserView"]) > .card,
 #indexPage div[data-type="CollectionFolder"],
 #indexPage div[data-type="UserView"] {
-    width: 100% !important;
+    width: 180px !important;
     min-width: 0 !important;
-    max-width: 250px !important;
+    max-width: 180px !important;
 }
 
 #indexPage div[data-type="CollectionFolder"] .cardBox,
@@ -3115,30 +3115,33 @@ body:has(#itemDetailPage) .layout-desktop .detailPageContent {
 #indexPage .homeSectionsContainer .verticalSection:has([data-type="CollectionFolder"]) .itemsContainer,
 #indexPage .homeSectionsContainer .verticalSection:has([data-type="UserView"]) .itemsContainer {
     display: grid !important;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 250px)) !important;
+    grid-template-columns: repeat(auto-fill, 180px) !important;
     align-items: start !important;
     justify-content: start !important;
-    gap: clamp(22px, 2.4vw, 42px) !important;
+    gap: clamp(16px, 1.8vw, 28px) !important;
 }
 
 #indexPage .homeSectionsContainer .verticalSection:has([data-type="CollectionFolder"]) .card,
 #indexPage .homeSectionsContainer .verticalSection:has([data-type="UserView"]) .card {
     position: relative !important;
-    width: 100% !important;
+    width: 180px !important;
     min-width: 0 !important;
-    max-width: 250px !important;
+    max-width: 180px !important;
     margin: 0 !important;
 }
 
 #indexPage .homeSectionsContainer .verticalSection:has([data-type="CollectionFolder"]) .cardBox,
 #indexPage .homeSectionsContainer .verticalSection:has([data-type="UserView"]) .cardBox {
+    width: 180px !important;
+    max-width: 180px !important;
     margin: 0 !important;
 }
 
 #indexPage .homeSectionsContainer .verticalSection:has([data-type="CollectionFolder"]) .cardScalable,
 #indexPage .homeSectionsContainer .verticalSection:has([data-type="UserView"]) .cardScalable {
     position: relative !important;
-    width: 100% !important;
+    width: 180px !important;
+    max-width: 180px !important;
     height: auto !important;
     padding: 0 !important;
     aspect-ratio: 16 / 9 !important;
@@ -3149,7 +3152,8 @@ body:has(#itemDetailPage) .layout-desktop .detailPageContent {
 #indexPage .homeSectionsContainer .verticalSection:has([data-type="UserView"]) .cardPadder {
     position: relative !important;
     display: block !important;
-    width: 100% !important;
+    width: 180px !important;
+    max-width: 180px !important;
     height: auto !important;
     padding: 0 0 56.25% !important;
     padding-bottom: 56.25% !important;
@@ -3196,36 +3200,29 @@ body:has(#itemDetailPage) .layout-desktop .detailPageContent {
 }
 
 #indexPage .homeSectionsContainer .verticalSection:has([data-type="CollectionFolder"]) .cardText,
-#indexPage .homeSectionsContainer .verticalSection:has([data-type="UserView"]) .cardText {
-    display: none !important;
-}
-
+#indexPage .homeSectionsContainer .verticalSection:has([data-type="UserView"]) .cardText,
 #indexPage .homeSectionsContainer .verticalSection:has([data-type="CollectionFolder"]) .cardText-first,
-#indexPage .homeSectionsContainer .verticalSection:has([data-type="UserView"]) .cardText-first {
-    display: flex !important;
-    position: absolute !important;
-    inset: 0 !important;
-    z-index: 3 !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 0 1rem !important;
-    text-align: center !important;
-    color: #fff !important;
-    font-size: clamp(1.18rem, 1.55vw, 1.6rem) !important;
-    font-weight: 700 !important;
-    line-height: 1.06 !important;
-    text-shadow: 0 5px 16px rgba(0, 0, 0, 0.82) !important;
-    pointer-events: none !important;
+#indexPage .homeSectionsContainer .verticalSection:has([data-type="UserView"]) .cardText-first,
+#indexPage .homeSectionsContainer .verticalSection:has([data-type="CollectionFolder"]) .cardTextCentered,
+#indexPage .homeSectionsContainer .verticalSection:has([data-type="UserView"]) .cardTextCentered,
+#indexPage .homeSectionsContainer .verticalSection:has([data-type="CollectionFolder"]) .textActionButton,
+#indexPage .homeSectionsContainer .verticalSection:has([data-type="UserView"]) .textActionButton {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
 }
 
-#indexPage .homeSectionsContainer .verticalSection:has([data-type="CollectionFolder"]) .cardText-first *,
-#indexPage .homeSectionsContainer .verticalSection:has([data-type="UserView"]) .cardText-first * {
-    color: inherit !important;
-    font: inherit !important;
-    line-height: inherit !important;
-    text-shadow: inherit !important;
+#indexPage div[data-type="CollectionFolder"] .cardText,
+#indexPage div[data-type="UserView"] .cardText,
+#indexPage div[data-type="CollectionFolder"] .cardText-first,
+#indexPage div[data-type="UserView"] .cardText-first,
+#indexPage div[data-type="CollectionFolder"] .cardTextCentered,
+#indexPage div[data-type="UserView"] .cardTextCentered,
+#indexPage div[data-type="CollectionFolder"] .textActionButton,
+#indexPage div[data-type="UserView"] .textActionButton {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
 }
 /* tvOS Playback OSD */
 

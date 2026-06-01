@@ -2611,41 +2611,41 @@ div[data-type="UserView"] .cardText-secondary {
 }
 
 #indexPage .featurediframe {
-    margin-top: 80px !important;
-    height: 78vh !important;
-    min-height: 620px !important;
-    max-height: 840px !important;
+    margin-top: 0 !important;
+    height: 72vh !important;
+    min-height: 560px !important;
+    max-height: 780px !important;
 }
 
 @media (min-width: 1400px) {
     #indexPage .featurediframe {
-        height: 80vh !important;
-        max-height: 900px !important;
+        height: 74vh !important;
+        max-height: 840px !important;
     }
 }
 
 @media (min-width: 1920px) {
     #indexPage .featurediframe {
-        height: 82vh !important;
-        max-height: 960px !important;
+        height: 76vh !important;
+        max-height: 900px !important;
     }
 }
 
 @media (max-width: 1024px) {
     #indexPage .featurediframe {
-        margin-top: 64px !important;
-        height: 90vh !important;
-        min-height: 520px !important;
-        max-height: 820px !important;
+        margin-top: 0 !important;
+        height: 76vh !important;
+        min-height: 500px !important;
+        max-height: 760px !important;
     }
 }
 
 @media (max-width: 600px) {
     #indexPage .featurediframe {
-        margin-top: 60px !important;
-        height: 90vh !important;
-        min-height: 480px !important;
-        max-height: 780px !important;
+        margin-top: 0 !important;
+        height: 72vh !important;
+        min-height: 460px !important;
+        max-height: 720px !important;
     }
 }
 
@@ -2700,7 +2700,7 @@ div[data-type="UserView"] .cardText-secondary {
     position: relative !important;
     width: 100% !important;
     height: auto !important;
-    aspect-ratio: 1 / 1 !important;
+    aspect-ratio: 16 / 9 !important;
     padding: 0 !important;
     overflow: visible !important;
 }
@@ -2711,9 +2711,9 @@ div[data-type="UserView"] .cardText-secondary {
     display: block !important;
     width: 100% !important;
     height: auto !important;
-    aspect-ratio: 1 / 1 !important;
-    padding: 0 !important;
-    padding-bottom: 0 !important;
+    aspect-ratio: 16 / 9 !important;
+    padding: 0 0 56.25% !important;
+    padding-bottom: 56.25% !important;
 }
 
 #indexPage div[data-type="CollectionFolder"] .cardContent,
@@ -2722,11 +2722,11 @@ div[data-type="UserView"] .cardText-secondary {
 #indexPage div[data-type="UserView"] .cardImageContainer,
 #indexPage div[data-type="CollectionFolder"] .cardImage,
 #indexPage div[data-type="UserView"] .cardImage {
-    position: relative !important;
-    inset: auto !important;
+    position: absolute !important;
+    inset: 0 !important;
     width: 100% !important;
     height: 100% !important;
-    aspect-ratio: 1 / 1 !important;
+    aspect-ratio: 16 / 9 !important;
     overflow: hidden !important;
 }
 
@@ -2769,18 +2769,18 @@ div[data-type="UserView"] .cardText-secondary {
 .skinHeader.semiTransparent,
 .skinHeader-withBackground {
     top: 0 !important;
-    min-height: 92px !important;
+    min-height: 72px !important;
     height: auto !important;
-    padding-top: max(10px, env(safe-area-inset-top)) !important;
-    padding-bottom: 10px !important;
+    padding-top: max(6px, env(safe-area-inset-top)) !important;
+    padding-bottom: 6px !important;
     overflow: visible !important;
 }
 
 .withSectionTabs .headerTop,
 .headerTop {
-    min-height: 72px !important;
-    padding-top: 0.8rem !important;
-    padding-bottom: 0.8rem !important;
+    min-height: 56px !important;
+    padding-top: 0.35rem !important;
+    padding-bottom: 0.35rem !important;
     overflow: visible !important;
 }
 
@@ -2853,20 +2853,21 @@ body:has(.detailPageWrapperContainer) .backdropContainer::after {
 }
 
 #itemDetailPage .itemBackdrop,
-.layout-desktop .itemBackdrop,
-.detailPageWrapperContainer .itemBackdrop {
+body:has(#itemDetailPage) .layout-desktop .itemBackdrop,
+body:has(#itemDetailPage) .detailPageWrapperContainer .itemBackdrop {
     display: block !important;
-    height: clamp(560px, 64vh, 780px) !important;
-    min-height: 560px !important;
+    height: clamp(250px, 32vh, 390px) !important;
+    min-height: 250px !important;
+    max-height: 390px !important;
     margin: 0 !important;
     opacity: 1 !important;
     overflow: hidden !important;
-    filter: saturate(112%) brightness(74%) contrast(105%) !important;
+    filter: saturate(112%) brightness(66%) contrast(105%) !important;
 }
 
 #itemDetailPage .itemBackdrop::after,
-.layout-desktop .itemBackdrop::after,
-.detailPageWrapperContainer .itemBackdrop::after {
+body:has(#itemDetailPage) .layout-desktop .itemBackdrop::after,
+body:has(#itemDetailPage) .detailPageWrapperContainer .itemBackdrop::after {
     content: "" !important;
     position: absolute !important;
     inset: 0 !important;
@@ -2877,29 +2878,29 @@ body:has(.detailPageWrapperContainer) .backdropContainer::after {
 }
 
 #itemDetailPage .detailPagePrimaryContainer,
-.layout-desktop .detailPagePrimaryContainer,
-.detailPageWrapperContainer .detailPagePrimaryContainer {
+body:has(#itemDetailPage) .layout-desktop .detailPagePrimaryContainer,
+body:has(#itemDetailPage) .detailPageWrapperContainer .detailPagePrimaryContainer {
     position: relative !important;
     z-index: 2 !important;
-    min-height: 0 !important;
-    margin-top: calc(-1 * clamp(430px, 50vh, 620px)) !important;
-    padding-top: clamp(132px, 14vh, 176px) !important;
+    min-height: clamp(300px, 42vh, 480px) !important;
+    margin-top: 0 !important;
+    padding-top: clamp(108px, 11vh, 142px) !important;
     padding-bottom: 26px !important;
     background: transparent !important;
 }
 
 #itemDetailPage .detailRibbon,
-.layout-desktop .detailRibbon,
-.detailPageWrapperContainer .detailRibbon {
+body:has(#itemDetailPage) .layout-desktop .detailRibbon,
+body:has(#itemDetailPage) .detailPageWrapperContainer .detailRibbon {
     display: grid !important;
     grid-template-columns: minmax(0, 1fr) auto !important;
     align-items: center !important;
     gap: clamp(18px, 1.5vw, 28px) !important;
     width: auto !important;
-    min-height: 96px !important;
-    margin-left: clamp(72px, 6vw, 118px) !important;
+    min-height: 82px !important;
+    margin-left: clamp(330px, 26vw, 520px) !important;
     margin-right: clamp(50px, 5vw, 92px) !important;
-    padding: 18px 22px !important;
+    padding: 14px 18px !important;
     border: 1px solid rgba(255, 255, 255, 0.14) !important;
     border-radius: 30px !important;
     background: rgba(28, 28, 30, 0.58) !important;
@@ -2909,18 +2910,19 @@ body:has(.detailPageWrapperContainer) .backdropContainer::after {
 }
 
 #itemDetailPage .detailImageContainer,
-.layout-desktop .detailImageContainer,
-.detailPageWrapperContainer .detailImageContainer {
-    display: none !important;
+body:has(#itemDetailPage) .layout-desktop .detailImageContainer,
+body:has(#itemDetailPage) .detailPageWrapperContainer .detailImageContainer {
+    display: block !important;
+    visibility: visible !important;
 }
 
 .layout-desktop #itemDetailPage .detailImageContainer .card,
-.layout-desktop .detailImageContainer .card,
-.detailPageWrapperContainer .detailImageContainer .card {
-    top: clamp(124px, 13vh, 166px) !important;
-    left: clamp(58px, 4.8vw, 92px) !important;
-    width: clamp(218px, 16vw, 312px) !important;
-    max-width: 312px !important;
+body:has(#itemDetailPage) .layout-desktop .detailImageContainer .card,
+body:has(#itemDetailPage) .detailPageWrapperContainer .detailImageContainer .card {
+    top: clamp(106px, 11vh, 146px) !important;
+    left: clamp(54px, 4.8vw, 86px) !important;
+    width: clamp(230px, 20vw, 380px) !important;
+    max-width: 380px !important;
     border: 1px solid rgba(255, 255, 255, 0.12) !important;
     border-radius: 26px !important;
     box-shadow: 0 38px 92px rgba(0, 0, 0, 0.72), 0 14px 30px rgba(0, 0, 0, 0.48) !important;
@@ -2939,14 +2941,14 @@ body:has(.detailPageWrapperContainer) .backdropContainer::after {
 }
 
 #itemDetailPage .detailLogo,
-.layout-desktop .detailLogo,
-.detailPageWrapperContainer .detailLogo {
+body:has(#itemDetailPage) .layout-desktop .detailLogo,
+body:has(#itemDetailPage) .detailPageWrapperContainer .detailLogo {
     display: block !important;
     position: relative !important;
-    margin: 0 0 clamp(26px, 3.4vh, 42px) clamp(72px, 6vw, 118px) !important;
-    width: min(40vw, 620px) !important;
-    height: clamp(96px, 13vh, 170px) !important;
-    max-height: 170px !important;
+    margin: 0 0 clamp(22px, 3vh, 34px) clamp(330px, 26vw, 520px) !important;
+    width: min(34vw, 540px) !important;
+    height: clamp(78px, 10vh, 130px) !important;
+    max-height: 130px !important;
     background-position: left center !important;
     background-size: contain !important;
     filter: drop-shadow(0 16px 38px rgba(0, 0, 0, 0.86)) !important;
@@ -2954,13 +2956,13 @@ body:has(.detailPageWrapperContainer) .backdropContainer::after {
 
 #itemDetailPage .detailPagePrimaryContent,
 #itemDetailPage .detailPageContent,
-.layout-desktop .detailPagePrimaryContent,
-.layout-desktop .detailPageContent,
-.detailPageWrapperContainer .detailPagePrimaryContent,
-.detailPageWrapperContainer .detailPageContent {
+body:has(#itemDetailPage) .layout-desktop .detailPagePrimaryContent,
+body:has(#itemDetailPage) .layout-desktop .detailPageContent,
+body:has(#itemDetailPage) .detailPageWrapperContainer .detailPagePrimaryContent,
+body:has(#itemDetailPage) .detailPageWrapperContainer .detailPageContent {
     width: auto !important;
     max-width: none !important;
-    margin-left: clamp(72px, 6vw, 118px) !important;
+    margin-left: clamp(330px, 26vw, 520px) !important;
     margin-right: clamp(50px, 5vw, 92px) !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
@@ -2968,8 +2970,8 @@ body:has(.detailPageWrapperContainer) .backdropContainer::after {
 }
 
 #itemDetailPage .detailPagePrimaryContent,
-.layout-desktop .detailPagePrimaryContent,
-.detailPageWrapperContainer .detailPagePrimaryContent {
+body:has(#itemDetailPage) .layout-desktop .detailPagePrimaryContent,
+body:has(#itemDetailPage) .detailPageWrapperContainer .detailPagePrimaryContent {
     max-width: none !important;
 }
 
@@ -2981,9 +2983,9 @@ body:has(.detailPageWrapperContainer) .backdropContainer::after {
 .detailPageWrapperContainer .itemName.infoText.parentNameLast {
     display: block !important;
     max-width: min(56vw, 920px) !important;
-    margin: 0 0 22px clamp(72px, 6vw, 118px) !important;
+    margin: 0 0 22px clamp(330px, 26vw, 520px) !important;
     color: rgba(255, 255, 255, 0.96) !important;
-    font-size: clamp(2.35rem, 3.8vw, 4.7rem) !important;
+    font-size: clamp(2rem, 3vw, 3.8rem) !important;
     line-height: 1 !important;
     font-weight: 600 !important;
     letter-spacing: 0 !important;
@@ -3138,10 +3140,6 @@ body:has(.detailPageWrapperContainer) .backdropContainer::after {
 
 #itemDetailPage .trackSelections,
 .detailPageWrapperContainer .trackSelections {
-    display: grid !important;
-    grid-template-columns: 92px minmax(0, 1fr) !important;
-    align-items: center !important;
-    gap: 12px 24px !important;
     width: min(720px, 54vw) !important;
     margin: 26px 0 !important;
     padding: 18px 20px !important;
@@ -3152,16 +3150,13 @@ body:has(.detailPageWrapperContainer) .backdropContainer::after {
     backdrop-filter: blur(26px) saturate(160%) !important;
 }
 
-#itemDetailPage .trackSelections > *,
-.detailPageWrapperContainer .trackSelections > * {
-    margin: 0 !important;
-}
-
 #itemDetailPage .selectContainer,
 #itemDetailPage .emby-select,
 .detailPageWrapperContainer .selectContainer,
 .detailPageWrapperContainer .emby-select {
     border-radius: 14px !important;
+    max-width: none !important;
+    width: 100% !important;
 }
 
 #itemDetailPage .trackSelections .selectContainer .detailTrackSelect,
@@ -3245,119 +3240,6 @@ body:has(.detailPageWrapperContainer) .backdropContainer::after {
     }
 }
 
-/* tvOS Detail Page Specificity Lock */
-
-html .layout-desktop #itemDetailPage#itemDetailPage .itemBackdrop.itemBackdrop,
-html .layout-desktop .detailPageWrapperContainer.detailPageWrapperContainer .itemBackdrop.itemBackdrop,
-html .layout-desktop .itemBackdrop.itemBackdrop.itemBackdrop {
-    display: block !important;
-    height: clamp(560px, 64vh, 780px) !important;
-    min-height: 560px !important;
-    margin: 0 !important;
-    opacity: 1 !important;
-    overflow: hidden !important;
-    filter: saturate(112%) brightness(74%) contrast(105%) !important;
-}
-
-html .layout-desktop #itemDetailPage#itemDetailPage .detailPagePrimaryContainer.detailPagePrimaryContainer,
-html .layout-desktop .detailPageWrapperContainer.detailPageWrapperContainer .detailPagePrimaryContainer.detailPagePrimaryContainer,
-html .layout-desktop .detailPagePrimaryContainer.detailPagePrimaryContainer.detailPagePrimaryContainer {
-    position: relative !important;
-    z-index: 2 !important;
-    min-height: 0 !important;
-    margin-top: calc(-1 * clamp(430px, 50vh, 620px)) !important;
-    padding-top: clamp(132px, 14vh, 176px) !important;
-    padding-bottom: 26px !important;
-    background: transparent !important;
-}
-
-html .layout-desktop #itemDetailPage#itemDetailPage .detailImageContainer.detailImageContainer,
-html .layout-desktop .detailPageWrapperContainer.detailPageWrapperContainer .detailImageContainer.detailImageContainer,
-html .layout-desktop .detailImageContainer.detailImageContainer.detailImageContainer {
-    display: none !important;
-    visibility: hidden !important;
-    width: 0 !important;
-    min-width: 0 !important;
-    height: 0 !important;
-    min-height: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    overflow: hidden !important;
-    pointer-events: none !important;
-}
-
-html .layout-desktop #itemDetailPage#itemDetailPage .detailLogo.detailLogo,
-html .layout-desktop .detailPageWrapperContainer.detailPageWrapperContainer .detailLogo.detailLogo,
-html .layout-desktop .detailLogo.detailLogo.detailLogo {
-    display: block !important;
-    position: relative !important;
-    margin: 0 0 clamp(26px, 3.4vh, 42px) clamp(72px, 6vw, 118px) !important;
-    width: min(40vw, 620px) !important;
-    height: clamp(96px, 13vh, 170px) !important;
-    max-height: 170px !important;
-    background-position: left center !important;
-    background-size: contain !important;
-}
-
-html .layout-desktop #itemDetailPage#itemDetailPage .detailRibbon.detailRibbon,
-html .layout-desktop .detailPageWrapperContainer.detailPageWrapperContainer .detailRibbon.detailRibbon,
-html .layout-desktop .detailRibbon.detailRibbon.detailRibbon {
-    display: grid !important;
-    grid-template-columns: minmax(0, 1fr) auto !important;
-    align-items: center !important;
-    gap: clamp(18px, 1.5vw, 28px) !important;
-    width: auto !important;
-    min-height: 96px !important;
-    margin-left: clamp(72px, 6vw, 118px) !important;
-    margin-right: clamp(50px, 5vw, 92px) !important;
-    padding: 18px 22px !important;
-    border: 1px solid rgba(255, 255, 255, 0.14) !important;
-    border-radius: 30px !important;
-    background: rgba(28, 28, 30, 0.58) !important;
-    -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
-    backdrop-filter: blur(28px) saturate(180%) !important;
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.46), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
-}
-
-html .layout-desktop #itemDetailPage#itemDetailPage .detailPagePrimaryContent.detailPagePrimaryContent,
-html .layout-desktop #itemDetailPage#itemDetailPage .detailPageContent.detailPageContent,
-html .layout-desktop .detailPageWrapperContainer.detailPageWrapperContainer .detailPagePrimaryContent.detailPagePrimaryContent,
-html .layout-desktop .detailPageWrapperContainer.detailPageWrapperContainer .detailPageContent.detailPageContent,
-html .layout-desktop .detailPagePrimaryContent.detailPagePrimaryContent.detailPagePrimaryContent,
-html .layout-desktop .detailPageContent.detailPageContent.detailPageContent {
-    width: auto !important;
-    max-width: none !important;
-    margin-left: clamp(72px, 6vw, 118px) !important;
-    margin-right: clamp(50px, 5vw, 92px) !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    background: transparent !important;
-}
-
-html .layout-desktop #itemDetailPage#itemDetailPage .detailPageContent.detailPageContent,
-html .layout-desktop .detailPageWrapperContainer.detailPageWrapperContainer .detailPageContent.detailPageContent,
-html .layout-desktop .detailPageContent.detailPageContent.detailPageContent {
-    margin-top: 24px !important;
-    padding: 28px 30px 80px !important;
-    border: 1px solid rgba(255, 255, 255, 0.09) !important;
-    border-radius: 30px !important;
-    background: rgba(255, 255, 255, 0.045) !important;
-    -webkit-backdrop-filter: blur(22px) saturate(155%) !important;
-    backdrop-filter: blur(22px) saturate(155%) !important;
-}
-
-html .layout-desktop #itemDetailPage#itemDetailPage .itemTags,
-html .layout-desktop #itemDetailPage#itemDetailPage .tagList,
-html .layout-desktop #itemDetailPage#itemDetailPage .keywords,
-html .layout-desktop #itemDetailPage#itemDetailPage .itemExternalLinks,
-html .layout-desktop .detailPageWrapperContainer.detailPageWrapperContainer .itemTags,
-html .layout-desktop .detailPageWrapperContainer.detailPageWrapperContainer .tagList,
-html .layout-desktop .detailPageWrapperContainer.detailPageWrapperContainer .keywords,
-html .layout-desktop .detailPageWrapperContainer.detailPageWrapperContainer .itemExternalLinks {
-    display: none !important;
-}
-
-
 /* tvOS Home App Tile Hardening */
 
 #indexPage .homeSectionsContainer .verticalSection:has([data-type="CollectionFolder"]) .itemsContainer,
@@ -3390,15 +3272,34 @@ html .layout-desktop .detailPageWrapperContainer.detailPageWrapperContainer .ite
 #indexPage .homeSectionsContainer .verticalSection:has([data-type="UserView"]) .cardContent,
 #indexPage .homeSectionsContainer .verticalSection:has([data-type="CollectionFolder"]) .cardImageContainer,
 #indexPage .homeSectionsContainer .verticalSection:has([data-type="UserView"]) .cardImageContainer {
-    position: relative !important;
-    inset: auto !important;
     width: 100% !important;
-    height: auto !important;
-    aspect-ratio: 1 / 1 !important;
-    padding: 0 !important;
-    padding-bottom: 0 !important;
-    border-radius: 22% !important;
+    aspect-ratio: 16 / 9 !important;
+    border-radius: 18px !important;
     overflow: hidden !important;
+}
+
+#indexPage .homeSectionsContainer .verticalSection:has([data-type="CollectionFolder"]) .cardScalable,
+#indexPage .homeSectionsContainer .verticalSection:has([data-type="UserView"]) .cardScalable {
+    position: relative !important;
+    height: auto !important;
+    padding: 0 !important;
+}
+
+#indexPage .homeSectionsContainer .verticalSection:has([data-type="CollectionFolder"]) .cardPadder,
+#indexPage .homeSectionsContainer .verticalSection:has([data-type="UserView"]) .cardPadder {
+    position: relative !important;
+    height: auto !important;
+    padding: 0 0 56.25% !important;
+    padding-bottom: 56.25% !important;
+}
+
+#indexPage .homeSectionsContainer .verticalSection:has([data-type="CollectionFolder"]) .cardContent,
+#indexPage .homeSectionsContainer .verticalSection:has([data-type="UserView"]) .cardContent,
+#indexPage .homeSectionsContainer .verticalSection:has([data-type="CollectionFolder"]) .cardImageContainer,
+#indexPage .homeSectionsContainer .verticalSection:has([data-type="UserView"]) .cardImageContainer {
+    position: absolute !important;
+    inset: 0 !important;
+    height: 100% !important;
 }
 
 #indexPage .homeSectionsContainer .verticalSection:has([data-type="CollectionFolder"]) .cardImage,
@@ -3409,7 +3310,7 @@ html .layout-desktop .detailPageWrapperContainer.detailPageWrapperContainer .ite
     inset: 0 !important;
     width: 100% !important;
     height: 100% !important;
-    border-radius: 22% !important;
+    border-radius: 18px !important;
     background-size: cover !important;
     background-position: center !important;
     object-fit: cover !important;

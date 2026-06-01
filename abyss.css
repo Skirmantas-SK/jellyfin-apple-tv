@@ -2610,6 +2610,37 @@ div[data-type="UserView"] .cardText-secondary {
     background: #050505 !important;
 }
 
+#indexPage .featurediframe {
+    margin-top: 98px !important;
+    height: calc(70vh - 98px) !important;
+}
+
+@media (min-width: 1400px) {
+    #indexPage .featurediframe {
+        height: calc(72vh - 98px) !important;
+    }
+}
+
+@media (min-width: 1920px) {
+    #indexPage .featurediframe {
+        height: calc(68vh - 98px) !important;
+    }
+}
+
+@media (max-width: 1024px) {
+    #indexPage .featurediframe {
+        margin-top: 82px !important;
+        height: calc(90vh - 82px) !important;
+    }
+}
+
+@media (max-width: 600px) {
+    #indexPage .featurediframe {
+        margin-top: 76px !important;
+        height: calc(90vh - 76px) !important;
+    }
+}
+
 #indexPage .readOnlyContent .verticalSection,
 #indexPage .verticalSection,
 #indexPage .homeSectionsContainer .verticalSection,

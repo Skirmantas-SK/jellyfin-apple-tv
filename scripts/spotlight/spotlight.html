@@ -295,7 +295,6 @@
 				$('content').style.opacity = '0';
 				$('backdrop').style.opacity = '0';
 				$('backdrop').classList.remove('loaded');
-				$('backdrop').style.backgroundImage = '';
 				$('content').classList.remove('visible');
 				updateDots();
 				await new Promise(r => setTimeout(r, 400));
@@ -330,9 +329,7 @@
 				if (backdropBlob) {
 					backdropImgEl.onload = () => backdropEl.classList.add('loaded');
 					backdropImgEl.src = backdropBlob;
-					backdropEl.style.backgroundImage = `url("${backdropBlob}")`;
 				} else {
-					backdropEl.style.backgroundImage = '';
 					backdropEl.classList.add('loaded');
 				}
 

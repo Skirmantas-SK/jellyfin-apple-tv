@@ -10,25 +10,26 @@
   <style>
     .featurediframe {
       width: 100%; display: block; border: 0; margin: 0; padding: 0;
-      height: 70vh; min-height: 420px; max-height: 680px;
+      height: calc(70vh - 98px); min-height: 420px; max-height: 680px;
+      margin-top: 98px;
     }
     @media (min-width: 1400px) {
-      .featurediframe { height: 72vh; max-height: 760px; }
+      .featurediframe { height: calc(72vh - 98px); max-height: 760px; }
     }
     @media (min-width: 1920px) {
-      .featurediframe { height: 68vh; max-height: 860px; }
+      .featurediframe { height: calc(68vh - 98px); max-height: 860px; }
     }
     @media (max-width: 1024px) and (orientation: portrait) {
-      .featurediframe { height: 90vh; min-height: 320px; max-height: 720px; }
+      .featurediframe { height: calc(90vh - 82px); min-height: 320px; max-height: 720px; margin-top: 82px; }
     }
     @media (max-width: 1024px) and (orientation: landscape) {
-      .featurediframe { height: 100vh; min-height: 280px; max-height: 420px; }
+      .featurediframe { height: calc(100vh - 82px); min-height: 280px; max-height: 420px; margin-top: 82px; }
     }
     @media (max-width: 600px) and (orientation: portrait) {
-      .featurediframe { height: 90vh; min-height: 260px; max-height: 720px; }
+      .featurediframe { height: calc(90vh - 76px); min-height: 260px; max-height: 720px; margin-top: 76px; }
     }
     @media (max-width: 900px) and (orientation: landscape) and (max-height: 500px) {
-      .featurediframe { height: 100vh; min-height: 200px;}
+      .featurediframe { height: calc(100vh - 76px); min-height: 200px; margin-top: 76px; }
     }
   </style>
 

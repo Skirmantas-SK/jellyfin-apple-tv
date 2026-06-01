@@ -2774,10 +2774,10 @@ body:has(#itemDetailPage) .layout-desktop .itemBackdrop::after {
 body:has(#itemDetailPage) .layout-desktop .detailPagePrimaryContainer {
     position: relative !important;
     z-index: 2 !important;
-    min-height: clamp(260px, 31vh, 420px) !important;
+    min-height: clamp(430px, 54vh, 620px) !important;
     margin-top: 0 !important;
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
+    padding-top: clamp(112px, 13vh, 160px) !important;
+    padding-bottom: 28px !important;
     background: transparent !important;
 }
 
@@ -2785,15 +2785,32 @@ body:has(#itemDetailPage) .layout-desktop .detailPagePrimaryContainer {
 body:has(#itemDetailPage) .layout-desktop .detailImageContainer {
     display: block !important;
     visibility: visible !important;
+    position: fixed !important;
+    top: clamp(108px, 10.5vh, 142px) !important;
+    left: clamp(54px, 4.6vw, 86px) !important;
+    width: clamp(260px, 18.5vw, 355px) !important;
+    max-width: 355px !important;
+    max-height: calc(100vh - 150px) !important;
+    overflow: visible !important;
+    z-index: 4 !important;
+}
+
+#itemDetailPage .detailImageContainer > .card:nth-of-type(n+2),
+#itemDetailPage .detailImageContainer > .card + .card,
+#itemDetailPage .detailImageContainer .card:nth-of-type(n+2),
+#itemDetailPage .detailImageContainer .card ~ .card {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
 }
 
 .layout-desktop #itemDetailPage .detailImageContainer .card {
-    position: fixed !important;
-    top: clamp(92px, 9.5vh, 132px) !important;
-    left: clamp(44px, 4.2vw, 78px) !important;
-    width: clamp(220px, 19vw, 360px) !important;
-    max-width: 360px !important;
-    z-index: 3 !important;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    z-index: 4 !important;
     border: 1px solid rgba(255, 255, 255, 0.12) !important;
     border-radius: 26px !important;
     box-shadow: 0 38px 92px rgba(0, 0, 0, 0.72), 0 14px 30px rgba(0, 0, 0, 0.48) !important;
@@ -2809,19 +2826,19 @@ body:has(#itemDetailPage) .layout-desktop .detailImageContainer {
 
 #itemDetailPage .detailLogo,
 body:has(#itemDetailPage) .layout-desktop .detailLogo {
-    display: block !important;
-    position: relative !important;
-    margin: -18vh 0 2vh clamp(305px, 27vw, 520px) !important;
-    width: min(34vw, 540px) !important;
-    height: clamp(76px, 10vh, 128px) !important;
-    max-height: 128px !important;
-    background-position: left center !important;
-    background-size: contain !important;
-    filter: drop-shadow(0 16px 38px rgba(0, 0, 0, 0.86)) !important;
+    display: none !important;
 }
 
 .layout-desktop #itemDetailPage .itemName.infoText.parentNameLast {
-    display: none !important;
+    display: block !important;
+    max-width: min(850px, 52vw) !important;
+    margin: 0 0 1.2rem 0 !important;
+    color: rgba(255, 255, 255, 0.96) !important;
+    font-size: clamp(2.8rem, 4.4vw, 5rem) !important;
+    line-height: 0.96 !important;
+    font-weight: 700 !important;
+    letter-spacing: 0 !important;
+    text-shadow: 0 12px 34px rgba(0, 0, 0, 0.78) !important;
 }
 
 #itemDetailPage .detailPagePrimaryContent,
@@ -2837,15 +2854,19 @@ body:has(#itemDetailPage) .layout-desktop .detailPagePrimaryContent {
 
 #itemDetailPage .detailRibbon,
 body:has(#itemDetailPage) .layout-desktop .detailRibbon {
-    margin: 0 !important;
-    padding: 0.85rem clamp(42px, 5vw, 90px) 0.85rem clamp(305px, 27vw, 520px) !important;
-    min-height: 72px !important;
-    border: 0 !important;
-    border-radius: 0 !important;
-    background: rgba(5, 5, 5, 0.52) !important;
-    -webkit-backdrop-filter: blur(22px) saturate(160%) !important;
-    backdrop-filter: blur(22px) saturate(160%) !important;
-    box-shadow: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: clamp(18px, 2vw, 36px) !important;
+    margin: 0 clamp(42px, 5vw, 90px) 0 clamp(305px, 27vw, 520px) !important;
+    padding: 1rem 1.25rem !important;
+    min-height: 78px !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 28px !important;
+    background: rgba(28, 28, 30, 0.58) !important;
+    -webkit-backdrop-filter: blur(30px) saturate(180%) !important;
+    backdrop-filter: blur(30px) saturate(180%) !important;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
 }
 
 #itemDetailPage .itemMiscInfo,
@@ -2996,8 +3017,15 @@ body:has(#itemDetailPage) .layout-desktop .detailPageContent {
 }
 
 @media (max-width: 75em) {
+    .layout-desktop #itemDetailPage .detailImageContainer {
+        left: 36px !important;
+        width: clamp(220px, 24vw, 285px) !important;
+        max-width: 285px !important;
+    }
+
     .layout-desktop #itemDetailPage .detailImageContainer .card {
-        width: clamp(205px, 24vw, 285px) !important;
+        width: 100% !important;
+        max-width: 100% !important;
     }
 
     #itemDetailPage .detailLogo,
@@ -3008,7 +3036,7 @@ body:has(#itemDetailPage) .layout-desktop .detailPageContent {
     }
 
     #itemDetailPage .detailRibbon {
-        padding-left: clamp(280px, 30vw, 380px) !important;
+        padding-left: 1.1rem !important;
     }
 }
 
@@ -3019,13 +3047,21 @@ body:has(#itemDetailPage) .layout-desktop .detailPageContent {
         min-height: 62px !important;
     }
 
-    .layout-desktop #itemDetailPage .detailImageContainer .card,
-    #itemDetailPage .detailImageContainer .card {
+    .layout-desktop #itemDetailPage .detailImageContainer,
+    #itemDetailPage .detailImageContainer {
         position: relative !important;
         top: auto !important;
         left: auto !important;
         width: min(48vw, 230px) !important;
         margin: 1rem 0 1rem 24px !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailImageContainer .card,
+    #itemDetailPage .detailImageContainer .card {
+        position: relative !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
     }
 
     #itemDetailPage .detailLogo,

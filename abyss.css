@@ -4074,3 +4074,325 @@ body:has(.detailPageWrapperContainer) .skinHeader-withBackground {
         grid-template-columns: 1fr !important;
     }
 }
+
+/* tvOS Detail Page v4 - High Specificity Layout Lock */
+
+html body #itemDetailPage,
+html body .detailPageWrapperContainer {
+    background: #050505 !important;
+}
+
+html body #itemDetailPage .itemBackdrop,
+html body.layout-desktop #itemDetailPage .itemBackdrop,
+html body .layout-desktop #itemDetailPage .itemBackdrop,
+html body .detailPageWrapperContainer .itemBackdrop {
+    display: block !important;
+    position: relative !important;
+    height: clamp(540px, 62vh, 760px) !important;
+    min-height: 540px !important;
+    max-height: none !important;
+    margin: 0 !important;
+    opacity: 1 !important;
+    overflow: hidden !important;
+    background-position: center top !important;
+    background-size: cover !important;
+    filter: saturate(112%) brightness(76%) contrast(105%) !important;
+}
+
+html body #itemDetailPage .itemBackdrop::after,
+html body .detailPageWrapperContainer .itemBackdrop::after {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    pointer-events: none !important;
+    background:
+        linear-gradient(90deg, rgba(5, 5, 5, 0.9) 0%, rgba(5, 5, 5, 0.62) 24%, rgba(5, 5, 5, 0.14) 56%, rgba(5, 5, 5, 0.78) 100%),
+        linear-gradient(180deg, rgba(5, 5, 5, 0.04) 0%, rgba(5, 5, 5, 0.16) 44%, rgba(5, 5, 5, 0.86) 84%, #050505 100%) !important;
+}
+
+html body #itemDetailPage .detailPageWrapperContainer,
+html body .detailPageWrapperContainer {
+    position: relative !important;
+    z-index: 1 !important;
+    overflow: visible !important;
+}
+
+html body #itemDetailPage .detailPagePrimaryContainer,
+html body.layout-desktop #itemDetailPage .detailPagePrimaryContainer,
+html body .layout-desktop #itemDetailPage .detailPagePrimaryContainer,
+html body .detailPageWrapperContainer .detailPagePrimaryContainer {
+    position: relative !important;
+    z-index: 2 !important;
+    min-height: 0 !important;
+    margin-top: calc(-1 * clamp(430px, 50vh, 610px)) !important;
+    padding: clamp(120px, 13vh, 160px) 0 24px !important;
+    background: transparent !important;
+}
+
+html body #itemDetailPage .detailImageContainer,
+html body .detailPageWrapperContainer .detailImageContainer {
+    position: static !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+html body #itemDetailPage .detailImageContainer .card,
+html body.layout-desktop #itemDetailPage .detailImageContainer .card,
+html body .layout-desktop #itemDetailPage .detailImageContainer .card,
+html body .detailPageWrapperContainer .detailImageContainer .card {
+    position: fixed !important;
+    z-index: 4 !important;
+    top: clamp(124px, 13vh, 166px) !important;
+    left: clamp(58px, 4.8vw, 92px) !important;
+    width: clamp(218px, 16vw, 312px) !important;
+    max-width: 312px !important;
+    margin: 0 !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 26px !important;
+    overflow: hidden !important;
+    box-shadow: 0 38px 92px rgba(0, 0, 0, 0.72), 0 14px 30px rgba(0, 0, 0, 0.48) !important;
+}
+
+html body #itemDetailPage .detailImageContainer .cardImageContainer,
+html body #itemDetailPage .detailImageContainer .cardImage,
+html body #itemDetailPage .detailImageContainer .blurhash-canvas,
+html body .detailPageWrapperContainer .detailImageContainer .cardImageContainer,
+html body .detailPageWrapperContainer .detailImageContainer .cardImage,
+html body .detailPageWrapperContainer .detailImageContainer .blurhash-canvas {
+    border-radius: 26px !important;
+    overflow: hidden !important;
+}
+
+html body #itemDetailPage .detailLogo,
+html body .detailPageWrapperContainer .detailLogo {
+    display: block !important;
+    position: relative !important;
+    width: min(35vw, 560px) !important;
+    height: clamp(86px, 11vh, 142px) !important;
+    max-height: 142px !important;
+    margin: 0 0 clamp(22px, 3vh, 34px) clamp(340px, 24vw, 470px) !important;
+    background-position: left center !important;
+    background-size: contain !important;
+    filter: drop-shadow(0 16px 38px rgba(0, 0, 0, 0.86)) !important;
+}
+
+html body #itemDetailPage .itemName,
+html body #itemDetailPage .itemName.infoText.parentNameLast,
+html body .detailPageWrapperContainer .itemName,
+html body .detailPageWrapperContainer .itemName.infoText.parentNameLast {
+    display: block !important;
+    max-width: min(56vw, 920px) !important;
+    margin: 0 0 22px clamp(340px, 24vw, 470px) !important;
+    color: rgba(255, 255, 255, 0.96) !important;
+    font-size: clamp(2.35rem, 3.8vw, 4.7rem) !important;
+    line-height: 1 !important;
+    font-weight: 600 !important;
+    text-shadow: 0 18px 44px rgba(0, 0, 0, 0.86) !important;
+}
+
+html body #itemDetailPage .detailRibbon,
+html body.layout-desktop #itemDetailPage .detailRibbon,
+html body .layout-desktop #itemDetailPage .detailRibbon,
+html body .detailPageWrapperContainer .detailRibbon {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    align-items: center !important;
+    gap: 22px !important;
+    width: auto !important;
+    min-height: 98px !important;
+    margin: 0 clamp(50px, 5vw, 92px) 0 clamp(340px, 24vw, 470px) !important;
+    padding: 18px 22px !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    border-radius: 30px !important;
+    background: rgba(28, 28, 30, 0.58) !important;
+    -webkit-backdrop-filter: blur(36px) saturate(190%) !important;
+    backdrop-filter: blur(36px) saturate(190%) !important;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.46), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+html body #itemDetailPage .detailRibbon .itemMiscInfo,
+html body .detailPageWrapperContainer .detailRibbon .itemMiscInfo {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin: 0 !important;
+}
+
+html body #itemDetailPage .detailRibbon .itemMiscInfo > *,
+html body #itemDetailPage .detailRibbon .mediaInfoCriticRating,
+html body #itemDetailPage .detailRibbon .starRatingContainer,
+html body #itemDetailPage .detailRibbon .officialRating,
+html body .detailPageWrapperContainer .detailRibbon .itemMiscInfo > *,
+html body .detailPageWrapperContainer .detailRibbon .mediaInfoCriticRating,
+html body .detailPageWrapperContainer .detailRibbon .starRatingContainer,
+html body .detailPageWrapperContainer .detailRibbon .officialRating {
+    display: inline-flex !important;
+    align-items: center !important;
+    min-height: 34px !important;
+    margin: 0 !important;
+    padding: 6px 12px !important;
+    border-radius: 999px !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    background: rgba(255, 255, 255, 0.11) !important;
+    color: rgba(255, 255, 255, 0.84) !important;
+    font-size: 0.95rem !important;
+    font-weight: 500 !important;
+}
+
+html body #itemDetailPage .detailRibbon .mainDetailButtons,
+html body .detailPageWrapperContainer .detailRibbon .mainDetailButtons {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: clamp(14px, 1.2vw, 22px) !important;
+    margin: 0 !important;
+}
+
+html body #itemDetailPage .detailRibbon .mainDetailButtons .emby-button,
+html body #itemDetailPage .detailRibbon .mainDetailButtons .paper-icon-button-light,
+html body #itemDetailPage .detailRibbon .detailButton,
+html body .detailPageWrapperContainer .detailRibbon .mainDetailButtons .emby-button,
+html body .detailPageWrapperContainer .detailRibbon .mainDetailButtons .paper-icon-button-light,
+html body .detailPageWrapperContainer .detailRibbon .detailButton {
+    width: 54px !important;
+    height: 54px !important;
+    min-width: 54px !important;
+    min-height: 54px !important;
+    padding: 0 !important;
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, 0.12) !important;
+    color: rgba(255, 255, 255, 0.92) !important;
+}
+
+html body #itemDetailPage .detailPagePrimaryContent,
+html body #itemDetailPage .detailPageContent,
+html body.layout-desktop #itemDetailPage .detailPagePrimaryContent,
+html body.layout-desktop #itemDetailPage .detailPageContent,
+html body .detailPageWrapperContainer .detailPagePrimaryContent,
+html body .detailPageWrapperContainer .detailPageContent {
+    width: auto !important;
+    max-width: none !important;
+    margin-left: clamp(340px, 24vw, 470px) !important;
+    margin-right: clamp(50px, 5vw, 92px) !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    background: transparent !important;
+}
+
+html body #itemDetailPage .detailPageContent,
+html body .detailPageWrapperContainer .detailPageContent {
+    margin-top: 24px !important;
+    padding: 28px 30px 80px !important;
+    border: 1px solid rgba(255, 255, 255, 0.09) !important;
+    border-radius: 30px !important;
+    background: rgba(255, 255, 255, 0.045) !important;
+    -webkit-backdrop-filter: blur(22px) saturate(155%) !important;
+    backdrop-filter: blur(22px) saturate(155%) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 24px 70px rgba(0, 0, 0, 0.25) !important;
+}
+
+html body #itemDetailPage .trackSelections,
+html body .detailPageWrapperContainer .trackSelections {
+    display: grid !important;
+    grid-template-columns: 92px minmax(0, 1fr) !important;
+    align-items: center !important;
+    gap: 12px 24px !important;
+    width: min(720px, 54vw) !important;
+    margin: 26px 0 !important;
+    padding: 18px 20px !important;
+    border: 1px solid rgba(255, 255, 255, 0.11) !important;
+    border-radius: 24px !important;
+    background: rgba(255, 255, 255, 0.07) !important;
+    -webkit-backdrop-filter: blur(26px) saturate(160%) !important;
+    backdrop-filter: blur(26px) saturate(160%) !important;
+}
+
+html body #itemDetailPage .tagline,
+html body .detailPageWrapperContainer .tagline {
+    max-width: 920px !important;
+    margin: 0 0 20px !important;
+    color: rgba(255, 255, 255, 0.96) !important;
+    font-size: clamp(1.35rem, 1.5vw, 1.8rem) !important;
+    line-height: 1.2 !important;
+    font-weight: 600 !important;
+}
+
+html body #itemDetailPage .overview,
+html body #itemDetailPage .itemOverview,
+html body .detailPageWrapperContainer .overview,
+html body .detailPageWrapperContainer .itemOverview {
+    max-width: min(980px, 62vw) !important;
+    color: rgba(255, 255, 255, 0.86) !important;
+    font-size: clamp(1.04rem, 1.06vw, 1.2rem) !important;
+    line-height: 1.55 !important;
+    font-weight: 400 !important;
+}
+
+html body #itemDetailPage .itemTags,
+html body #itemDetailPage .tagList,
+html body #itemDetailPage .keywords,
+html body #itemDetailPage .itemExternalLinks,
+html body #itemDetailPage .itemLinks,
+html body #itemDetailPage .externalLinks,
+html body .detailPageWrapperContainer .itemTags,
+html body .detailPageWrapperContainer .tagList,
+html body .detailPageWrapperContainer .keywords,
+html body .detailPageWrapperContainer .itemExternalLinks,
+html body .detailPageWrapperContainer .itemLinks,
+html body .detailPageWrapperContainer .externalLinks {
+    display: none !important;
+}
+
+@media (max-width: 72em) {
+    html body #itemDetailPage .detailRibbon,
+    html body .detailPageWrapperContainer .detailRibbon {
+        grid-template-columns: 1fr !important;
+    }
+
+    html body #itemDetailPage .detailRibbon .mainDetailButtons,
+    html body .detailPageWrapperContainer .detailRibbon .mainDetailButtons {
+        justify-content: flex-start !important;
+    }
+}
+
+@media (max-width: 50em) {
+    html body #itemDetailPage .detailPagePrimaryContainer,
+    html body .detailPageWrapperContainer .detailPagePrimaryContainer {
+        margin-top: -320px !important;
+        padding-top: 94px !important;
+    }
+
+    html body #itemDetailPage .detailImageContainer .card,
+    html body .detailPageWrapperContainer .detailImageContainer .card {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        width: min(58vw, 260px) !important;
+        margin: 0 24px 22px !important;
+    }
+
+    html body #itemDetailPage .detailLogo,
+    html body #itemDetailPage .itemName,
+    html body #itemDetailPage .itemName.infoText.parentNameLast,
+    html body #itemDetailPage .detailRibbon,
+    html body #itemDetailPage .detailPagePrimaryContent,
+    html body #itemDetailPage .detailPageContent,
+    html body .detailPageWrapperContainer .detailLogo,
+    html body .detailPageWrapperContainer .itemName,
+    html body .detailPageWrapperContainer .itemName.infoText.parentNameLast,
+    html body .detailPageWrapperContainer .detailRibbon,
+    html body .detailPageWrapperContainer .detailPagePrimaryContent,
+    html body .detailPageWrapperContainer .detailPageContent {
+        margin-left: 24px !important;
+        margin-right: 24px !important;
+        width: auto !important;
+        max-width: none !important;
+    }
+
+    html body #itemDetailPage .trackSelections,
+    html body .detailPageWrapperContainer .trackSelections {
+        width: auto !important;
+        grid-template-columns: 1fr !important;
+    }
+}

@@ -17,7 +17,8 @@ UI_DIR="${WEB_DIR}/ui"
 RAW="https://raw.githubusercontent.com/${REPO}/${BRANCH}"
 STAGE_DIR="/tmp/abyss-stage"
 BRANDING_FILE="/config/config/branding.xml"
-CUSTOM_CSS="@import url('/web/ui/abyss.css');"
+THEME_CACHE_BUSTER="$(date +%s)"
+CUSTOM_CSS="@import url('/web/ui/abyss.css?v=${THEME_CACHE_BUSTER}');"
 
 THEME_FILES=(
     "abyss.css"
@@ -170,7 +171,7 @@ patch_branding_css() {
         patch_branding_css_with_awk
     fi
 
-    log "Branding CustomCss set to local /web/ui/abyss.css import"
+    log "Branding CustomCss set to cache-busted local /web/ui/abyss.css import"
 }
 
 patch_home_chunk() {

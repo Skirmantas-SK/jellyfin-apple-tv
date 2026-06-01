@@ -3064,6 +3064,342 @@ body:has(#itemDetailPage) .backdropContainer::after {
     }
 }
 
+/* tvOS Detail Page v2 */
+
+body:has(#itemDetailPage) .skinHeader,
+body:has(#itemDetailPage) .skinHeader.semiTransparent,
+body:has(#itemDetailPage) .skinHeader-withBackground {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.2) 78%, transparent) !important;
+    -webkit-backdrop-filter: blur(18px) saturate(150%) !important;
+    backdrop-filter: blur(18px) saturate(150%) !important;
+    border-bottom: 0 !important;
+    box-shadow: none !important;
+}
+
+body:has(#itemDetailPage) .backdropContainer {
+    height: 100vh !important;
+    position: fixed !important;
+    inset: 0 !important;
+    overflow: hidden !important;
+}
+
+body:has(#itemDetailPage) .backdropImage {
+    opacity: 0.88 !important;
+    filter: saturate(112%) brightness(78%) contrast(104%) !important;
+    transform: scale(1.01) !important;
+    object-position: center top !important;
+}
+
+body:has(#itemDetailPage) .backdropContainer::before {
+    background:
+        linear-gradient(90deg, rgba(5, 5, 5, 0.9) 0%, rgba(5, 5, 5, 0.58) 26%, rgba(5, 5, 5, 0.18) 58%, rgba(5, 5, 5, 0.72) 100%),
+        linear-gradient(180deg, rgba(5, 5, 5, 0.06) 0%, rgba(5, 5, 5, 0.18) 38%, rgba(5, 5, 5, 0.92) 76%, #050505 100%) !important;
+}
+
+#itemDetailPage .itemBackdrop {
+    height: 58vh !important;
+    min-height: 480px !important;
+    max-height: 700px !important;
+    margin-top: 0 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+#itemDetailPage .detailPageWrapperContainer {
+    position: relative !important;
+    z-index: 1 !important;
+    padding-top: 0 !important;
+}
+
+#itemDetailPage .detailPagePrimaryContainer {
+    min-height: 58vh !important;
+    padding-top: clamp(132px, 13vh, 172px) !important;
+    padding-bottom: 26px !important;
+    background: transparent !important;
+}
+
+.layout-desktop #itemDetailPage .detailImageContainer .card {
+    top: clamp(128px, 13.5vh, 172px) !important;
+    left: clamp(54px, 4.8vw, 92px) !important;
+    width: clamp(220px, 16.5vw, 320px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 26px !important;
+    box-shadow: 0 34px 90px rgba(0, 0, 0, 0.7), 0 12px 24px rgba(0, 0, 0, 0.46) !important;
+}
+
+#itemDetailPage .detailImageContainer .cardImageContainer,
+#itemDetailPage .detailImageContainer .card,
+#itemDetailPage .detailImageContainer .cardImage,
+#itemDetailPage .detailImageContainer .blurhash-canvas {
+    border-radius: 26px !important;
+}
+
+#itemDetailPage .detailLogo {
+    display: block !important;
+    position: relative !important;
+    margin: 0 0 clamp(22px, 3vh, 34px) clamp(330px, 24vw, 460px) !important;
+    width: min(35vw, 560px) !important;
+    height: clamp(86px, 12vh, 150px) !important;
+    max-height: 150px !important;
+    background-position: left center !important;
+    background-size: contain !important;
+    filter: drop-shadow(0 14px 34px rgba(0, 0, 0, 0.82)) !important;
+}
+
+#itemDetailPage .itemName.infoText.parentNameLast,
+#itemDetailPage .itemName {
+    display: block !important;
+    margin-left: clamp(330px, 24vw, 460px) !important;
+    max-width: min(54vw, 880px) !important;
+    font-size: clamp(2.35rem, 4vw, 4.8rem) !important;
+    line-height: 0.98 !important;
+    font-weight: 600 !important;
+    color: rgba(255, 255, 255, 0.96) !important;
+}
+
+#itemDetailPage .detailRibbon {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    align-items: center !important;
+    gap: 22px !important;
+    width: auto !important;
+    min-height: 96px !important;
+    margin: 0 clamp(44px, 5vw, 88px) 0 clamp(330px, 24vw, 460px) !important;
+    padding: 18px 22px !important;
+    border: 1px solid rgba(255, 255, 255, 0.13) !important;
+    border-radius: 28px !important;
+    background: rgba(24, 24, 26, 0.58) !important;
+    -webkit-backdrop-filter: blur(34px) saturate(190%) !important;
+    backdrop-filter: blur(34px) saturate(190%) !important;
+    box-shadow: 0 28px 70px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+#itemDetailPage .detailRibbon .itemMiscInfo,
+#itemDetailPage .detailRibbon .mainDetailButtons {
+    margin: 0 !important;
+}
+
+#itemDetailPage .detailRibbon .itemMiscInfo {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+#itemDetailPage .detailRibbon .itemMiscInfo > *,
+#itemDetailPage .detailRibbon .mediaInfoCriticRating,
+#itemDetailPage .detailRibbon .starRatingContainer,
+#itemDetailPage .detailRibbon .officialRating {
+    min-height: 34px !important;
+    margin: 0 !important;
+    padding: 6px 12px !important;
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, 0.11) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    color: rgba(255, 255, 255, 0.84) !important;
+    font-size: 0.95rem !important;
+}
+
+#itemDetailPage .detailRibbon .mainDetailButtons {
+    justify-content: flex-end !important;
+}
+
+#itemDetailPage .detailRibbon .mainDetailButtons .emby-button,
+#itemDetailPage .detailRibbon .mainDetailButtons .paper-icon-button-light,
+#itemDetailPage .detailRibbon .detailButton {
+    width: 52px !important;
+    height: 52px !important;
+    min-width: 52px !important;
+    min-height: 52px !important;
+}
+
+#itemDetailPage .detailRibbon .mainDetailButtons [data-action="play"],
+#itemDetailPage .detailRibbon .mainDetailButtons [data-action="resume"],
+#itemDetailPage .detailRibbon .mainDetailButtons .btnPlay,
+#itemDetailPage .detailRibbon .mainDetailButtons .btnResume {
+    min-width: 128px !important;
+    padding: 0 28px !important;
+}
+
+#itemDetailPage .detailPagePrimaryContent,
+#itemDetailPage .detailPageContent {
+    margin-left: clamp(330px, 24vw, 460px) !important;
+    padding-left: 0 !important;
+    padding-right: clamp(44px, 5vw, 88px) !important;
+    max-width: none !important;
+}
+
+#itemDetailPage .detailPagePrimaryContent {
+    margin-top: 28px !important;
+}
+
+#itemDetailPage .trackSelections {
+    display: grid !important;
+    grid-template-columns: 92px minmax(0, 1fr) !important;
+    align-items: center !important;
+    gap: 12px 24px !important;
+    width: min(720px, 54vw) !important;
+    margin: 0 0 26px !important;
+    padding: 18px 20px !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 24px !important;
+    background: rgba(255, 255, 255, 0.065) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(160%) !important;
+    backdrop-filter: blur(24px) saturate(160%) !important;
+}
+
+#itemDetailPage .trackSelections > * {
+    margin: 0 !important;
+}
+
+#itemDetailPage .trackSelections .selectContainer,
+#itemDetailPage .trackSelections .detailTrackSelect,
+#itemDetailPage .emby-select {
+    width: 100% !important;
+    max-width: none !important;
+    border-radius: 14px !important;
+}
+
+#itemDetailPage .tagline {
+    max-width: 920px !important;
+    margin: 0 0 20px !important;
+    font-size: clamp(1.35rem, 1.5vw, 1.8rem) !important;
+    line-height: 1.2 !important;
+}
+
+#itemDetailPage .overview,
+#itemDetailPage .itemOverview,
+#itemDetailPage .detailPageContent > p {
+    max-width: min(980px, 62vw) !important;
+    color: rgba(255, 255, 255, 0.86) !important;
+    font-size: clamp(1.04rem, 1.06vw, 1.2rem) !important;
+    line-height: 1.55 !important;
+}
+
+#itemDetailPage .detailPageContent {
+    width: auto !important;
+    margin-top: 24px !important;
+    margin-right: clamp(44px, 5vw, 88px) !important;
+    padding: 26px 30px 80px !important;
+    border: 1px solid rgba(255, 255, 255, 0.09) !important;
+    border-radius: 30px !important;
+    background: rgba(255, 255, 255, 0.045) !important;
+    -webkit-backdrop-filter: blur(22px) saturate(155%) !important;
+    backdrop-filter: blur(22px) saturate(155%) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 24px 70px rgba(0, 0, 0, 0.25) !important;
+}
+
+#itemDetailPage .detailPageContent .verticalSection,
+#itemDetailPage .detailSection,
+#itemDetailPage .itemTags,
+#itemDetailPage .genres,
+#itemDetailPage .peopleSection {
+    border-radius: 24px !important;
+}
+
+#itemDetailPage .detailPageContent a,
+#itemDetailPage .button-link {
+    color: rgba(255, 255, 255, 0.88) !important;
+    font-weight: 600 !important;
+}
+
+#itemDetailPage .itemTags,
+#itemDetailPage .tagList,
+#itemDetailPage .keywords,
+#itemDetailPage .itemExternalLinks {
+    display: none !important;
+}
+
+#itemDetailPage .genres,
+#itemDetailPage .itemGenres {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+#itemDetailPage .genres a,
+#itemDetailPage .itemGenres a,
+#itemDetailPage .genre {
+    display: inline-flex !important;
+    align-items: center !important;
+    min-height: 32px !important;
+    padding: 5px 12px !important;
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: rgba(255, 255, 255, 0.84) !important;
+    text-decoration: none !important;
+}
+
+#itemDetailPage .sectionTitle {
+    margin: 34px 0 16px !important;
+    font-size: clamp(1.3rem, 1.55vw, 1.8rem) !important;
+}
+
+@media (max-width: 100em) {
+    #itemDetailPage .detailLogo,
+    #itemDetailPage .itemName.infoText.parentNameLast,
+    #itemDetailPage .itemName,
+    #itemDetailPage .detailRibbon,
+    #itemDetailPage .detailPagePrimaryContent,
+    #itemDetailPage .detailPageContent {
+        margin-left: clamp(286px, 30vw, 380px) !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailImageContainer .card {
+        width: clamp(210px, 24vw, 285px) !important;
+    }
+}
+
+@media (max-width: 72em) {
+    #itemDetailPage .detailRibbon {
+        grid-template-columns: 1fr !important;
+    }
+
+    #itemDetailPage .detailRibbon .mainDetailButtons {
+        justify-content: flex-start !important;
+    }
+}
+
+@media (max-width: 50em) {
+    #itemDetailPage .itemBackdrop {
+        min-height: 360px !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailImageContainer .card,
+    #itemDetailPage .detailImageContainer .card {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        width: min(58vw, 260px) !important;
+        margin: 100px 24px 22px !important;
+    }
+
+    #itemDetailPage .detailLogo,
+    #itemDetailPage .itemName.infoText.parentNameLast,
+    #itemDetailPage .itemName,
+    #itemDetailPage .detailRibbon,
+    #itemDetailPage .detailPagePrimaryContent,
+    #itemDetailPage .detailPageContent {
+        margin-left: 24px !important;
+        margin-right: 24px !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        width: auto !important;
+        max-width: none !important;
+    }
+
+    #itemDetailPage .detailRibbon {
+        padding: 16px !important;
+    }
+
+    #itemDetailPage .trackSelections {
+        width: auto !important;
+        grid-template-columns: 1fr !important;
+    }
+}
+
 /* tvOS Home App Tile Hardening */
 
 #indexPage .homeSectionsContainer .verticalSection:has([data-type="CollectionFolder"]) .itemsContainer,

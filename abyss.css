@@ -2602,6 +2602,100 @@ div[data-type="UserView"] .cardText-secondary {
     display: none !important;
 }
 
+#indexPage,
+#indexPage.homePage,
+#indexPage .pageTabContent,
+#indexPage .sections,
+#indexPage .homeSectionsContainer {
+    background: #050505 !important;
+}
+
+#indexPage .readOnlyContent .verticalSection,
+#indexPage .verticalSection,
+#indexPage .homeSectionsContainer .verticalSection,
+#indexPage .homeSectionsContainer .verticalSection:has([data-type="CollectionFolder"]),
+#indexPage .homeSectionsContainer .verticalSection:has([data-type="UserView"]) {
+    background: #050505 !important;
+    background-color: #050505 !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+#indexPage .homeSectionsContainer .verticalSection {
+    padding-top: 1.25em !important;
+}
+
+#indexPage .homeSectionsContainer .sectionTitle {
+    margin-left: 0 !important;
+    color: rgba(255, 255, 255, 0.92) !important;
+    font-size: clamp(1.35rem, 1.8vw, 1.9rem) !important;
+    font-weight: 600 !important;
+}
+
+#indexPage .homeSectionsContainer .itemsContainer:has([data-type="CollectionFolder"]),
+#indexPage .homeSectionsContainer .itemsContainer:has([data-type="UserView"]) {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(148px, 11vw)) !important;
+    align-items: start !important;
+    gap: clamp(18px, 2vw, 34px) !important;
+}
+
+#indexPage .homeSectionsContainer .itemsContainer:has([data-type="CollectionFolder"]) > .card,
+#indexPage .homeSectionsContainer .itemsContainer:has([data-type="UserView"]) > .card,
+#indexPage div[data-type="CollectionFolder"],
+#indexPage div[data-type="UserView"] {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 190px !important;
+}
+
+#indexPage div[data-type="CollectionFolder"] .cardBox,
+#indexPage div[data-type="UserView"] .cardBox {
+    margin: 0 !important;
+}
+
+#indexPage div[data-type="CollectionFolder"] .cardScalable,
+#indexPage div[data-type="UserView"] .cardScalable {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+}
+
+#indexPage div[data-type="CollectionFolder"] .cardPadder,
+#indexPage div[data-type="UserView"] .cardPadder {
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1 !important;
+    padding: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+#indexPage div[data-type="CollectionFolder"] .cardContent,
+#indexPage div[data-type="UserView"] .cardContent,
+#indexPage div[data-type="CollectionFolder"] .cardImageContainer,
+#indexPage div[data-type="UserView"] .cardImageContainer,
+#indexPage div[data-type="CollectionFolder"] .cardImage,
+#indexPage div[data-type="UserView"] .cardImage {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    height: 100% !important;
+    aspect-ratio: 1 / 1 !important;
+    overflow: hidden !important;
+}
+
+#indexPage div[data-type="CollectionFolder"] .cardImage,
+#indexPage div[data-type="UserView"] .cardImage {
+    object-fit: cover !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
     .cardImageContainer,
     .cardContent.cardImageContainer,

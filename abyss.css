@@ -3245,6 +3245,118 @@ body:has(.detailPageWrapperContainer) .backdropContainer::after {
     }
 }
 
+/* tvOS Detail Page Specificity Lock */
+
+html .layout-desktop #itemDetailPage#itemDetailPage .itemBackdrop.itemBackdrop,
+html .layout-desktop .detailPageWrapperContainer.detailPageWrapperContainer .itemBackdrop.itemBackdrop,
+html .layout-desktop .itemBackdrop.itemBackdrop.itemBackdrop {
+    display: block !important;
+    height: clamp(560px, 64vh, 780px) !important;
+    min-height: 560px !important;
+    margin: 0 !important;
+    opacity: 1 !important;
+    overflow: hidden !important;
+    filter: saturate(112%) brightness(74%) contrast(105%) !important;
+}
+
+html .layout-desktop #itemDetailPage#itemDetailPage .detailPagePrimaryContainer.detailPagePrimaryContainer,
+html .layout-desktop .detailPageWrapperContainer.detailPageWrapperContainer .detailPagePrimaryContainer.detailPagePrimaryContainer,
+html .layout-desktop .detailPagePrimaryContainer.detailPagePrimaryContainer.detailPagePrimaryContainer {
+    position: relative !important;
+    z-index: 2 !important;
+    min-height: 0 !important;
+    margin-top: calc(-1 * clamp(430px, 50vh, 620px)) !important;
+    padding-top: clamp(132px, 14vh, 176px) !important;
+    padding-bottom: 26px !important;
+    background: transparent !important;
+}
+
+html .layout-desktop #itemDetailPage#itemDetailPage .detailImageContainer.detailImageContainer,
+html .layout-desktop .detailPageWrapperContainer.detailPageWrapperContainer .detailImageContainer.detailImageContainer,
+html .layout-desktop .detailImageContainer.detailImageContainer.detailImageContainer {
+    display: none !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    min-width: 0 !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+}
+
+html .layout-desktop #itemDetailPage#itemDetailPage .detailLogo.detailLogo,
+html .layout-desktop .detailPageWrapperContainer.detailPageWrapperContainer .detailLogo.detailLogo,
+html .layout-desktop .detailLogo.detailLogo.detailLogo {
+    display: block !important;
+    position: relative !important;
+    margin: 0 0 clamp(26px, 3.4vh, 42px) clamp(72px, 6vw, 118px) !important;
+    width: min(40vw, 620px) !important;
+    height: clamp(96px, 13vh, 170px) !important;
+    max-height: 170px !important;
+    background-position: left center !important;
+    background-size: contain !important;
+}
+
+html .layout-desktop #itemDetailPage#itemDetailPage .detailRibbon.detailRibbon,
+html .layout-desktop .detailPageWrapperContainer.detailPageWrapperContainer .detailRibbon.detailRibbon,
+html .layout-desktop .detailRibbon.detailRibbon.detailRibbon {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    align-items: center !important;
+    gap: clamp(18px, 1.5vw, 28px) !important;
+    width: auto !important;
+    min-height: 96px !important;
+    margin-left: clamp(72px, 6vw, 118px) !important;
+    margin-right: clamp(50px, 5vw, 92px) !important;
+    padding: 18px 22px !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    border-radius: 30px !important;
+    background: rgba(28, 28, 30, 0.58) !important;
+    -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+    backdrop-filter: blur(28px) saturate(180%) !important;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.46), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+html .layout-desktop #itemDetailPage#itemDetailPage .detailPagePrimaryContent.detailPagePrimaryContent,
+html .layout-desktop #itemDetailPage#itemDetailPage .detailPageContent.detailPageContent,
+html .layout-desktop .detailPageWrapperContainer.detailPageWrapperContainer .detailPagePrimaryContent.detailPagePrimaryContent,
+html .layout-desktop .detailPageWrapperContainer.detailPageWrapperContainer .detailPageContent.detailPageContent,
+html .layout-desktop .detailPagePrimaryContent.detailPagePrimaryContent.detailPagePrimaryContent,
+html .layout-desktop .detailPageContent.detailPageContent.detailPageContent {
+    width: auto !important;
+    max-width: none !important;
+    margin-left: clamp(72px, 6vw, 118px) !important;
+    margin-right: clamp(50px, 5vw, 92px) !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    background: transparent !important;
+}
+
+html .layout-desktop #itemDetailPage#itemDetailPage .detailPageContent.detailPageContent,
+html .layout-desktop .detailPageWrapperContainer.detailPageWrapperContainer .detailPageContent.detailPageContent,
+html .layout-desktop .detailPageContent.detailPageContent.detailPageContent {
+    margin-top: 24px !important;
+    padding: 28px 30px 80px !important;
+    border: 1px solid rgba(255, 255, 255, 0.09) !important;
+    border-radius: 30px !important;
+    background: rgba(255, 255, 255, 0.045) !important;
+    -webkit-backdrop-filter: blur(22px) saturate(155%) !important;
+    backdrop-filter: blur(22px) saturate(155%) !important;
+}
+
+html .layout-desktop #itemDetailPage#itemDetailPage .itemTags,
+html .layout-desktop #itemDetailPage#itemDetailPage .tagList,
+html .layout-desktop #itemDetailPage#itemDetailPage .keywords,
+html .layout-desktop #itemDetailPage#itemDetailPage .itemExternalLinks,
+html .layout-desktop .detailPageWrapperContainer.detailPageWrapperContainer .itemTags,
+html .layout-desktop .detailPageWrapperContainer.detailPageWrapperContainer .tagList,
+html .layout-desktop .detailPageWrapperContainer.detailPageWrapperContainer .keywords,
+html .layout-desktop .detailPageWrapperContainer.detailPageWrapperContainer .itemExternalLinks {
+    display: none !important;
+}
+
 
 /* tvOS Home App Tile Hardening */
 

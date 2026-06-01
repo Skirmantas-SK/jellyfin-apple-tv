@@ -13,13 +13,14 @@ REPO="Skirmantas-SK/jellyfin-apple-tv"
 BRANCH="main"
 WEB_DIR="/usr/share/jellyfin/web"
 UI_DIR="${WEB_DIR}/ui"
+INDEX_FILE="${WEB_DIR}/index.html"
 
 RAW="https://raw.githubusercontent.com/${REPO}/${BRANCH}"
 STAGE_DIR="/tmp/abyss-stage"
 BRANDING_FILE="/config/config/branding.xml"
 THEME_CACHE_BUSTER="$(date +%s)"
 CUSTOM_CSS="@import url('/web/ui/abyss.css?v=${THEME_CACHE_BUSTER}');"
-EXPECTED_CSS_MARKER="tvOS Detail Page Direct Rules"
+EXPECTED_CSS_MARKER="tvOS Detail Page Specificity Lock"
 
 THEME_FILES=(
     "abyss.css"
@@ -188,6 +189,70 @@ patch_branding_css() {
     log "Branding CustomCss set to cache-busted local /web/ui/abyss.css import"
 }
 
+patch_index_css_link_with_python() {
+    INDEX_FILE="$INDEX_FILE" THEME_CACHE_BUSTER="$THEME_CACHE_BUSTER" python3 <<'PY'
+import os
+import re
+from pathlib import Path
+
+path = Path(os.environ["INDEX_FILE"])
+cache = os.environ["THEME_CACHE_BUSTER"]
+marker = "abyss-tvos-css"
+link = f'<link id="{marker}" rel="stylesheet" href="/web/ui/abyss.css?v={cache}">'
+
+html = path.read_text(encoding="utf-8")
+html = re.sub(r'\s*<link[^>]+id=["\']abyss-tvos-css["\'][^>]*>\s*', "\n", html, flags=re.I)
+html = re.sub(r'\s*<link[^>]+href=["\']/web/ui/abyss\.css[^"\']*["\'][^>]*>\s*', "\n", html, flags=re.I)
+
+if "</head>" in html:
+    html = html.replace("</head>", f"  {link}\n</head>", 1)
+else:
+    html = f"{link}\n{html}"
+
+path.write_text(html, encoding="utf-8")
+PY
+}
+
+patch_index_css_link_with_sed() {
+    tmp_file="$(mktemp)"
+
+    sed \
+        -e '/id=["'\'']abyss-tvos-css["'\'']/d' \
+        -e '/href=["'\'']\/web\/ui\/abyss\.css/d' \
+        "$INDEX_FILE" > "$tmp_file"
+
+    awk -v link="<link id=\"abyss-tvos-css\" rel=\"stylesheet\" href=\"/web/ui/abyss.css?v=${THEME_CACHE_BUSTER}\">" '
+        /<\/head>/ && inserted == 0 {
+            print "  " link
+            inserted = 1
+        }
+        { print }
+        END {
+            if (inserted == 0) {
+                print link
+            }
+        }
+    ' "$tmp_file" > "${tmp_file}.patched"
+
+    mv "${tmp_file}.patched" "$INDEX_FILE"
+    rm -f "$tmp_file"
+}
+
+patch_index_css_link() {
+    if [ ! -f "$INDEX_FILE" ]; then
+        log "WARNING: ${INDEX_FILE} not found - skipping direct stylesheet link patch"
+        return
+    fi
+
+    if command -v python3 >/dev/null 2>&1; then
+        patch_index_css_link_with_python
+    else
+        patch_index_css_link_with_sed
+    fi
+
+    log "Patched: index.html direct cache-busted Abyss stylesheet link"
+}
+
 patch_home_chunk() {
     CHUNK_FILE="$(find "$WEB_DIR" -maxdepth 1 -name "home-html.*.chunk.js" | head -n 1)"
 
@@ -226,6 +291,7 @@ fi
 download_theme_files
 install_ui_files
 patch_branding_css
+patch_index_css_link
 patch_home_chunk
 
 log "Abyss tvOS theme applied successfully"

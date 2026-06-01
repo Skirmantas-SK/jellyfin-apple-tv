@@ -2798,7 +2798,8 @@ body:has(#indexPage.homePage:not(.hide)) .headerTabs.sectionTabs {
     padding-top: 0 !important;
 }
 
-body:has(#itemDetailPage) {
+body:has(#itemDetailPage),
+body:has(.detailPageWrapperContainer) {
     background: #050505 !important;
 }
 
@@ -2806,23 +2807,32 @@ body:has(#itemDetailPage) {
 #itemDetailPage .detailPageWrapperContainer,
 #itemDetailPage .detailPagePrimaryContainer,
 #itemDetailPage .detailPageContent,
-#itemDetailPage .detailPageSecondaryContainer {
+#itemDetailPage .detailPageSecondaryContainer,
+.detailPageWrapperContainer,
+.detailPagePrimaryContainer,
+.detailPageContent,
+.detailPageSecondaryContainer {
     background: transparent !important;
 }
 
 body:has(#itemDetailPage) .backgroundContainer,
-body:has(#itemDetailPage) .backgroundContainer.withBackdrop {
+body:has(#itemDetailPage) .backgroundContainer.withBackdrop,
+body:has(.detailPageWrapperContainer) .backgroundContainer,
+body:has(.detailPageWrapperContainer) .backgroundContainer.withBackdrop {
     background: #050505 !important;
 }
 
-body:has(#itemDetailPage) .backdropImage {
+body:has(#itemDetailPage) .backdropImage,
+body:has(.detailPageWrapperContainer) .backdropImage {
     opacity: 1 !important;
     filter: saturate(112%) brightness(52%) contrast(106%) !important;
     transform: scale(1.02) !important;
 }
 
 body:has(#itemDetailPage) .backdropContainer::before,
-body:has(#itemDetailPage) .backdropContainer::after {
+body:has(#itemDetailPage) .backdropContainer::after,
+body:has(.detailPageWrapperContainer) .backdropContainer::before,
+body:has(.detailPageWrapperContainer) .backdropContainer::after {
     content: "";
     position: fixed;
     inset: 0;
@@ -2830,23 +2840,29 @@ body:has(#itemDetailPage) .backdropContainer::after {
     z-index: 0;
 }
 
-body:has(#itemDetailPage) .backdropContainer::before {
+body:has(#itemDetailPage) .backdropContainer::before,
+body:has(.detailPageWrapperContainer) .backdropContainer::before {
     background:
         linear-gradient(90deg, rgba(5, 5, 5, 0.96) 0%, rgba(5, 5, 5, 0.72) 27%, rgba(5, 5, 5, 0.22) 56%, rgba(5, 5, 5, 0.78) 100%),
         linear-gradient(180deg, rgba(5, 5, 5, 0.2) 0%, rgba(5, 5, 5, 0.5) 44%, #050505 92%);
 }
 
-body:has(#itemDetailPage) .backdropContainer::after {
+body:has(#itemDetailPage) .backdropContainer::after,
+body:has(.detailPageWrapperContainer) .backdropContainer::after {
     background: radial-gradient(circle at 62% 20%, rgba(255, 255, 255, 0.08), transparent 34%);
 }
 
-#itemDetailPage .detailPagePrimaryContainer {
+#itemDetailPage .detailPagePrimaryContainer,
+.layout-desktop .detailPagePrimaryContainer,
+.detailPageWrapperContainer .detailPagePrimaryContainer {
     min-height: clamp(470px, 58vh, 690px) !important;
     padding-top: clamp(122px, 13vh, 162px) !important;
     padding-bottom: 26px !important;
 }
 
-#itemDetailPage .detailRibbon {
+#itemDetailPage .detailRibbon,
+.layout-desktop .detailRibbon,
+.detailPageWrapperContainer .detailRibbon {
     display: grid !important;
     grid-template-columns: minmax(0, 1fr) auto !important;
     align-items: center !important;
@@ -2864,7 +2880,9 @@ body:has(#itemDetailPage) .backdropContainer::after {
     box-shadow: 0 30px 80px rgba(0, 0, 0, 0.46), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
 }
 
-.layout-desktop #itemDetailPage .detailImageContainer .card {
+.layout-desktop #itemDetailPage .detailImageContainer .card,
+.layout-desktop .detailImageContainer .card,
+.detailPageWrapperContainer .detailImageContainer .card {
     top: clamp(124px, 13vh, 166px) !important;
     left: clamp(58px, 4.8vw, 92px) !important;
     width: clamp(218px, 16vw, 312px) !important;
@@ -2877,12 +2895,18 @@ body:has(#itemDetailPage) .backdropContainer::after {
 #itemDetailPage .detailImageContainer .cardImageContainer,
 #itemDetailPage .detailImageContainer .card,
 #itemDetailPage .detailImageContainer .cardImage,
-#itemDetailPage .detailImageContainer .blurhash-canvas {
+#itemDetailPage .detailImageContainer .blurhash-canvas,
+.detailPageWrapperContainer .detailImageContainer .cardImageContainer,
+.detailPageWrapperContainer .detailImageContainer .card,
+.detailPageWrapperContainer .detailImageContainer .cardImage,
+.detailPageWrapperContainer .detailImageContainer .blurhash-canvas {
     border-radius: 26px !important;
     overflow: hidden !important;
 }
 
-#itemDetailPage .detailLogo {
+#itemDetailPage .detailLogo,
+.layout-desktop .detailLogo,
+.detailPageWrapperContainer .detailLogo {
     display: block !important;
     position: relative !important;
     margin: 0 0 clamp(22px, 3vh, 34px) clamp(340px, 24vw, 470px) !important;
@@ -2895,7 +2919,11 @@ body:has(#itemDetailPage) .backdropContainer::after {
 }
 
 #itemDetailPage .detailPagePrimaryContent,
-#itemDetailPage .detailPageContent {
+#itemDetailPage .detailPageContent,
+.layout-desktop .detailPagePrimaryContent,
+.layout-desktop .detailPageContent,
+.detailPageWrapperContainer .detailPagePrimaryContent,
+.detailPageWrapperContainer .detailPageContent {
     width: auto !important;
     max-width: none !important;
     margin-left: clamp(340px, 24vw, 470px) !important;
@@ -2905,13 +2933,18 @@ body:has(#itemDetailPage) .backdropContainer::after {
     background: transparent !important;
 }
 
-#itemDetailPage .detailPagePrimaryContent {
+#itemDetailPage .detailPagePrimaryContent,
+.layout-desktop .detailPagePrimaryContent,
+.detailPageWrapperContainer .detailPagePrimaryContent {
     max-width: none !important;
 }
 
 #itemDetailPage .itemName,
 #itemDetailPage .parentName,
-#itemDetailPage .itemName.infoText.parentNameLast {
+#itemDetailPage .itemName.infoText.parentNameLast,
+.detailPageWrapperContainer .itemName,
+.detailPageWrapperContainer .parentName,
+.detailPageWrapperContainer .itemName.infoText.parentNameLast {
     color: rgba(255, 255, 255, 0.96) !important;
     font-weight: 600 !important;
     letter-spacing: 0 !important;
@@ -2925,7 +2958,15 @@ body:has(#itemDetailPage) .backdropContainer::after {
 #itemDetailPage .endsAt,
 #itemDetailPage .criticRating,
 #itemDetailPage .communityRating,
-#itemDetailPage .officialRating {
+#itemDetailPage .officialRating,
+.detailPageWrapperContainer .itemMiscInfo,
+.detailPageWrapperContainer .itemMiscInfoPrimary,
+.detailPageWrapperContainer .mediaInfoCriticRating,
+.detailPageWrapperContainer .starRatingContainer,
+.detailPageWrapperContainer .endsAt,
+.detailPageWrapperContainer .criticRating,
+.detailPageWrapperContainer .communityRating,
+.detailPageWrapperContainer .officialRating {
     color: rgba(255, 255, 255, 0.78) !important;
     font-weight: 500 !important;
 }
@@ -2933,7 +2974,11 @@ body:has(#itemDetailPage) .backdropContainer::after {
 #itemDetailPage .itemMiscInfo > *,
 #itemDetailPage .mediaInfoCriticRating,
 #itemDetailPage .starRatingContainer,
-#itemDetailPage .officialRating {
+#itemDetailPage .officialRating,
+.detailPageWrapperContainer .itemMiscInfo > *,
+.detailPageWrapperContainer .mediaInfoCriticRating,
+.detailPageWrapperContainer .starRatingContainer,
+.detailPageWrapperContainer .officialRating {
     display: inline-flex !important;
     align-items: center !important;
     min-height: 30px !important;
@@ -2946,7 +2991,8 @@ body:has(#itemDetailPage) .backdropContainer::after {
     backdrop-filter: blur(20px) saturate(180%) !important;
 }
 
-#itemDetailPage .mainDetailButtons {
+#itemDetailPage .mainDetailButtons,
+.detailPageWrapperContainer .mainDetailButtons {
     display: flex !important;
     align-items: center !important;
     gap: clamp(14px, 1.3vw, 22px) !important;
@@ -2956,7 +3002,10 @@ body:has(#itemDetailPage) .backdropContainer::after {
 
 #itemDetailPage .mainDetailButtons .emby-button,
 #itemDetailPage .mainDetailButtons .paper-icon-button-light,
-#itemDetailPage .detailButton {
+#itemDetailPage .detailButton,
+.detailPageWrapperContainer .mainDetailButtons .emby-button,
+.detailPageWrapperContainer .mainDetailButtons .paper-icon-button-light,
+.detailPageWrapperContainer .detailButton {
     width: 58px !important;
     height: 58px !important;
     min-width: 58px !important;
@@ -2977,7 +3026,13 @@ body:has(#itemDetailPage) .backdropContainer::after {
 #itemDetailPage .mainDetailButtons .paper-icon-button-light:hover,
 #itemDetailPage .mainDetailButtons .paper-icon-button-light:focus,
 #itemDetailPage .detailButton:hover,
-#itemDetailPage .detailButton:focus {
+#itemDetailPage .detailButton:focus,
+.detailPageWrapperContainer .mainDetailButtons .emby-button:hover,
+.detailPageWrapperContainer .mainDetailButtons .emby-button:focus,
+.detailPageWrapperContainer .mainDetailButtons .paper-icon-button-light:hover,
+.detailPageWrapperContainer .mainDetailButtons .paper-icon-button-light:focus,
+.detailPageWrapperContainer .detailButton:hover,
+.detailPageWrapperContainer .detailButton:focus {
     background: #fff !important;
     color: #000 !important;
     transform: scale(1.08) !important;
@@ -2988,7 +3043,12 @@ body:has(#itemDetailPage) .backdropContainer::after {
 #itemDetailPage .mainDetailButtons .btnResume,
 #itemDetailPage .mainDetailButtons .button-play,
 #itemDetailPage .mainDetailButtons [data-action="play"],
-#itemDetailPage .mainDetailButtons [data-action="resume"] {
+#itemDetailPage .mainDetailButtons [data-action="resume"],
+.detailPageWrapperContainer .mainDetailButtons .btnPlay,
+.detailPageWrapperContainer .mainDetailButtons .btnResume,
+.detailPageWrapperContainer .mainDetailButtons .button-play,
+.detailPageWrapperContainer .mainDetailButtons [data-action="play"],
+.detailPageWrapperContainer .mainDetailButtons [data-action="resume"] {
     width: auto !important;
     min-width: 132px !important;
     padding: 0 28px !important;
@@ -2997,7 +3057,8 @@ body:has(#itemDetailPage) .backdropContainer::after {
     font-weight: 600 !important;
 }
 
-#itemDetailPage .tagline {
+#itemDetailPage .tagline,
+.detailPageWrapperContainer .tagline {
     margin: 1.2rem 0 1.5rem !important;
     color: rgba(255, 255, 255, 0.96) !important;
     font-size: clamp(1.25rem, 1.5vw, 1.7rem) !important;
@@ -3007,7 +3068,10 @@ body:has(#itemDetailPage) .backdropContainer::after {
 
 #itemDetailPage .overview,
 #itemDetailPage .itemOverview,
-#itemDetailPage .detailPageContent p {
+#itemDetailPage .detailPageContent p,
+.detailPageWrapperContainer .overview,
+.detailPageWrapperContainer .itemOverview,
+.detailPageWrapperContainer .detailPageContent p {
     max-width: min(980px, 62vw) !important;
     color: rgba(255, 255, 255, 0.84) !important;
     font-size: clamp(1rem, 1.08vw, 1.18rem) !important;
@@ -3015,7 +3079,9 @@ body:has(#itemDetailPage) .backdropContainer::after {
     line-height: 1.46 !important;
 }
 
-#itemDetailPage .detailPageContent {
+#itemDetailPage .detailPageContent,
+.layout-desktop .detailPageContent,
+.detailPageWrapperContainer .detailPageContent {
     margin-top: 24px !important;
     padding: 28px 30px 80px !important;
     border: 1px solid rgba(255, 255, 255, 0.09) !important;
@@ -3026,7 +3092,8 @@ body:has(#itemDetailPage) .backdropContainer::after {
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 24px 70px rgba(0, 0, 0, 0.25) !important;
 }
 
-#itemDetailPage .trackSelections {
+#itemDetailPage .trackSelections,
+.detailPageWrapperContainer .trackSelections {
     display: grid !important;
     grid-template-columns: 92px minmax(0, 1fr) !important;
     align-items: center !important;
@@ -3041,24 +3108,30 @@ body:has(#itemDetailPage) .backdropContainer::after {
     backdrop-filter: blur(26px) saturate(160%) !important;
 }
 
-#itemDetailPage .trackSelections > * {
+#itemDetailPage .trackSelections > *,
+.detailPageWrapperContainer .trackSelections > * {
     margin: 0 !important;
 }
 
 #itemDetailPage .selectContainer,
-#itemDetailPage .emby-select {
+#itemDetailPage .emby-select,
+.detailPageWrapperContainer .selectContainer,
+.detailPageWrapperContainer .emby-select {
     border-radius: 14px !important;
 }
 
 #itemDetailPage .trackSelections .selectContainer .detailTrackSelect,
-#itemDetailPage .emby-select {
+#itemDetailPage .emby-select,
+.detailPageWrapperContainer .trackSelections .selectContainer .detailTrackSelect,
+.detailPageWrapperContainer .emby-select {
     min-height: 42px !important;
     background: rgba(255, 255, 255, 0.12) !important;
     color: rgba(255, 255, 255, 0.92) !important;
     border: 1px solid rgba(255, 255, 255, 0.12) !important;
 }
 
-#itemDetailPage .sectionTitle {
+#itemDetailPage .sectionTitle,
+.detailPageWrapperContainer .sectionTitle {
     margin-top: 2rem !important;
     color: rgba(255, 255, 255, 0.94) !important;
     font-size: clamp(1.28rem, 1.55vw, 1.75rem) !important;
@@ -3069,7 +3142,13 @@ body:has(#itemDetailPage) .backdropContainer::after {
 #itemDetailPage .keywords,
 #itemDetailPage .itemExternalLinks,
 #itemDetailPage .itemLinks,
-#itemDetailPage .externalLinks {
+#itemDetailPage .externalLinks,
+.detailPageWrapperContainer .itemTags,
+.detailPageWrapperContainer .tagList,
+.detailPageWrapperContainer .keywords,
+.detailPageWrapperContainer .itemExternalLinks,
+.detailPageWrapperContainer .itemLinks,
+.detailPageWrapperContainer .externalLinks {
     display: none !important;
 }
 

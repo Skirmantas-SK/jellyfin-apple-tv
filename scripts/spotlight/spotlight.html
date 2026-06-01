@@ -172,35 +172,34 @@
 			async function fetchItems() {
 				let items = [];
 				try {
-					const [resumeRes, nextUpRes] = await Promise.all([
-						fetch(`${base}/Users/${userId}/Items/Resume?Limit=3&Recursive=true&Fields=${FIELDS}`, { headers }),
-						fetch(`${base}/Shows/NextUp?Limit=5&UserId=${userId}&Fields=${FIELDS}`, { headers })
-					]);
-					const resumeData = resumeRes.ok ? await resumeRes.json() : {};
-					const nextUpData = nextUpRes.ok ? await nextUpRes.json() : {};
-					items = [
-						...(resumeData.Items || []).map(i => ({ ...i, _source: 'resume' })),
-						...(nextUpData.Items || []).map(i => ({ ...i, _source: 'nextup' }))
-					];
-					// De-duplicate by Id
-					items = items.filter((item, idx, self) => idx === self.findIndex(t => t.Id === item.Id));
+					const suggestionsRes = await fetch(
+						`${base}/Items/Suggestions?UserId=${userId}&Limit=8&Type=Movie,Series&Fields=${FIELDS}&EnableTotalRecordCount=false`,
+						{ headers }
+					);
+					const suggestionsData = suggestionsRes.ok ? await suggestionsRes.json() : {};
+					items = (suggestionsData.Items || [])
+						.filter(i => i.Type === 'Movie' || i.Type === 'Series')
+						.filter(i => !i.UserData?.PlaybackPositionTicks && !i.PlaybackPositionTicks)
+						.map(i => ({ ...i, _source: 'suggested' }));
 				} catch (e) { console.error('[Abyss Spotlight] fetch error:', e); }
 
-				// Fallback: random movies/shows when queue is empty
+				// Fallback: random unwatched movies/shows when suggestions are empty.
 				if (items.length === 0) {
 					try {
 						const fallbackRes = await fetch(
-							`${base}/Users/${userId}/Items?Limit=8&Recursive=true&SortBy=Random&IncludeItemTypes=Movie,Series&Fields=${FIELDS}`,
+							`${base}/Users/${userId}/Items?Limit=8&Recursive=true&SortBy=Random&IncludeItemTypes=Movie,Series&Filters=IsUnplayed&Fields=${FIELDS}`,
 							{ headers }
 						);
 						if (fallbackRes.ok) {
 							const d = await fallbackRes.json();
-							items = (d.Items || []).map(i => ({ ...i, _source: 'random' }));
+							items = (d.Items || [])
+								.filter(i => !i.UserData?.PlaybackPositionTicks && !i.PlaybackPositionTicks)
+								.map(i => ({ ...i, _source: 'random' }));
 						}
 					} catch (e) { console.error('[Abyss Spotlight] fallback fetch error:', e); }
 				}
 
-				return items;
+				return items.filter((item, idx, self) => idx === self.findIndex(t => t.Id === item.Id));
 			}
 
 			let items = [];
@@ -302,10 +301,11 @@
 
 
 				const isEp = item.Type === 'Episode';
+				const isSeries = item.Type === 'Series';
 				const logoId = isEp ? (item.SeriesId || item.Id) : item.Id;
 				const detailId = isEp ? (item.SeriesId || item.Id) : item.Id;
 				const detailRoute = `/details?id=${detailId}`;
-				const playRoute = `/video?id=${item.Id}`;
+				const playRoute = isSeries ? detailRoute : `/video?id=${item.Id}`;
 
 				// Backdrop
 				const backdropImgEl = $('backdrop-img');
@@ -373,11 +373,12 @@
 				const isResume = item._source === 'resume';
 				const btnLabel = isResume
 					? (isEp ? `Continue ${episodePrefix}` : 'Resume')
-					: (isEp ? `Play ${episodePrefix}`.trim() : 'Play');
+					: (isSeries ? 'View Series' : (isEp ? `Play ${episodePrefix}`.trim() : 'Play'));
 				playBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M320-273v-414q0-17 12-28.5t28-11.5q5 0 10.5 1.5T381-721l326 207q9 6 13.5 15t4.5 19q0 10-4.5 19T707-446L381-239q-5 3-10.5 4.5T360-233q-16 0-28-11.5T320-273Z"/></svg>${btnLabel}`;
 
 				playBtn.onclick = e => {
 					e.preventDefault();
+					if (isSeries) { navigateTo(detailRoute); return; }
 					try {
 						const parentDoc = window.top.document;
 						// Try resume then play action buttons first

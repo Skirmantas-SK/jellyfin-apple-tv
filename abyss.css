@@ -2723,3 +2723,528 @@ div[data-type="UserView"] .cardText-secondary {
         transform: scale(1.02) translateZ(0) !important;
     }
 }
+
+/* tvOS Safe-Area And Detail Page Polish */
+
+.skinHeader,
+.skinHeader.semiTransparent,
+.skinHeader-withBackground {
+    top: 0 !important;
+    min-height: 92px !important;
+    height: auto !important;
+    padding-top: max(10px, env(safe-area-inset-top)) !important;
+    padding-bottom: 10px !important;
+    overflow: visible !important;
+}
+
+.withSectionTabs .headerTop,
+.headerTop {
+    min-height: 72px !important;
+    padding-top: 0.8rem !important;
+    padding-bottom: 0.8rem !important;
+    overflow: visible !important;
+}
+
+.headerTabs.sectionTabs,
+body:has(#indexPage.homePage:not(.hide)) .headerTabs.sectionTabs {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    top: auto !important;
+    transform: none !important;
+    overflow: visible !important;
+}
+
+.pageWithAbsoluteTabs .pageTabContent,
+.pageWithAbsoluteTabs .pageTabContent.is-active {
+    padding-top: 0 !important;
+}
+
+body:has(#itemDetailPage) {
+    background: #050505 !important;
+}
+
+#itemDetailPage,
+#itemDetailPage .detailPageWrapperContainer,
+#itemDetailPage .detailPagePrimaryContainer,
+#itemDetailPage .detailPageContent,
+#itemDetailPage .detailPageSecondaryContainer {
+    background: transparent !important;
+}
+
+body:has(#itemDetailPage) .backgroundContainer,
+body:has(#itemDetailPage) .backgroundContainer.withBackdrop {
+    background: #050505 !important;
+}
+
+body:has(#itemDetailPage) .backdropImage {
+    opacity: 1 !important;
+    filter: saturate(112%) brightness(52%) contrast(106%) !important;
+    transform: scale(1.02) !important;
+}
+
+body:has(#itemDetailPage) .backdropContainer::before,
+body:has(#itemDetailPage) .backdropContainer::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+body:has(#itemDetailPage) .backdropContainer::before {
+    background:
+        linear-gradient(90deg, rgba(5, 5, 5, 0.96) 0%, rgba(5, 5, 5, 0.72) 27%, rgba(5, 5, 5, 0.22) 56%, rgba(5, 5, 5, 0.78) 100%),
+        linear-gradient(180deg, rgba(5, 5, 5, 0.2) 0%, rgba(5, 5, 5, 0.5) 44%, #050505 92%);
+}
+
+body:has(#itemDetailPage) .backdropContainer::after {
+    background: radial-gradient(circle at 62% 20%, rgba(255, 255, 255, 0.08), transparent 34%);
+}
+
+#itemDetailPage .detailPagePrimaryContainer {
+    min-height: 46vh !important;
+    padding-top: clamp(116px, 12vh, 150px) !important;
+    padding-bottom: clamp(26px, 4vh, 54px) !important;
+}
+
+#itemDetailPage .detailRibbon {
+    background: rgba(8, 8, 8, 0.7) !important;
+    -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+    backdrop-filter: blur(28px) saturate(180%) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding-top: 1.2rem !important;
+    padding-bottom: 1.2rem !important;
+}
+
+.layout-desktop #itemDetailPage .detailImageContainer .card {
+    top: clamp(120px, 13vh, 160px) !important;
+    left: clamp(48px, 4.6vw, 86px) !important;
+    width: clamp(250px, 21vw, 410px) !important;
+    border-radius: 30px !important;
+    box-shadow: 0 40px 90px rgba(0, 0, 0, 0.68), 0 16px 28px rgba(0, 0, 0, 0.42) !important;
+}
+
+#itemDetailPage .detailImageContainer .cardImageContainer,
+#itemDetailPage .detailImageContainer .card,
+#itemDetailPage .detailImageContainer .cardImage,
+#itemDetailPage .detailImageContainer .blurhash-canvas {
+    border-radius: 30px !important;
+    overflow: hidden !important;
+}
+
+#itemDetailPage .detailLogo {
+    display: block !important;
+    position: relative !important;
+    margin: 0 0 clamp(26px, 4vh, 44px) clamp(300px, 31vw, 520px) !important;
+    width: min(34vw, 520px) !important;
+    height: clamp(82px, 11vh, 142px) !important;
+    background-position: left center !important;
+    background-size: contain !important;
+    filter: drop-shadow(0 14px 34px rgba(0, 0, 0, 0.78)) !important;
+}
+
+#itemDetailPage .detailPagePrimaryContent,
+#itemDetailPage .detailPageContent,
+#itemDetailPage .detailRibbon {
+    padding-left: clamp(350px, 32.5vw, 570px) !important;
+    padding-right: clamp(42px, 5vw, 92px) !important;
+}
+
+#itemDetailPage .detailPagePrimaryContent {
+    max-width: 1420px !important;
+}
+
+#itemDetailPage .itemName,
+#itemDetailPage .parentName,
+#itemDetailPage .itemName.infoText.parentNameLast {
+    color: rgba(255, 255, 255, 0.96) !important;
+    font-weight: 600 !important;
+    letter-spacing: 0 !important;
+    text-shadow: 0 10px 34px rgba(0, 0, 0, 0.76) !important;
+}
+
+#itemDetailPage .itemMiscInfo,
+#itemDetailPage .itemMiscInfoPrimary,
+#itemDetailPage .mediaInfoCriticRating,
+#itemDetailPage .starRatingContainer,
+#itemDetailPage .endsAt,
+#itemDetailPage .criticRating,
+#itemDetailPage .communityRating,
+#itemDetailPage .officialRating {
+    color: rgba(255, 255, 255, 0.78) !important;
+    font-weight: 500 !important;
+}
+
+#itemDetailPage .itemMiscInfo > *,
+#itemDetailPage .mediaInfoCriticRating,
+#itemDetailPage .starRatingContainer,
+#itemDetailPage .officialRating {
+    display: inline-flex !important;
+    align-items: center !important;
+    min-height: 30px !important;
+    margin: 0 8px 8px 0 !important;
+    padding: 5px 11px !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+}
+
+#itemDetailPage .mainDetailButtons {
+    display: flex !important;
+    align-items: center !important;
+    gap: clamp(14px, 1.3vw, 22px) !important;
+    margin-top: 0 !important;
+}
+
+#itemDetailPage .mainDetailButtons .emby-button,
+#itemDetailPage .mainDetailButtons .paper-icon-button-light,
+#itemDetailPage .detailButton {
+    width: 58px !important;
+    height: 58px !important;
+    min-width: 58px !important;
+    min-height: 58px !important;
+    max-width: none !important;
+    padding: 0 !important;
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, 0.12) !important;
+    color: rgba(255, 255, 255, 0.92) !important;
+    -webkit-backdrop-filter: blur(22px) saturate(180%) !important;
+    backdrop-filter: blur(22px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.34) !important;
+}
+
+#itemDetailPage .mainDetailButtons .emby-button:hover,
+#itemDetailPage .mainDetailButtons .emby-button:focus,
+#itemDetailPage .mainDetailButtons .paper-icon-button-light:hover,
+#itemDetailPage .mainDetailButtons .paper-icon-button-light:focus,
+#itemDetailPage .detailButton:hover,
+#itemDetailPage .detailButton:focus {
+    background: #fff !important;
+    color: #000 !important;
+    transform: scale(1.08) !important;
+    box-shadow: var(--tvos-focus-shadow) !important;
+}
+
+#itemDetailPage .mainDetailButtons .btnPlay,
+#itemDetailPage .mainDetailButtons .btnResume,
+#itemDetailPage .mainDetailButtons .button-play,
+#itemDetailPage .mainDetailButtons [data-action="play"],
+#itemDetailPage .mainDetailButtons [data-action="resume"] {
+    width: auto !important;
+    min-width: 132px !important;
+    padding: 0 28px !important;
+    background: rgba(255, 255, 255, 0.96) !important;
+    color: #000 !important;
+    font-weight: 600 !important;
+}
+
+#itemDetailPage .tagline {
+    margin: 1.2rem 0 1.5rem !important;
+    color: rgba(255, 255, 255, 0.96) !important;
+    font-size: clamp(1.25rem, 1.5vw, 1.7rem) !important;
+    font-weight: 600 !important;
+    line-height: 1.2 !important;
+}
+
+#itemDetailPage .overview,
+#itemDetailPage .itemOverview,
+#itemDetailPage .detailPageContent p {
+    max-width: 900px !important;
+    color: rgba(255, 255, 255, 0.84) !important;
+    font-size: clamp(1rem, 1.08vw, 1.18rem) !important;
+    font-weight: 400 !important;
+    line-height: 1.46 !important;
+}
+
+#itemDetailPage .trackSelections,
+#itemDetailPage .selectContainer,
+#itemDetailPage .emby-select {
+    border-radius: 12px !important;
+}
+
+#itemDetailPage .trackSelections .selectContainer .detailTrackSelect,
+#itemDetailPage .emby-select {
+    min-height: 42px !important;
+    background: rgba(255, 255, 255, 0.12) !important;
+    color: rgba(255, 255, 255, 0.92) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+#itemDetailPage .sectionTitle {
+    margin-top: 2rem !important;
+    color: rgba(255, 255, 255, 0.94) !important;
+    font-size: clamp(1.28rem, 1.55vw, 1.75rem) !important;
+}
+
+@media (max-width: 75em) {
+    #itemDetailPage .detailPagePrimaryContent,
+    #itemDetailPage .detailPageContent,
+    #itemDetailPage .detailRibbon,
+    .layout-desktop #itemDetailPage .detailPagePrimaryContent,
+    .layout-desktop #itemDetailPage .detailPageContent,
+    .layout-desktop #itemDetailPage .detailRibbon {
+        padding-left: clamp(280px, 34vw, 410px) !important;
+        padding-right: 28px !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailImageContainer .card {
+        width: clamp(210px, 28vw, 300px) !important;
+    }
+
+    #itemDetailPage .detailLogo {
+        margin-left: clamp(280px, 34vw, 410px) !important;
+        width: min(42vw, 460px) !important;
+    }
+}
+
+@media (max-width: 50em) {
+    .skinHeader,
+    .skinHeader.semiTransparent,
+    .skinHeader-withBackground {
+        min-height: 76px !important;
+    }
+
+    #itemDetailPage .detailPagePrimaryContainer {
+        padding-top: 90px !important;
+    }
+
+    #itemDetailPage .detailLogo {
+        margin-left: 0 !important;
+        width: min(78vw, 420px) !important;
+    }
+
+    #itemDetailPage .detailPagePrimaryContent,
+    #itemDetailPage .detailPageContent,
+    #itemDetailPage .detailRibbon {
+        padding-left: 24px !important;
+        padding-right: 24px !important;
+    }
+}
+
+/* tvOS Playback OSD */
+
+#videoOsdPage {
+    background: #000 !important;
+}
+
+#videoOsdPage .skinHeader.osdHeader {
+    min-height: 84px !important;
+    padding: max(10px, env(safe-area-inset-top)) 32px 10px !important;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.28) 72%, transparent) !important;
+    -webkit-backdrop-filter: blur(22px) saturate(160%) !important;
+    backdrop-filter: blur(22px) saturate(160%) !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+#videoOsdPage .osdHeader .headerTop {
+    min-height: 58px !important;
+    padding: 0 !important;
+}
+
+#videoOsdPage .osdTitle {
+    font-size: clamp(1.35rem, 1.9vw, 2rem) !important;
+    font-weight: 600 !important;
+    color: rgba(255, 255, 255, 0.86) !important;
+    text-shadow: 0 8px 22px rgba(0, 0, 0, 0.72) !important;
+}
+
+#videoOsdPage .videoOsdBottom {
+    position: fixed !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    margin: 0 !important;
+    padding: 0 28px max(28px, env(safe-area-inset-bottom)) !important;
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.52)) !important;
+    pointer-events: none !important;
+}
+
+#videoOsdPage .videoOsdBottom .osdControls,
+#videoOsdPage .nowPlayingBar {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 auto !important;
+    padding: 20px 30px 18px !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 30px !important;
+    background: rgba(28, 28, 30, 0.68) !important;
+    -webkit-backdrop-filter: blur(34px) saturate(190%) !important;
+    backdrop-filter: blur(34px) saturate(190%) !important;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.58), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    pointer-events: auto !important;
+}
+
+#videoOsdPage .osdControls {
+    color: rgba(255, 255, 255, 0.92) !important;
+}
+
+#videoOsdPage .osdControls > * {
+    min-width: 0 !important;
+}
+
+#videoOsdPage .paper-icon-button-light,
+#videoOsdPage .osdControls .emby-button,
+#videoOsdPage .btnPause,
+#videoOsdPage .btnRewind,
+#videoOsdPage .btnFastForward,
+#videoOsdPage .btnPlayPause,
+#videoOsdPage .btnFullscreen,
+#videoOsdPage .btnAudio,
+#videoOsdPage .btnSubtitles {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    padding: 0 !important;
+    margin: 0 4px !important;
+    border-radius: 999px !important;
+    background: transparent !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    box-shadow: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+}
+
+#videoOsdPage .paper-icon-button-light:hover,
+#videoOsdPage .paper-icon-button-light:focus,
+#videoOsdPage .osdControls .emby-button:hover,
+#videoOsdPage .osdControls .emby-button:focus,
+#videoOsdPage .btnPause:hover,
+#videoOsdPage .btnPause:focus,
+#videoOsdPage .btnRewind:hover,
+#videoOsdPage .btnRewind:focus,
+#videoOsdPage .btnFastForward:hover,
+#videoOsdPage .btnFastForward:focus,
+#videoOsdPage .btnPlayPause:hover,
+#videoOsdPage .btnPlayPause:focus,
+#videoOsdPage .btnFullscreen:hover,
+#videoOsdPage .btnFullscreen:focus,
+#videoOsdPage .btnAudio:hover,
+#videoOsdPage .btnAudio:focus,
+#videoOsdPage .btnSubtitles:hover,
+#videoOsdPage .btnSubtitles:focus {
+    background: rgba(255, 255, 255, 0.94) !important;
+    color: #000 !important;
+    transform: scale(1.08) !important;
+    box-shadow: 0 16px 34px rgba(0, 0, 0, 0.45) !important;
+}
+
+#videoOsdPage .paper-icon-button-light .material-icons,
+#videoOsdPage .paper-icon-button-light .material-icons-round,
+#videoOsdPage .paper-icon-button-light .material-symbols-rounded,
+#videoOsdPage .osdControls .material-icons,
+#videoOsdPage .osdControls .material-icons-round,
+#videoOsdPage .osdControls .material-symbols-rounded {
+    font-size: 26px !important;
+}
+
+#videoOsdPage .btnPause .material-icons,
+#videoOsdPage .btnPlayPause .material-icons {
+    font-size: 30px !important;
+}
+
+#videoOsdPage .startTimeText,
+#videoOsdPage .endTimeText,
+#videoOsdPage .osdTimeText,
+#videoOsdPage .nowPlayingBarCurrentTime {
+    color: rgba(255, 255, 255, 0.88) !important;
+    font-size: 0.98rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0 !important;
+    text-shadow: 0 6px 18px rgba(0, 0, 0, 0.68) !important;
+}
+
+#videoOsdPage .endsAt,
+#videoOsdPage .osdSecondaryText {
+    color: rgba(255, 255, 255, 0.52) !important;
+    font-weight: 500 !important;
+}
+
+#videoOsdPage .sliderContainer,
+#videoOsdPage .osdPositionSliderContainer,
+#videoOsdPage .nowPlayingBarPositionContainer {
+    padding: 0 8px !important;
+}
+
+#videoOsdPage .mdl-slider,
+#videoOsdPage input[type="range"] {
+    accent-color: rgba(255, 255, 255, 0.96) !important;
+}
+
+#videoOsdPage .mdl-slider-background-flex,
+#videoOsdPage .mdl-slider-background-flex-inner,
+#videoOsdPage .mdl-slider-background-upper,
+#videoOsdPage .mdl-slider-background-lower,
+#videoOsdPage .sliderTrack,
+#videoOsdPage .volumeSliderContainer .mdl-slider-background-flex {
+    height: 4px !important;
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, 0.24) !important;
+}
+
+#videoOsdPage .mdl-slider-background-lower,
+#videoOsdPage .itemProgressBarForeground,
+#videoOsdPage .sliderMarker.watched {
+    background: rgba(255, 255, 255, 0.94) !important;
+}
+
+#videoOsdPage .sliderMarker,
+#videoOsdPage .chapterMarker {
+    width: 3px !important;
+    height: 14px !important;
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, 0.26) !important;
+}
+
+#videoOsdPage .mdl-slider::-webkit-slider-thumb,
+#videoOsdPage input[type="range"]::-webkit-slider-thumb {
+    width: 20px !important;
+    height: 20px !important;
+    border-radius: 999px !important;
+    background: #fff !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5) !important;
+}
+
+#videoOsdPage .mdl-slider::-moz-range-thumb,
+#videoOsdPage input[type="range"]::-moz-range-thumb {
+    width: 20px !important;
+    height: 20px !important;
+    border: 0 !important;
+    border-radius: 999px !important;
+    background: #fff !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5) !important;
+}
+
+#videoOsdPage .volumeSliderContainer {
+    min-width: 150px !important;
+}
+
+#videoOsdPage .osdTextContainer {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+@media (max-width: 50em) {
+    #videoOsdPage .videoOsdBottom {
+        padding: 0 12px max(12px, env(safe-area-inset-bottom)) !important;
+    }
+
+    #videoOsdPage .videoOsdBottom .osdControls,
+    #videoOsdPage .nowPlayingBar {
+        padding: 14px 14px 12px !important;
+        border-radius: 22px !important;
+    }
+
+    #videoOsdPage .paper-icon-button-light,
+    #videoOsdPage .osdControls .emby-button {
+        width: 40px !important;
+        height: 40px !important;
+        min-width: 40px !important;
+        min-height: 40px !important;
+    }
+}

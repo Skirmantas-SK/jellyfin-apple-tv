@@ -190,12 +190,8 @@ patch_home_chunk() {
         log "Backup already exists: $(basename "$CHUNK_FILE").bak"
     fi
 
-    if ! cmp -s "${STAGE_DIR}/home-html.chunk.js" "$CHUNK_FILE" 2>/dev/null; then
-        cp -f "${STAGE_DIR}/home-html.chunk.js" "$CHUNK_FILE"
-        log "Chunk patched"
-    else
-        log "Chunk already current"
-    fi
+    cp -f "${STAGE_DIR}/home-html.chunk.js" "$CHUNK_FILE"
+    log "Chunk patched/refreshed"
 }
 
 cleanup() {

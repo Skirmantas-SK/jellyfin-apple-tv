@@ -2611,7 +2611,7 @@ div[data-type="UserView"] .cardText-secondary {
 }
 
 #indexPage .featurediframe {
-    margin-top: 98px !important;
+    margin-top: 94px !important;
     height: 78vh !important;
     min-height: 620px !important;
     max-height: 840px !important;
@@ -2633,7 +2633,7 @@ div[data-type="UserView"] .cardText-secondary {
 
 @media (max-width: 1024px) {
     #indexPage .featurediframe {
-        margin-top: 82px !important;
+        margin-top: 78px !important;
         height: 90vh !important;
         min-height: 520px !important;
         max-height: 820px !important;
@@ -2642,7 +2642,7 @@ div[data-type="UserView"] .cardText-secondary {
 
 @media (max-width: 600px) {
     #indexPage .featurediframe {
-        margin-top: 76px !important;
+        margin-top: 72px !important;
         height: 90vh !important;
         min-height: 480px !important;
         max-height: 780px !important;

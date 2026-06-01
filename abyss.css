@@ -3025,6 +3025,73 @@ body:has(#itemDetailPage) .backdropContainer::after {
     }
 }
 
+/* tvOS Home App Tile Hardening */
+
+#indexPage .homeSectionsContainer .verticalSection:has([data-type="CollectionFolder"]) .itemsContainer,
+#indexPage .homeSectionsContainer .verticalSection:has([data-type="UserView"]) .itemsContainer {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(168px, 190px)) !important;
+    align-items: start !important;
+    justify-content: start !important;
+    gap: clamp(20px, 2vw, 34px) !important;
+}
+
+#indexPage .homeSectionsContainer .verticalSection:has([data-type="CollectionFolder"]) .card,
+#indexPage .homeSectionsContainer .verticalSection:has([data-type="UserView"]) .card {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 190px !important;
+    margin: 0 !important;
+}
+
+#indexPage .homeSectionsContainer .verticalSection:has([data-type="CollectionFolder"]) .cardBox,
+#indexPage .homeSectionsContainer .verticalSection:has([data-type="UserView"]) .cardBox {
+    margin: 0 !important;
+}
+
+#indexPage .homeSectionsContainer .verticalSection:has([data-type="CollectionFolder"]) .cardScalable,
+#indexPage .homeSectionsContainer .verticalSection:has([data-type="UserView"]) .cardScalable,
+#indexPage .homeSectionsContainer .verticalSection:has([data-type="CollectionFolder"]) .cardPadder,
+#indexPage .homeSectionsContainer .verticalSection:has([data-type="UserView"]) .cardPadder,
+#indexPage .homeSectionsContainer .verticalSection:has([data-type="CollectionFolder"]) .cardContent,
+#indexPage .homeSectionsContainer .verticalSection:has([data-type="UserView"]) .cardContent,
+#indexPage .homeSectionsContainer .verticalSection:has([data-type="CollectionFolder"]) .cardImageContainer,
+#indexPage .homeSectionsContainer .verticalSection:has([data-type="UserView"]) .cardImageContainer {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1 !important;
+    padding: 0 !important;
+    padding-bottom: 0 !important;
+    border-radius: 22% !important;
+    overflow: hidden !important;
+}
+
+#indexPage .homeSectionsContainer .verticalSection:has([data-type="CollectionFolder"]) .cardImage,
+#indexPage .homeSectionsContainer .verticalSection:has([data-type="UserView"]) .cardImage,
+#indexPage .homeSectionsContainer .verticalSection:has([data-type="CollectionFolder"]) .blurhash-canvas,
+#indexPage .homeSectionsContainer .verticalSection:has([data-type="UserView"]) .blurhash-canvas {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 22% !important;
+    background-size: cover !important;
+    background-position: center !important;
+    object-fit: cover !important;
+}
+
+#indexPage .homeSectionsContainer .verticalSection:has([data-type="CollectionFolder"]) .cardText,
+#indexPage .homeSectionsContainer .verticalSection:has([data-type="UserView"]) .cardText {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    margin: 0.78rem 0 0 !important;
+    padding: 0 0.2rem !important;
+    text-align: center !important;
+}
+
 /* tvOS Playback OSD */
 
 #videoOsdPage {

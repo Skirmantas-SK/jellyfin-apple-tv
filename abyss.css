@@ -2852,12 +2852,40 @@ body:has(.detailPageWrapperContainer) .backdropContainer::after {
     background: radial-gradient(circle at 62% 20%, rgba(255, 255, 255, 0.08), transparent 34%);
 }
 
+#itemDetailPage .itemBackdrop,
+.layout-desktop .itemBackdrop,
+.detailPageWrapperContainer .itemBackdrop {
+    display: block !important;
+    height: clamp(560px, 64vh, 780px) !important;
+    min-height: 560px !important;
+    margin: 0 !important;
+    opacity: 1 !important;
+    overflow: hidden !important;
+    filter: saturate(112%) brightness(74%) contrast(105%) !important;
+}
+
+#itemDetailPage .itemBackdrop::after,
+.layout-desktop .itemBackdrop::after,
+.detailPageWrapperContainer .itemBackdrop::after {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    pointer-events: none !important;
+    background:
+        linear-gradient(90deg, rgba(5, 5, 5, 0.9) 0%, rgba(5, 5, 5, 0.58) 30%, rgba(5, 5, 5, 0.18) 62%, rgba(5, 5, 5, 0.82) 100%),
+        linear-gradient(180deg, rgba(5, 5, 5, 0.04) 0%, rgba(5, 5, 5, 0.18) 46%, rgba(5, 5, 5, 0.9) 86%, #050505 100%) !important;
+}
+
 #itemDetailPage .detailPagePrimaryContainer,
 .layout-desktop .detailPagePrimaryContainer,
 .detailPageWrapperContainer .detailPagePrimaryContainer {
-    min-height: clamp(470px, 58vh, 690px) !important;
-    padding-top: clamp(122px, 13vh, 162px) !important;
+    position: relative !important;
+    z-index: 2 !important;
+    min-height: 0 !important;
+    margin-top: calc(-1 * clamp(430px, 50vh, 620px)) !important;
+    padding-top: clamp(132px, 14vh, 176px) !important;
     padding-bottom: 26px !important;
+    background: transparent !important;
 }
 
 #itemDetailPage .detailRibbon,
@@ -2869,7 +2897,7 @@ body:has(.detailPageWrapperContainer) .backdropContainer::after {
     gap: clamp(18px, 1.5vw, 28px) !important;
     width: auto !important;
     min-height: 96px !important;
-    margin-left: clamp(340px, 24vw, 470px) !important;
+    margin-left: clamp(72px, 6vw, 118px) !important;
     margin-right: clamp(50px, 5vw, 92px) !important;
     padding: 18px 22px !important;
     border: 1px solid rgba(255, 255, 255, 0.14) !important;
@@ -2878,6 +2906,12 @@ body:has(.detailPageWrapperContainer) .backdropContainer::after {
     -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
     backdrop-filter: blur(28px) saturate(180%) !important;
     box-shadow: 0 30px 80px rgba(0, 0, 0, 0.46), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+#itemDetailPage .detailImageContainer,
+.layout-desktop .detailImageContainer,
+.detailPageWrapperContainer .detailImageContainer {
+    display: none !important;
 }
 
 .layout-desktop #itemDetailPage .detailImageContainer .card,
@@ -2909,10 +2943,10 @@ body:has(.detailPageWrapperContainer) .backdropContainer::after {
 .detailPageWrapperContainer .detailLogo {
     display: block !important;
     position: relative !important;
-    margin: 0 0 clamp(22px, 3vh, 34px) clamp(340px, 24vw, 470px) !important;
-    width: min(35vw, 560px) !important;
-    height: clamp(86px, 11vh, 142px) !important;
-    max-height: 142px !important;
+    margin: 0 0 clamp(26px, 3.4vh, 42px) clamp(72px, 6vw, 118px) !important;
+    width: min(40vw, 620px) !important;
+    height: clamp(96px, 13vh, 170px) !important;
+    max-height: 170px !important;
     background-position: left center !important;
     background-size: contain !important;
     filter: drop-shadow(0 16px 38px rgba(0, 0, 0, 0.86)) !important;
@@ -2926,7 +2960,7 @@ body:has(.detailPageWrapperContainer) .backdropContainer::after {
 .detailPageWrapperContainer .detailPageContent {
     width: auto !important;
     max-width: none !important;
-    margin-left: clamp(340px, 24vw, 470px) !important;
+    margin-left: clamp(72px, 6vw, 118px) !important;
     margin-right: clamp(50px, 5vw, 92px) !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
@@ -2945,7 +2979,12 @@ body:has(.detailPageWrapperContainer) .backdropContainer::after {
 .detailPageWrapperContainer .itemName,
 .detailPageWrapperContainer .parentName,
 .detailPageWrapperContainer .itemName.infoText.parentNameLast {
+    display: block !important;
+    max-width: min(56vw, 920px) !important;
+    margin: 0 0 22px clamp(72px, 6vw, 118px) !important;
     color: rgba(255, 255, 255, 0.96) !important;
+    font-size: clamp(2.35rem, 3.8vw, 4.7rem) !important;
+    line-height: 1 !important;
     font-weight: 600 !important;
     letter-spacing: 0 !important;
     text-shadow: 0 10px 34px rgba(0, 0, 0, 0.76) !important;
@@ -3072,7 +3111,7 @@ body:has(.detailPageWrapperContainer) .backdropContainer::after {
 .detailPageWrapperContainer .overview,
 .detailPageWrapperContainer .itemOverview,
 .detailPageWrapperContainer .detailPageContent p {
-    max-width: min(980px, 62vw) !important;
+    max-width: min(1040px, 68vw) !important;
     color: rgba(255, 255, 255, 0.84) !important;
     font-size: clamp(1rem, 1.08vw, 1.18rem) !important;
     font-weight: 400 !important;
@@ -3090,6 +3129,11 @@ body:has(.detailPageWrapperContainer) .backdropContainer::after {
     -webkit-backdrop-filter: blur(22px) saturate(155%) !important;
     backdrop-filter: blur(22px) saturate(155%) !important;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 24px 70px rgba(0, 0, 0, 0.25) !important;
+}
+
+#itemDetailPage .detailPageContent > p:nth-of-type(n+2),
+.detailPageWrapperContainer .detailPageContent > p:nth-of-type(n+2) {
+    display: none !important;
 }
 
 #itemDetailPage .trackSelections,

@@ -9,7 +9,7 @@
 
 set -euo pipefail
 
-REPO="AumGupta/abyss-jellyfin"
+REPO="Skirmantas-SK/jellyfin-apple-tv"
 BRANCH="main"
 WEB_DIR="/usr/share/jellyfin/web"
 UI_DIR="${WEB_DIR}/ui"

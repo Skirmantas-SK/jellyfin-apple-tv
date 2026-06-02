@@ -469,3 +469,5 @@ Follow-up 7: The lower detail page still needs its own dark surface. If `.detail
 Follow-up 8: A short, dark `.skinHeader` gradient can look like a rectangular filter on top of the movie artwork. For detail pages, keep the header scrim lighter and continue it below the header with a small `::after` fade so there is no hard horizontal cutoff.
 
 Follow-up 9: If the top scrim still reads like a box, do not extend a fixed `.skinHeader::after` over the artwork. Put the top fade on `.itemBackdrop::before` instead, because it scrolls with the hero image. Use `.detailPageContent::before` for the lower fade, with a negative top and a large negative bottom, so the black surface starts before the content and covers past the page end.
+
+Follow-up 10: Avoid a visible gap between `.itemBackdrop::after` and `.detailPageContent::before`. The two fades should overlap: make the hero bottom fade darken before the lower content begins, and start `.detailPageContent::before` with a nonzero dark tint instead of `rgba(..., 0)`.

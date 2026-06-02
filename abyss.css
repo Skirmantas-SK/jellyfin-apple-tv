@@ -2624,7 +2624,7 @@ div[data-type="UserView"] .cardText-secondary {
 }
 
 #indexPage .featurediframe {
-    margin-top: 80px !important;
+    /* margin-top: 80px !important; */
     height: 72vh !important;
     min-height: 560px !important;
     max-height: 780px !important;
@@ -2646,7 +2646,7 @@ div[data-type="UserView"] .cardText-secondary {
 
 @media (max-width: 1024px) {
     #indexPage .featurediframe {
-        margin-top: 80px !important;
+        /* margin-top: 80px !important; */
         height: 76vh !important;
         min-height: 500px !important;
         max-height: 760px !important;
@@ -2655,7 +2655,7 @@ div[data-type="UserView"] .cardText-secondary {
 
 @media (max-width: 600px) {
     #indexPage .featurediframe {
-        margin-top: 80px !important;
+        /* margin-top: 80px !important; */
         height: 72vh !important;
         min-height: 460px !important;
         max-height: 720px !important;

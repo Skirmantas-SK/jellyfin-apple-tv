@@ -5018,3 +5018,938 @@ body:has(#itemDetailPage) .layout-desktop .detailPageContent {
     }
 }
 
+/* tvOS Detail Page Scroll Reset */
+@media (min-width: 50.001em) {
+    html:has(#itemDetailPage),
+    body.layout-desktop:has(#itemDetailPage) {
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        background: #050505 !important;
+    }
+
+    body.layout-desktop:has(#itemDetailPage) .skinHeader,
+    body.layout-desktop:has(#itemDetailPage) .skinHeader-withBackground,
+    body.layout-desktop:has(#itemDetailPage) .skinHeader.semiTransparent {
+        min-height: 92px !important;
+        height: 92px !important;
+        padding: 0 clamp(28px, 3vw, 56px) !important;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.58), rgba(0, 0, 0, 0.12) 74%, rgba(0, 0, 0, 0)) !important;
+        border-bottom: 0 !important;
+        box-shadow: none !important;
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+    }
+
+    .layout-desktop #itemDetailPage,
+    body.layout-desktop #itemDetailPage {
+        --tvos-detail-x: clamp(48px, 5vw, 96px);
+        --tvos-detail-width: min(660px, 44vw);
+        --tvos-detail-bottom: clamp(220px, 26vh, 300px);
+        position: relative !important;
+        min-height: 100vh !important;
+        overflow: visible !important;
+        background: #050505 !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailPageWrapperContainer,
+    body.layout-desktop #itemDetailPage .detailPageWrapperContainer {
+        position: relative !important;
+        min-height: 100vh !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        background: transparent !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailPagePrimaryContainer,
+    body.layout-desktop #itemDetailPage .detailPagePrimaryContainer {
+        position: relative !important;
+        z-index: 2 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        justify-content: flex-end !important;
+        min-height: 100vh !important;
+        width: auto !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 128px var(--tvos-detail-x) var(--tvos-detail-bottom) !important;
+        overflow: visible !important;
+        background: transparent !important;
+    }
+
+    .layout-desktop #itemDetailPage .itemBackdrop,
+    body.layout-desktop #itemDetailPage .itemBackdrop {
+        display: block !important;
+        position: absolute !important;
+        inset: 0 0 auto 0 !important;
+        width: 100% !important;
+        height: 100vh !important;
+        min-height: 100vh !important;
+        max-height: none !important;
+        margin: 0 !important;
+        z-index: 0 !important;
+        opacity: 1 !important;
+        overflow: hidden !important;
+        pointer-events: none !important;
+        filter: saturate(108%) brightness(72%) contrast(104%) !important;
+        background-size: cover !important;
+        background-position: center center !important;
+    }
+
+    body.layout-desktop:has(#itemDetailPage) .backgroundContainer,
+    body.layout-desktop:has(#itemDetailPage) .backgroundContainer.withBackdrop,
+    body.layout-desktop:has(#itemDetailPage) .backdropImage {
+        position: fixed !important;
+        inset: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        opacity: 1 !important;
+        pointer-events: none !important;
+        background-size: cover !important;
+        background-position: center center !important;
+        filter: saturate(108%) brightness(58%) contrast(104%) !important;
+    }
+
+    .layout-desktop #itemDetailPage .itemBackdrop::before,
+    body.layout-desktop #itemDetailPage .itemBackdrop::before,
+    .layout-desktop #itemDetailPage .itemBackdrop::after,
+    body.layout-desktop #itemDetailPage .itemBackdrop::after {
+        content: "" !important;
+        position: absolute !important;
+        inset: 0 !important;
+        pointer-events: none !important;
+    }
+
+    .layout-desktop #itemDetailPage .itemBackdrop::before,
+    body.layout-desktop #itemDetailPage .itemBackdrop::before {
+        background:
+            linear-gradient(90deg, rgba(0, 0, 0, 0.70) 0%, rgba(0, 0, 0, 0.38) 34%, rgba(0, 0, 0, 0.10) 68%, rgba(0, 0, 0, 0.42) 100%),
+            radial-gradient(circle at 62% 32%, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.36) 56%, rgba(0, 0, 0, 0.70) 100%) !important;
+    }
+
+    .layout-desktop #itemDetailPage .itemBackdrop::after,
+    body.layout-desktop #itemDetailPage .itemBackdrop::after {
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.18) 48%, rgba(0, 0, 0, 0.78) 88%, #050505 100%) !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailImageContainer,
+    .layout-desktop #itemDetailPage .detailImageContainer .card,
+    .layout-desktop #itemDetailPage .detailPageContent > .card,
+    .layout-desktop #itemDetailPage .detailPageContent > .portraitCard,
+    .layout-desktop #itemDetailPage .detailPageContent .card.portraitCard,
+    body.layout-desktop #itemDetailPage .detailImageContainer,
+    body.layout-desktop #itemDetailPage .detailImageContainer .card,
+    body.layout-desktop #itemDetailPage .detailPageContent > .card,
+    body.layout-desktop #itemDetailPage .detailPageContent > .portraitCard,
+    body.layout-desktop #itemDetailPage .detailPageContent .card.portraitCard {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailPagePrimaryContent,
+    body.layout-desktop #itemDetailPage .detailPagePrimaryContent {
+        position: relative !important;
+        left: auto !important;
+        bottom: auto !important;
+        z-index: 3 !important;
+        display: block !important;
+        width: var(--tvos-detail-width) !important;
+        max-width: var(--tvos-detail-width) !important;
+        margin: 0 0 1rem !important;
+        padding: 0 !important;
+        background: transparent !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailLogo,
+    body.layout-desktop #itemDetailPage .detailLogo {
+        display: block !important;
+        position: relative !important;
+        width: min(360px, var(--tvos-detail-width)) !important;
+        height: clamp(82px, 12vh, 140px) !important;
+        margin: 0 0 0.85rem !important;
+        background-position: left bottom !important;
+        background-size: contain !important;
+        filter: drop-shadow(0 12px 30px rgba(0, 0, 0, 0.70)) !important;
+    }
+
+    .layout-desktop #itemDetailPage .itemName.infoText,
+    .layout-desktop #itemDetailPage .itemName.infoText.parentNameLast,
+    .layout-desktop #itemDetailPage .nameContainer .itemName,
+    body.layout-desktop #itemDetailPage .itemName.infoText,
+    body.layout-desktop #itemDetailPage .itemName.infoText.parentNameLast,
+    body.layout-desktop #itemDetailPage .nameContainer .itemName {
+        display: block !important;
+        max-width: var(--tvos-detail-width) !important;
+        margin: 0 !important;
+        color: rgba(255, 255, 255, 0.96) !important;
+        font-size: clamp(3rem, 5vw, 5.8rem) !important;
+        line-height: 0.96 !important;
+        font-weight: 700 !important;
+        letter-spacing: 0 !important;
+        text-shadow: 0 16px 44px rgba(0, 0, 0, 0.78) !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailRibbon,
+    body.layout-desktop #itemDetailPage .detailRibbon {
+        position: relative !important;
+        left: auto !important;
+        bottom: auto !important;
+        z-index: 3 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+        gap: 1rem !important;
+        width: var(--tvos-detail-width) !important;
+        max-width: var(--tvos-detail-width) !important;
+        min-height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        background: transparent !important;
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+        box-shadow: none !important;
+    }
+
+    .layout-desktop #itemDetailPage .itemMiscInfo,
+    .layout-desktop #itemDetailPage .itemMiscInfoPrimary,
+    .layout-desktop #itemDetailPage .itemMiscInfo-primary,
+    body.layout-desktop #itemDetailPage .itemMiscInfo,
+    body.layout-desktop #itemDetailPage .itemMiscInfoPrimary,
+    body.layout-desktop #itemDetailPage .itemMiscInfo-primary {
+        order: 1 !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+        gap: 8px !important;
+        width: var(--tvos-detail-width) !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .layout-desktop #itemDetailPage .itemMiscInfo > *,
+    .layout-desktop #itemDetailPage .mediaInfoCriticRating,
+    .layout-desktop #itemDetailPage .starRatingContainer,
+    .layout-desktop #itemDetailPage .officialRating,
+    body.layout-desktop #itemDetailPage .itemMiscInfo > *,
+    body.layout-desktop #itemDetailPage .mediaInfoCriticRating,
+    body.layout-desktop #itemDetailPage .starRatingContainer,
+    body.layout-desktop #itemDetailPage .officialRating {
+        display: inline-flex !important;
+        align-items: center !important;
+        min-height: 30px !important;
+        margin: 0 !important;
+        padding: 5px 11px !important;
+        border-radius: 999px !important;
+        border: 1px solid rgba(255, 255, 255, 0.16) !important;
+        background: rgba(20, 20, 20, 0.44) !important;
+        color: rgba(255, 255, 255, 0.88) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+        backdrop-filter: blur(20px) saturate(180%) !important;
+        font-size: 0.92rem !important;
+        font-weight: 600 !important;
+        line-height: 1 !important;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35) !important;
+    }
+
+    .layout-desktop #itemDetailPage .mainDetailButtons,
+    body.layout-desktop #itemDetailPage .mainDetailButtons {
+        order: 2 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 14px !important;
+        width: var(--tvos-detail-width) !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        pointer-events: auto !important;
+    }
+
+    .layout-desktop #itemDetailPage .mainDetailButtons .emby-button,
+    .layout-desktop #itemDetailPage .mainDetailButtons .paper-icon-button-light,
+    .layout-desktop #itemDetailPage .detailButton,
+    body.layout-desktop #itemDetailPage .mainDetailButtons .emby-button,
+    body.layout-desktop #itemDetailPage .mainDetailButtons .paper-icon-button-light,
+    body.layout-desktop #itemDetailPage .detailButton {
+        width: 52px !important;
+        height: 52px !important;
+        min-width: 52px !important;
+        min-height: 52px !important;
+        padding: 0 !important;
+        border-radius: 999px !important;
+        border: 1px solid rgba(255, 255, 255, 0.16) !important;
+        background: rgba(255, 255, 255, 0.14) !important;
+        color: rgba(255, 255, 255, 0.95) !important;
+        -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+        backdrop-filter: blur(24px) saturate(180%) !important;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.40) !important;
+    }
+
+    .layout-desktop #itemDetailPage .mainDetailButtons .btnPlay,
+    .layout-desktop #itemDetailPage .mainDetailButtons .btnResume,
+    .layout-desktop #itemDetailPage .mainDetailButtons .button-play,
+    .layout-desktop #itemDetailPage .mainDetailButtons [data-action="play"],
+    .layout-desktop #itemDetailPage .mainDetailButtons [data-action="resume"],
+    body.layout-desktop #itemDetailPage .mainDetailButtons .btnPlay,
+    body.layout-desktop #itemDetailPage .mainDetailButtons .btnResume,
+    body.layout-desktop #itemDetailPage .mainDetailButtons .button-play,
+    body.layout-desktop #itemDetailPage .mainDetailButtons [data-action="play"],
+    body.layout-desktop #itemDetailPage .mainDetailButtons [data-action="resume"] {
+        width: auto !important;
+        min-width: 184px !important;
+        height: 56px !important;
+        min-height: 56px !important;
+        padding: 0 32px !important;
+        background: rgba(255, 255, 255, 0.96) !important;
+        color: #050505 !important;
+        font-weight: 700 !important;
+    }
+
+    .layout-desktop #itemDetailPage .trackSelections,
+    .layout-desktop #itemDetailPage .selectContainer:has(.detailTrackSelect),
+    .layout-desktop #itemDetailPage .detailTrackSelect,
+    body.layout-desktop #itemDetailPage .trackSelections,
+    body.layout-desktop #itemDetailPage .selectContainer:has(.detailTrackSelect),
+    body.layout-desktop #itemDetailPage .detailTrackSelect {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailPageContent,
+    body.layout-desktop #itemDetailPage .detailPageContent {
+        position: relative !important;
+        left: auto !important;
+        bottom: auto !important;
+        z-index: 3 !important;
+        display: block !important;
+        width: auto !important;
+        max-width: none !important;
+        margin: -190px var(--tvos-detail-x) 0 !important;
+        padding: 0 0 6rem !important;
+        background: transparent !important;
+        border: 0 !important;
+        box-shadow: none !important;
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+        pointer-events: auto !important;
+        overflow: visible !important;
+    }
+
+    .layout-desktop #itemDetailPage .overview,
+    .layout-desktop #itemDetailPage .itemOverview,
+    .layout-desktop #itemDetailPage .detailPageContent > p,
+    body.layout-desktop #itemDetailPage .overview,
+    body.layout-desktop #itemDetailPage .itemOverview,
+    body.layout-desktop #itemDetailPage .detailPageContent > p {
+        display: -webkit-box !important;
+        width: var(--tvos-detail-width) !important;
+        max-width: var(--tvos-detail-width) !important;
+        margin: 0 0 3.5rem !important;
+        color: rgba(255, 255, 255, 0.82) !important;
+        font-size: clamp(1rem, 1.05vw, 1.18rem) !important;
+        font-weight: 500 !important;
+        line-height: 1.42 !important;
+        text-shadow: 0 10px 26px rgba(0, 0, 0, 0.66) !important;
+        -webkit-line-clamp: 3 !important;
+        -webkit-box-orient: vertical !important;
+        overflow: hidden !important;
+        pointer-events: auto !important;
+    }
+
+    .layout-desktop #itemDetailPage .btnMoreOverview,
+    .layout-desktop #itemDetailPage .showMoreButton,
+    .layout-desktop #itemDetailPage .readMoreButton,
+    body.layout-desktop #itemDetailPage .btnMoreOverview,
+    body.layout-desktop #itemDetailPage .showMoreButton,
+    body.layout-desktop #itemDetailPage .readMoreButton {
+        display: none !important;
+    }
+
+    .layout-desktop #itemDetailPage .verticalSection,
+    .layout-desktop #itemDetailPage #scenesCollapsible,
+    .layout-desktop #itemDetailPage #similarCollapsible,
+    .layout-desktop #itemDetailPage .moreFromSeasonSection,
+    body.layout-desktop #itemDetailPage .verticalSection,
+    body.layout-desktop #itemDetailPage #scenesCollapsible,
+    body.layout-desktop #itemDetailPage #similarCollapsible,
+    body.layout-desktop #itemDetailPage .moreFromSeasonSection {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: relative !important;
+        z-index: 4 !important;
+        width: calc(100vw - (var(--tvos-detail-x) * 2)) !important;
+        max-width: calc(100vw - (var(--tvos-detail-x) * 2)) !important;
+        margin: 3.25rem 0 0 !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        pointer-events: auto !important;
+    }
+
+    .layout-desktop #itemDetailPage .itemsContainer,
+    .layout-desktop #itemDetailPage .emby-scrollbuttons,
+    .layout-desktop #itemDetailPage .scrollSlider,
+    body.layout-desktop #itemDetailPage .itemsContainer,
+    body.layout-desktop #itemDetailPage .emby-scrollbuttons,
+    body.layout-desktop #itemDetailPage .scrollSlider {
+        pointer-events: auto !important;
+    }
+}
+
+/* NeutralFin Detail Rebase
+   Detail layout adapted from KartoffelChipss/NeutralFin, with Abyss tvOS controls retained. */
+@media (min-width: 50.001em) {
+    body.layout-desktop:has(#itemDetailPage) {
+        --sidePadding: 3.3%;
+        --itemColumnGap: 0.5em;
+        --primaryItemPageNegativeSpace: 14vh;
+        --secondaryItemPageNegativeSpace: 60vh;
+        --clearLogoBottomSpace: 11em;
+        --darkerGradientPoint: #050505;
+        --darkerGradientPointAlpha: rgba(5, 5, 5, 0.86);
+        --lighterGradientPointAlpha: rgba(30, 30, 30, 0.78);
+        --borderColor: rgba(255, 255, 255, 0.16);
+        --defaultBorder: 1px solid rgba(255, 255, 255, 0.14);
+        --textColor: rgba(245, 245, 247, 0.92);
+        --dimTextColor: rgba(245, 245, 247, 0.62);
+        --itemBackdropMask: linear-gradient(180deg, rgba(0, 0, 0, 0.8), 75%, transparent);
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        background: #050505 !important;
+    }
+
+    body.layout-desktop:has(#itemDetailPage) .skinHeader,
+    body.layout-desktop:has(#itemDetailPage) .skinHeader-withBackground,
+    body.layout-desktop:has(#itemDetailPage) .skinHeader.semiTransparent {
+        min-height: 5em !important;
+        height: 5em !important;
+        padding: 0 var(--sidePadding) !important;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.58), 70%, transparent) !important;
+        border-bottom: 0 !important;
+        box-shadow: none !important;
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+    }
+
+    .layout-desktop #itemDetailPage,
+    body.layout-desktop #itemDetailPage {
+        position: relative !important;
+        min-height: 100vh !important;
+        overflow: visible !important;
+        background: #050505 !important;
+        font-family: var(--tvos-font-stack) !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailPageWrapperContainer,
+    body.layout-desktop #itemDetailPage .detailPageWrapperContainer {
+        position: relative !important;
+        min-height: 46vh !important;
+        margin-top: unset !important;
+        padding-top: unset !important;
+        overflow: visible !important;
+        background: linear-gradient(180deg, transparent, 17vh, var(--darkerGradientPointAlpha) 50vh) !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailPagePrimaryContainer,
+    body.layout-desktop #itemDetailPage .detailPagePrimaryContainer {
+        position: relative !important;
+        z-index: 2 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-content: space-between !important;
+        align-items: center !important;
+        justify-content: end !important;
+        min-height: 0 !important;
+        width: auto !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        text-align: left !important;
+        background: transparent !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailPagePrimaryContainer > .detailPagePrimaryContent,
+    .layout-desktop #itemDetailPage [dir="ltr"] .detailPagePrimaryContainer > .detailRibbon,
+    .layout-desktop #itemDetailPage [dir="ltr"] .detailPagePrimaryContainer.detailRibbon,
+    body.layout-desktop #itemDetailPage .detailPagePrimaryContainer > .detailPagePrimaryContent,
+    body.layout-desktop #itemDetailPage [dir="ltr"] .detailPagePrimaryContainer > .detailRibbon,
+    body.layout-desktop #itemDetailPage [dir="ltr"] .detailPagePrimaryContainer.detailRibbon {
+        padding-left: var(--sidePadding) !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailPagePrimaryContent,
+    body.layout-desktop #itemDetailPage .detailPagePrimaryContent {
+        position: static !important;
+        left: auto !important;
+        bottom: auto !important;
+        display: block !important;
+        width: auto !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding-top: 0 !important;
+        background: transparent !important;
+        z-index: 3 !important;
+    }
+
+    .layout-desktop #itemDetailPage .itemBackdrop,
+    body.layout-desktop #itemDetailPage .itemBackdrop {
+        display: block !important;
+        position: relative !important;
+        inset: auto !important;
+        width: 100% !important;
+        height: calc(100vh - 27vh - var(--primaryItemPageNegativeSpace)) !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        margin: 0 !important;
+        opacity: 1 !important;
+        overflow: hidden !important;
+        pointer-events: none !important;
+        filter: saturate(108%) brightness(74%) contrast(104%) !important;
+        background-size: cover !important;
+        background-position: center center !important;
+    }
+
+    .layout-desktop #itemDetailPage .itemBackdrop::before,
+    .layout-desktop #itemDetailPage .itemBackdrop::after,
+    body.layout-desktop #itemDetailPage .itemBackdrop::before,
+    body.layout-desktop #itemDetailPage .itemBackdrop::after {
+        content: "" !important;
+        position: absolute !important;
+        inset: 0 !important;
+        pointer-events: none !important;
+    }
+
+    .layout-desktop #itemDetailPage .itemBackdrop::before,
+    body.layout-desktop #itemDetailPage .itemBackdrop::before {
+        background: linear-gradient(90deg, rgba(0, 0, 0, 0.66), rgba(0, 0, 0, 0.22) 42%, rgba(0, 0, 0, 0.42)) !important;
+    }
+
+    .layout-desktop #itemDetailPage .itemBackdrop::after,
+    body.layout-desktop #itemDetailPage .itemBackdrop::after {
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.18) 52%, rgba(0, 0, 0, 0.82) 88%, #050505 100%) !important;
+    }
+
+    #itemDetailPage:has(.subtitle) .itemBackdrop,
+    #itemDetailPage:has(.musicParentName) .itemBackdrop,
+    #itemDetailPage:has(.detailImageContainer .backdropCard) .itemBackdrop,
+    #itemDetailPage:has(.detailImageContainer .person) .itemBackdrop,
+    #itemDetailPage:has(.detailImageContainer .queue) .itemBackdrop,
+    #itemDetailPage:has(.detailImageContainer .book) .itemBackdrop,
+    #itemDetailPage:has(.detailImageContainer .live_tv) .itemBackdrop {
+        height: calc(100vh - 27vh - var(--secondaryItemPageNegativeSpace)) !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailLogo,
+    body.layout-desktop #itemDetailPage .detailLogo {
+        display: var(--clearLogoVisibility, block) !important;
+        position: absolute !important;
+        top: calc(100vh - var(--clearLogoBottomSpace) - var(--primaryItemPageNegativeSpace)) !important;
+        left: 0 !important;
+        width: 40% !important;
+        height: 25vh !important;
+        margin: auto 30% !important;
+        transform: translateY(-100%) !important;
+        background-position: bottom !important;
+        background-size: contain !important;
+        z-index: 3 !important;
+        filter: drop-shadow(0 14px 34px rgba(0, 0, 0, 0.74)) !important;
+        pointer-events: none !important;
+    }
+
+    .layout-desktop #itemDetailPage:has(.subtitle) .detailLogo,
+    body.layout-desktop #itemDetailPage:has(.subtitle) .detailLogo {
+        top: calc(100vh - 6em - var(--secondaryItemPageNegativeSpace)) !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1,
+    body.layout-desktop #itemDetailPage .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1 {
+        display: var(--itemTitleVisibility, none) !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailLogo.hide ~ .detailPageWrapperContainer .nameContainer h1,
+    .layout-desktop #itemDetailPage .detailImageContainer:has(.backdropCard, .squareCard) ~ .nameContainer h1,
+    body.layout-desktop #itemDetailPage .detailLogo.hide ~ .detailPageWrapperContainer .nameContainer h1,
+    body.layout-desktop #itemDetailPage .detailImageContainer:has(.backdropCard, .squareCard) ~ .nameContainer h1 {
+        display: block !important;
+    }
+
+    .layout-desktop #itemDetailPage .itemName.infoText,
+    .layout-desktop #itemDetailPage .itemName.infoText.parentNameLast,
+    .layout-desktop #itemDetailPage .nameContainer .itemName,
+    body.layout-desktop #itemDetailPage .itemName.infoText,
+    body.layout-desktop #itemDetailPage .itemName.infoText.parentNameLast,
+    body.layout-desktop #itemDetailPage .nameContainer .itemName {
+        max-width: min(860px, 58vw) !important;
+        margin: 0 auto 0.55rem !important;
+        color: rgba(255, 255, 255, 0.96) !important;
+        font-size: clamp(3rem, 5vw, 5.6rem) !important;
+        line-height: 0.96 !important;
+        font-weight: 700 !important;
+        letter-spacing: 0 !important;
+        text-align: center !important;
+        text-shadow: 0 16px 44px rgba(0, 0, 0, 0.78) !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailImageContainer,
+    body.layout-desktop #itemDetailPage .detailImageContainer {
+        display: block !important;
+        visibility: visible !important;
+        position: static !important;
+        width: auto !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailImageContainer .card,
+    body.layout-desktop #itemDetailPage .detailImageContainer .card {
+        display: none !important;
+        position: relative !important;
+        width: 22vh !important;
+        float: none !important;
+        left: 0 !important;
+        top: 0 !important;
+        right: 0 !important;
+        margin: auto auto 0 !important;
+        place-self: center !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailImageContainer > .backdropCard,
+    .layout-desktop #itemDetailPage .detailImageContainer > .squareCard,
+    .layout-desktop #itemDetailPage .detailImageContainer > .card:has(.book),
+    .layout-desktop #itemDetailPage .detailImageContainer > .card:has(.person),
+    .layout-desktop #itemDetailPage .detailImageContainer > .card:has(.album),
+    .layout-desktop #itemDetailPage .detailImageContainer > .card:has(.queue),
+    .layout-desktop #itemDetailPage .detailImageContainer > .card:has(.live_tv),
+    body.layout-desktop #itemDetailPage .detailImageContainer > .backdropCard,
+    body.layout-desktop #itemDetailPage .detailImageContainer > .squareCard,
+    body.layout-desktop #itemDetailPage .detailImageContainer > .card:has(.book),
+    body.layout-desktop #itemDetailPage .detailImageContainer > .card:has(.person),
+    body.layout-desktop #itemDetailPage .detailImageContainer > .card:has(.album),
+    body.layout-desktop #itemDetailPage .detailImageContainer > .card:has(.queue),
+    body.layout-desktop #itemDetailPage .detailImageContainer > .card:has(.live_tv) {
+        display: block !important;
+    }
+
+    .layout-desktop #itemDetailPage .infoWrapper,
+    body.layout-desktop #itemDetailPage .infoWrapper {
+        display: grid !important;
+        place-items: center !important;
+        align-content: end !important;
+        text-align: center !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailRibbon,
+    body.layout-desktop #itemDetailPage .detailRibbon {
+        position: static !important;
+        left: auto !important;
+        bottom: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        width: auto !important;
+        max-width: none !important;
+        height: 100% !important;
+        min-height: 25vh !important;
+        margin-top: unset !important;
+        padding: 0 var(--sidePadding) !important;
+        gap: 0.85rem !important;
+        border: 0 !important;
+        background: transparent !important;
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+        box-shadow: none !important;
+        pointer-events: auto !important;
+        z-index: 3 !important;
+    }
+
+    .layout-desktop #itemDetailPage .itemMiscInfo,
+    .layout-desktop #itemDetailPage .itemMiscInfoPrimary,
+    .layout-desktop #itemDetailPage .itemMiscInfo-primary,
+    body.layout-desktop #itemDetailPage .itemMiscInfo,
+    body.layout-desktop #itemDetailPage .itemMiscInfoPrimary,
+    body.layout-desktop #itemDetailPage .itemMiscInfo-primary {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0.5em !important;
+        width: auto !important;
+        max-width: min(900px, 76vw) !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .layout-desktop #itemDetailPage .itemMiscInfo > *,
+    .layout-desktop #itemDetailPage .mediaInfoCriticRating,
+    .layout-desktop #itemDetailPage .starRatingContainer,
+    .layout-desktop #itemDetailPage .officialRating,
+    body.layout-desktop #itemDetailPage .itemMiscInfo > *,
+    body.layout-desktop #itemDetailPage .mediaInfoCriticRating,
+    body.layout-desktop #itemDetailPage .starRatingContainer,
+    body.layout-desktop #itemDetailPage .officialRating {
+        display: inline-flex !important;
+        align-items: center !important;
+        min-height: 30px !important;
+        margin: 0 !important;
+        padding: 5px 11px !important;
+        border: 1px solid rgba(255, 255, 255, 0.16) !important;
+        border-radius: 999px !important;
+        background: rgba(22, 22, 22, 0.52) !important;
+        color: rgba(255, 255, 255, 0.88) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+        backdrop-filter: blur(20px) saturate(180%) !important;
+        font-weight: 600 !important;
+        line-height: 1 !important;
+    }
+
+    .layout-desktop #itemDetailPage .mainDetailButtons,
+    body.layout-desktop #itemDetailPage .mainDetailButtons {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+        gap: 0.75rem !important;
+        width: auto !important;
+        max-width: min(900px, 76vw) !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        pointer-events: auto !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailButton:not(.btnPlay),
+    body.layout-desktop #itemDetailPage .detailButton:not(.btnPlay) {
+        width: 52px !important;
+        height: 52px !important;
+        min-width: 52px !important;
+        min-height: 52px !important;
+        margin: 0 !important;
+        padding: 0.6em !important;
+        border-radius: 50% !important;
+        border: 1px solid rgba(255, 255, 255, 0.16) !important;
+        background: rgba(255, 255, 255, 0.14) !important;
+        color: rgba(255, 255, 255, 0.95) !important;
+        -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+        backdrop-filter: blur(24px) saturate(180%) !important;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4) !important;
+    }
+
+    .layout-desktop #itemDetailPage .btnPlay.detailButton,
+    body.layout-desktop #itemDetailPage .btnPlay.detailButton {
+        width: auto !important;
+        min-width: 10em !important;
+        height: 3.25em !important;
+        min-height: 3.25em !important;
+        margin: 0 0.35em 0 0 !important;
+        padding: 0 2em !important;
+        border-radius: 3em !important;
+        border-color: rgba(255, 255, 255, 0.72) !important;
+        background: rgba(255, 255, 255, 0.96) !important;
+        color: #050505 !important;
+        font-weight: 700 !important;
+        flex-direction: row !important;
+        box-shadow: 0 18px 42px rgba(0, 0, 0, 0.44) !important;
+    }
+
+    .layout-desktop #itemDetailPage .btnPlay:not(.formDialogFooterItem):not(.play-button)::after,
+    body.layout-desktop #itemDetailPage .btnPlay:not(.formDialogFooterItem):not(.play-button)::after {
+        content: attr(title) !important;
+        padding: 0 1ch !important;
+    }
+
+    .layout-desktop #itemDetailPage .btnPlay > .detailButton-content,
+    body.layout-desktop #itemDetailPage .btnPlay > .detailButton-content {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailButton:hover,
+    .layout-desktop #itemDetailPage .detailButton:focus,
+    body.layout-desktop #itemDetailPage .detailButton:hover,
+    body.layout-desktop #itemDetailPage .detailButton:focus {
+        transform: scale(1.08) !important;
+        background: #fff !important;
+        color: #000 !important;
+        box-shadow: var(--tvos-focus-shadow) !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailPageContent,
+    body.layout-desktop #itemDetailPage .detailPageContent {
+        position: static !important;
+        left: auto !important;
+        bottom: auto !important;
+        display: block !important;
+        width: auto !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 var(--sidePadding) 5rem !important;
+        gap: 1em !important;
+        border: 0 !important;
+        background: transparent !important;
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+        box-shadow: none !important;
+        overflow: visible !important;
+        pointer-events: auto !important;
+        z-index: 2 !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailSection,
+    body.layout-desktop #itemDetailPage .detailSection {
+        display: grid !important;
+        grid-template-columns: 25% 1fr 1fr 1fr !important;
+        row-gap: 1em !important;
+        column-gap: 3em !important;
+        max-width: unset !important;
+        margin-bottom: 1.5em !important;
+        pointer-events: auto !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailSectionContent,
+    body.layout-desktop #itemDetailPage .detailSectionContent {
+        display: grid !important;
+        align-content: end !important;
+        min-height: 16vh !important;
+        order: 1 !important;
+        grid-column: 1 / -1 !important;
+        pointer-events: auto !important;
+    }
+
+    .layout-desktop #itemDetailPage .overview,
+    .layout-desktop #itemDetailPage .itemOverview,
+    .layout-desktop #itemDetailPage .detailPageContent p,
+    body.layout-desktop #itemDetailPage .overview,
+    body.layout-desktop #itemDetailPage .itemOverview,
+    body.layout-desktop #itemDetailPage .detailPageContent p {
+        display: block !important;
+        width: auto !important;
+        max-width: min(980px, 78vw) !important;
+        margin: 0 !important;
+        color: rgba(255, 255, 255, 0.82) !important;
+        font-size: clamp(1rem, 1.05vw, 1.18rem) !important;
+        font-weight: 500 !important;
+        line-height: 1.5 !important;
+        text-shadow: 0 10px 26px rgba(0, 0, 0, 0.66) !important;
+        -webkit-line-clamp: unset !important;
+        -webkit-box-orient: unset !important;
+        overflow: visible !important;
+        pointer-events: auto !important;
+    }
+
+    .layout-desktop #itemDetailPage .trackSelections,
+    body.layout-desktop #itemDetailPage .trackSelections {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        order: 3 !important;
+        grid-column: 3 / 5 !important;
+        max-width: unset !important;
+        margin-top: 1em !important;
+        padding: 1em !important;
+        border: var(--defaultBorder) !important;
+        border-radius: 14px !important;
+        background: rgba(30, 30, 30, 0.58) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+        backdrop-filter: blur(20px) saturate(180%) !important;
+        pointer-events: auto !important;
+    }
+
+    .layout-desktop #itemDetailPage .trackSelections .selectContainer,
+    .layout-desktop #itemDetailPage .detailTrackSelect,
+    body.layout-desktop #itemDetailPage .trackSelections .selectContainer,
+    body.layout-desktop #itemDetailPage .detailTrackSelect {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        max-width: unset !important;
+        align-items: baseline !important;
+    }
+
+    .layout-desktop #itemDetailPage .itemDetailsGroup,
+    body.layout-desktop #itemDetailPage .itemDetailsGroup {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        order: 2 !important;
+        grid-column: 1 / 3 !important;
+        margin-top: 1em !important;
+        overflow: hidden !important;
+        border: 0 !important;
+        border-radius: 14px !important;
+        background: rgba(30, 30, 30, 0.58) !important;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14) !important;
+        pointer-events: auto !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailsGroupItem,
+    body.layout-desktop #itemDetailPage .detailsGroupItem {
+        max-width: unset !important;
+        margin: 0 !important;
+        padding: 0.5em 0.9em !important;
+        justify-content: space-between !important;
+        align-items: baseline !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailsGroupItem:not(:last-child),
+    body.layout-desktop #itemDetailPage .detailsGroupItem:not(:last-child) {
+        border-bottom: var(--defaultBorder) !important;
+    }
+
+    .layout-desktop #itemDetailPage .verticalSection,
+    .layout-desktop #itemDetailPage #scenesCollapsible,
+    .layout-desktop #itemDetailPage #similarCollapsible,
+    .layout-desktop #itemDetailPage .moreFromSeasonSection,
+    body.layout-desktop #itemDetailPage .verticalSection,
+    body.layout-desktop #itemDetailPage #scenesCollapsible,
+    body.layout-desktop #itemDetailPage #similarCollapsible,
+    body.layout-desktop #itemDetailPage .moreFromSeasonSection {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: relative !important;
+        z-index: 3 !important;
+        width: auto !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        pointer-events: auto !important;
+    }
+
+    .layout-desktop #itemDetailPage .emby-scroller-container,
+    .layout-desktop #itemDetailPage .emby-scroller,
+    .layout-desktop #itemDetailPage .scrollX,
+    body.layout-desktop #itemDetailPage .emby-scroller-container,
+    body.layout-desktop #itemDetailPage .emby-scroller,
+    body.layout-desktop #itemDetailPage .scrollX {
+        margin: 0 calc(-1 * var(--sidePadding)) !important;
+        padding: 0 var(--sidePadding) !important;
+        padding-left: calc(var(--sidePadding) - 0.375em) !important;
+        overflow-x: auto !important;
+        overflow-y: visible !important;
+        pointer-events: auto !important;
+    }
+
+    .layout-desktop #itemDetailPage .itemsContainer,
+    .layout-desktop #itemDetailPage .emby-scrollbuttons,
+    .layout-desktop #itemDetailPage .emby-scrollbuttons-button,
+    body.layout-desktop #itemDetailPage .itemsContainer,
+    body.layout-desktop #itemDetailPage .emby-scrollbuttons,
+    body.layout-desktop #itemDetailPage .emby-scrollbuttons-button {
+        pointer-events: auto !important;
+    }
+}
+

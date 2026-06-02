@@ -471,3 +471,5 @@ Follow-up 8: A short, dark `.skinHeader` gradient can look like a rectangular fi
 Follow-up 9: If the top scrim still reads like a box, do not extend a fixed `.skinHeader::after` over the artwork. Put the top fade on `.itemBackdrop::before` instead, because it scrolls with the hero image. Use `.detailPageContent::before` for the lower fade, with a negative top and a large negative bottom, so the black surface starts before the content and covers past the page end.
 
 Follow-up 10: Avoid a visible gap between `.itemBackdrop::after` and `.detailPageContent::before`. The two fades should overlap: make the hero bottom fade darken before the lower content begins, and start `.detailPageContent::before` with a nonzero dark tint instead of `rgba(..., 0)`.
+
+Follow-up 11: If the user wants the gradient controlled by the backdrop layer, extend the item backdrop pseudo-elements instead of darkening content globally: use `inset: 0 0 -8rem 0` on `.itemBackdrop::before` and `.itemBackdrop::after`, keep the lower `.detailPageContent::before` fade starting from transparent, and let the backdrop bottom fade reach `#050505`.

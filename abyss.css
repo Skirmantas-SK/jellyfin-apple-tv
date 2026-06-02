@@ -2322,7 +2322,6 @@ div[data-role="controlgroup"] a[data-role="button"]:last-child {
     --tvos-app-scale: 1.12;
     --tvos-focus-border: rgba(255, 255, 255, 0.85);
     --tvos-focus-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 15px 20px rgba(0, 0, 0, 0.4);
-    --tvos-glass-bg: rgba(30, 30, 30, 0.7);
     --tvos-glass-border: rgba(255, 255, 255, 0.16);
     --tvos-glass-filter: blur(35px) saturate(200%);
 }
@@ -2411,7 +2410,7 @@ body,
 .appfooter,
 .videoOsdBottom .osdControls,
 .emby-tabs-slider {
-    background-color: var(--tvos-glass-bg) !important;
+    background-color: rgba(30, 30, 30, 0.7) !important;
     -webkit-backdrop-filter: var(--tvos-glass-filter) !important;
     backdrop-filter: var(--tvos-glass-filter) !important;
     border-color: var(--tvos-glass-border) !important;
@@ -2881,7 +2880,7 @@ body.layout-desktop #itemDetailPage .itemBackdrop::before,
 body.layout-desktop #itemDetailPage .itemBackdrop::after {
     content: "" !important;
     position: absolute !important;
-    inset: 0 !important;
+    inset: 0 0 -8rem 0 !important;
     pointer-events: none !important;
 }
 
@@ -2889,14 +2888,14 @@ body.layout-desktop #itemDetailPage .itemBackdrop::after {
 .layout-desktop #itemDetailPage .itemBackdrop::before,
 body.layout-desktop #itemDetailPage .itemBackdrop::before {
     background:
-        linear-gradient(180deg, rgba(0, 0, 0, 0.46) 0, rgba(0, 0, 0, 0.2) 18%, rgba(0, 0, 0, 0.05) 38%, transparent 56%),
+        linear-gradient(180deg, rgba(0, 0, 0, 0.54) 0, rgba(0, 0, 0, 0.32) 24%, rgba(0, 0, 0, 0.12) 52%, transparent 78%),
         linear-gradient(90deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.04) 48%, rgba(0, 0, 0, 0.28)) !important;
 }
 
 #itemDetailPage .itemBackdrop::after,
 .layout-desktop #itemDetailPage .itemBackdrop::after,
 body.layout-desktop #itemDetailPage .itemBackdrop::after {
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.04) 0, rgba(0, 0, 0, 0.1) 45%, rgba(5, 5, 5, 0.42) 70%, rgba(5, 5, 5, 0.72) 84%, rgba(5, 5, 5, 0.96) 100%) !important;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.02) 0, rgba(0, 0, 0, 0.08) 44%, rgba(5, 5, 5, 0.34) 68%, rgba(5, 5, 5, 0.72) 86%, #050505 100%) !important;
 }
 
 #itemDetailPage .detailLogo,
@@ -3215,9 +3214,9 @@ body.layout-desktop #itemDetailPage .detailPageContent::before {
     pointer-events: none !important;
     background:
         linear-gradient(180deg,
-            rgba(5, 5, 5, 0.48) 0,
-            rgba(5, 5, 5, 0.78) 2rem,
-            rgba(5, 5, 5, 0.96) 5.25rem,
+            rgba(5, 5, 5, 0) 0,
+            rgba(5, 5, 5, 0.64) 2.25rem,
+            rgba(5, 5, 5, 0.94) 5.25rem,
             #050505 7.5rem,
             #050505 100%) !important;
 }

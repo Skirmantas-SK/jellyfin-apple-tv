@@ -461,3 +461,5 @@ Follow-up 3: Detail overview text can get an "extra bump" if both a direct `.det
 Follow-up 4: If the full-screen movie artwork looks missing but the clear logo still appears, the backdrop is probably being rendered but buried by old `.backdropImage` filters or container overlays. Reset `body:has(#itemDetailPage) .backgroundContainer`, `.backdropContainer`, and `.backdropImage` with `display: block`, `visibility: visible`, `opacity: 1`, `object-fit/background-size: cover`, a bright non-blur filter, and keep that layer below `#itemDetailPage` with z-index.
 
 Follow-up 5: Do not over-brighten the restored backdrop. `brightness(118%)` can blow out light artwork and make whites look clipped. A safer detail-page grade is around `saturate(106%) brightness(92%) contrast(102%)`, with a long bottom fade instead of a hard black stop.
+
+Follow-up 6: Do not put a second hero fade gradient on `.detailPageWrapperContainer`. That wrapper sits over the full-screen backdrop and creates a visible horizontal dark band across the lower artwork. Keep the wrapper background transparent and let `.itemBackdrop::after` own the hero-to-content fade.

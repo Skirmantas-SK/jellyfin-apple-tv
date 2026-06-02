@@ -3131,7 +3131,7 @@ body:has(#itemDetailPage) .layout-desktop .detailPageContent {
 }
 
 /* tvOS Detail Page Grid Repair - Jellyfin 10.11 DOM */
-@media (min-width: 50.001em) {
+@media (max-width: 0) {
     body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPageWrapperContainer {
         padding-top: 0 !important;
         background: transparent !important;
@@ -3305,6 +3305,278 @@ body:has(#itemDetailPage) .layout-desktop .detailPageContent {
         margin: 1.6rem 0 0 !important;
         padding: 0 !important;
         background: transparent !important;
+    }
+}
+
+/* tvOS Detail Page Stable Layout */
+@media (min-width: 50.001em) {
+    body:has(#itemDetailPage) {
+        background: #050505 !important;
+    }
+
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPageWrapperContainer,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPagePrimaryContainer,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPagePrimaryContent,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPageContent,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailSection,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailSectionContent,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .itemDetailsGroup,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .infoWrapper {
+        display: block !important;
+        position: relative !important;
+        width: auto !important;
+        max-width: none !important;
+        height: auto !important;
+        min-height: 0 !important;
+        margin: 0 !important;
+        border: 0 !important;
+        background: transparent !important;
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+        box-shadow: none !important;
+    }
+
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPageWrapperContainer {
+        padding: 0 !important;
+        overflow: visible !important;
+    }
+
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .itemBackdrop {
+        display: block !important;
+        height: clamp(250px, 31vh, 400px) !important;
+        min-height: 250px !important;
+        max-height: 400px !important;
+        margin: 0 !important;
+        overflow: hidden !important;
+        opacity: 1 !important;
+        filter: saturate(112%) brightness(62%) contrast(106%) !important;
+    }
+
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .itemBackdrop::after {
+        content: "" !important;
+        position: absolute !important;
+        inset: 0 !important;
+        pointer-events: none !important;
+        background:
+            linear-gradient(90deg, rgba(5, 5, 5, 0.94) 0%, rgba(5, 5, 5, 0.58) 34%, rgba(5, 5, 5, 0.14) 66%, rgba(5, 5, 5, 0.86) 100%),
+            linear-gradient(180deg, rgba(5, 5, 5, 0.08) 0%, rgba(5, 5, 5, 0.28) 56%, rgba(5, 5, 5, 0.92) 92%, #050505 100%) !important;
+    }
+
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPagePrimaryContainer {
+        padding: clamp(106px, 12vh, 150px) clamp(54px, 5vw, 96px) 0 !important;
+        margin: 0 !important;
+        min-height: clamp(250px, 33vh, 420px) !important;
+        overflow: visible !important;
+        z-index: 2 !important;
+    }
+
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailImageContainer {
+        display: block !important;
+        visibility: visible !important;
+        position: static !important;
+        width: 0 !important;
+        height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        z-index: 4 !important;
+    }
+
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailImageContainer .card {
+        display: block !important;
+        visibility: visible !important;
+        position: fixed !important;
+        top: clamp(112px, 12vh, 152px) !important;
+        left: clamp(58px, 5vw, 98px) !important;
+        width: clamp(270px, 19vw, 375px) !important;
+        max-width: 375px !important;
+        margin: 0 !important;
+        transform: none !important;
+        z-index: 4 !important;
+        border: 1px solid rgba(255, 255, 255, 0.14) !important;
+        border-radius: 24px !important;
+        overflow: hidden !important;
+        box-shadow: 0 38px 92px rgba(0, 0, 0, 0.72), 0 14px 30px rgba(0, 0, 0, 0.48) !important;
+    }
+
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailImageContainer .cardImageContainer,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailImageContainer .cardImage,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailImageContainer .blurhash-canvas {
+        border-radius: 24px !important;
+        overflow: hidden !important;
+    }
+
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPagePrimaryContainer > .card,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPageContent > .card,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPageContent > .cardBox,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPageContent > .cardScalable,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPageContent > .cardImageContainer,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPageContent > .detailImageContainer {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailLogo {
+        display: none !important;
+    }
+
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPagePrimaryContent {
+        padding: 0 clamp(54px, 5vw, 96px) 0 clamp(340px, 28vw, 535px) !important;
+    }
+
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .itemName.infoText,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .itemName.infoText.parentNameLast,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .nameContainer .itemName {
+        display: block !important;
+        max-width: min(850px, 52vw) !important;
+        margin: 0 0 1.15rem !important;
+        color: rgba(255, 255, 255, 0.96) !important;
+        font-size: clamp(2.6rem, 4.3vw, 4.9rem) !important;
+        line-height: 0.98 !important;
+        font-weight: 700 !important;
+        letter-spacing: 0 !important;
+        text-shadow: 0 18px 42px rgba(0, 0, 0, 0.82) !important;
+    }
+
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailRibbon {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: clamp(18px, 2vw, 36px) !important;
+        min-height: 64px !important;
+        margin: 1rem clamp(54px, 5vw, 96px) 0 clamp(340px, 28vw, 535px) !important;
+        padding: 0 !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        background: transparent !important;
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+        box-shadow: none !important;
+    }
+
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .itemMiscInfo,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .itemMiscInfoPrimary,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .itemMiscInfo-primary {
+        display: flex !important;
+        flex: 1 1 auto !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 8px !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .itemMiscInfo > *,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .mediaInfoCriticRating,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .starRatingContainer,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .officialRating {
+        display: inline-flex !important;
+        align-items: center !important;
+        min-height: 32px !important;
+        margin: 0 !important;
+        padding: 5px 12px !important;
+        border-radius: 999px !important;
+        border: 1px solid rgba(255, 255, 255, 0.14) !important;
+        background: rgba(255, 255, 255, 0.12) !important;
+        color: rgba(255, 255, 255, 0.84) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+        backdrop-filter: blur(20px) saturate(180%) !important;
+        font-weight: 500 !important;
+    }
+
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .mainDetailButtons {
+        display: flex !important;
+        flex: 0 0 auto !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+        gap: clamp(12px, 1vw, 20px) !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        position: relative !important;
+        inset: auto !important;
+        z-index: 5 !important;
+    }
+
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .mainDetailButtons .emby-button,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .mainDetailButtons .paper-icon-button-light,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailButton {
+        width: 58px !important;
+        height: 58px !important;
+        min-width: 58px !important;
+        min-height: 58px !important;
+        padding: 0 !important;
+        border-radius: 999px !important;
+        border: 1px solid rgba(255, 255, 255, 0.14) !important;
+        background: rgba(255, 255, 255, 0.12) !important;
+        color: rgba(255, 255, 255, 0.92) !important;
+        -webkit-backdrop-filter: blur(22px) saturate(180%) !important;
+        backdrop-filter: blur(22px) saturate(180%) !important;
+        box-shadow: 0 14px 34px rgba(0, 0, 0, 0.34) !important;
+    }
+
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .mainDetailButtons .btnPlay,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .mainDetailButtons .btnResume,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .mainDetailButtons .button-play,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .mainDetailButtons [data-action="play"],
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .mainDetailButtons [data-action="resume"] {
+        width: auto !important;
+        min-width: 128px !important;
+        padding: 0 30px !important;
+        background: rgba(255, 255, 255, 0.96) !important;
+        color: #000 !important;
+        font-weight: 600 !important;
+    }
+
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPageContent {
+        padding: 0 clamp(54px, 5vw, 96px) 5rem clamp(340px, 28vw, 535px) !important;
+        margin: clamp(1.5rem, 3vh, 2.4rem) 0 0 !important;
+    }
+
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .trackSelections {
+        display: grid !important;
+        grid-template-columns: max-content minmax(360px, 760px) !important;
+        gap: 10px 18px !important;
+        align-items: center !important;
+        width: min(860px, 100%) !important;
+        margin: 0 0 1.5rem !important;
+        padding: 0 !important;
+        border: 0 !important;
+        background: transparent !important;
+    }
+
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .trackSelections .selectContainer,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .trackSelections .detailTrackSelect,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .emby-select {
+        width: 100% !important;
+        max-width: none !important;
+        min-height: 44px !important;
+        border-radius: 14px !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        background: rgba(255, 255, 255, 0.12) !important;
+        color: rgba(255, 255, 255, 0.92) !important;
+    }
+
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .tagline {
+        margin: 1.15rem 0 1.4rem !important;
+        color: rgba(255, 255, 255, 0.96) !important;
+        font-size: clamp(1.22rem, 1.45vw, 1.65rem) !important;
+        font-weight: 600 !important;
+        line-height: 1.25 !important;
+    }
+
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .overview,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .itemOverview,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPageContent p {
+        max-width: min(1060px, 68vw) !important;
+        color: rgba(255, 255, 255, 0.84) !important;
+        font-size: clamp(1rem, 1.08vw, 1.18rem) !important;
+        font-weight: 400 !important;
+        line-height: 1.48 !important;
     }
 }
 /* Jellyfin-style My Media restore */

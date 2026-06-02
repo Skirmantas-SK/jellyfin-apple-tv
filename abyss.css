@@ -3323,14 +3323,14 @@ body.layout-desktop #itemDetailPage .trackSelections.hide ~ .recordingFields.hid
     grid-column: 1 / -1 !important;
 }
 
-.layout-desktop #itemDetailPage .verticalSection,
-.layout-desktop #itemDetailPage #scenesCollapsible,
-.layout-desktop #itemDetailPage #similarCollapsible,
-.layout-desktop #itemDetailPage .moreFromSeasonSection,
-body.layout-desktop #itemDetailPage .verticalSection,
-body.layout-desktop #itemDetailPage #scenesCollapsible,
-body.layout-desktop #itemDetailPage #similarCollapsible,
-body.layout-desktop #itemDetailPage .moreFromSeasonSection {
+.layout-desktop #itemDetailPage .verticalSection:not(.hide):not(#seriesTimerScheduleSection):not(.programGuideSection),
+.layout-desktop #itemDetailPage #scenesCollapsible:not(.hide),
+.layout-desktop #itemDetailPage #similarCollapsible:not(.hide),
+.layout-desktop #itemDetailPage .moreFromSeasonSection:not(.hide),
+body.layout-desktop #itemDetailPage .verticalSection:not(.hide):not(#seriesTimerScheduleSection):not(.programGuideSection),
+body.layout-desktop #itemDetailPage #scenesCollapsible:not(.hide),
+body.layout-desktop #itemDetailPage #similarCollapsible:not(.hide),
+body.layout-desktop #itemDetailPage .moreFromSeasonSection:not(.hide) {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
@@ -3342,6 +3342,27 @@ body.layout-desktop #itemDetailPage .moreFromSeasonSection {
     padding: 0 !important;
     overflow: visible !important;
     pointer-events: auto !important;
+}
+
+#itemDetailPage #seriesTimerScheduleSection,
+#itemDetailPage #seriesTimerSchedule,
+#itemDetailPage .programGuideSection,
+.layout-desktop #itemDetailPage #seriesTimerScheduleSection,
+.layout-desktop #itemDetailPage #seriesTimerSchedule,
+.layout-desktop #itemDetailPage .programGuideSection,
+body.layout-desktop #itemDetailPage #seriesTimerScheduleSection,
+body.layout-desktop #itemDetailPage #seriesTimerSchedule,
+body.layout-desktop #itemDetailPage .programGuideSection {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    max-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
 }
 
 .layout-desktop #itemDetailPage .emby-scroller-container,

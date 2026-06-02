@@ -3129,6 +3129,184 @@ body:has(#itemDetailPage) .layout-desktop .detailPageContent {
         margin: 0 0 1rem !important;
     }
 }
+
+/* tvOS Detail Page Grid Repair - Jellyfin 10.11 DOM */
+@media (min-width: 50.001em) {
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPageWrapperContainer {
+        padding-top: 0 !important;
+        background: transparent !important;
+    }
+
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .itemBackdrop {
+        height: clamp(230px, 30vh, 360px) !important;
+        min-height: 230px !important;
+        max-height: 360px !important;
+    }
+
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPagePrimaryContainer {
+        display: grid !important;
+        grid-template-areas:
+            "image title actions"
+            "image meta actions"
+            "image tracks tracks"
+            "image summary summary"
+            "image facts facts" !important;
+        grid-template-columns: clamp(260px, 19vw, 360px) minmax(0, 1fr) max-content !important;
+        grid-template-rows: auto auto auto auto auto !important;
+        column-gap: clamp(38px, 4.5vw, 78px) !important;
+        row-gap: 12px !important;
+        align-items: start !important;
+        min-height: auto !important;
+        margin-top: clamp(-225px, -19vh, -155px) !important;
+        padding: clamp(26px, 3.2vh, 48px) clamp(54px, 5vw, 96px) 5rem !important;
+        overflow: visible !important;
+        background: transparent !important;
+    }
+
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPagePrimaryContent,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPageContent,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailSection,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailRibbon,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .infoWrapper {
+        display: contents !important;
+        width: auto !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        background: transparent !important;
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+        box-shadow: none !important;
+    }
+
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailImageContainer {
+        grid-area: image !important;
+        display: block !important;
+        visibility: visible !important;
+        position: relative !important;
+        inset: auto !important;
+        width: clamp(260px, 19vw, 360px) !important;
+        max-width: 360px !important;
+        height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        z-index: 4 !important;
+    }
+
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailImageContainer .card {
+        position: relative !important;
+        inset: auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        transform: none !important;
+    }
+
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailImageContainer:nth-of-type(n+2),
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailSectionContent > .detailImageContainer,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailSectionContent > .card,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailSectionContent .card,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailSectionContent .cardBox,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailSectionContent .cardScalable,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailSectionContent .cardImageContainer,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .overview + .card,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .overview ~ .card.portraitCard {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .nameContainer {
+        grid-area: title !important;
+        display: block !important;
+        align-self: end !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+        padding: clamp(42px, 5vh, 72px) 0 0 !important;
+    }
+
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .nameContainer .itemName,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .itemName.infoText,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .itemName.infoText.parentNameLast {
+        display: block !important;
+        max-width: min(780px, 48vw) !important;
+        margin: 0 !important;
+        color: rgba(255, 255, 255, 0.96) !important;
+        font-size: clamp(2.5rem, 4.2vw, 4.8rem) !important;
+        line-height: 0.98 !important;
+        font-weight: 700 !important;
+        letter-spacing: 0 !important;
+        text-shadow: 0 18px 40px rgba(0, 0, 0, 0.8) !important;
+    }
+
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .itemMiscInfo,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .itemMiscInfoPrimary,
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .itemMiscInfo-primary {
+        grid-area: meta !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 8px !important;
+        width: auto !important;
+        max-width: min(780px, 48vw) !important;
+        margin: 0.9rem 0 0 !important;
+        padding: 0 !important;
+        position: relative !important;
+        inset: auto !important;
+    }
+
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .mainDetailButtons {
+        grid-area: actions !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+        align-self: end !important;
+        gap: clamp(12px, 1vw, 20px) !important;
+        margin: clamp(42px, 5vh, 72px) 0 0 !important;
+        padding: 0 !important;
+        position: relative !important;
+        inset: auto !important;
+        z-index: 5 !important;
+    }
+
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .trackSelections {
+        grid-area: tracks !important;
+        display: grid !important;
+        grid-template-columns: max-content minmax(360px, 680px) !important;
+        gap: 10px 18px !important;
+        align-items: center !important;
+        width: min(760px, 100%) !important;
+        margin: clamp(1.5rem, 3vh, 2.2rem) 0 0 !important;
+        padding: 0 !important;
+        background: transparent !important;
+        border: 0 !important;
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+        box-shadow: none !important;
+    }
+
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailSectionContent {
+        grid-area: summary !important;
+        display: block !important;
+        width: min(1040px, 100%) !important;
+        max-width: 1040px !important;
+        margin: 1.1rem 0 0 !important;
+        padding: 0 !important;
+        background: transparent !important;
+    }
+
+    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .itemDetailsGroup {
+        grid-area: facts !important;
+        width: min(900px, 100%) !important;
+        margin: 1.6rem 0 0 !important;
+        padding: 0 !important;
+        background: transparent !important;
+    }
+}
 /* Jellyfin-style My Media restore */
 
 #indexPage .homeSectionsContainer .verticalSection:has([data-type="CollectionFolder"]) .itemsContainer,

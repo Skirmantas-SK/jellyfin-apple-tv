@@ -2857,13 +2857,13 @@ body.layout-desktop #itemDetailPage .detailLogo {
     display: var(--clearLogoVisibility) !important;
     position: absolute !important;
     top: clamp(285px, 35vh, 390px) !important;
-    left: max(48px, var(--sidePadding)) !important;
+    left: max(88px, calc(var(--sidePadding) + 2.25rem)) !important;
     right: auto !important;
     bottom: auto !important;
     width: min(390px, 29vw) !important;
     height: clamp(82px, 12vh, 130px) !important;
     margin: 0 !important;
-    transform: none !important;
+    transform: translateX(24px) !important;
     background-position: bottom left !important;
     background-size: contain !important;
     z-index: 4 !important;
@@ -2997,6 +2997,8 @@ body.layout-desktop #itemDetailPage .itemMiscInfo-primary {
     max-width: min(900px, 76vw) !important;
     margin: 0 !important;
     padding: 0 !important;
+    transform: translateX(24px) !important;
+    transform-origin: left center !important;
 }
 
 .layout-desktop #itemDetailPage .itemMiscInfo > *,
@@ -3254,6 +3256,30 @@ body.layout-desktop #itemDetailPage .detailsGroupItem:not(:last-child) {
 body.layout-desktop #itemDetailPage .detailSection > .nextUpSection {
     order: 5 !important;
     grid-column: 1 !important;
+}
+
+#itemDetailPage .programGuideSection,
+#itemDetailPage .scheduleSection,
+#itemDetailPage .emby-tabs,
+#itemDetailPage .emby-tabs-slider,
+#itemDetailPage .emby-tab-button,
+#itemDetailPage [id*="schedule" i],
+#itemDetailPage [class*="schedule" i],
+.layout-desktop #itemDetailPage .programGuideSection,
+.layout-desktop #itemDetailPage .scheduleSection,
+.layout-desktop #itemDetailPage .emby-tabs,
+.layout-desktop #itemDetailPage .emby-tabs-slider,
+.layout-desktop #itemDetailPage .emby-tab-button,
+.layout-desktop #itemDetailPage [id*="schedule" i],
+.layout-desktop #itemDetailPage [class*="schedule" i],
+body.layout-desktop #itemDetailPage .programGuideSection,
+body.layout-desktop #itemDetailPage .scheduleSection,
+body.layout-desktop #itemDetailPage .emby-tabs,
+body.layout-desktop #itemDetailPage .emby-tabs-slider,
+body.layout-desktop #itemDetailPage .emby-tab-button,
+body.layout-desktop #itemDetailPage [id*="schedule" i],
+body.layout-desktop #itemDetailPage [class*="schedule" i] {
+    display: none !important;
 }
 
 .layout-desktop #itemDetailPage .detailSection > #listChildrenCollapsible,

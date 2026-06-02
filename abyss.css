@@ -2694,6 +2694,8 @@ div[data-type="UserView"] .cardText-secondary {
 
 body.layout-desktop:has(#itemDetailPage) {
     --sidePadding: 3.3%;
+    --detailContentOffset: 28px;
+    --detailPanelRadius: 22px;
     --itemColumnGap: 0.5em;
     --primaryItemPageNegativeSpace: 0vh;
     --secondaryItemPageNegativeSpace: 0vh;
@@ -3138,7 +3140,7 @@ body.layout-desktop #itemDetailPage .detailPageContent {
     width: auto !important;
     max-width: none !important;
     margin: 0 !important;
-    padding: 0 var(--sidePadding) 5rem !important;
+    padding: 0 var(--sidePadding) 5rem var(--detailContentOffset) !important;
     gap: 1em !important;
     border: 0 !important;
     background: transparent !important;
@@ -3194,19 +3196,25 @@ body.layout-desktop #itemDetailPage .detailPageContent p {
 
 .layout-desktop #itemDetailPage .trackSelections,
 body.layout-desktop #itemDetailPage .trackSelections {
-    display: block !important;
+    display: grid !important;
     visibility: visible !important;
     opacity: 1 !important;
     order: 3 !important;
     grid-column: 3 / 5 !important;
     max-width: unset !important;
     margin-top: 1em !important;
-    padding: 1em !important;
-    border: var(--defaultBorder) !important;
-    border-radius: 14px !important;
-    background: rgba(30, 30, 30, 0.58) !important;
+    padding: 1.05rem 1.25rem !important;
+    gap: 0.65rem !important;
+    border: 1px solid rgba(255, 255, 255, 0.13) !important;
+    border-radius: var(--detailPanelRadius) !important;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.025)),
+        rgba(22, 22, 22, 0.62) !important;
     -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
     backdrop-filter: blur(20px) saturate(180%) !important;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 24px 55px rgba(0, 0, 0, 0.34) !important;
     pointer-events: auto !important;
 }
 
@@ -3214,37 +3222,88 @@ body.layout-desktop #itemDetailPage .trackSelections {
 .layout-desktop #itemDetailPage .detailTrackSelect,
 body.layout-desktop #itemDetailPage .trackSelections .selectContainer,
 body.layout-desktop #itemDetailPage .detailTrackSelect {
-    display: flex !important;
+    display: grid !important;
     visibility: visible !important;
     opacity: 1 !important;
     pointer-events: auto !important;
     max-width: unset !important;
-    align-items: baseline !important;
+    align-items: center !important;
+}
+
+.layout-desktop #itemDetailPage .trackSelections .selectContainer,
+body.layout-desktop #itemDetailPage .trackSelections .selectContainer {
+    grid-template-columns: minmax(78px, 7vw) minmax(0, 1fr) !important;
+    gap: 0.9rem !important;
+    min-height: 46px !important;
+}
+
+.layout-desktop #itemDetailPage .trackSelections .selectLabel,
+.layout-desktop #itemDetailPage .trackSelections label,
+body.layout-desktop #itemDetailPage .trackSelections .selectLabel,
+body.layout-desktop #itemDetailPage .trackSelections label {
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-weight: 600 !important;
+    letter-spacing: 0 !important;
+}
+
+.layout-desktop #itemDetailPage .detailTrackSelect,
+body.layout-desktop #itemDetailPage .detailTrackSelect {
+    display: block !important;
+    width: 100% !important;
+    min-height: 42px !important;
+    padding: 0 1rem !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 14px !important;
+    background: rgba(255, 255, 255, 0.075) !important;
+    color: rgba(255, 255, 255, 0.84) !important;
 }
 
 .layout-desktop #itemDetailPage .itemDetailsGroup,
 body.layout-desktop #itemDetailPage .itemDetailsGroup {
-    display: block !important;
+    display: grid !important;
     visibility: visible !important;
     opacity: 1 !important;
     order: 2 !important;
     grid-column: 1 / 3 !important;
     margin-top: 1em !important;
+    padding: 1rem 1.15rem !important;
+    gap: 0.1rem !important;
     overflow: hidden !important;
-    border: 0 !important;
-    border-radius: 14px !important;
-    background: rgba(30, 30, 30, 0.58) !important;
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14) !important;
+    border: 1px solid rgba(255, 255, 255, 0.13) !important;
+    border-radius: var(--detailPanelRadius) !important;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.025)),
+        rgba(22, 22, 22, 0.62) !important;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 24px 55px rgba(0, 0, 0, 0.34) !important;
     pointer-events: auto !important;
 }
 
 .layout-desktop #itemDetailPage .detailsGroupItem,
 body.layout-desktop #itemDetailPage .detailsGroupItem {
+    display: grid !important;
+    grid-template-columns: minmax(110px, 0.55fr) minmax(0, 1fr) !important;
+    gap: 1rem !important;
     max-width: unset !important;
     margin: 0 !important;
-    padding: 0.5em 0.9em !important;
+    min-height: 38px !important;
+    padding: 0.55rem 0.1rem !important;
     justify-content: space-between !important;
-    align-items: baseline !important;
+    align-items: center !important;
+}
+
+.layout-desktop #itemDetailPage .detailsGroupItem > :first-child,
+body.layout-desktop #itemDetailPage .detailsGroupItem > :first-child {
+    color: rgba(255, 255, 255, 0.62) !important;
+    font-weight: 600 !important;
+}
+
+.layout-desktop #itemDetailPage .detailsGroupItem > :last-child,
+body.layout-desktop #itemDetailPage .detailsGroupItem > :last-child {
+    color: rgba(255, 255, 255, 0.86) !important;
+    font-weight: 600 !important;
+    text-align: right !important;
 }
 
 .layout-desktop #itemDetailPage .detailsGroupItem:not(:last-child),
@@ -3371,9 +3430,9 @@ body.layout-desktop #itemDetailPage .programGuideSection {
 body.layout-desktop #itemDetailPage .emby-scroller-container,
 body.layout-desktop #itemDetailPage .emby-scroller,
 body.layout-desktop #itemDetailPage .scrollX {
-    margin: 0 calc(-1 * var(--sidePadding)) !important;
-    padding: 0 var(--sidePadding) !important;
-    padding-left: calc(var(--sidePadding) - 0.375em) !important;
+    margin: 0 calc(-1 * var(--sidePadding)) 0 0 !important;
+    padding: 0 var(--sidePadding) 0 0 !important;
+    padding-left: 0 !important;
     overflow-x: auto !important;
     overflow-y: visible !important;
     pointer-events: auto !important;
@@ -3386,6 +3445,74 @@ body.layout-desktop #itemDetailPage .itemsContainer,
 body.layout-desktop #itemDetailPage .emby-scrollbuttons,
 body.layout-desktop #itemDetailPage .emby-scrollbuttons-button {
     pointer-events: auto !important;
+}
+
+.layout-desktop #itemDetailPage .emby-scrollbuttons,
+body.layout-desktop #itemDetailPage .emby-scrollbuttons {
+    opacity: 0.16 !important;
+    transition: opacity 0.22s cubic-bezier(0.33, 1, 0.68, 1) !important;
+}
+
+.layout-desktop #itemDetailPage .verticalSection:hover .emby-scrollbuttons,
+.layout-desktop #itemDetailPage .emby-scrollbuttons:hover,
+body.layout-desktop #itemDetailPage .verticalSection:hover .emby-scrollbuttons,
+body.layout-desktop #itemDetailPage .emby-scrollbuttons:hover {
+    opacity: 0.5 !important;
+}
+
+.layout-desktop #itemDetailPage .emby-scrollbuttons-button,
+.layout-desktop #itemDetailPage .emby-scrollbuttons-button.paper-icon-button-light,
+body.layout-desktop #itemDetailPage .emby-scrollbuttons-button,
+body.layout-desktop #itemDetailPage .emby-scrollbuttons-button.paper-icon-button-light {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
+    border: 0 !important;
+    background: rgba(255, 255, 255, 0.04) !important;
+    color: rgba(255, 255, 255, 0.46) !important;
+    box-shadow: none !important;
+    -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
+    backdrop-filter: blur(16px) saturate(160%) !important;
+}
+
+.layout-desktop #itemDetailPage .emby-scrollbuttons-button:hover,
+.layout-desktop #itemDetailPage .emby-scrollbuttons-button:focus,
+body.layout-desktop #itemDetailPage .emby-scrollbuttons-button:hover,
+body.layout-desktop #itemDetailPage .emby-scrollbuttons-button:focus {
+    background: rgba(255, 255, 255, 0.12) !important;
+    color: rgba(255, 255, 255, 0.82) !important;
+    transform: scale(1.04) !important;
+}
+
+.layout-desktop #itemDetailPage .emby-scroller,
+.layout-desktop #itemDetailPage .scrollX,
+body.layout-desktop #itemDetailPage .emby-scroller,
+body.layout-desktop #itemDetailPage .scrollX {
+    scrollbar-width: thin !important;
+    scrollbar-color: rgba(255, 255, 255, 0.08) transparent !important;
+}
+
+.layout-desktop #itemDetailPage .emby-scroller::-webkit-scrollbar,
+.layout-desktop #itemDetailPage .scrollX::-webkit-scrollbar,
+body.layout-desktop #itemDetailPage .emby-scroller::-webkit-scrollbar,
+body.layout-desktop #itemDetailPage .scrollX::-webkit-scrollbar {
+    height: 3px !important;
+}
+
+.layout-desktop #itemDetailPage .emby-scroller::-webkit-scrollbar-track,
+.layout-desktop #itemDetailPage .scrollX::-webkit-scrollbar-track,
+body.layout-desktop #itemDetailPage .emby-scroller::-webkit-scrollbar-track,
+body.layout-desktop #itemDetailPage .scrollX::-webkit-scrollbar-track {
+    background: transparent !important;
+}
+
+.layout-desktop #itemDetailPage .emby-scroller::-webkit-scrollbar-thumb,
+.layout-desktop #itemDetailPage .scrollX::-webkit-scrollbar-thumb,
+body.layout-desktop #itemDetailPage .emby-scroller::-webkit-scrollbar-thumb,
+body.layout-desktop #itemDetailPage .scrollX::-webkit-scrollbar-thumb {
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, 0.08) !important;
 }
 /* Jellyfin-style My Media restore */
 

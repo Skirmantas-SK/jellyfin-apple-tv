@@ -2624,41 +2624,41 @@ div[data-type="UserView"] .cardText-secondary {
 }
 
 #indexPage .featurediframe {
-    /* margin-top: 80px !important; */
-    height: 72vh !important;
-    min-height: 560px !important;
-    max-height: 780px !important;
+    margin-top: 0 !important;
+    height: 82vh !important;
+    min-height: 640px !important;
+    max-height: 900px !important;
 }
 
 @media (min-width: 1400px) {
     #indexPage .featurediframe {
-        height: 74vh !important;
-        max-height: 840px !important;
+        height: 84vh !important;
+        max-height: 960px !important;
     }
 }
 
 @media (min-width: 1920px) {
     #indexPage .featurediframe {
-        height: 76vh !important;
-        max-height: 900px !important;
+        height: 86vh !important;
+        max-height: 1040px !important;
     }
 }
 
 @media (max-width: 1024px) {
     #indexPage .featurediframe {
-        /* margin-top: 80px !important; */
-        height: 76vh !important;
-        min-height: 500px !important;
-        max-height: 760px !important;
+        margin-top: 0 !important;
+        height: 82vh !important;
+        min-height: 560px !important;
+        max-height: 840px !important;
     }
 }
 
 @media (max-width: 600px) {
     #indexPage .featurediframe {
-        /* margin-top: 80px !important; */
-        height: 72vh !important;
-        min-height: 460px !important;
-        max-height: 720px !important;
+        margin-top: 0 !important;
+        height: 80vh !important;
+        min-height: 500px !important;
+        max-height: 800px !important;
     }
 }
 

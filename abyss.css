@@ -2971,7 +2971,7 @@ body.layout-desktop #itemDetailPage .detailRibbon {
     height: 100% !important;
     min-height: 0 !important;
     margin-top: unset !important;
-    padding: 0 0 0 max(48px, var(--sidePadding)) !important;
+    padding: 0 0 0 max(64px, calc(var(--sidePadding) + 1rem)) !important;
     gap: 0.85rem !important;
     border: 0 !important;
     background: transparent !important;
@@ -3056,11 +3056,11 @@ body.layout-desktop #itemDetailPage .detailButton:not(.btnPlay) {
 .layout-desktop #itemDetailPage .btnPlay.detailButton,
 body.layout-desktop #itemDetailPage .btnPlay.detailButton {
     width: auto !important;
-    min-width: 10em !important;
-    height: 3.25em !important;
-    min-height: 3.25em !important;
+    min-width: 8.9em !important;
+    height: 3em !important;
+    min-height: 3em !important;
     margin: 0 0.35em 0 0 !important;
-    padding: 0 2em !important;
+    padding: 0 1.65em !important;
     border-radius: 3em !important;
     border-color: rgba(255, 255, 255, 0.72) !important;
     background: rgba(255, 255, 255, 0.96) !important;
@@ -3082,6 +3082,21 @@ body.layout-desktop #itemDetailPage .btnPlay > .detailButton-content {
     flex-direction: row !important;
     align-items: center !important;
     justify-content: flex-start !important;
+}
+
+#itemDetailPage .nextUpSection > .sectionTitle,
+#itemDetailPage .nextUpSection .sectionTitleContainer,
+#itemDetailPage .programGuideSection > .sectionTitle,
+#itemDetailPage .programGuideSection .sectionTitleContainer,
+.layout-desktop #itemDetailPage .nextUpSection > .sectionTitle,
+.layout-desktop #itemDetailPage .nextUpSection .sectionTitleContainer,
+.layout-desktop #itemDetailPage .programGuideSection > .sectionTitle,
+.layout-desktop #itemDetailPage .programGuideSection .sectionTitleContainer,
+body.layout-desktop #itemDetailPage .nextUpSection > .sectionTitle,
+body.layout-desktop #itemDetailPage .nextUpSection .sectionTitleContainer,
+body.layout-desktop #itemDetailPage .programGuideSection > .sectionTitle,
+body.layout-desktop #itemDetailPage .programGuideSection .sectionTitleContainer {
+    display: none !important;
 }
 
 .layout-desktop #itemDetailPage .detailButton:hover,

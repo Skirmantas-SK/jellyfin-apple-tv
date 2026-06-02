@@ -4661,6 +4661,27 @@ body:has(#itemDetailPage) .layout-desktop .detailPageContent {
         -webkit-box-orient: vertical !important;
         overflow: hidden !important;
     }
+
+    /* tvOS Detail Page Hero Cleanup */
+    .layout-desktop #itemDetailPage .verticalSection,
+    .layout-desktop #itemDetailPage #scenesCollapsible,
+    .layout-desktop #itemDetailPage #similarCollapsible,
+    .layout-desktop #itemDetailPage [id*="scene" i],
+    .layout-desktop #itemDetailPage [id*="similar" i],
+    .layout-desktop #itemDetailPage [class*="scene" i],
+    .layout-desktop #itemDetailPage [class*="similar" i],
+    body.layout-desktop #itemDetailPage .verticalSection,
+    body.layout-desktop #itemDetailPage #scenesCollapsible,
+    body.layout-desktop #itemDetailPage #similarCollapsible,
+    body.layout-desktop #itemDetailPage [id*="scene" i],
+    body.layout-desktop #itemDetailPage [id*="similar" i],
+    body.layout-desktop #itemDetailPage [class*="scene" i],
+    body.layout-desktop #itemDetailPage [class*="similar" i] {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
 }
 
 /* Jellyfin-style My Media restore */

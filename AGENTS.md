@@ -463,3 +463,5 @@ Follow-up 4: If the full-screen movie artwork looks missing but the clear logo s
 Follow-up 5: Do not over-brighten the restored backdrop. `brightness(118%)` can blow out light artwork and make whites look clipped. A safer detail-page grade is around `saturate(106%) brightness(92%) contrast(102%)`, with a long bottom fade instead of a hard black stop.
 
 Follow-up 6: Do not put a second hero fade gradient on `.detailPageWrapperContainer`. That wrapper sits over the full-screen backdrop and creates a visible horizontal dark band across the lower artwork. Keep the wrapper background transparent and let `.itemBackdrop::after` own the hero-to-content fade.
+
+Follow-up 7: The lower detail page still needs its own dark surface. If `.detailPageContent` is transparent, the fixed backdrop bleeds through Cast & Crew, Scenes, and More Like This, and it can look like a stray horizontal image strip below the hero. Keep `.detailPageWrapperContainer` transparent, but give `.detailPageContent` a top fade into `#050505`.

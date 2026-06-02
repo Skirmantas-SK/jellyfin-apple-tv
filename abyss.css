@@ -3260,6 +3260,8 @@ body.layout-desktop #itemDetailPage .detailSection > .nextUpSection {
 
 #itemDetailPage .programGuideSection,
 #itemDetailPage .scheduleSection,
+#itemDetailPage .sectionTabs,
+#itemDetailPage .tabsContainer,
 #itemDetailPage .emby-tabs,
 #itemDetailPage .emby-tabs-slider,
 #itemDetailPage .emby-tab-button,
@@ -3267,6 +3269,8 @@ body.layout-desktop #itemDetailPage .detailSection > .nextUpSection {
 #itemDetailPage [class*="schedule" i],
 .layout-desktop #itemDetailPage .programGuideSection,
 .layout-desktop #itemDetailPage .scheduleSection,
+.layout-desktop #itemDetailPage .sectionTabs,
+.layout-desktop #itemDetailPage .tabsContainer,
 .layout-desktop #itemDetailPage .emby-tabs,
 .layout-desktop #itemDetailPage .emby-tabs-slider,
 .layout-desktop #itemDetailPage .emby-tab-button,
@@ -3274,11 +3278,31 @@ body.layout-desktop #itemDetailPage .detailSection > .nextUpSection {
 .layout-desktop #itemDetailPage [class*="schedule" i],
 body.layout-desktop #itemDetailPage .programGuideSection,
 body.layout-desktop #itemDetailPage .scheduleSection,
+body.layout-desktop #itemDetailPage .sectionTabs,
+body.layout-desktop #itemDetailPage .tabsContainer,
 body.layout-desktop #itemDetailPage .emby-tabs,
 body.layout-desktop #itemDetailPage .emby-tabs-slider,
 body.layout-desktop #itemDetailPage .emby-tab-button,
 body.layout-desktop #itemDetailPage [id*="schedule" i],
-body.layout-desktop #itemDetailPage [class*="schedule" i] {
+body.layout-desktop #itemDetailPage [class*="schedule" i],
+body:has(#itemDetailPage) .programGuideSection,
+body:has(#itemDetailPage) .scheduleSection,
+body:has(#itemDetailPage) .sectionTabs,
+body:has(#itemDetailPage) .tabsContainer,
+body:has(#itemDetailPage) .emby-tabs,
+body:has(#itemDetailPage) .emby-tabs-slider,
+body:has(#itemDetailPage) .emby-tab-button,
+body:has(#itemDetailPage) [id*="schedule" i],
+body:has(#itemDetailPage) [class*="schedule" i],
+body.layout-desktop:has(#itemDetailPage) .programGuideSection,
+body.layout-desktop:has(#itemDetailPage) .scheduleSection,
+body.layout-desktop:has(#itemDetailPage) .sectionTabs,
+body.layout-desktop:has(#itemDetailPage) .tabsContainer,
+body.layout-desktop:has(#itemDetailPage) .emby-tabs,
+body.layout-desktop:has(#itemDetailPage) .emby-tabs-slider,
+body.layout-desktop:has(#itemDetailPage) .emby-tab-button,
+body.layout-desktop:has(#itemDetailPage) [id*="schedule" i],
+body.layout-desktop:has(#itemDetailPage) [class*="schedule" i] {
     display: none !important;
 }
 
@@ -3454,7 +3478,44 @@ body.layout-desktop #itemDetailPage .emby-scrollbuttons-button {
 }
 /* tvOS Playback OSD */
 
-#videoOsdPage {
+#videoOsdPage,
+.videoOsdPage {
+    background: transparent !important;
+}
+
+body:has(#videoOsdPage) .backgroundContainer,
+body:has(#videoOsdPage) .backgroundContainer.withBackdrop,
+body:has(#videoOsdPage) .backdropContainer,
+body:has(#videoOsdPage) .backdropImage,
+body:has(.videoOsdBottom) .backgroundContainer,
+body:has(.videoOsdBottom) .backgroundContainer.withBackdrop,
+body:has(.nowPlayingBar) .backgroundContainer.withBackdrop {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    background: transparent !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    filter: none !important;
+}
+
+body:has(#videoOsdPage) video,
+body:has(#videoOsdPage) .htmlvideoplayer,
+body:has(#videoOsdPage) .videoPlayerContainer,
+body:has(#videoOsdPage) .videoContainer,
+body:has(#videoOsdPage) .playerVideo,
+body:has(#videoOsdPage) canvas,
+body:has(.videoOsdBottom) video,
+body:has(.videoOsdBottom) .htmlvideoplayer,
+body:has(.videoOsdBottom) .videoPlayerContainer,
+body:has(.videoOsdBottom) .videoContainer,
+body:has(.videoOsdBottom) .playerVideo,
+body:has(.videoOsdBottom) canvas {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    filter: none !important;
+    -webkit-filter: none !important;
     background: #000 !important;
 }
 

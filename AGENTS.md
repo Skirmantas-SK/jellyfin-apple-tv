@@ -451,3 +451,5 @@ Symptom: The clear logo was inset correctly, but metadata chips, Play/Resume, ov
 Root cause: Some Jellyfin detail-page children are rendered outside the padded wrapper, or their own layout rules visually bypass the parent padding.
 
 Fix: Keep wrapper padding neutral and apply `--detailContentOffset` directly to the visible children: `.itemMiscInfo`, `.mainDetailButtons`, `.detailSection`, overview/tag/link text blocks, and direct `.detailPageContent` rails.
+
+Follow-up: If deployed CSS contains `margin-left: var(--detailContentOffset)` but the browser still shows `x=0`, the variable may not be resolving on the actual rendered node path or margin may not affect the positioned/flex row. Define the rail variables on `#itemDetailPage` itself, include a hard fallback such as `var(--detailContentOffset, 64px)`, and use `transform: translateX(...)` for `.itemMiscInfo` and `.mainDetailButtons`.

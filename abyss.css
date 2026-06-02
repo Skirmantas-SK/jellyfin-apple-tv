@@ -2692,9 +2692,13 @@ div[data-type="UserView"] .cardText-secondary {
 /* NeutralFin Item Detail Layout
    Adapted from KartoffelChipss/NeutralFin. This replaces the earlier tvOS detail experiments instead of stacking on top of them. */
 
-body.layout-desktop:has(#itemDetailPage) {
+body:has(#itemDetailPage),
+body.layout-desktop:has(#itemDetailPage),
+.layout-desktop:has(#itemDetailPage),
+#itemDetailPage {
     --sidePadding: 3.3%;
-    --detailContentOffset: max(56px, calc(var(--sidePadding) + 1.2rem));
+    --detailRailInset: 64px;
+    --detailContentOffset: max(var(--detailRailInset), calc(var(--sidePadding) + 1.2rem));
     --detailReadableWidth: min(1120px, calc(100vw - var(--detailContentOffset) - var(--sidePadding)));
     --detailWideWidth: min(1500px, calc(100vw - var(--detailContentOffset) - var(--sidePadding)));
     --detailPanelRadius: 26px;
@@ -2864,7 +2868,7 @@ body.layout-desktop #itemDetailPage .detailLogo {
     display: var(--clearLogoVisibility) !important;
     position: absolute !important;
     top: clamp(285px, 35vh, 390px) !important;
-    left: var(--detailContentOffset) !important;
+    left: var(--detailContentOffset, 64px) !important;
     right: auto !important;
     bottom: auto !important;
     width: min(390px, 29vw) !important;
@@ -2989,6 +2993,9 @@ body.layout-desktop #itemDetailPage .detailRibbon {
     z-index: 3 !important;
 }
 
+#itemDetailPage .itemMiscInfo,
+#itemDetailPage .itemMiscInfoPrimary,
+#itemDetailPage .itemMiscInfo-primary,
 .layout-desktop #itemDetailPage .itemMiscInfo,
 .layout-desktop #itemDetailPage .itemMiscInfoPrimary,
 .layout-desktop #itemDetailPage .itemMiscInfo-primary,
@@ -3002,9 +3009,9 @@ body.layout-desktop #itemDetailPage .itemMiscInfo-primary {
     gap: 0.5em !important;
     width: auto !important;
     max-width: min(900px, 76vw) !important;
-    margin: 0 0 0 var(--detailContentOffset) !important;
+    margin: 0 !important;
     padding: 0 !important;
-    transform: none !important;
+    transform: translateX(var(--detailContentOffset, 64px)) !important;
     transform-origin: left center !important;
 }
 
@@ -3031,6 +3038,7 @@ body.layout-desktop #itemDetailPage .officialRating {
     line-height: 1 !important;
 }
 
+#itemDetailPage .mainDetailButtons,
 .layout-desktop #itemDetailPage .mainDetailButtons,
 body.layout-desktop #itemDetailPage .mainDetailButtons {
     display: flex !important;
@@ -3040,9 +3048,9 @@ body.layout-desktop #itemDetailPage .mainDetailButtons {
     gap: 0.75rem !important;
     width: auto !important;
     max-width: min(900px, 76vw) !important;
-    margin: 0 0 0 var(--detailContentOffset) !important;
+    margin: 0 !important;
     padding: 0 !important;
-    transform: scale(0.94) !important;
+    transform: translateX(var(--detailContentOffset, 64px)) scale(0.94) !important;
     transform-origin: left center !important;
     pointer-events: auto !important;
 }
@@ -3163,9 +3171,9 @@ body.layout-desktop #itemDetailPage .detailSection {
     grid-template-columns: minmax(390px, 0.9fr) minmax(430px, 1.1fr) !important;
     row-gap: 1.35rem !important;
     column-gap: clamp(1.5rem, 2.4vw, 3rem) !important;
-    width: var(--detailWideWidth) !important;
-    max-width: var(--detailWideWidth) !important;
-    margin: 0 0 1.75rem var(--detailContentOffset) !important;
+    width: var(--detailWideWidth, calc(100vw - 128px)) !important;
+    max-width: var(--detailWideWidth, calc(100vw - 128px)) !important;
+    margin: 0 0 1.75rem var(--detailContentOffset, 64px) !important;
     pointer-events: auto !important;
 }
 
@@ -3176,10 +3184,18 @@ body.layout-desktop #itemDetailPage .detailSectionContent {
     min-height: 16vh !important;
     order: 1 !important;
     grid-column: 1 / -1 !important;
-    max-width: var(--detailReadableWidth) !important;
+    max-width: var(--detailReadableWidth, calc(100vw - 128px)) !important;
     pointer-events: auto !important;
 }
 
+#itemDetailPage .overview,
+#itemDetailPage .itemOverview,
+#itemDetailPage .tagline,
+#itemDetailPage .itemTags,
+#itemDetailPage .itemExternalLinks,
+#itemDetailPage .externalLinks,
+#itemDetailPage .genres,
+#itemDetailPage .detailPageContent p,
 .layout-desktop #itemDetailPage .overview,
 .layout-desktop #itemDetailPage .itemOverview,
 .layout-desktop #itemDetailPage .tagline,
@@ -3197,9 +3213,9 @@ body.layout-desktop #itemDetailPage .externalLinks,
 body.layout-desktop #itemDetailPage .genres,
 body.layout-desktop #itemDetailPage .detailPageContent p {
     display: block !important;
-    width: var(--detailReadableWidth) !important;
-    max-width: var(--detailReadableWidth) !important;
-    margin: 0 0 0 var(--detailContentOffset) !important;
+    width: var(--detailReadableWidth, calc(100vw - 128px)) !important;
+    max-width: var(--detailReadableWidth, calc(100vw - 128px)) !important;
+    margin: 0 0 0 var(--detailContentOffset, 64px) !important;
     color: rgba(255, 255, 255, 0.82) !important;
     font-size: clamp(1rem, 1.05vw, 1.18rem) !important;
     font-weight: 500 !important;
@@ -3209,6 +3225,13 @@ body.layout-desktop #itemDetailPage .detailPageContent p {
     -webkit-box-orient: unset !important;
     overflow: visible !important;
     pointer-events: auto !important;
+}
+
+#itemDetailPage .detailPageContent > :not(.detailSection):not(.verticalSection):not(#scenesCollapsible):not(#similarCollapsible):not(.moreFromSeasonSection):not(.hide),
+.layout-desktop #itemDetailPage .detailPageContent > :not(.detailSection):not(.verticalSection):not(#scenesCollapsible):not(#similarCollapsible):not(.moreFromSeasonSection):not(.hide),
+body.layout-desktop #itemDetailPage .detailPageContent > :not(.detailSection):not(.verticalSection):not(#scenesCollapsible):not(#similarCollapsible):not(.moreFromSeasonSection):not(.hide) {
+    margin-left: var(--detailContentOffset, 64px) !important;
+    max-width: var(--detailReadableWidth, calc(100vw - 128px)) !important;
 }
 
 .layout-desktop #itemDetailPage .trackSelections,
@@ -3427,9 +3450,9 @@ body.layout-desktop #itemDetailPage .detailPageContent > .verticalSection:not(.h
 body.layout-desktop #itemDetailPage .detailPageContent > #scenesCollapsible:not(.hide),
 body.layout-desktop #itemDetailPage .detailPageContent > #similarCollapsible:not(.hide),
 body.layout-desktop #itemDetailPage .detailPageContent > .moreFromSeasonSection:not(.hide) {
-    width: var(--detailWideWidth) !important;
-    max-width: var(--detailWideWidth) !important;
-    margin: 2.2rem 0 0 var(--detailContentOffset) !important;
+    width: var(--detailWideWidth, calc(100vw - 128px)) !important;
+    max-width: var(--detailWideWidth, calc(100vw - 128px)) !important;
+    margin: 2.2rem 0 0 var(--detailContentOffset, 64px) !important;
 }
 
 .layout-desktop #itemDetailPage .verticalSection .sectionTitle,

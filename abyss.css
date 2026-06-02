@@ -4125,6 +4125,210 @@ body:has(#itemDetailPage) .layout-desktop .detailPageContent {
         top: clamp(138px, 13vh, 164px) !important;
     }
 }
+
+/* tvOS Detail Page Apple Layout */
+@media (min-width: 50.001em) {
+    .layout-desktop #itemDetailPage,
+    body.layout-desktop #itemDetailPage {
+        --tvos-detail-left: clamp(58px, 5vw, 96px);
+        --tvos-detail-poster: clamp(250px, 17.5vw, 335px);
+        --tvos-detail-gap: clamp(58px, 5.5vw, 96px);
+        --tvos-detail-column: calc(var(--tvos-detail-left) + var(--tvos-detail-poster) + var(--tvos-detail-gap));
+        --tvos-detail-panel-width: min(880px, calc(100vw - var(--tvos-detail-column) - 96px));
+    }
+
+    .layout-desktop #itemDetailPage .detailPagePrimaryContainer,
+    body.layout-desktop #itemDetailPage .detailPagePrimaryContainer {
+        min-height: clamp(640px, 70vh, 760px) !important;
+        padding-top: clamp(118px, 13vh, 160px) !important;
+        padding-bottom: clamp(88px, 10vh, 128px) !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailImageContainer .card,
+    body.layout-desktop #itemDetailPage .detailImageContainer .card {
+        top: clamp(150px, 14vh, 178px) !important;
+        left: var(--tvos-detail-left) !important;
+        width: var(--tvos-detail-poster) !important;
+        max-width: var(--tvos-detail-poster) !important;
+        border-radius: 24px !important;
+        box-shadow: 0 42px 100px rgba(0, 0, 0, 0.74), 0 18px 36px rgba(0, 0, 0, 0.46) !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailImageContainer .cardImageContainer,
+    .layout-desktop #itemDetailPage .detailImageContainer .cardImage,
+    .layout-desktop #itemDetailPage .detailImageContainer .blurhash-canvas,
+    body.layout-desktop #itemDetailPage .detailImageContainer .cardImageContainer,
+    body.layout-desktop #itemDetailPage .detailImageContainer .cardImage,
+    body.layout-desktop #itemDetailPage .detailImageContainer .blurhash-canvas {
+        border-radius: 24px !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailPagePrimaryContent,
+    body.layout-desktop #itemDetailPage .detailPagePrimaryContent {
+        max-width: var(--tvos-detail-panel-width) !important;
+        padding: clamp(64px, 7vh, 96px) 0 0 var(--tvos-detail-column) !important;
+    }
+
+    .layout-desktop #itemDetailPage .itemName.infoText,
+    .layout-desktop #itemDetailPage .itemName.infoText.parentNameLast,
+    .layout-desktop #itemDetailPage .nameContainer .itemName,
+    body.layout-desktop #itemDetailPage .itemName.infoText,
+    body.layout-desktop #itemDetailPage .itemName.infoText.parentNameLast,
+    body.layout-desktop #itemDetailPage .nameContainer .itemName {
+        max-width: var(--tvos-detail-panel-width) !important;
+        margin: 0 0 1.05rem !important;
+        font-size: clamp(2.45rem, 3.8vw, 4.25rem) !important;
+        line-height: 1.02 !important;
+        font-weight: 700 !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailRibbon,
+    body.layout-desktop #itemDetailPage .detailRibbon {
+        width: var(--tvos-detail-panel-width) !important;
+        max-width: var(--tvos-detail-panel-width) !important;
+        margin: 1.05rem 0 0 var(--tvos-detail-column) !important;
+        padding: 0 0 clamp(56px, 7vh, 92px) !important;
+        gap: 18px !important;
+    }
+
+    .layout-desktop #itemDetailPage .itemMiscInfo,
+    .layout-desktop #itemDetailPage .itemMiscInfoPrimary,
+    .layout-desktop #itemDetailPage .itemMiscInfo-primary,
+    body.layout-desktop #itemDetailPage .itemMiscInfo,
+    body.layout-desktop #itemDetailPage .itemMiscInfoPrimary,
+    body.layout-desktop #itemDetailPage .itemMiscInfo-primary {
+        order: 1 !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 9px !important;
+        width: 100% !important;
+    }
+
+    .layout-desktop #itemDetailPage .mainDetailButtons,
+    body.layout-desktop #itemDetailPage .mainDetailButtons {
+        order: 2 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 18px !important;
+        width: 100% !important;
+        padding-top: 4px !important;
+        margin: 0 !important;
+    }
+
+    .layout-desktop #itemDetailPage .mainDetailButtons .emby-button,
+    .layout-desktop #itemDetailPage .mainDetailButtons .paper-icon-button-light,
+    .layout-desktop #itemDetailPage .detailButton,
+    body.layout-desktop #itemDetailPage .mainDetailButtons .emby-button,
+    body.layout-desktop #itemDetailPage .mainDetailButtons .paper-icon-button-light,
+    body.layout-desktop #itemDetailPage .detailButton {
+        width: 58px !important;
+        height: 58px !important;
+        min-width: 58px !important;
+        min-height: 58px !important;
+        background: rgba(255, 255, 255, 0.13) !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    }
+
+    .layout-desktop #itemDetailPage .mainDetailButtons .btnPlay,
+    .layout-desktop #itemDetailPage .mainDetailButtons .btnResume,
+    .layout-desktop #itemDetailPage .mainDetailButtons .button-play,
+    .layout-desktop #itemDetailPage .mainDetailButtons [data-action="play"],
+    .layout-desktop #itemDetailPage .mainDetailButtons [data-action="resume"],
+    body.layout-desktop #itemDetailPage .mainDetailButtons .btnPlay,
+    body.layout-desktop #itemDetailPage .mainDetailButtons .btnResume,
+    body.layout-desktop #itemDetailPage .mainDetailButtons .button-play,
+    body.layout-desktop #itemDetailPage .mainDetailButtons [data-action="play"],
+    body.layout-desktop #itemDetailPage .mainDetailButtons [data-action="resume"] {
+        min-width: 148px !important;
+        background: rgba(255, 255, 255, 0.96) !important;
+        color: #050505 !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailPageContent,
+    body.layout-desktop #itemDetailPage .detailPageContent {
+        width: var(--tvos-detail-panel-width) !important;
+        max-width: var(--tvos-detail-panel-width) !important;
+        margin: 0 0 0 var(--tvos-detail-column) !important;
+        padding: clamp(28px, 4vh, 48px) 0 5rem !important;
+    }
+
+    .layout-desktop #itemDetailPage .trackSelections,
+    body.layout-desktop #itemDetailPage .trackSelections {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 0 clamp(2rem, 4vh, 3rem) !important;
+        padding: 18px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        border-radius: 24px !important;
+        background: rgba(28, 28, 30, 0.56) !important;
+        -webkit-backdrop-filter: blur(32px) saturate(180%) !important;
+        backdrop-filter: blur(32px) saturate(180%) !important;
+        box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+        box-sizing: border-box !important;
+    }
+
+    .layout-desktop #itemDetailPage .trackSelections .selectContainer,
+    body.layout-desktop #itemDetailPage .trackSelections .selectContainer {
+        display: grid !important;
+        grid-template-columns: 104px minmax(0, 1fr) !important;
+        align-items: center !important;
+        column-gap: 18px !important;
+        min-height: 50px !important;
+        width: 100% !important;
+    }
+
+    .layout-desktop #itemDetailPage .trackSelections label,
+    .layout-desktop #itemDetailPage .trackSelections .selectLabel,
+    body.layout-desktop #itemDetailPage .trackSelections label,
+    body.layout-desktop #itemDetailPage .trackSelections .selectLabel {
+        color: rgba(255, 255, 255, 0.78) !important;
+        font-size: 0.98rem !important;
+        font-weight: 600 !important;
+    }
+
+    .layout-desktop #itemDetailPage .trackSelections .detailTrackSelect,
+    .layout-desktop #itemDetailPage .trackSelections .emby-select,
+    body.layout-desktop #itemDetailPage .trackSelections .detailTrackSelect,
+    body.layout-desktop #itemDetailPage .trackSelections .emby-select {
+        min-height: 48px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        padding-left: 16px !important;
+        padding-right: 44px !important;
+        border-radius: 16px !important;
+        background: rgba(255, 255, 255, 0.10) !important;
+        border: 1px solid rgba(255, 255, 255, 0.10) !important;
+        color: rgba(255, 255, 255, 0.9) !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+        box-sizing: border-box !important;
+    }
+
+    .layout-desktop #itemDetailPage .tagline,
+    body.layout-desktop #itemDetailPage .tagline {
+        max-width: 100% !important;
+        margin: 0 0 1.35rem !important;
+        font-size: clamp(1.22rem, 1.45vw, 1.58rem) !important;
+    }
+
+    .layout-desktop #itemDetailPage .overview,
+    .layout-desktop #itemDetailPage .itemOverview,
+    .layout-desktop #itemDetailPage .detailPageContent p,
+    body.layout-desktop #itemDetailPage .overview,
+    body.layout-desktop #itemDetailPage .itemOverview,
+    body.layout-desktop #itemDetailPage .detailPageContent p {
+        max-width: 100% !important;
+        color: rgba(255, 255, 255, 0.82) !important;
+        font-size: clamp(1.02rem, 1.06vw, 1.16rem) !important;
+        line-height: 1.5 !important;
+    }
+}
 /* Jellyfin-style My Media restore */
 
 #indexPage .homeSectionsContainer .verticalSection:has([data-type="CollectionFolder"]) .itemsContainer,

@@ -467,3 +467,5 @@ Follow-up 6: Do not put a second hero fade gradient on `.detailPageWrapperContai
 Follow-up 7: The lower detail page still needs its own dark surface. If `.detailPageContent` is transparent, the fixed backdrop bleeds through Cast & Crew, Scenes, and More Like This, and it can look like a stray horizontal image strip below the hero. Keep `.detailPageWrapperContainer` transparent, but give `.detailPageContent` a top fade into `#050505`.
 
 Follow-up 8: A short, dark `.skinHeader` gradient can look like a rectangular filter on top of the movie artwork. For detail pages, keep the header scrim lighter and continue it below the header with a small `::after` fade so there is no hard horizontal cutoff.
+
+Follow-up 9: If the top scrim still reads like a box, do not extend a fixed `.skinHeader::after` over the artwork. Put the top fade on `.itemBackdrop::before` instead, because it scrolls with the hero image. Use `.detailPageContent::before` for the lower fade, with a negative top and a large negative bottom, so the black surface starts before the content and covers past the page end.

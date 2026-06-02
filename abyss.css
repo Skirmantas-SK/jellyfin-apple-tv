@@ -2855,16 +2855,18 @@ body.layout-desktop #itemDetailPage .itemBackdrop::after {
 .layout-desktop #itemDetailPage .detailLogo,
 body.layout-desktop #itemDetailPage .detailLogo {
     display: var(--clearLogoVisibility) !important;
-    position: absolute !important;
-    top: clamp(190px, 34vh, 350px) !important;
-    left: var(--sidePadding) !important;
-    width: min(460px, 32vw) !important;
-    height: clamp(88px, 15vh, 168px) !important;
+    position: fixed !important;
+    top: clamp(330px, 41vh, 455px) !important;
+    left: max(48px, var(--sidePadding)) !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: min(390px, 29vw) !important;
+    height: clamp(82px, 12vh, 130px) !important;
     margin: 0 !important;
     transform: none !important;
     background-position: bottom left !important;
     background-size: contain !important;
-    z-index: 3 !important;
+    z-index: 4 !important;
     filter: drop-shadow(0 14px 34px rgba(0, 0, 0, 0.74)) !important;
     pointer-events: none !important;
 }
@@ -2969,7 +2971,7 @@ body.layout-desktop #itemDetailPage .detailRibbon {
     height: 100% !important;
     min-height: 0 !important;
     margin-top: unset !important;
-    padding: 0 !important;
+    padding: 0 0 0 max(48px, var(--sidePadding)) !important;
     gap: 0.85rem !important;
     border: 0 !important;
     background: transparent !important;

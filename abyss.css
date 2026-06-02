@@ -2395,10 +2395,36 @@ body,
 }
 
 .skinHeader,
+.skinHeader.focuscontainer-x,
 .skinHeader.semiTransparent,
+.skinHeader.skinHeader-withBackground,
+.skinHeader.skinHeader-blurred,
+.skinHeader.focuscontainer-x.skinHeader-withBackground.skinHeader-blurred.semiTransparent,
 .skinHeader-withBackground,
 .skinHeader-withBackground.semiTransparent,
-.skinHeader.osdHeader,
+.skinHeader-blurred,
+.skinHeader.osdHeader {
+    background: transparent !important;
+    background-color: transparent !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    border: 0 !important;
+    border-bottom: 0 !important;
+    box-shadow: none !important;
+}
+
+.skinHeader::before,
+.skinHeader::after,
+.skinHeader-withBackground::before,
+.skinHeader-withBackground::after,
+.skinHeader-blurred::before,
+.skinHeader-blurred::after {
+    display: none !important;
+    content: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
 .dialog,
 .formDialogHeader,
 .formDialogFooter,
@@ -2416,9 +2442,9 @@ body,
     border-color: var(--tvos-glass-border) !important;
 }
 
-.skinHeader {
+/*.skinHeader {
     box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35) !important;
-}
+}*/
 
 .dialog,
 .formDialogHeader,
@@ -2733,7 +2759,8 @@ body.layout-desktop:has(#itemDetailPage) .skinHeader-withBackground.semiTranspar
     min-height: 5em !important;
     height: 5em !important;
     padding: 0 var(--sidePadding) !important;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.36) 0, rgba(0, 0, 0, 0.12) 100%) !important;
+    background: transparent !important;
+    background-color: transparent !important;
     border-bottom: 0 !important;
     box-shadow: none !important;
     -webkit-backdrop-filter: none !important;

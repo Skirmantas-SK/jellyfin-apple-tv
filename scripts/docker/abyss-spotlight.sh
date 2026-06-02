@@ -20,7 +20,7 @@ STAGE_DIR="/tmp/abyss-stage"
 BRANDING_FILE="/config/config/branding.xml"
 THEME_CACHE_BUSTER="$(date +%s)"
 CUSTOM_CSS="@import url('/web/ui/abyss.css?v=${THEME_CACHE_BUSTER}');"
-EXPECTED_CSS_MARKER="tvOS Detail Page Direct Rules"
+EXPECTED_CSS_MARKER="NeutralFin Item Detail Layout"
 
 THEME_FILES=(
     "abyss.css"

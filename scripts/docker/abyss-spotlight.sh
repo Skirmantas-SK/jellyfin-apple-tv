@@ -35,6 +35,9 @@ download_theme_files() {
     rm -rf "$STAGE_DIR"
     mkdir -p "$STAGE_DIR"
 
+    log "Source: ${RAW}"
+    log "Expected CSS marker: ${EXPECTED_CSS_MARKER}"
+
     for file in "${THEME_FILES[@]}"; do
         dest="${STAGE_DIR}/$(basename "$file")"
         if curl -fsSL "${RAW}/${file}" -o "$dest"; then

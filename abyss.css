@@ -3847,6 +3847,200 @@ body:has(#itemDetailPage) .layout-desktop .detailPageContent {
         line-height: 1.48 !important;
     }
 }
+
+/* tvOS Detail Page Polish */
+@media (min-width: 50.001em) {
+    .layout-desktop #itemDetailPage,
+    body.layout-desktop #itemDetailPage {
+        --tvos-detail-left: clamp(56px, 5vw, 92px);
+        --tvos-detail-poster: clamp(252px, 18vw, 344px);
+        --tvos-detail-gap: clamp(54px, 5vw, 86px);
+        --tvos-detail-column: calc(var(--tvos-detail-left) + var(--tvos-detail-poster) + var(--tvos-detail-gap));
+    }
+
+    .layout-desktop #itemDetailPage .detailPagePrimaryContainer,
+    body.layout-desktop #itemDetailPage .detailPagePrimaryContainer {
+        min-height: clamp(250px, 30vh, 390px) !important;
+        padding: clamp(102px, 11vh, 136px) var(--tvos-detail-left) 0 !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailImageContainer .card,
+    body.layout-desktop #itemDetailPage .detailImageContainer .card {
+        top: clamp(112px, 11.5vh, 142px) !important;
+        left: var(--tvos-detail-left) !important;
+        width: var(--tvos-detail-poster) !important;
+        max-width: var(--tvos-detail-poster) !important;
+        border-radius: 22px !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailImageContainer .cardImageContainer,
+    .layout-desktop #itemDetailPage .detailImageContainer .cardImage,
+    .layout-desktop #itemDetailPage .detailImageContainer .blurhash-canvas,
+    body.layout-desktop #itemDetailPage .detailImageContainer .cardImageContainer,
+    body.layout-desktop #itemDetailPage .detailImageContainer .cardImage,
+    body.layout-desktop #itemDetailPage .detailImageContainer .blurhash-canvas {
+        border-radius: 22px !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailPagePrimaryContent,
+    body.layout-desktop #itemDetailPage .detailPagePrimaryContent {
+        padding: 0 clamp(54px, 5vw, 96px) 0 var(--tvos-detail-column) !important;
+    }
+
+    .layout-desktop #itemDetailPage .itemName.infoText,
+    .layout-desktop #itemDetailPage .itemName.infoText.parentNameLast,
+    .layout-desktop #itemDetailPage .nameContainer .itemName,
+    body.layout-desktop #itemDetailPage .itemName.infoText,
+    body.layout-desktop #itemDetailPage .itemName.infoText.parentNameLast,
+    body.layout-desktop #itemDetailPage .nameContainer .itemName {
+        max-width: min(940px, calc(100vw - var(--tvos-detail-column) - 120px)) !important;
+        margin-bottom: 1rem !important;
+        font-size: clamp(2.35rem, 3.75vw, 4.35rem) !important;
+        line-height: 1.02 !important;
+        text-wrap: balance !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailRibbon,
+    body.layout-desktop #itemDetailPage .detailRibbon {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+        gap: 14px !important;
+        max-width: min(1040px, calc(100vw - var(--tvos-detail-column) - 96px)) !important;
+        min-height: 0 !important;
+        margin: 1rem clamp(54px, 5vw, 96px) 0 var(--tvos-detail-column) !important;
+    }
+
+    .layout-desktop #itemDetailPage .mainDetailButtons,
+    body.layout-desktop #itemDetailPage .mainDetailButtons {
+        order: 1 !important;
+        justify-content: flex-start !important;
+        gap: 16px !important;
+        width: 100% !important;
+    }
+
+    .layout-desktop #itemDetailPage .mainDetailButtons .emby-button,
+    .layout-desktop #itemDetailPage .mainDetailButtons .paper-icon-button-light,
+    .layout-desktop #itemDetailPage .detailButton,
+    body.layout-desktop #itemDetailPage .mainDetailButtons .emby-button,
+    body.layout-desktop #itemDetailPage .mainDetailButtons .paper-icon-button-light,
+    body.layout-desktop #itemDetailPage .detailButton {
+        width: 56px !important;
+        height: 56px !important;
+        min-width: 56px !important;
+        min-height: 56px !important;
+    }
+
+    .layout-desktop #itemDetailPage .mainDetailButtons .btnPlay,
+    .layout-desktop #itemDetailPage .mainDetailButtons .btnResume,
+    .layout-desktop #itemDetailPage .mainDetailButtons .button-play,
+    .layout-desktop #itemDetailPage .mainDetailButtons [data-action="play"],
+    .layout-desktop #itemDetailPage .mainDetailButtons [data-action="resume"],
+    body.layout-desktop #itemDetailPage .mainDetailButtons .btnPlay,
+    body.layout-desktop #itemDetailPage .mainDetailButtons .btnResume,
+    body.layout-desktop #itemDetailPage .mainDetailButtons .button-play,
+    body.layout-desktop #itemDetailPage .mainDetailButtons [data-action="play"],
+    body.layout-desktop #itemDetailPage .mainDetailButtons [data-action="resume"] {
+        min-width: 142px !important;
+    }
+
+    .layout-desktop #itemDetailPage .itemMiscInfo,
+    .layout-desktop #itemDetailPage .itemMiscInfoPrimary,
+    .layout-desktop #itemDetailPage .itemMiscInfo-primary,
+    body.layout-desktop #itemDetailPage .itemMiscInfo,
+    body.layout-desktop #itemDetailPage .itemMiscInfoPrimary,
+    body.layout-desktop #itemDetailPage .itemMiscInfo-primary {
+        order: 2 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        gap: 8px !important;
+    }
+
+    .layout-desktop #itemDetailPage .itemMiscInfo > *,
+    .layout-desktop #itemDetailPage .mediaInfoCriticRating,
+    .layout-desktop #itemDetailPage .starRatingContainer,
+    .layout-desktop #itemDetailPage .officialRating,
+    body.layout-desktop #itemDetailPage .itemMiscInfo > *,
+    body.layout-desktop #itemDetailPage .mediaInfoCriticRating,
+    body.layout-desktop #itemDetailPage .starRatingContainer,
+    body.layout-desktop #itemDetailPage .officialRating {
+        min-height: 32px !important;
+        padding: 5px 12px !important;
+        font-size: 0.96rem !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailPageContent,
+    body.layout-desktop #itemDetailPage .detailPageContent {
+        margin-top: clamp(1.7rem, 3vh, 2.5rem) !important;
+        padding: 0 clamp(54px, 5vw, 96px) 5rem var(--tvos-detail-column) !important;
+    }
+
+    .layout-desktop #itemDetailPage .trackSelections,
+    body.layout-desktop #itemDetailPage .trackSelections {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 10px !important;
+        width: min(900px, 100%) !important;
+        max-width: min(900px, 100%) !important;
+        margin: 0 0 1.75rem !important;
+        overflow: visible !important;
+    }
+
+    .layout-desktop #itemDetailPage .trackSelections .selectContainer,
+    body.layout-desktop #itemDetailPage .trackSelections .selectContainer {
+        display: grid !important;
+        grid-template-columns: 112px minmax(0, 1fr) !important;
+        align-items: center !important;
+        column-gap: 18px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: 46px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .layout-desktop #itemDetailPage .trackSelections label,
+    .layout-desktop #itemDetailPage .trackSelections .selectLabel,
+    body.layout-desktop #itemDetailPage .trackSelections label,
+    body.layout-desktop #itemDetailPage .trackSelections .selectLabel {
+        grid-column: 1 !important;
+        margin: 0 !important;
+        color: rgba(255, 255, 255, 0.84) !important;
+        font-weight: 600 !important;
+        white-space: nowrap !important;
+    }
+
+    .layout-desktop #itemDetailPage .trackSelections .detailTrackSelect,
+    .layout-desktop #itemDetailPage .trackSelections .emby-select,
+    body.layout-desktop #itemDetailPage .trackSelections .detailTrackSelect,
+    body.layout-desktop #itemDetailPage .trackSelections .emby-select {
+        grid-column: 2 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+    }
+
+    .layout-desktop #itemDetailPage .tagline,
+    body.layout-desktop #itemDetailPage .tagline {
+        margin-top: 1.45rem !important;
+        margin-bottom: 1.4rem !important;
+        max-width: min(980px, 100%) !important;
+    }
+
+    .layout-desktop #itemDetailPage .overview,
+    .layout-desktop #itemDetailPage .itemOverview,
+    .layout-desktop #itemDetailPage .detailPageContent p,
+    body.layout-desktop #itemDetailPage .overview,
+    body.layout-desktop #itemDetailPage .itemOverview,
+    body.layout-desktop #itemDetailPage .detailPageContent p {
+        max-width: min(1040px, 100%) !important;
+        font-size: clamp(1.02rem, 1.08vw, 1.18rem) !important;
+    }
+}
 /* Jellyfin-style My Media restore */
 
 #indexPage .homeSectionsContainer .verticalSection:has([data-type="CollectionFolder"]) .itemsContainer,

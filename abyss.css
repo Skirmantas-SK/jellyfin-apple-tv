@@ -4041,6 +4041,90 @@ body:has(#itemDetailPage) .layout-desktop .detailPageContent {
         font-size: clamp(1.02rem, 1.08vw, 1.18rem) !important;
     }
 }
+
+/* tvOS Detail Page No Overlap Fix */
+@media (min-width: 50.001em) {
+    .layout-desktop #itemDetailPage,
+    body.layout-desktop #itemDetailPage {
+        --tvos-detail-hero-height: clamp(560px, 62vh, 690px);
+    }
+
+    .layout-desktop #itemDetailPage .detailPagePrimaryContainer,
+    body.layout-desktop #itemDetailPage .detailPagePrimaryContainer {
+        min-height: var(--tvos-detail-hero-height) !important;
+        padding-bottom: clamp(38px, 5vh, 62px) !important;
+        box-sizing: border-box !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailPagePrimaryContent,
+    body.layout-desktop #itemDetailPage .detailPagePrimaryContent {
+        max-width: min(1120px, calc(100vw - var(--tvos-detail-column) - 96px)) !important;
+        padding-top: clamp(72px, 8vh, 116px) !important;
+        box-sizing: border-box !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailRibbon,
+    body.layout-desktop #itemDetailPage .detailRibbon {
+        position: relative !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+        gap: 14px !important;
+        min-height: 0 !important;
+        margin-top: 1.15rem !important;
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+        overflow: visible !important;
+        clear: both !important;
+    }
+
+    .layout-desktop #itemDetailPage .mainDetailButtons,
+    body.layout-desktop #itemDetailPage .mainDetailButtons {
+        position: relative !important;
+        inset: auto !important;
+        order: 2 !important;
+        transform: none !important;
+        margin: 0 !important;
+    }
+
+    .layout-desktop #itemDetailPage .itemMiscInfo,
+    .layout-desktop #itemDetailPage .itemMiscInfoPrimary,
+    .layout-desktop #itemDetailPage .itemMiscInfo-primary,
+    body.layout-desktop #itemDetailPage .itemMiscInfo,
+    body.layout-desktop #itemDetailPage .itemMiscInfoPrimary,
+    body.layout-desktop #itemDetailPage .itemMiscInfo-primary {
+        order: 1 !important;
+        margin: 0 !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailPageContent,
+    body.layout-desktop #itemDetailPage .detailPageContent {
+        position: relative !important;
+        clear: both !important;
+        margin-top: 0 !important;
+        padding-top: clamp(24px, 3.5vh, 44px) !important;
+        box-sizing: border-box !important;
+        z-index: 1 !important;
+    }
+
+    .layout-desktop #itemDetailPage .trackSelections,
+    body.layout-desktop #itemDetailPage .trackSelections {
+        position: relative !important;
+        z-index: 1 !important;
+        margin-top: 0 !important;
+    }
+
+    .layout-desktop #itemDetailPage .trackSelections .selectContainer,
+    body.layout-desktop #itemDetailPage .trackSelections .selectContainer {
+        min-height: 52px !important;
+    }
+
+    .layout-desktop #itemDetailPage .detailImageContainer .card,
+    body.layout-desktop #itemDetailPage .detailImageContainer .card {
+        top: clamp(138px, 13vh, 164px) !important;
+    }
+}
 /* Jellyfin-style My Media restore */
 
 #indexPage .homeSectionsContainer .verticalSection:has([data-type="CollectionFolder"]) .itemsContainer,

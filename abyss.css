@@ -2863,7 +2863,7 @@ body.layout-desktop #itemDetailPage .itemBackdrop {
     min-height: 680px !important;
     max-height: none !important;
     margin: 0 !important;
-    opacity: 1 !important;
+    opacity: 0 !important;
     overflow: hidden !important;
     pointer-events: none !important;
     filter: saturate(106%) brightness(92%) contrast(102%) !important;

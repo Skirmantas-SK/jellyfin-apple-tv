@@ -1840,8 +1840,8 @@ div[data-role="controlgroup"] a[data-role="button"]:last-child {
 
 /* Desktop layout */
 .layout-desktop .detailImageContainer .card {
-    position: fixed !important;
-    top: 10% !important;
+    position: relative !important;
+    top: auto !important;
 }
 
 .layout-mobile .detailImageContainer .card {
@@ -2774,10 +2774,14 @@ body:has(#itemDetailPage) .layout-desktop .itemBackdrop::after {
 body:has(#itemDetailPage) .layout-desktop .detailPagePrimaryContainer {
     position: relative !important;
     z-index: 2 !important;
-    min-height: clamp(430px, 54vh, 620px) !important;
+    display: grid !important;
+    grid-template-columns: clamp(245px, 18vw, 340px) minmax(0, 1fr) !important;
+    grid-template-rows: auto auto !important;
+    column-gap: clamp(42px, 5vw, 84px) !important;
+    align-items: end !important;
+    min-height: clamp(410px, 49vh, 560px) !important;
     margin-top: 0 !important;
-    padding-top: clamp(112px, 13vh, 160px) !important;
-    padding-bottom: 28px !important;
+    padding: clamp(112px, 12vh, 150px) clamp(54px, 5vw, 92px) 34px !important;
     background: transparent !important;
 }
 
@@ -2785,13 +2789,18 @@ body:has(#itemDetailPage) .layout-desktop .detailPagePrimaryContainer {
 body:has(#itemDetailPage) .layout-desktop .detailImageContainer {
     display: block !important;
     visibility: visible !important;
-    position: fixed !important;
-    top: clamp(108px, 10.5vh, 142px) !important;
-    left: clamp(54px, 4.6vw, 86px) !important;
-    width: clamp(260px, 18.5vw, 355px) !important;
-    max-width: 355px !important;
-    max-height: calc(100vh - 150px) !important;
-    overflow: visible !important;
+    grid-column: 1 !important;
+    grid-row: 1 / span 2 !important;
+    align-self: start !important;
+    justify-self: start !important;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    max-width: 340px !important;
+    max-height: none !important;
+    margin: 0 !important;
+    overflow: hidden !important;
     z-index: 4 !important;
 }
 
@@ -2804,12 +2813,22 @@ body:has(#itemDetailPage) .layout-desktop .detailImageContainer {
     opacity: 0 !important;
 }
 
+#itemDetailPage .detailPageContent .detailImageContainer,
+#itemDetailPage .detailPageSecondaryContainer .detailImageContainer,
+#itemDetailPage .trackSelections .detailImageContainer {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
 .layout-desktop #itemDetailPage .detailImageContainer .card {
     position: relative !important;
     top: auto !important;
     left: auto !important;
     width: 100% !important;
     max-width: 100% !important;
+    margin: 0 !important;
+    transform: none !important;
     z-index: 4 !important;
     border: 1px solid rgba(255, 255, 255, 0.12) !important;
     border-radius: 26px !important;
@@ -2843,10 +2862,12 @@ body:has(#itemDetailPage) .layout-desktop .detailLogo {
 
 #itemDetailPage .detailPagePrimaryContent,
 body:has(#itemDetailPage) .layout-desktop .detailPagePrimaryContent {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    align-self: end !important;
     width: auto !important;
     max-width: none !important;
-    margin-left: clamp(305px, 27vw, 520px) !important;
-    margin-right: clamp(42px, 5vw, 90px) !important;
+    margin: 0 !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
     background: transparent !important;
@@ -2854,19 +2875,22 @@ body:has(#itemDetailPage) .layout-desktop .detailPagePrimaryContent {
 
 #itemDetailPage .detailRibbon,
 body:has(#itemDetailPage) .layout-desktop .detailRibbon {
+    grid-column: 2 !important;
+    grid-row: 2 !important;
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
     gap: clamp(18px, 2vw, 36px) !important;
-    margin: 0 clamp(42px, 5vw, 90px) 0 clamp(305px, 27vw, 520px) !important;
-    padding: 1rem 1.25rem !important;
-    min-height: 78px !important;
-    border: 1px solid rgba(255, 255, 255, 0.12) !important;
-    border-radius: 28px !important;
-    background: rgba(28, 28, 30, 0.58) !important;
-    -webkit-backdrop-filter: blur(30px) saturate(180%) !important;
-    backdrop-filter: blur(30px) saturate(180%) !important;
-    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+    width: 100% !important;
+    margin: 1.25rem 0 0 !important;
+    padding: 0 !important;
+    min-height: 64px !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
 }
 
 #itemDetailPage .itemMiscInfo,
@@ -2948,7 +2972,7 @@ body:has(#itemDetailPage) .layout-desktop .detailRibbon {
 body:has(#itemDetailPage) .layout-desktop .detailPageContent {
     width: auto !important;
     max-width: none !important;
-    margin: 2rem clamp(42px, 5vw, 90px) 0 clamp(305px, 27vw, 520px) !important;
+    margin: 1.5rem clamp(54px, 5vw, 92px) 0 calc(clamp(54px, 5vw, 92px) + clamp(245px, 18vw, 340px) + clamp(42px, 5vw, 84px)) !important;
     padding: 0 0 5rem !important;
     border: 0 !important;
     border-radius: 0 !important;
@@ -3017,9 +3041,17 @@ body:has(#itemDetailPage) .layout-desktop .detailPageContent {
 }
 
 @media (max-width: 75em) {
+    #itemDetailPage .detailPagePrimaryContainer,
+    body:has(#itemDetailPage) .layout-desktop .detailPagePrimaryContainer {
+        grid-template-columns: clamp(220px, 24vw, 285px) minmax(0, 1fr) !important;
+        column-gap: 34px !important;
+        padding-left: 36px !important;
+        padding-right: 36px !important;
+    }
+
     .layout-desktop #itemDetailPage .detailImageContainer {
-        left: 36px !important;
-        width: clamp(220px, 24vw, 285px) !important;
+        left: auto !important;
+        width: 100% !important;
         max-width: 285px !important;
     }
 
@@ -3030,13 +3062,18 @@ body:has(#itemDetailPage) .layout-desktop .detailPageContent {
 
     #itemDetailPage .detailLogo,
     #itemDetailPage .detailPagePrimaryContent,
-    #itemDetailPage .detailPageContent,
     #itemDetailPage .detailRibbon {
-        margin-left: clamp(280px, 30vw, 380px) !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    #itemDetailPage .detailPageContent {
+        margin-left: calc(36px + clamp(220px, 24vw, 285px) + 34px) !important;
+        margin-right: 36px !important;
     }
 
     #itemDetailPage .detailRibbon {
-        padding-left: 1.1rem !important;
+        padding-left: 0 !important;
     }
 }
 
@@ -3047,13 +3084,20 @@ body:has(#itemDetailPage) .layout-desktop .detailPageContent {
         min-height: 62px !important;
     }
 
+    #itemDetailPage .detailPagePrimaryContainer,
+    body:has(#itemDetailPage) .layout-desktop .detailPagePrimaryContainer {
+        display: block !important;
+        min-height: auto !important;
+        padding: 88px 24px 24px !important;
+    }
+
     .layout-desktop #itemDetailPage .detailImageContainer,
     #itemDetailPage .detailImageContainer {
         position: relative !important;
         top: auto !important;
         left: auto !important;
         width: min(48vw, 230px) !important;
-        margin: 1rem 0 1rem 24px !important;
+        margin: 1rem 0 1rem !important;
     }
 
     .layout-desktop #itemDetailPage .detailImageContainer .card,
@@ -3068,20 +3112,21 @@ body:has(#itemDetailPage) .layout-desktop .detailPageContent {
     #itemDetailPage .detailPagePrimaryContent,
     #itemDetailPage .detailPageContent,
     #itemDetailPage .detailRibbon {
-        margin-left: 24px !important;
-        margin-right: 24px !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
     }
 
     #itemDetailPage .detailRibbon {
-        padding-left: 24px !important;
-        padding-right: 24px !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        flex-wrap: wrap !important;
     }
 
     .layout-desktop #itemDetailPage .itemName.infoText.parentNameLast {
         display: block !important;
         font-size: clamp(2rem, 8vw, 3.4rem) !important;
         line-height: 1.02 !important;
-        margin: 0 24px 1rem !important;
+        margin: 0 0 1rem !important;
     }
 }
 /* Jellyfin-style My Media restore */

@@ -2695,6 +2695,8 @@ div[data-type="UserView"] .cardText-secondary {
 body.layout-desktop:has(#itemDetailPage) {
     --sidePadding: 3.3%;
     --detailContentOffset: max(56px, calc(var(--sidePadding) + 1.2rem));
+    --detailReadableWidth: min(1120px, calc(100vw - var(--detailContentOffset) - var(--sidePadding)));
+    --detailWideWidth: min(1500px, calc(100vw - var(--detailContentOffset) - var(--sidePadding)));
     --detailPanelRadius: 26px;
     --detailPanelBorder: rgba(255, 255, 255, 0.12);
     --detailPanelBg: rgba(18, 18, 18, 0.56);
@@ -2798,7 +2800,7 @@ body.layout-desktop #itemDetailPage .detailPageSecondaryContainer {
 body.layout-desktop #itemDetailPage .detailPagePrimaryContainer > .detailPagePrimaryContent,
 body.layout-desktop #itemDetailPage .detailPagePrimaryContainer > .detailRibbon,
 body.layout-desktop #itemDetailPage .detailPagePrimaryContainer.detailRibbon {
-    padding-left: var(--sidePadding) !important;
+    padding-left: 0 !important;
 }
 
 .layout-desktop #itemDetailPage .detailPagePrimaryContent,
@@ -2976,7 +2978,7 @@ body.layout-desktop #itemDetailPage .detailRibbon {
     height: 100% !important;
     min-height: 0 !important;
     margin-top: unset !important;
-    padding: 0 0 0 var(--detailContentOffset) !important;
+    padding: 0 !important;
     gap: 0.85rem !important;
     border: 0 !important;
     background: transparent !important;
@@ -3000,7 +3002,7 @@ body.layout-desktop #itemDetailPage .itemMiscInfo-primary {
     gap: 0.5em !important;
     width: auto !important;
     max-width: min(900px, 76vw) !important;
-    margin: 0 !important;
+    margin: 0 0 0 var(--detailContentOffset) !important;
     padding: 0 !important;
     transform: none !important;
     transform-origin: left center !important;
@@ -3038,7 +3040,7 @@ body.layout-desktop #itemDetailPage .mainDetailButtons {
     gap: 0.75rem !important;
     width: auto !important;
     max-width: min(900px, 76vw) !important;
-    margin: 0 !important;
+    margin: 0 0 0 var(--detailContentOffset) !important;
     padding: 0 !important;
     transform: scale(0.94) !important;
     transform-origin: left center !important;
@@ -3143,7 +3145,7 @@ body.layout-desktop #itemDetailPage .detailPageContent {
     width: auto !important;
     max-width: none !important;
     margin: 0 !important;
-    padding: 0 var(--sidePadding) 5rem var(--detailContentOffset) !important;
+    padding: 0 var(--sidePadding) 5rem 0 !important;
     gap: 1em !important;
     border: 0 !important;
     background: transparent !important;
@@ -3161,9 +3163,9 @@ body.layout-desktop #itemDetailPage .detailSection {
     grid-template-columns: minmax(390px, 0.9fr) minmax(430px, 1.1fr) !important;
     row-gap: 1.35rem !important;
     column-gap: clamp(1.5rem, 2.4vw, 3rem) !important;
-    width: min(1500px, calc(100vw - var(--detailContentOffset) - var(--sidePadding))) !important;
-    max-width: min(1500px, calc(100vw - var(--detailContentOffset) - var(--sidePadding))) !important;
-    margin: 0 0 1.75rem !important;
+    width: var(--detailWideWidth) !important;
+    max-width: var(--detailWideWidth) !important;
+    margin: 0 0 1.75rem var(--detailContentOffset) !important;
     pointer-events: auto !important;
 }
 
@@ -3174,19 +3176,30 @@ body.layout-desktop #itemDetailPage .detailSectionContent {
     min-height: 16vh !important;
     order: 1 !important;
     grid-column: 1 / -1 !important;
+    max-width: var(--detailReadableWidth) !important;
     pointer-events: auto !important;
 }
 
 .layout-desktop #itemDetailPage .overview,
 .layout-desktop #itemDetailPage .itemOverview,
+.layout-desktop #itemDetailPage .tagline,
+.layout-desktop #itemDetailPage .itemTags,
+.layout-desktop #itemDetailPage .itemExternalLinks,
+.layout-desktop #itemDetailPage .externalLinks,
+.layout-desktop #itemDetailPage .genres,
 .layout-desktop #itemDetailPage .detailPageContent p,
 body.layout-desktop #itemDetailPage .overview,
 body.layout-desktop #itemDetailPage .itemOverview,
+body.layout-desktop #itemDetailPage .tagline,
+body.layout-desktop #itemDetailPage .itemTags,
+body.layout-desktop #itemDetailPage .itemExternalLinks,
+body.layout-desktop #itemDetailPage .externalLinks,
+body.layout-desktop #itemDetailPage .genres,
 body.layout-desktop #itemDetailPage .detailPageContent p {
     display: block !important;
-    width: auto !important;
-    max-width: min(980px, 78vw) !important;
-    margin: 0 !important;
+    width: var(--detailReadableWidth) !important;
+    max-width: var(--detailReadableWidth) !important;
+    margin: 0 0 0 var(--detailContentOffset) !important;
     color: rgba(255, 255, 255, 0.82) !important;
     font-size: clamp(1rem, 1.05vw, 1.18rem) !important;
     font-weight: 500 !important;
@@ -3414,9 +3427,9 @@ body.layout-desktop #itemDetailPage .detailPageContent > .verticalSection:not(.h
 body.layout-desktop #itemDetailPage .detailPageContent > #scenesCollapsible:not(.hide),
 body.layout-desktop #itemDetailPage .detailPageContent > #similarCollapsible:not(.hide),
 body.layout-desktop #itemDetailPage .detailPageContent > .moreFromSeasonSection:not(.hide) {
-    width: min(1500px, calc(100vw - var(--detailContentOffset) - var(--sidePadding))) !important;
-    max-width: min(1500px, calc(100vw - var(--detailContentOffset) - var(--sidePadding))) !important;
-    margin: 2.2rem 0 0 !important;
+    width: var(--detailWideWidth) !important;
+    max-width: var(--detailWideWidth) !important;
+    margin: 2.2rem 0 0 var(--detailContentOffset) !important;
 }
 
 .layout-desktop #itemDetailPage .verticalSection .sectionTitle,

@@ -2717,6 +2717,11 @@ body.layout-desktop:has(#itemDetailPage),
     --defaultBorder: 1px solid rgba(255, 255, 255, 0.14);
     --textColor: rgba(245, 245, 247, 0.92);
     --dimTextColor: rgba(245, 245, 247, 0.62);
+}
+
+body:has(#itemDetailPage),
+body.layout-desktop:has(#itemDetailPage),
+.layout-desktop:has(#itemDetailPage) {
     overflow-y: auto !important;
     overflow-x: hidden !important;
     background: #050505 !important;
@@ -2770,7 +2775,7 @@ body.layout-desktop #itemDetailPage .detailPageWrapperContainer {
     margin-top: -33vh !important;
     min-height: 33vh !important;
     overflow: visible !important;
-    background: linear-gradient(180deg, transparent 0, rgba(5, 5, 5, 0.28) 18vh, #050505 42vh) !important;
+    background: linear-gradient(180deg, transparent 0, rgba(5, 5, 5, 0.18) 18vh, #050505 44vh) !important;
 }
 
 .layout-desktop #itemDetailPage .detailPagePrimaryContainer,
@@ -2832,8 +2837,8 @@ body.layout-desktop #itemDetailPage .itemBackdrop {
     opacity: 1 !important;
     overflow: hidden !important;
     pointer-events: none !important;
-    filter: saturate(112%) brightness(102%) contrast(104%) !important;
-    -webkit-filter: saturate(112%) brightness(102%) contrast(104%) !important;
+    filter: saturate(118%) brightness(112%) contrast(105%) !important;
+    -webkit-filter: saturate(118%) brightness(112%) contrast(105%) !important;
     background-size: cover !important;
     background-position: center top !important;
 }
@@ -2853,13 +2858,13 @@ body.layout-desktop #itemDetailPage .itemBackdrop::after {
 #itemDetailPage .itemBackdrop::before,
 .layout-desktop #itemDetailPage .itemBackdrop::before,
 body.layout-desktop #itemDetailPage .itemBackdrop::before {
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.04) 48%, rgba(0, 0, 0, 0.28)) !important;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.22), rgba(0, 0, 0, 0.02) 48%, rgba(0, 0, 0, 0.22)) !important;
 }
 
 #itemDetailPage .itemBackdrop::after,
 .layout-desktop #itemDetailPage .itemBackdrop::after,
 body.layout-desktop #itemDetailPage .itemBackdrop::after {
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.08) 48%, rgba(0, 0, 0, 0.48) 82%, #050505 100%) !important;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.04) 48%, rgba(0, 0, 0, 0.36) 82%, #050505 100%) !important;
 }
 
 #itemDetailPage .detailLogo,
@@ -3232,6 +3237,35 @@ body.layout-desktop #itemDetailPage .detailPageContent p {
 body.layout-desktop #itemDetailPage .detailPageContent > :not(.detailSection):not(.verticalSection):not(#scenesCollapsible):not(#similarCollapsible):not(.moreFromSeasonSection):not(.hide) {
     margin-left: var(--detailContentOffset, 64px) !important;
     max-width: var(--detailReadableWidth, calc(100vw - 128px)) !important;
+}
+
+#itemDetailPage .detailSectionContent .overview,
+#itemDetailPage .detailSectionContent .itemOverview,
+#itemDetailPage .detailSectionContent .tagline,
+#itemDetailPage .detailSectionContent .itemTags,
+#itemDetailPage .detailSectionContent .itemExternalLinks,
+#itemDetailPage .detailSectionContent .externalLinks,
+#itemDetailPage .detailSectionContent .genres,
+#itemDetailPage .detailSectionContent p,
+.layout-desktop #itemDetailPage .detailSectionContent .overview,
+.layout-desktop #itemDetailPage .detailSectionContent .itemOverview,
+.layout-desktop #itemDetailPage .detailSectionContent .tagline,
+.layout-desktop #itemDetailPage .detailSectionContent .itemTags,
+.layout-desktop #itemDetailPage .detailSectionContent .itemExternalLinks,
+.layout-desktop #itemDetailPage .detailSectionContent .externalLinks,
+.layout-desktop #itemDetailPage .detailSectionContent .genres,
+.layout-desktop #itemDetailPage .detailSectionContent p,
+body.layout-desktop #itemDetailPage .detailSectionContent .overview,
+body.layout-desktop #itemDetailPage .detailSectionContent .itemOverview,
+body.layout-desktop #itemDetailPage .detailSectionContent .tagline,
+body.layout-desktop #itemDetailPage .detailSectionContent .itemTags,
+body.layout-desktop #itemDetailPage .detailSectionContent .itemExternalLinks,
+body.layout-desktop #itemDetailPage .detailSectionContent .externalLinks,
+body.layout-desktop #itemDetailPage .detailSectionContent .genres,
+body.layout-desktop #itemDetailPage .detailSectionContent p {
+    margin-left: 0 !important;
+    width: auto !important;
+    max-width: min(980px, 78vw) !important;
 }
 
 .layout-desktop #itemDetailPage .trackSelections,

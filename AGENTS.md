@@ -453,3 +453,7 @@ Root cause: Some Jellyfin detail-page children are rendered outside the padded w
 Fix: Keep wrapper padding neutral and apply `--detailContentOffset` directly to the visible children: `.itemMiscInfo`, `.mainDetailButtons`, `.detailSection`, overview/tag/link text blocks, and direct `.detailPageContent` rails.
 
 Follow-up: If deployed CSS contains `margin-left: var(--detailContentOffset)` but the browser still shows `x=0`, the variable may not be resolving on the actual rendered node path or margin may not affect the positioned/flex row. Define the rail variables on `#itemDetailPage` itself, include a hard fallback such as `var(--detailContentOffset, 64px)`, and use `transform: translateX(...)` for `.itemMiscInfo` and `.mainDetailButtons`.
+
+Follow-up 2: Do not combine detail-page CSS variable declarations with visual properties such as `background`, `overflow`, or `filter` on the same selector list. Variables should be safe to apply to `#itemDetailPage`; black backgrounds and scrolling rules should stay on `body:has(#itemDetailPage)` only, or the hero/backdrop image can appear to disappear.
+
+Follow-up 3: Detail overview text can get an "extra bump" if both a direct `.detailPageContent > *` catch-all and nested `.detailSectionContent p` rules apply. Reset nested `.detailSectionContent` text back to `margin-left: 0` after any catch-all rail rule.

@@ -2697,7 +2697,7 @@ body.layout-desktop:has(#itemDetailPage) {
     --itemColumnGap: 0.5em;
     --primaryItemPageNegativeSpace: 0vh;
     --secondaryItemPageNegativeSpace: 0vh;
-    --clearLogoBottomSpace: 23em;
+    --clearLogoBottomSpace: 0;
     --clearLogoVisibility: block;
     --itemTitleVisibility: none;
     --darkerGradientPointAlpha: rgba(5, 5, 5, 0.52);
@@ -2727,7 +2727,10 @@ body.layout-desktop:has(#itemDetailPage) .skinHeader-withBackground.semiTranspar
 
 body.layout-desktop:has(#itemDetailPage) .backgroundContainer,
 body.layout-desktop:has(#itemDetailPage) .backgroundContainer.withBackdrop,
-body.layout-desktop:has(#itemDetailPage) .backdropImage {
+body.layout-desktop:has(#itemDetailPage) .backdropImage,
+body:has(#itemDetailPage) .backgroundContainer,
+body:has(#itemDetailPage) .backgroundContainer.withBackdrop,
+body:has(#itemDetailPage) .backdropImage {
     position: fixed !important;
     inset: 0 !important;
     width: 100vw !important;
@@ -2737,7 +2740,8 @@ body.layout-desktop:has(#itemDetailPage) .backdropImage {
     background-color: transparent !important;
     background-size: cover !important;
     background-position: center top !important;
-    filter: saturate(108%) brightness(92%) contrast(104%) !important;
+    filter: saturate(112%) brightness(102%) contrast(104%) !important;
+    -webkit-filter: saturate(112%) brightness(102%) contrast(104%) !important;
 }
 
 .layout-desktop #itemDetailPage,
@@ -2804,23 +2808,27 @@ body.layout-desktop #itemDetailPage .detailPagePrimaryContent {
     z-index: 3 !important;
 }
 
+#itemDetailPage .itemBackdrop,
 .layout-desktop #itemDetailPage .itemBackdrop,
 body.layout-desktop #itemDetailPage .itemBackdrop {
     display: block !important;
     position: relative !important;
     width: 100% !important;
-    height: 82vh !important;
+    height: 86vh !important;
     min-height: 680px !important;
     max-height: none !important;
     margin: 0 !important;
     opacity: 1 !important;
     overflow: hidden !important;
     pointer-events: none !important;
-    filter: saturate(108%) brightness(92%) contrast(104%) !important;
+    filter: saturate(112%) brightness(102%) contrast(104%) !important;
+    -webkit-filter: saturate(112%) brightness(102%) contrast(104%) !important;
     background-size: cover !important;
     background-position: center top !important;
 }
 
+#itemDetailPage .itemBackdrop::before,
+#itemDetailPage .itemBackdrop::after,
 .layout-desktop #itemDetailPage .itemBackdrop::before,
 .layout-desktop #itemDetailPage .itemBackdrop::after,
 body.layout-desktop #itemDetailPage .itemBackdrop::before,
@@ -2831,26 +2839,29 @@ body.layout-desktop #itemDetailPage .itemBackdrop::after {
     pointer-events: none !important;
 }
 
+#itemDetailPage .itemBackdrop::before,
 .layout-desktop #itemDetailPage .itemBackdrop::before,
 body.layout-desktop #itemDetailPage .itemBackdrop::before {
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0.64), rgba(0, 0, 0, 0.14) 45%, rgba(0, 0, 0, 0.42)) !important;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.04) 48%, rgba(0, 0, 0, 0.28)) !important;
 }
 
+#itemDetailPage .itemBackdrop::after,
 .layout-desktop #itemDetailPage .itemBackdrop::after,
 body.layout-desktop #itemDetailPage .itemBackdrop::after {
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.16) 48%, rgba(0, 0, 0, 0.7) 82%, #050505 100%) !important;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.08) 48%, rgba(0, 0, 0, 0.48) 82%, #050505 100%) !important;
 }
 
+#itemDetailPage .detailLogo,
 .layout-desktop #itemDetailPage .detailLogo,
 body.layout-desktop #itemDetailPage .detailLogo {
     display: var(--clearLogoVisibility) !important;
     position: absolute !important;
-    top: calc(82vh - var(--clearLogoBottomSpace)) !important;
+    top: clamp(190px, 34vh, 350px) !important;
     left: var(--sidePadding) !important;
-    width: min(430px, 31vw) !important;
+    width: min(460px, 32vw) !important;
     height: clamp(88px, 15vh, 168px) !important;
     margin: 0 !important;
-    transform: translateY(-100%) !important;
+    transform: none !important;
     background-position: bottom left !important;
     background-size: contain !important;
     z-index: 3 !important;
@@ -2858,11 +2869,13 @@ body.layout-desktop #itemDetailPage .detailLogo {
     pointer-events: none !important;
 }
 
+#itemDetailPage .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1,
 .layout-desktop #itemDetailPage .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1,
 body.layout-desktop #itemDetailPage .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1 {
     display: var(--itemTitleVisibility) !important;
 }
 
+#itemDetailPage .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer,
 .layout-desktop #itemDetailPage .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer,
 body.layout-desktop #itemDetailPage .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer {
     display: none !important;

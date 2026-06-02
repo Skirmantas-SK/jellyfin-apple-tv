@@ -2855,8 +2855,8 @@ body.layout-desktop #itemDetailPage .itemBackdrop::after {
 .layout-desktop #itemDetailPage .detailLogo,
 body.layout-desktop #itemDetailPage .detailLogo {
     display: var(--clearLogoVisibility) !important;
-    position: fixed !important;
-    top: clamp(330px, 41vh, 455px) !important;
+    position: absolute !important;
+    top: clamp(285px, 35vh, 390px) !important;
     left: max(48px, var(--sidePadding)) !important;
     right: auto !important;
     bottom: auto !important;

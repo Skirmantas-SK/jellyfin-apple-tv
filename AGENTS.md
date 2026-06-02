@@ -459,3 +459,5 @@ Follow-up 2: Do not combine detail-page CSS variable declarations with visual pr
 Follow-up 3: Detail overview text can get an "extra bump" if both a direct `.detailPageContent > *` catch-all and nested `.detailSectionContent p` rules apply. Reset nested `.detailSectionContent` text back to `margin-left: 0` after any catch-all rail rule.
 
 Follow-up 4: If the full-screen movie artwork looks missing but the clear logo still appears, the backdrop is probably being rendered but buried by old `.backdropImage` filters or container overlays. Reset `body:has(#itemDetailPage) .backgroundContainer`, `.backdropContainer`, and `.backdropImage` with `display: block`, `visibility: visible`, `opacity: 1`, `object-fit/background-size: cover`, a bright non-blur filter, and keep that layer below `#itemDetailPage` with z-index.
+
+Follow-up 5: Do not over-brighten the restored backdrop. `brightness(118%)` can blow out light artwork and make whites look clipped. A safer detail-page grade is around `saturate(106%) brightness(92%) contrast(102%)`, with a long bottom fade instead of a hard black stop.

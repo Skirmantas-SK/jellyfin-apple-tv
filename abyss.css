@@ -2971,7 +2971,7 @@ body.layout-desktop #itemDetailPage .detailRibbon {
     height: 100% !important;
     min-height: 0 !important;
     margin-top: unset !important;
-    padding: 0 0 0 max(64px, calc(var(--sidePadding) + 1rem)) !important;
+    padding: 0 0 0 max(88px, calc(var(--sidePadding) + 2.25rem)) !important;
     gap: 0.85rem !important;
     border: 0 !important;
     background: transparent !important;
@@ -3033,6 +3033,8 @@ body.layout-desktop #itemDetailPage .mainDetailButtons {
     max-width: min(900px, 76vw) !important;
     margin: 0 !important;
     padding: 0 !important;
+    transform: translateX(24px) scale(0.94) !important;
+    transform-origin: left center !important;
     pointer-events: auto !important;
 }
 
@@ -3056,11 +3058,11 @@ body.layout-desktop #itemDetailPage .detailButton:not(.btnPlay) {
 .layout-desktop #itemDetailPage .btnPlay.detailButton,
 body.layout-desktop #itemDetailPage .btnPlay.detailButton {
     width: auto !important;
-    min-width: 8.9em !important;
-    height: 3em !important;
-    min-height: 3em !important;
+    min-width: 7.8em !important;
+    height: 2.75em !important;
+    min-height: 2.75em !important;
     margin: 0 0.35em 0 0 !important;
-    padding: 0 1.65em !important;
+    padding: 0 1.45em !important;
     border-radius: 3em !important;
     border-color: rgba(255, 255, 255, 0.72) !important;
     background: rgba(255, 255, 255, 0.96) !important;
@@ -3088,14 +3090,32 @@ body.layout-desktop #itemDetailPage .btnPlay > .detailButton-content {
 #itemDetailPage .nextUpSection .sectionTitleContainer,
 #itemDetailPage .programGuideSection > .sectionTitle,
 #itemDetailPage .programGuideSection .sectionTitleContainer,
+#itemDetailPage .detailPageContent > .sectionTitle,
+#itemDetailPage .detailPageContent > .sectionTitleContainer,
+#itemDetailPage .detailSectionContent > .sectionTitle,
+#itemDetailPage .detailSectionContent > .sectionTitleContainer,
+#itemDetailPage .detailSection > .sectionTitle,
+#itemDetailPage .detailSection > .sectionTitleContainer,
 .layout-desktop #itemDetailPage .nextUpSection > .sectionTitle,
 .layout-desktop #itemDetailPage .nextUpSection .sectionTitleContainer,
 .layout-desktop #itemDetailPage .programGuideSection > .sectionTitle,
 .layout-desktop #itemDetailPage .programGuideSection .sectionTitleContainer,
+.layout-desktop #itemDetailPage .detailPageContent > .sectionTitle,
+.layout-desktop #itemDetailPage .detailPageContent > .sectionTitleContainer,
+.layout-desktop #itemDetailPage .detailSectionContent > .sectionTitle,
+.layout-desktop #itemDetailPage .detailSectionContent > .sectionTitleContainer,
+.layout-desktop #itemDetailPage .detailSection > .sectionTitle,
+.layout-desktop #itemDetailPage .detailSection > .sectionTitleContainer,
 body.layout-desktop #itemDetailPage .nextUpSection > .sectionTitle,
 body.layout-desktop #itemDetailPage .nextUpSection .sectionTitleContainer,
 body.layout-desktop #itemDetailPage .programGuideSection > .sectionTitle,
-body.layout-desktop #itemDetailPage .programGuideSection .sectionTitleContainer {
+body.layout-desktop #itemDetailPage .programGuideSection .sectionTitleContainer,
+body.layout-desktop #itemDetailPage .detailPageContent > .sectionTitle,
+body.layout-desktop #itemDetailPage .detailPageContent > .sectionTitleContainer,
+body.layout-desktop #itemDetailPage .detailSectionContent > .sectionTitle,
+body.layout-desktop #itemDetailPage .detailSectionContent > .sectionTitleContainer,
+body.layout-desktop #itemDetailPage .detailSection > .sectionTitle,
+body.layout-desktop #itemDetailPage .detailSection > .sectionTitleContainer {
     display: none !important;
 }
 

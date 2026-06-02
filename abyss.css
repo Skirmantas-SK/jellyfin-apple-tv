@@ -2689,2001 +2689,577 @@ div[data-type="UserView"] .cardText-secondary {
     }
 }
 
-/* tvOS Detail Page Direct Rules */
+/* NeutralFin Item Detail Layout
+   Adapted from KartoffelChipss/NeutralFin. This replaces the earlier tvOS detail experiments instead of stacking on top of them. */
 
-.skinHeader,
-.skinHeader.semiTransparent,
-.skinHeader-withBackground {
-    top: 0 !important;
-    min-height: 64px !important;
-    height: auto !important;
-    padding-top: max(4px, env(safe-area-inset-top)) !important;
-    padding-bottom: 4px !important;
-    overflow: visible !important;
-}
-
-.withSectionTabs .headerTop,
-.headerTop {
-    min-height: 48px !important;
-    padding-top: 0.2rem !important;
-    padding-bottom: 0.2rem !important;
-    overflow: visible !important;
-}
-
-.headerTabs.sectionTabs,
-body:has(#indexPage.homePage:not(.hide)) .headerTabs.sectionTabs {
-    min-height: 48px !important;
-    margin-top: -0.45rem !important;
-    padding-top: 0 !important;
-    top: auto !important;
-    transform: none !important;
-    overflow: visible !important;
-}
-
-.pageWithAbsoluteTabs .pageTabContent,
-.pageWithAbsoluteTabs .pageTabContent.is-active {
-    padding-top: 0 !important;
-}
-
-body:has(#itemDetailPage) {
+body.layout-desktop:has(#itemDetailPage) {
+    --sidePadding: 3.3%;
+    --itemColumnGap: 0.5em;
+    --primaryItemPageNegativeSpace: 8vh;
+    --secondaryItemPageNegativeSpace: 8vh;
+    --clearLogoBottomSpace: 11em;
+    --clearLogoVisibility: block;
+    --itemTitleVisibility: block;
+    --darkerGradientPointAlpha: rgba(5, 5, 5, 0.86);
+    --lighterGradientPointAlpha: rgba(30, 30, 30, 0.72);
+    --borderColor: rgba(255, 255, 255, 0.16);
+    --defaultBorder: 1px solid rgba(255, 255, 255, 0.14);
+    --textColor: rgba(245, 245, 247, 0.92);
+    --dimTextColor: rgba(245, 245, 247, 0.62);
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
     background: #050505 !important;
 }
 
-#itemDetailPage,
-#itemDetailPage .detailPageWrapperContainer,
-#itemDetailPage .detailPagePrimaryContainer,
-#itemDetailPage .detailPageContent,
-#itemDetailPage .detailPageSecondaryContainer {
+body.layout-desktop:has(#itemDetailPage) .skinHeader,
+body.layout-desktop:has(#itemDetailPage) .skinHeader.semiTransparent,
+body.layout-desktop:has(#itemDetailPage) .skinHeader-withBackground,
+body.layout-desktop:has(#itemDetailPage) .skinHeader-withBackground.semiTransparent {
+    min-height: 5em !important;
+    height: 5em !important;
+    padding: 0 var(--sidePadding) !important;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.62), 70%, transparent) !important;
+    border-bottom: 0 !important;
+    box-shadow: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+}
+
+body.layout-desktop:has(#itemDetailPage) .backgroundContainer,
+body.layout-desktop:has(#itemDetailPage) .backgroundContainer.withBackdrop,
+body.layout-desktop:has(#itemDetailPage) .backdropImage {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    opacity: 1 !important;
+    pointer-events: none !important;
+    background-color: #050505 !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    filter: saturate(108%) brightness(72%) contrast(104%) !important;
+}
+
+.layout-desktop #itemDetailPage,
+body.layout-desktop #itemDetailPage {
+    position: relative !important;
+    min-height: 100vh !important;
+    overflow: visible !important;
+    background: #050505 !important;
+    font-family: var(--tvos-font-stack) !important;
+}
+
+.layout-desktop #itemDetailPage .detailPageWrapperContainer,
+body.layout-desktop #itemDetailPage .detailPageWrapperContainer {
+    padding-top: unset !important;
+    margin-top: unset !important;
+    min-height: 46vh !important;
+    overflow: visible !important;
+    background: linear-gradient(180deg, transparent, 17vh, var(--darkerGradientPointAlpha) 50vh) !important;
+}
+
+.layout-desktop #itemDetailPage .detailPagePrimaryContainer,
+body.layout-desktop #itemDetailPage .detailPagePrimaryContainer {
+    position: relative !important;
+    z-index: 2 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-content: space-between !important;
+    align-items: center !important;
+    justify-content: end !important;
+    text-align: left !important;
+    width: auto !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
     background: transparent !important;
 }
 
-body:has(#itemDetailPage) .backgroundContainer,
-body:has(#itemDetailPage) .backgroundContainer.withBackdrop {
-    background: #050505 !important;
+.layout-desktop #itemDetailPage .detailPageSecondaryContainer,
+body.layout-desktop #itemDetailPage .detailPageSecondaryContainer {
+    padding-top: 0 !important;
+    background-color: transparent !important;
 }
 
-body:has(#itemDetailPage) .backdropImage {
-    opacity: 0.95 !important;
-    filter: saturate(110%) brightness(54%) contrast(106%) !important;
+.layout-desktop #itemDetailPage .detailPagePrimaryContainer > .detailPagePrimaryContent,
+.layout-desktop #itemDetailPage .detailPagePrimaryContainer > .detailRibbon,
+.layout-desktop #itemDetailPage .detailPagePrimaryContainer.detailRibbon,
+body.layout-desktop #itemDetailPage .detailPagePrimaryContainer > .detailPagePrimaryContent,
+body.layout-desktop #itemDetailPage .detailPagePrimaryContainer > .detailRibbon,
+body.layout-desktop #itemDetailPage .detailPagePrimaryContainer.detailRibbon {
+    padding-left: var(--sidePadding) !important;
 }
 
-#itemDetailPage .itemBackdrop,
-body:has(#itemDetailPage) .layout-desktop .itemBackdrop {
+.layout-desktop #itemDetailPage .detailPagePrimaryContent,
+body.layout-desktop #itemDetailPage .detailPagePrimaryContent {
+    position: static !important;
     display: block !important;
-    height: clamp(250px, 31vh, 420px) !important;
-    min-height: 250px !important;
-    max-height: 420px !important;
+    width: auto !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding-top: 0 !important;
+    background: transparent !important;
+    z-index: 3 !important;
+}
+
+.layout-desktop #itemDetailPage .itemBackdrop,
+body.layout-desktop #itemDetailPage .itemBackdrop {
+    display: block !important;
+    position: relative !important;
+    width: 100% !important;
+    height: calc(100vh - 27vh - var(--primaryItemPageNegativeSpace)) !important;
+    min-height: 56vh !important;
+    max-height: none !important;
     margin: 0 !important;
     opacity: 1 !important;
     overflow: hidden !important;
-    filter: saturate(112%) brightness(68%) contrast(105%) !important;
+    pointer-events: none !important;
+    filter: saturate(108%) brightness(74%) contrast(104%) !important;
+    background-size: cover !important;
+    background-position: center center !important;
 }
 
-#itemDetailPage .itemBackdrop::after,
-body:has(#itemDetailPage) .layout-desktop .itemBackdrop::after {
+.layout-desktop #itemDetailPage .itemBackdrop::before,
+.layout-desktop #itemDetailPage .itemBackdrop::after,
+body.layout-desktop #itemDetailPage .itemBackdrop::before,
+body.layout-desktop #itemDetailPage .itemBackdrop::after {
     content: "" !important;
     position: absolute !important;
     inset: 0 !important;
     pointer-events: none !important;
-    background:
-        linear-gradient(90deg, rgba(5, 5, 5, 0.9) 0%, rgba(5, 5, 5, 0.52) 28%, rgba(5, 5, 5, 0.16) 60%, rgba(5, 5, 5, 0.84) 100%),
-        linear-gradient(180deg, rgba(5, 5, 5, 0.04) 0%, rgba(5, 5, 5, 0.14) 46%, rgba(5, 5, 5, 0.86) 88%, #050505 100%) !important;
 }
 
-#itemDetailPage .detailPagePrimaryContainer,
-body:has(#itemDetailPage) .layout-desktop .detailPagePrimaryContainer {
-    position: relative !important;
-    z-index: 2 !important;
-    display: grid !important;
-    grid-template-columns: clamp(245px, 18vw, 340px) minmax(0, 1fr) !important;
-    grid-template-rows: auto auto !important;
-    column-gap: clamp(42px, 5vw, 84px) !important;
-    align-items: end !important;
-    min-height: clamp(410px, 49vh, 560px) !important;
-    margin-top: 0 !important;
-    padding: clamp(112px, 12vh, 150px) clamp(54px, 5vw, 92px) 34px !important;
-    background: transparent !important;
+.layout-desktop #itemDetailPage .itemBackdrop::before,
+body.layout-desktop #itemDetailPage .itemBackdrop::before {
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.68), rgba(0, 0, 0, 0.24) 42%, rgba(0, 0, 0, 0.46)) !important;
 }
 
-.layout-desktop #itemDetailPage .detailImageContainer,
-body:has(#itemDetailPage) .layout-desktop .detailImageContainer {
+.layout-desktop #itemDetailPage .itemBackdrop::after,
+body.layout-desktop #itemDetailPage .itemBackdrop::after {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.18) 52%, rgba(0, 0, 0, 0.82) 88%, #050505 100%) !important;
+}
+
+.layout-desktop #itemDetailPage .detailLogo,
+body.layout-desktop #itemDetailPage .detailLogo {
+    display: var(--clearLogoVisibility) !important;
+    position: absolute !important;
+    top: calc(100vh - var(--clearLogoBottomSpace) - var(--primaryItemPageNegativeSpace)) !important;
+    left: 0 !important;
+    width: 40% !important;
+    height: 25vh !important;
+    margin: auto 30% !important;
+    transform: translateY(-100%) !important;
+    background-position: bottom center !important;
+    background-size: contain !important;
+    z-index: 3 !important;
+    filter: drop-shadow(0 14px 34px rgba(0, 0, 0, 0.74)) !important;
+    pointer-events: none !important;
+}
+
+.layout-desktop #itemDetailPage .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1,
+body.layout-desktop #itemDetailPage .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1 {
+    display: var(--itemTitleVisibility) !important;
+}
+
+.layout-desktop #itemDetailPage .detailLogo.hide ~ .detailPageWrapperContainer .nameContainer h1,
+.layout-desktop #itemDetailPage .detailImageContainer:has(.backdropCard, .squareCard) ~ .nameContainer h1,
+body.layout-desktop #itemDetailPage .detailLogo.hide ~ .detailPageWrapperContainer .nameContainer h1,
+body.layout-desktop #itemDetailPage .detailImageContainer:has(.backdropCard, .squareCard) ~ .nameContainer h1 {
     display: block !important;
-    visibility: visible !important;
-    grid-column: 1 !important;
-    grid-row: 1 / span 2 !important;
-    align-self: start !important;
-    justify-self: start !important;
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    width: 100% !important;
-    max-width: 340px !important;
-    max-height: none !important;
-    margin: 0 !important;
-    overflow: hidden !important;
-    z-index: 4 !important;
 }
 
-#itemDetailPage .detailImageContainer > .card:nth-of-type(n+2),
-#itemDetailPage .detailImageContainer > .card + .card,
-#itemDetailPage .detailImageContainer .card:nth-of-type(n+2),
-#itemDetailPage .detailImageContainer .card ~ .card {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-}
-
-#itemDetailPage .detailPageContent .detailImageContainer,
-#itemDetailPage .detailPageSecondaryContainer .detailImageContainer,
-#itemDetailPage .trackSelections .detailImageContainer {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-}
-
-.layout-desktop #itemDetailPage .detailImageContainer .card {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 !important;
-    transform: none !important;
-    z-index: 4 !important;
-    border: 1px solid rgba(255, 255, 255, 0.12) !important;
-    border-radius: 26px !important;
-    box-shadow: 0 38px 92px rgba(0, 0, 0, 0.72), 0 14px 30px rgba(0, 0, 0, 0.48) !important;
-}
-
-#itemDetailPage .detailImageContainer .cardImageContainer,
-#itemDetailPage .detailImageContainer .card,
-#itemDetailPage .detailImageContainer .cardImage,
-#itemDetailPage .detailImageContainer .blurhash-canvas {
-    border-radius: 26px !important;
-    overflow: hidden !important;
-}
-
-#itemDetailPage .detailLogo,
-body:has(#itemDetailPage) .layout-desktop .detailLogo {
-    display: none !important;
-}
-
-.layout-desktop #itemDetailPage .itemName.infoText.parentNameLast {
-    display: block !important;
-    max-width: min(850px, 52vw) !important;
-    margin: 0 0 1.2rem 0 !important;
+.layout-desktop #itemDetailPage .itemName.infoText,
+.layout-desktop #itemDetailPage .itemName.infoText.parentNameLast,
+.layout-desktop #itemDetailPage .nameContainer .itemName,
+body.layout-desktop #itemDetailPage .itemName.infoText,
+body.layout-desktop #itemDetailPage .itemName.infoText.parentNameLast,
+body.layout-desktop #itemDetailPage .nameContainer .itemName {
+    max-width: min(860px, 58vw) !important;
+    margin: 0 auto 0.55rem !important;
     color: rgba(255, 255, 255, 0.96) !important;
-    font-size: clamp(2.8rem, 4.4vw, 5rem) !important;
+    font-size: clamp(3rem, 5vw, 5.6rem) !important;
     line-height: 0.96 !important;
     font-weight: 700 !important;
     letter-spacing: 0 !important;
-    text-shadow: 0 12px 34px rgba(0, 0, 0, 0.78) !important;
+    text-align: center !important;
+    text-shadow: 0 16px 44px rgba(0, 0, 0, 0.78) !important;
 }
 
-#itemDetailPage .detailPagePrimaryContent,
-body:has(#itemDetailPage) .layout-desktop .detailPagePrimaryContent {
-    grid-column: 2 !important;
-    grid-row: 1 !important;
-    align-self: end !important;
+.layout-desktop #itemDetailPage .detailImageContainer,
+body.layout-desktop #itemDetailPage .detailImageContainer {
+    display: block !important;
+    visibility: visible !important;
+    position: static !important;
     width: auto !important;
     max-width: none !important;
     margin: 0 !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    background: transparent !important;
+    padding: 0 !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
 }
 
-#itemDetailPage .detailRibbon,
-body:has(#itemDetailPage) .layout-desktop .detailRibbon {
-    grid-column: 2 !important;
-    grid-row: 2 !important;
+.layout-desktop #itemDetailPage .detailImageContainer .card,
+body.layout-desktop #itemDetailPage .detailImageContainer .card {
+    display: none !important;
+    position: relative !important;
+    width: 22vh !important;
+    float: none !important;
+    left: 0 !important;
+    top: 0 !important;
+    right: 0 !important;
+    margin: auto auto 0 !important;
+    place-self: center !important;
+}
+
+.layout-desktop #itemDetailPage .detailImageContainer > .backdropCard,
+.layout-desktop #itemDetailPage .detailImageContainer > .squareCard,
+.layout-desktop #itemDetailPage .detailImageContainer > .card:has(.book),
+.layout-desktop #itemDetailPage .detailImageContainer > .card:has(.person),
+.layout-desktop #itemDetailPage .detailImageContainer > .card:has(.album),
+.layout-desktop #itemDetailPage .detailImageContainer > .card:has(.queue),
+.layout-desktop #itemDetailPage .detailImageContainer > .card:has(.live_tv),
+body.layout-desktop #itemDetailPage .detailImageContainer > .backdropCard,
+body.layout-desktop #itemDetailPage .detailImageContainer > .squareCard,
+body.layout-desktop #itemDetailPage .detailImageContainer > .card:has(.book),
+body.layout-desktop #itemDetailPage .detailImageContainer > .card:has(.person),
+body.layout-desktop #itemDetailPage .detailImageContainer > .card:has(.album),
+body.layout-desktop #itemDetailPage .detailImageContainer > .card:has(.queue),
+body.layout-desktop #itemDetailPage .detailImageContainer > .card:has(.live_tv) {
+    display: block !important;
+}
+
+.layout-desktop #itemDetailPage .infoWrapper,
+body.layout-desktop #itemDetailPage .infoWrapper {
+    display: grid !important;
+    place-items: center !important;
+    align-content: end !important;
+    text-align: center !important;
+}
+
+.layout-desktop #itemDetailPage .detailRibbon,
+body.layout-desktop #itemDetailPage .detailRibbon {
+    position: static !important;
     display: flex !important;
+    flex-direction: column !important;
     align-items: center !important;
-    justify-content: space-between !important;
-    gap: clamp(18px, 2vw, 36px) !important;
-    width: 100% !important;
-    margin: 1.25rem 0 0 !important;
-    padding: 0 !important;
-    min-height: 64px !important;
+    justify-content: flex-start !important;
+    width: auto !important;
+    max-width: none !important;
+    height: 100% !important;
+    min-height: 25vh !important;
+    margin-top: unset !important;
+    padding: 0 var(--sidePadding) !important;
+    gap: 0.85rem !important;
     border: 0 !important;
-    border-radius: 0 !important;
     background: transparent !important;
     -webkit-backdrop-filter: none !important;
     backdrop-filter: none !important;
     box-shadow: none !important;
+    pointer-events: auto !important;
+    z-index: 3 !important;
 }
 
-#itemDetailPage .itemMiscInfo,
-#itemDetailPage .itemMiscInfoPrimary {
+.layout-desktop #itemDetailPage .itemMiscInfo,
+.layout-desktop #itemDetailPage .itemMiscInfoPrimary,
+.layout-desktop #itemDetailPage .itemMiscInfo-primary,
+body.layout-desktop #itemDetailPage .itemMiscInfo,
+body.layout-desktop #itemDetailPage .itemMiscInfoPrimary,
+body.layout-desktop #itemDetailPage .itemMiscInfo-primary {
     display: flex !important;
     flex-wrap: wrap !important;
     align-items: center !important;
-    gap: 8px !important;
+    justify-content: center !important;
+    gap: 0.5em !important;
+    width: auto !important;
+    max-width: min(900px, 76vw) !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
-#itemDetailPage .itemMiscInfo > *,
-#itemDetailPage .mediaInfoCriticRating,
-#itemDetailPage .starRatingContainer,
-#itemDetailPage .officialRating {
+.layout-desktop #itemDetailPage .itemMiscInfo > *,
+.layout-desktop #itemDetailPage .mediaInfoCriticRating,
+.layout-desktop #itemDetailPage .starRatingContainer,
+.layout-desktop #itemDetailPage .officialRating,
+body.layout-desktop #itemDetailPage .itemMiscInfo > *,
+body.layout-desktop #itemDetailPage .mediaInfoCriticRating,
+body.layout-desktop #itemDetailPage .starRatingContainer,
+body.layout-desktop #itemDetailPage .officialRating {
     display: inline-flex !important;
     align-items: center !important;
     min-height: 30px !important;
     margin: 0 !important;
     padding: 5px 11px !important;
-    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    border: 1px solid rgba(255, 255, 255, 0.16) !important;
     border-radius: 999px !important;
-    background: rgba(255, 255, 255, 0.11) !important;
-    color: rgba(255, 255, 255, 0.82) !important;
+    background: rgba(22, 22, 22, 0.52) !important;
+    color: rgba(255, 255, 255, 0.88) !important;
     -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
     backdrop-filter: blur(20px) saturate(180%) !important;
-    font-weight: 500 !important;
+    font-weight: 600 !important;
+    line-height: 1 !important;
 }
 
-#itemDetailPage .mainDetailButtons {
+.layout-desktop #itemDetailPage .mainDetailButtons,
+body.layout-desktop #itemDetailPage .mainDetailButtons {
     display: flex !important;
     align-items: center !important;
-    gap: clamp(12px, 1.1vw, 20px) !important;
-    margin-top: 0 !important;
-}
-
-#itemDetailPage .mainDetailButtons .emby-button,
-#itemDetailPage .mainDetailButtons .paper-icon-button-light,
-#itemDetailPage .detailButton {
-    width: 54px !important;
-    height: 54px !important;
-    min-width: 54px !important;
-    min-height: 54px !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 0.75rem !important;
+    width: auto !important;
+    max-width: min(900px, 76vw) !important;
+    margin: 0 !important;
     padding: 0 !important;
-    border-radius: 999px !important;
-    background: rgba(255, 255, 255, 0.12) !important;
-    color: rgba(255, 255, 255, 0.92) !important;
-    border: 1px solid rgba(255, 255, 255, 0.14) !important;
-    -webkit-backdrop-filter: blur(22px) saturate(180%) !important;
-    backdrop-filter: blur(22px) saturate(180%) !important;
-    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.34) !important;
+    pointer-events: auto !important;
 }
 
-#itemDetailPage .mainDetailButtons .emby-button:hover,
-#itemDetailPage .mainDetailButtons .emby-button:focus,
-#itemDetailPage .mainDetailButtons .paper-icon-button-light:hover,
-#itemDetailPage .mainDetailButtons .paper-icon-button-light:focus,
-#itemDetailPage .detailButton:hover,
-#itemDetailPage .detailButton:focus {
+.layout-desktop #itemDetailPage .detailButton:not(.btnPlay),
+body.layout-desktop #itemDetailPage .detailButton:not(.btnPlay) {
+    width: 52px !important;
+    height: 52px !important;
+    min-width: 52px !important;
+    min-height: 52px !important;
+    margin: 0 !important;
+    padding: 0.6em !important;
+    border-radius: 50% !important;
+    border: 1px solid rgba(255, 255, 255, 0.16) !important;
+    background: rgba(255, 255, 255, 0.14) !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+    backdrop-filter: blur(24px) saturate(180%) !important;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4) !important;
+}
+
+.layout-desktop #itemDetailPage .btnPlay.detailButton,
+body.layout-desktop #itemDetailPage .btnPlay.detailButton {
+    width: auto !important;
+    min-width: 10em !important;
+    height: 3.25em !important;
+    min-height: 3.25em !important;
+    margin: 0 0.35em 0 0 !important;
+    padding: 0 2em !important;
+    border-radius: 3em !important;
+    border-color: rgba(255, 255, 255, 0.72) !important;
+    background: rgba(255, 255, 255, 0.96) !important;
+    color: #050505 !important;
+    font-weight: 700 !important;
+    flex-direction: row !important;
+    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.44) !important;
+}
+
+.layout-desktop #itemDetailPage .btnPlay:not(.formDialogFooterItem):not(.play-button)::after,
+body.layout-desktop #itemDetailPage .btnPlay:not(.formDialogFooterItem):not(.play-button)::after {
+    content: attr(title) !important;
+    padding: 0 1ch !important;
+}
+
+.layout-desktop #itemDetailPage .btnPlay > .detailButton-content,
+body.layout-desktop #itemDetailPage .btnPlay > .detailButton-content {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+}
+
+.layout-desktop #itemDetailPage .detailButton:hover,
+.layout-desktop #itemDetailPage .detailButton:focus,
+body.layout-desktop #itemDetailPage .detailButton:hover,
+body.layout-desktop #itemDetailPage .detailButton:focus {
+    transform: scale(1.08) !important;
     background: #fff !important;
     color: #000 !important;
-    transform: scale(1.08) !important;
     box-shadow: var(--tvos-focus-shadow) !important;
 }
 
-#itemDetailPage .mainDetailButtons .btnPlay,
-#itemDetailPage .mainDetailButtons .btnResume,
-#itemDetailPage .mainDetailButtons .button-play,
-#itemDetailPage .mainDetailButtons [data-action="play"],
-#itemDetailPage .mainDetailButtons [data-action="resume"] {
-    width: auto !important;
-    min-width: 124px !important;
-    padding: 0 26px !important;
-    background: rgba(255, 255, 255, 0.96) !important;
-    color: #000 !important;
-    font-weight: 600 !important;
-}
-
-#itemDetailPage .detailPageContent,
-body:has(#itemDetailPage) .layout-desktop .detailPageContent {
+.layout-desktop #itemDetailPage .detailPageContent,
+body.layout-desktop #itemDetailPage .detailPageContent {
+    position: static !important;
+    display: block !important;
     width: auto !important;
     max-width: none !important;
-    margin: 1.5rem clamp(54px, 5vw, 92px) 0 calc(clamp(54px, 5vw, 92px) + clamp(245px, 18vw, 340px) + clamp(42px, 5vw, 84px)) !important;
-    padding: 0 0 5rem !important;
+    margin: 0 !important;
+    padding: 0 var(--sidePadding) 5rem !important;
+    gap: 1em !important;
     border: 0 !important;
-    border-radius: 0 !important;
     background: transparent !important;
     -webkit-backdrop-filter: none !important;
     backdrop-filter: none !important;
     box-shadow: none !important;
+    overflow: visible !important;
+    pointer-events: auto !important;
+    z-index: 2 !important;
 }
 
-#itemDetailPage .trackSelections {
-    width: min(760px, 100%) !important;
-    margin: 0 0 1.45rem !important;
-    padding: 0 !important;
-    border: 0 !important;
-    border-radius: 0 !important;
-    background: transparent !important;
-    -webkit-backdrop-filter: none !important;
-    backdrop-filter: none !important;
+.layout-desktop #itemDetailPage .detailSection,
+body.layout-desktop #itemDetailPage .detailSection {
+    display: grid !important;
+    grid-template-columns: 25% 1fr 1fr 1fr !important;
+    row-gap: 1em !important;
+    column-gap: 3em !important;
+    max-width: unset !important;
+    margin-bottom: 1.5em !important;
+    pointer-events: auto !important;
 }
 
-#itemDetailPage .selectContainer,
-#itemDetailPage .emby-select {
+.layout-desktop #itemDetailPage .detailSectionContent,
+body.layout-desktop #itemDetailPage .detailSectionContent {
+    display: grid !important;
+    align-content: end !important;
+    min-height: 16vh !important;
+    order: 1 !important;
+    grid-column: 1 / -1 !important;
+    pointer-events: auto !important;
+}
+
+.layout-desktop #itemDetailPage .overview,
+.layout-desktop #itemDetailPage .itemOverview,
+.layout-desktop #itemDetailPage .detailPageContent p,
+body.layout-desktop #itemDetailPage .overview,
+body.layout-desktop #itemDetailPage .itemOverview,
+body.layout-desktop #itemDetailPage .detailPageContent p {
+    display: block !important;
+    width: auto !important;
+    max-width: min(980px, 78vw) !important;
+    margin: 0 !important;
+    color: rgba(255, 255, 255, 0.82) !important;
+    font-size: clamp(1rem, 1.05vw, 1.18rem) !important;
+    font-weight: 500 !important;
+    line-height: 1.5 !important;
+    text-shadow: 0 10px 26px rgba(0, 0, 0, 0.66) !important;
+    -webkit-line-clamp: unset !important;
+    -webkit-box-orient: unset !important;
+    overflow: visible !important;
+    pointer-events: auto !important;
+}
+
+.layout-desktop #itemDetailPage .trackSelections,
+body.layout-desktop #itemDetailPage .trackSelections {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    order: 3 !important;
+    grid-column: 3 / 5 !important;
+    max-width: unset !important;
+    margin-top: 1em !important;
+    padding: 1em !important;
+    border: var(--defaultBorder) !important;
     border-radius: 14px !important;
+    background: rgba(30, 30, 30, 0.58) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    pointer-events: auto !important;
+}
+
+.layout-desktop #itemDetailPage .trackSelections .selectContainer,
+.layout-desktop #itemDetailPage .detailTrackSelect,
+body.layout-desktop #itemDetailPage .trackSelections .selectContainer,
+body.layout-desktop #itemDetailPage .detailTrackSelect {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    max-width: unset !important;
+    align-items: baseline !important;
+}
+
+.layout-desktop #itemDetailPage .itemDetailsGroup,
+body.layout-desktop #itemDetailPage .itemDetailsGroup {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    order: 2 !important;
+    grid-column: 1 / 3 !important;
+    margin-top: 1em !important;
+    overflow: hidden !important;
+    border: 0 !important;
+    border-radius: 14px !important;
+    background: rgba(30, 30, 30, 0.58) !important;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14) !important;
+    pointer-events: auto !important;
+}
+
+.layout-desktop #itemDetailPage .detailsGroupItem,
+body.layout-desktop #itemDetailPage .detailsGroupItem {
+    max-width: unset !important;
+    margin: 0 !important;
+    padding: 0.5em 0.9em !important;
+    justify-content: space-between !important;
+    align-items: baseline !important;
+}
+
+.layout-desktop #itemDetailPage .detailsGroupItem:not(:last-child),
+body.layout-desktop #itemDetailPage .detailsGroupItem:not(:last-child) {
+    border-bottom: var(--defaultBorder) !important;
+}
+
+.layout-desktop #itemDetailPage .detailSection > .nextUpSection,
+body.layout-desktop #itemDetailPage .detailSection > .nextUpSection {
+    order: 5 !important;
+    grid-column: 1 !important;
+}
+
+.layout-desktop #itemDetailPage .detailSection > #listChildrenCollapsible,
+body.layout-desktop #itemDetailPage .detailSection > #listChildrenCollapsible {
+    order: 6 !important;
+    grid-column: 2 / -1 !important;
+}
+
+.layout-desktop #itemDetailPage .collectionItems,
+.layout-desktop #itemDetailPage .programGuideSection,
+.layout-desktop #itemDetailPage .nextUpSection.hide ~ #listChildrenCollapsible,
+.layout-desktop #itemDetailPage .trackSelections.hide ~ .recordingFields.hide ~ .itemDetailsGroup,
+body.layout-desktop #itemDetailPage .collectionItems,
+body.layout-desktop #itemDetailPage .programGuideSection,
+body.layout-desktop #itemDetailPage .nextUpSection.hide ~ #listChildrenCollapsible,
+body.layout-desktop #itemDetailPage .trackSelections.hide ~ .recordingFields.hide ~ .itemDetailsGroup {
+    grid-column: 1 / -1 !important;
+}
+
+.layout-desktop #itemDetailPage .verticalSection,
+.layout-desktop #itemDetailPage #scenesCollapsible,
+.layout-desktop #itemDetailPage #similarCollapsible,
+.layout-desktop #itemDetailPage .moreFromSeasonSection,
+body.layout-desktop #itemDetailPage .verticalSection,
+body.layout-desktop #itemDetailPage #scenesCollapsible,
+body.layout-desktop #itemDetailPage #similarCollapsible,
+body.layout-desktop #itemDetailPage .moreFromSeasonSection {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 3 !important;
+    width: auto !important;
     max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    pointer-events: auto !important;
 }
 
-#itemDetailPage .trackSelections .selectContainer .detailTrackSelect,
-#itemDetailPage .emby-select {
-    min-height: 42px !important;
-    background: rgba(255, 255, 255, 0.12) !important;
-    color: rgba(255, 255, 255, 0.92) !important;
-    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+.layout-desktop #itemDetailPage .emby-scroller-container,
+.layout-desktop #itemDetailPage .emby-scroller,
+.layout-desktop #itemDetailPage .scrollX,
+body.layout-desktop #itemDetailPage .emby-scroller-container,
+body.layout-desktop #itemDetailPage .emby-scroller,
+body.layout-desktop #itemDetailPage .scrollX {
+    margin: 0 calc(-1 * var(--sidePadding)) !important;
+    padding: 0 var(--sidePadding) !important;
+    padding-left: calc(var(--sidePadding) - 0.375em) !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    pointer-events: auto !important;
 }
 
-#itemDetailPage .tagline {
-    margin: 1.2rem 0 1.5rem !important;
-    color: rgba(255, 255, 255, 0.96) !important;
-    font-size: clamp(1.2rem, 1.45vw, 1.62rem) !important;
-    font-weight: 600 !important;
-    line-height: 1.22 !important;
+.layout-desktop #itemDetailPage .itemsContainer,
+.layout-desktop #itemDetailPage .emby-scrollbuttons,
+.layout-desktop #itemDetailPage .emby-scrollbuttons-button,
+body.layout-desktop #itemDetailPage .itemsContainer,
+body.layout-desktop #itemDetailPage .emby-scrollbuttons,
+body.layout-desktop #itemDetailPage .emby-scrollbuttons-button {
+    pointer-events: auto !important;
 }
-
-#itemDetailPage .overview,
-#itemDetailPage .itemOverview,
-#itemDetailPage .detailPageContent p {
-    max-width: min(1040px, 68vw) !important;
-    color: rgba(255, 255, 255, 0.84) !important;
-    font-size: clamp(1rem, 1.08vw, 1.18rem) !important;
-    font-weight: 400 !important;
-    line-height: 1.46 !important;
-}
-
-#itemDetailPage .itemTags,
-#itemDetailPage .tagList,
-#itemDetailPage .keywords,
-#itemDetailPage .itemExternalLinks,
-#itemDetailPage .itemLinks,
-#itemDetailPage .externalLinks {
-    display: none !important;
-}
-
-#itemDetailPage .sectionTitle {
-    margin-top: 2rem !important;
-    color: rgba(255, 255, 255, 0.94) !important;
-    font-size: clamp(1.28rem, 1.55vw, 1.75rem) !important;
-}
-
-@media (max-width: 75em) {
-    #itemDetailPage .detailPagePrimaryContainer,
-    body:has(#itemDetailPage) .layout-desktop .detailPagePrimaryContainer {
-        grid-template-columns: clamp(220px, 24vw, 285px) minmax(0, 1fr) !important;
-        column-gap: 34px !important;
-        padding-left: 36px !important;
-        padding-right: 36px !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailImageContainer {
-        left: auto !important;
-        width: 100% !important;
-        max-width: 285px !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailImageContainer .card {
-        width: 100% !important;
-        max-width: 100% !important;
-    }
-
-    #itemDetailPage .detailLogo,
-    #itemDetailPage .detailPagePrimaryContent,
-    #itemDetailPage .detailRibbon {
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-    }
-
-    #itemDetailPage .detailPageContent {
-        margin-left: calc(36px + clamp(220px, 24vw, 285px) + 34px) !important;
-        margin-right: 36px !important;
-    }
-
-    #itemDetailPage .detailRibbon {
-        padding-left: 0 !important;
-    }
-}
-
-@media (max-width: 50em) {
-    .skinHeader,
-    .skinHeader.semiTransparent,
-    .skinHeader-withBackground {
-        min-height: 62px !important;
-    }
-
-    #itemDetailPage .detailPagePrimaryContainer,
-    body:has(#itemDetailPage) .layout-desktop .detailPagePrimaryContainer {
-        display: block !important;
-        min-height: auto !important;
-        padding: 88px 24px 24px !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailImageContainer,
-    #itemDetailPage .detailImageContainer {
-        position: relative !important;
-        top: auto !important;
-        left: auto !important;
-        width: min(48vw, 230px) !important;
-        margin: 1rem 0 1rem !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailImageContainer .card,
-    #itemDetailPage .detailImageContainer .card {
-        position: relative !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        margin: 0 !important;
-    }
-
-    #itemDetailPage .detailLogo,
-    #itemDetailPage .detailPagePrimaryContent,
-    #itemDetailPage .detailPageContent,
-    #itemDetailPage .detailRibbon {
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-    }
-
-    #itemDetailPage .detailRibbon {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-        flex-wrap: wrap !important;
-    }
-
-    .layout-desktop #itemDetailPage .itemName.infoText.parentNameLast {
-        display: block !important;
-        font-size: clamp(2rem, 8vw, 3.4rem) !important;
-        line-height: 1.02 !important;
-        margin: 0 0 1rem !important;
-    }
-}
-
-/* tvOS Detail Page Grid Repair - Jellyfin 10.11 DOM */
-@media (max-width: 0) {
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPageWrapperContainer {
-        padding-top: 0 !important;
-        background: transparent !important;
-    }
-
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .itemBackdrop {
-        height: clamp(230px, 30vh, 360px) !important;
-        min-height: 230px !important;
-        max-height: 360px !important;
-    }
-
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPagePrimaryContainer {
-        display: grid !important;
-        grid-template-areas:
-            "image title actions"
-            "image meta actions"
-            "image tracks tracks"
-            "image summary summary"
-            "image facts facts" !important;
-        grid-template-columns: clamp(260px, 19vw, 360px) minmax(0, 1fr) max-content !important;
-        grid-template-rows: auto auto auto auto auto !important;
-        column-gap: clamp(38px, 4.5vw, 78px) !important;
-        row-gap: 12px !important;
-        align-items: start !important;
-        min-height: auto !important;
-        margin-top: clamp(-225px, -19vh, -155px) !important;
-        padding: clamp(26px, 3.2vh, 48px) clamp(54px, 5vw, 96px) 5rem !important;
-        overflow: visible !important;
-        background: transparent !important;
-    }
-
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPagePrimaryContent,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPageContent,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailSection,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailRibbon,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .infoWrapper {
-        display: contents !important;
-        width: auto !important;
-        max-width: none !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        border: 0 !important;
-        background: transparent !important;
-        -webkit-backdrop-filter: none !important;
-        backdrop-filter: none !important;
-        box-shadow: none !important;
-    }
-
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailImageContainer {
-        grid-area: image !important;
-        display: block !important;
-        visibility: visible !important;
-        position: relative !important;
-        inset: auto !important;
-        width: clamp(260px, 19vw, 360px) !important;
-        max-width: 360px !important;
-        height: auto !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        overflow: visible !important;
-        z-index: 4 !important;
-    }
-
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailImageContainer .card {
-        position: relative !important;
-        inset: auto !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        margin: 0 !important;
-        transform: none !important;
-    }
-
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailImageContainer:nth-of-type(n+2),
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailSectionContent > .detailImageContainer,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailSectionContent > .card,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailSectionContent .card,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailSectionContent .cardBox,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailSectionContent .cardScalable,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailSectionContent .cardImageContainer,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .overview + .card,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .overview ~ .card.portraitCard {
-        display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
-    }
-
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .nameContainer {
-        grid-area: title !important;
-        display: block !important;
-        align-self: end !important;
-        min-width: 0 !important;
-        margin: 0 !important;
-        padding: clamp(42px, 5vh, 72px) 0 0 !important;
-    }
-
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .nameContainer .itemName,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .itemName.infoText,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .itemName.infoText.parentNameLast {
-        display: block !important;
-        max-width: min(780px, 48vw) !important;
-        margin: 0 !important;
-        color: rgba(255, 255, 255, 0.96) !important;
-        font-size: clamp(2.5rem, 4.2vw, 4.8rem) !important;
-        line-height: 0.98 !important;
-        font-weight: 700 !important;
-        letter-spacing: 0 !important;
-        text-shadow: 0 18px 40px rgba(0, 0, 0, 0.8) !important;
-    }
-
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .itemMiscInfo,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .itemMiscInfoPrimary,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .itemMiscInfo-primary {
-        grid-area: meta !important;
-        display: flex !important;
-        flex-wrap: wrap !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
-        gap: 8px !important;
-        width: auto !important;
-        max-width: min(780px, 48vw) !important;
-        margin: 0.9rem 0 0 !important;
-        padding: 0 !important;
-        position: relative !important;
-        inset: auto !important;
-    }
-
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .mainDetailButtons {
-        grid-area: actions !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: flex-end !important;
-        align-self: end !important;
-        gap: clamp(12px, 1vw, 20px) !important;
-        margin: clamp(42px, 5vh, 72px) 0 0 !important;
-        padding: 0 !important;
-        position: relative !important;
-        inset: auto !important;
-        z-index: 5 !important;
-    }
-
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .trackSelections {
-        grid-area: tracks !important;
-        display: grid !important;
-        grid-template-columns: max-content minmax(360px, 680px) !important;
-        gap: 10px 18px !important;
-        align-items: center !important;
-        width: min(760px, 100%) !important;
-        margin: clamp(1.5rem, 3vh, 2.2rem) 0 0 !important;
-        padding: 0 !important;
-        background: transparent !important;
-        border: 0 !important;
-        -webkit-backdrop-filter: none !important;
-        backdrop-filter: none !important;
-        box-shadow: none !important;
-    }
-
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailSectionContent {
-        grid-area: summary !important;
-        display: block !important;
-        width: min(1040px, 100%) !important;
-        max-width: 1040px !important;
-        margin: 1.1rem 0 0 !important;
-        padding: 0 !important;
-        background: transparent !important;
-    }
-
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .itemDetailsGroup {
-        grid-area: facts !important;
-        width: min(900px, 100%) !important;
-        margin: 1.6rem 0 0 !important;
-        padding: 0 !important;
-        background: transparent !important;
-    }
-}
-
-/* tvOS Detail Page Stable Layout */
-@media (min-width: 50.001em) {
-    body:has(#itemDetailPage) {
-        background: #050505 !important;
-    }
-
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPageWrapperContainer,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPagePrimaryContainer,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPagePrimaryContent,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPageContent,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailSection,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailSectionContent,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .itemDetailsGroup,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .infoWrapper {
-        display: block !important;
-        position: relative !important;
-        width: auto !important;
-        max-width: none !important;
-        height: auto !important;
-        min-height: 0 !important;
-        margin: 0 !important;
-        border: 0 !important;
-        background: transparent !important;
-        -webkit-backdrop-filter: none !important;
-        backdrop-filter: none !important;
-        box-shadow: none !important;
-    }
-
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPageWrapperContainer {
-        padding: 0 !important;
-        overflow: visible !important;
-    }
-
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .itemBackdrop {
-        display: block !important;
-        height: clamp(250px, 31vh, 400px) !important;
-        min-height: 250px !important;
-        max-height: 400px !important;
-        margin: 0 !important;
-        overflow: hidden !important;
-        opacity: 1 !important;
-        filter: saturate(112%) brightness(62%) contrast(106%) !important;
-    }
-
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .itemBackdrop::after {
-        content: "" !important;
-        position: absolute !important;
-        inset: 0 !important;
-        pointer-events: none !important;
-        background:
-            linear-gradient(90deg, rgba(5, 5, 5, 0.94) 0%, rgba(5, 5, 5, 0.58) 34%, rgba(5, 5, 5, 0.14) 66%, rgba(5, 5, 5, 0.86) 100%),
-            linear-gradient(180deg, rgba(5, 5, 5, 0.08) 0%, rgba(5, 5, 5, 0.28) 56%, rgba(5, 5, 5, 0.92) 92%, #050505 100%) !important;
-    }
-
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPagePrimaryContainer {
-        padding: clamp(106px, 12vh, 150px) clamp(54px, 5vw, 96px) 0 !important;
-        margin: 0 !important;
-        min-height: clamp(250px, 33vh, 420px) !important;
-        overflow: visible !important;
-        z-index: 2 !important;
-    }
-
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailImageContainer {
-        display: block !important;
-        visibility: visible !important;
-        position: static !important;
-        width: 0 !important;
-        height: 0 !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        overflow: visible !important;
-        z-index: 4 !important;
-    }
-
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailImageContainer .card {
-        display: block !important;
-        visibility: visible !important;
-        position: fixed !important;
-        top: clamp(112px, 12vh, 152px) !important;
-        left: clamp(58px, 5vw, 98px) !important;
-        width: clamp(270px, 19vw, 375px) !important;
-        max-width: 375px !important;
-        margin: 0 !important;
-        transform: none !important;
-        z-index: 4 !important;
-        border: 1px solid rgba(255, 255, 255, 0.14) !important;
-        border-radius: 24px !important;
-        overflow: hidden !important;
-        box-shadow: 0 38px 92px rgba(0, 0, 0, 0.72), 0 14px 30px rgba(0, 0, 0, 0.48) !important;
-    }
-
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailImageContainer .cardImageContainer,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailImageContainer .cardImage,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailImageContainer .blurhash-canvas {
-        border-radius: 24px !important;
-        overflow: hidden !important;
-    }
-
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPagePrimaryContainer > .card,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPageContent > .card,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPageContent > .cardBox,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPageContent > .cardScalable,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPageContent > .cardImageContainer,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPageContent > .detailImageContainer {
-        display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
-    }
-
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailLogo {
-        display: none !important;
-    }
-
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPagePrimaryContent {
-        padding: 0 clamp(54px, 5vw, 96px) 0 clamp(340px, 28vw, 535px) !important;
-    }
-
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .itemName.infoText,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .itemName.infoText.parentNameLast,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .nameContainer .itemName {
-        display: block !important;
-        max-width: min(850px, 52vw) !important;
-        margin: 0 0 1.15rem !important;
-        color: rgba(255, 255, 255, 0.96) !important;
-        font-size: clamp(2.6rem, 4.3vw, 4.9rem) !important;
-        line-height: 0.98 !important;
-        font-weight: 700 !important;
-        letter-spacing: 0 !important;
-        text-shadow: 0 18px 42px rgba(0, 0, 0, 0.82) !important;
-    }
-
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailRibbon {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-        gap: clamp(18px, 2vw, 36px) !important;
-        min-height: 64px !important;
-        margin: 1rem clamp(54px, 5vw, 96px) 0 clamp(340px, 28vw, 535px) !important;
-        padding: 0 !important;
-        border: 0 !important;
-        border-radius: 0 !important;
-        background: transparent !important;
-        -webkit-backdrop-filter: none !important;
-        backdrop-filter: none !important;
-        box-shadow: none !important;
-    }
-
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .itemMiscInfo,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .itemMiscInfoPrimary,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .itemMiscInfo-primary {
-        display: flex !important;
-        flex: 1 1 auto !important;
-        flex-wrap: wrap !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
-        gap: 8px !important;
-        min-width: 0 !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .itemMiscInfo > *,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .mediaInfoCriticRating,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .starRatingContainer,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .officialRating {
-        display: inline-flex !important;
-        align-items: center !important;
-        min-height: 32px !important;
-        margin: 0 !important;
-        padding: 5px 12px !important;
-        border-radius: 999px !important;
-        border: 1px solid rgba(255, 255, 255, 0.14) !important;
-        background: rgba(255, 255, 255, 0.12) !important;
-        color: rgba(255, 255, 255, 0.84) !important;
-        -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
-        backdrop-filter: blur(20px) saturate(180%) !important;
-        font-weight: 500 !important;
-    }
-
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .mainDetailButtons {
-        display: flex !important;
-        flex: 0 0 auto !important;
-        align-items: center !important;
-        justify-content: flex-end !important;
-        gap: clamp(12px, 1vw, 20px) !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        position: relative !important;
-        inset: auto !important;
-        z-index: 5 !important;
-    }
-
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .mainDetailButtons .emby-button,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .mainDetailButtons .paper-icon-button-light,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailButton {
-        width: 58px !important;
-        height: 58px !important;
-        min-width: 58px !important;
-        min-height: 58px !important;
-        padding: 0 !important;
-        border-radius: 999px !important;
-        border: 1px solid rgba(255, 255, 255, 0.14) !important;
-        background: rgba(255, 255, 255, 0.12) !important;
-        color: rgba(255, 255, 255, 0.92) !important;
-        -webkit-backdrop-filter: blur(22px) saturate(180%) !important;
-        backdrop-filter: blur(22px) saturate(180%) !important;
-        box-shadow: 0 14px 34px rgba(0, 0, 0, 0.34) !important;
-    }
-
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .mainDetailButtons .btnPlay,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .mainDetailButtons .btnResume,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .mainDetailButtons .button-play,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .mainDetailButtons [data-action="play"],
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .mainDetailButtons [data-action="resume"] {
-        width: auto !important;
-        min-width: 128px !important;
-        padding: 0 30px !important;
-        background: rgba(255, 255, 255, 0.96) !important;
-        color: #000 !important;
-        font-weight: 600 !important;
-    }
-
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPageContent {
-        padding: 0 clamp(54px, 5vw, 96px) 5rem clamp(340px, 28vw, 535px) !important;
-        margin: clamp(1.5rem, 3vh, 2.4rem) 0 0 !important;
-    }
-
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .trackSelections {
-        display: grid !important;
-        grid-template-columns: max-content minmax(360px, 760px) !important;
-        gap: 10px 18px !important;
-        align-items: center !important;
-        width: min(860px, 100%) !important;
-        margin: 0 0 1.5rem !important;
-        padding: 0 !important;
-        border: 0 !important;
-        background: transparent !important;
-    }
-
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .trackSelections .selectContainer,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .trackSelections .detailTrackSelect,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .emby-select {
-        width: 100% !important;
-        max-width: none !important;
-        min-height: 44px !important;
-        border-radius: 14px !important;
-        border: 1px solid rgba(255, 255, 255, 0.12) !important;
-        background: rgba(255, 255, 255, 0.12) !important;
-        color: rgba(255, 255, 255, 0.92) !important;
-    }
-
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .tagline {
-        margin: 1.15rem 0 1.4rem !important;
-        color: rgba(255, 255, 255, 0.96) !important;
-        font-size: clamp(1.22rem, 1.45vw, 1.65rem) !important;
-        font-weight: 600 !important;
-        line-height: 1.25 !important;
-    }
-
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .overview,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .itemOverview,
-    body:has(#itemDetailPage) .layout-desktop #itemDetailPage .detailPageContent p {
-        max-width: min(1060px, 68vw) !important;
-        color: rgba(255, 255, 255, 0.84) !important;
-        font-size: clamp(1rem, 1.08vw, 1.18rem) !important;
-        font-weight: 400 !important;
-        line-height: 1.48 !important;
-    }
-}
-
-/* tvOS Detail Page Final Selector Fix */
-@media (min-width: 50.001em) {
-    .layout-desktop #itemDetailPage,
-    body.layout-desktop #itemDetailPage {
-        background: transparent !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailPageWrapperContainer,
-    body.layout-desktop #itemDetailPage .detailPageWrapperContainer {
-        display: block !important;
-        position: relative !important;
-        width: auto !important;
-        max-width: none !important;
-        min-height: 0 !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        overflow: visible !important;
-        background: transparent !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailPagePrimaryContainer,
-    body.layout-desktop #itemDetailPage .detailPagePrimaryContainer {
-        display: block !important;
-        position: relative !important;
-        width: auto !important;
-        max-width: none !important;
-        min-height: clamp(250px, 33vh, 420px) !important;
-        margin: 0 !important;
-        padding: clamp(106px, 12vh, 150px) clamp(54px, 5vw, 96px) 0 !important;
-        overflow: visible !important;
-        background: transparent !important;
-        z-index: 2 !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailPagePrimaryContent,
-    body.layout-desktop #itemDetailPage .detailPagePrimaryContent {
-        display: block !important;
-        position: relative !important;
-        width: auto !important;
-        max-width: none !important;
-        margin: 0 !important;
-        padding: 0 clamp(54px, 5vw, 96px) 0 clamp(340px, 28vw, 535px) !important;
-        background: transparent !important;
-        z-index: 3 !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailImageContainer,
-    body.layout-desktop #itemDetailPage .detailImageContainer {
-        display: block !important;
-        visibility: visible !important;
-        position: static !important;
-        width: 0 !important;
-        max-width: 0 !important;
-        height: 0 !important;
-        max-height: 0 !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        overflow: visible !important;
-        z-index: 4 !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailImageContainer .card,
-    body.layout-desktop #itemDetailPage .detailImageContainer .card {
-        display: block !important;
-        visibility: visible !important;
-        position: fixed !important;
-        top: clamp(112px, 12vh, 152px) !important;
-        left: clamp(58px, 5vw, 98px) !important;
-        width: clamp(270px, 19vw, 375px) !important;
-        max-width: 375px !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        transform: none !important;
-        z-index: 4 !important;
-        border: 1px solid rgba(255, 255, 255, 0.14) !important;
-        border-radius: 24px !important;
-        overflow: hidden !important;
-        box-shadow: 0 38px 92px rgba(0, 0, 0, 0.72), 0 14px 30px rgba(0, 0, 0, 0.48) !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailImageContainer .cardImageContainer,
-    .layout-desktop #itemDetailPage .detailImageContainer .cardImage,
-    .layout-desktop #itemDetailPage .detailImageContainer .blurhash-canvas,
-    body.layout-desktop #itemDetailPage .detailImageContainer .cardImageContainer,
-    body.layout-desktop #itemDetailPage .detailImageContainer .cardImage,
-    body.layout-desktop #itemDetailPage .detailImageContainer .blurhash-canvas {
-        border-radius: 24px !important;
-        overflow: hidden !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailRibbon,
-    body.layout-desktop #itemDetailPage .detailRibbon {
-        display: flex !important;
-        position: relative !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-        gap: clamp(18px, 2vw, 36px) !important;
-        width: auto !important;
-        max-width: none !important;
-        min-height: 64px !important;
-        margin: 1rem clamp(54px, 5vw, 96px) 0 clamp(340px, 28vw, 535px) !important;
-        padding: 0 !important;
-        border: 0 !important;
-        border-radius: 0 !important;
-        background: transparent !important;
-        -webkit-backdrop-filter: none !important;
-        backdrop-filter: none !important;
-        box-shadow: none !important;
-        z-index: 3 !important;
-    }
-
-    .layout-desktop #itemDetailPage .itemName.infoText,
-    .layout-desktop #itemDetailPage .itemName.infoText.parentNameLast,
-    .layout-desktop #itemDetailPage .nameContainer .itemName,
-    body.layout-desktop #itemDetailPage .itemName.infoText,
-    body.layout-desktop #itemDetailPage .itemName.infoText.parentNameLast,
-    body.layout-desktop #itemDetailPage .nameContainer .itemName {
-        display: block !important;
-        max-width: min(850px, 52vw) !important;
-        margin: 0 0 1.15rem !important;
-        color: rgba(255, 255, 255, 0.96) !important;
-        font-size: clamp(2.6rem, 4.3vw, 4.9rem) !important;
-        line-height: 0.98 !important;
-        font-weight: 700 !important;
-        letter-spacing: 0 !important;
-        text-shadow: 0 18px 42px rgba(0, 0, 0, 0.82) !important;
-    }
-
-    .layout-desktop #itemDetailPage .itemMiscInfo,
-    .layout-desktop #itemDetailPage .itemMiscInfoPrimary,
-    .layout-desktop #itemDetailPage .itemMiscInfo-primary,
-    body.layout-desktop #itemDetailPage .itemMiscInfo,
-    body.layout-desktop #itemDetailPage .itemMiscInfoPrimary,
-    body.layout-desktop #itemDetailPage .itemMiscInfo-primary {
-        display: flex !important;
-        flex: 1 1 auto !important;
-        flex-wrap: wrap !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
-        gap: 8px !important;
-        min-width: 0 !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-
-    .layout-desktop #itemDetailPage .mainDetailButtons,
-    body.layout-desktop #itemDetailPage .mainDetailButtons {
-        display: flex !important;
-        flex: 0 0 auto !important;
-        align-items: center !important;
-        justify-content: flex-end !important;
-        gap: clamp(12px, 1vw, 20px) !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        position: relative !important;
-        inset: auto !important;
-        z-index: 5 !important;
-    }
-
-    .layout-desktop #itemDetailPage .mainDetailButtons .emby-button,
-    .layout-desktop #itemDetailPage .mainDetailButtons .paper-icon-button-light,
-    .layout-desktop #itemDetailPage .detailButton,
-    body.layout-desktop #itemDetailPage .mainDetailButtons .emby-button,
-    body.layout-desktop #itemDetailPage .mainDetailButtons .paper-icon-button-light,
-    body.layout-desktop #itemDetailPage .detailButton {
-        width: 58px !important;
-        height: 58px !important;
-        min-width: 58px !important;
-        min-height: 58px !important;
-        padding: 0 !important;
-        border-radius: 999px !important;
-        border: 1px solid rgba(255, 255, 255, 0.14) !important;
-        background: rgba(255, 255, 255, 0.12) !important;
-        color: rgba(255, 255, 255, 0.92) !important;
-        -webkit-backdrop-filter: blur(22px) saturate(180%) !important;
-        backdrop-filter: blur(22px) saturate(180%) !important;
-        box-shadow: 0 14px 34px rgba(0, 0, 0, 0.34) !important;
-    }
-
-    .layout-desktop #itemDetailPage .mainDetailButtons .btnPlay,
-    .layout-desktop #itemDetailPage .mainDetailButtons .btnResume,
-    .layout-desktop #itemDetailPage .mainDetailButtons .button-play,
-    .layout-desktop #itemDetailPage .mainDetailButtons [data-action="play"],
-    .layout-desktop #itemDetailPage .mainDetailButtons [data-action="resume"],
-    body.layout-desktop #itemDetailPage .mainDetailButtons .btnPlay,
-    body.layout-desktop #itemDetailPage .mainDetailButtons .btnResume,
-    body.layout-desktop #itemDetailPage .mainDetailButtons .button-play,
-    body.layout-desktop #itemDetailPage .mainDetailButtons [data-action="play"],
-    body.layout-desktop #itemDetailPage .mainDetailButtons [data-action="resume"] {
-        width: auto !important;
-        min-width: 128px !important;
-        padding: 0 30px !important;
-        background: rgba(255, 255, 255, 0.96) !important;
-        color: #000 !important;
-        font-weight: 600 !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailPageContent,
-    body.layout-desktop #itemDetailPage .detailPageContent {
-        display: block !important;
-        position: relative !important;
-        width: auto !important;
-        max-width: none !important;
-        min-height: 0 !important;
-        margin: clamp(1.5rem, 3vh, 2.4rem) 0 0 !important;
-        padding: 0 clamp(54px, 5vw, 96px) 5rem clamp(340px, 28vw, 535px) !important;
-        background: transparent !important;
-        border: 0 !important;
-        -webkit-backdrop-filter: none !important;
-        backdrop-filter: none !important;
-        box-shadow: none !important;
-        z-index: 2 !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailPageContent .detailImageContainer,
-    .layout-desktop #itemDetailPage .detailPageContent .portraitCard,
-    .layout-desktop #itemDetailPage .detailPageContent .card.portraitCard,
-    .layout-desktop #itemDetailPage .detailSectionContent .detailImageContainer,
-    .layout-desktop #itemDetailPage .detailSectionContent .portraitCard,
-    .layout-desktop #itemDetailPage .detailSectionContent .card.portraitCard,
-    body.layout-desktop #itemDetailPage .detailPageContent .detailImageContainer,
-    body.layout-desktop #itemDetailPage .detailPageContent .portraitCard,
-    body.layout-desktop #itemDetailPage .detailPageContent .card.portraitCard,
-    body.layout-desktop #itemDetailPage .detailSectionContent .detailImageContainer,
-    body.layout-desktop #itemDetailPage .detailSectionContent .portraitCard,
-    body.layout-desktop #itemDetailPage .detailSectionContent .card.portraitCard {
-        display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
-    }
-
-    .layout-desktop #itemDetailPage .trackSelections,
-    body.layout-desktop #itemDetailPage .trackSelections {
-        display: grid !important;
-        grid-template-columns: max-content minmax(360px, 760px) !important;
-        gap: 10px 18px !important;
-        align-items: center !important;
-        width: min(860px, 100%) !important;
-        margin: 0 0 1.5rem !important;
-        padding: 0 !important;
-        border: 0 !important;
-        background: transparent !important;
-    }
-
-    .layout-desktop #itemDetailPage .tagline,
-    body.layout-desktop #itemDetailPage .tagline {
-        margin: 1.15rem 0 1.4rem !important;
-        color: rgba(255, 255, 255, 0.96) !important;
-        font-size: clamp(1.22rem, 1.45vw, 1.65rem) !important;
-        font-weight: 600 !important;
-        line-height: 1.25 !important;
-    }
-
-    .layout-desktop #itemDetailPage .overview,
-    .layout-desktop #itemDetailPage .itemOverview,
-    .layout-desktop #itemDetailPage .detailPageContent p,
-    body.layout-desktop #itemDetailPage .overview,
-    body.layout-desktop #itemDetailPage .itemOverview,
-    body.layout-desktop #itemDetailPage .detailPageContent p {
-        max-width: min(1060px, 68vw) !important;
-        color: rgba(255, 255, 255, 0.84) !important;
-        font-size: clamp(1rem, 1.08vw, 1.18rem) !important;
-        font-weight: 400 !important;
-        line-height: 1.48 !important;
-    }
-}
-
-/* tvOS Detail Page Polish */
-@media (min-width: 50.001em) {
-    .layout-desktop #itemDetailPage,
-    body.layout-desktop #itemDetailPage {
-        --tvos-detail-left: clamp(56px, 5vw, 92px);
-        --tvos-detail-poster: clamp(252px, 18vw, 344px);
-        --tvos-detail-gap: clamp(54px, 5vw, 86px);
-        --tvos-detail-column: calc(var(--tvos-detail-left) + var(--tvos-detail-poster) + var(--tvos-detail-gap));
-    }
-
-    .layout-desktop #itemDetailPage .detailPagePrimaryContainer,
-    body.layout-desktop #itemDetailPage .detailPagePrimaryContainer {
-        min-height: clamp(250px, 30vh, 390px) !important;
-        padding: clamp(102px, 11vh, 136px) var(--tvos-detail-left) 0 !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailImageContainer .card,
-    body.layout-desktop #itemDetailPage .detailImageContainer .card {
-        top: clamp(112px, 11.5vh, 142px) !important;
-        left: var(--tvos-detail-left) !important;
-        width: var(--tvos-detail-poster) !important;
-        max-width: var(--tvos-detail-poster) !important;
-        border-radius: 22px !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailImageContainer .cardImageContainer,
-    .layout-desktop #itemDetailPage .detailImageContainer .cardImage,
-    .layout-desktop #itemDetailPage .detailImageContainer .blurhash-canvas,
-    body.layout-desktop #itemDetailPage .detailImageContainer .cardImageContainer,
-    body.layout-desktop #itemDetailPage .detailImageContainer .cardImage,
-    body.layout-desktop #itemDetailPage .detailImageContainer .blurhash-canvas {
-        border-radius: 22px !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailPagePrimaryContent,
-    body.layout-desktop #itemDetailPage .detailPagePrimaryContent {
-        padding: 0 clamp(54px, 5vw, 96px) 0 var(--tvos-detail-column) !important;
-    }
-
-    .layout-desktop #itemDetailPage .itemName.infoText,
-    .layout-desktop #itemDetailPage .itemName.infoText.parentNameLast,
-    .layout-desktop #itemDetailPage .nameContainer .itemName,
-    body.layout-desktop #itemDetailPage .itemName.infoText,
-    body.layout-desktop #itemDetailPage .itemName.infoText.parentNameLast,
-    body.layout-desktop #itemDetailPage .nameContainer .itemName {
-        max-width: min(940px, calc(100vw - var(--tvos-detail-column) - 120px)) !important;
-        margin-bottom: 1rem !important;
-        font-size: clamp(2.35rem, 3.75vw, 4.35rem) !important;
-        line-height: 1.02 !important;
-        text-wrap: balance !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailRibbon,
-    body.layout-desktop #itemDetailPage .detailRibbon {
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        justify-content: flex-start !important;
-        gap: 14px !important;
-        max-width: min(1040px, calc(100vw - var(--tvos-detail-column) - 96px)) !important;
-        min-height: 0 !important;
-        margin: 1rem clamp(54px, 5vw, 96px) 0 var(--tvos-detail-column) !important;
-    }
-
-    .layout-desktop #itemDetailPage .mainDetailButtons,
-    body.layout-desktop #itemDetailPage .mainDetailButtons {
-        order: 1 !important;
-        justify-content: flex-start !important;
-        gap: 16px !important;
-        width: 100% !important;
-    }
-
-    .layout-desktop #itemDetailPage .mainDetailButtons .emby-button,
-    .layout-desktop #itemDetailPage .mainDetailButtons .paper-icon-button-light,
-    .layout-desktop #itemDetailPage .detailButton,
-    body.layout-desktop #itemDetailPage .mainDetailButtons .emby-button,
-    body.layout-desktop #itemDetailPage .mainDetailButtons .paper-icon-button-light,
-    body.layout-desktop #itemDetailPage .detailButton {
-        width: 56px !important;
-        height: 56px !important;
-        min-width: 56px !important;
-        min-height: 56px !important;
-    }
-
-    .layout-desktop #itemDetailPage .mainDetailButtons .btnPlay,
-    .layout-desktop #itemDetailPage .mainDetailButtons .btnResume,
-    .layout-desktop #itemDetailPage .mainDetailButtons .button-play,
-    .layout-desktop #itemDetailPage .mainDetailButtons [data-action="play"],
-    .layout-desktop #itemDetailPage .mainDetailButtons [data-action="resume"],
-    body.layout-desktop #itemDetailPage .mainDetailButtons .btnPlay,
-    body.layout-desktop #itemDetailPage .mainDetailButtons .btnResume,
-    body.layout-desktop #itemDetailPage .mainDetailButtons .button-play,
-    body.layout-desktop #itemDetailPage .mainDetailButtons [data-action="play"],
-    body.layout-desktop #itemDetailPage .mainDetailButtons [data-action="resume"] {
-        min-width: 142px !important;
-    }
-
-    .layout-desktop #itemDetailPage .itemMiscInfo,
-    .layout-desktop #itemDetailPage .itemMiscInfoPrimary,
-    .layout-desktop #itemDetailPage .itemMiscInfo-primary,
-    body.layout-desktop #itemDetailPage .itemMiscInfo,
-    body.layout-desktop #itemDetailPage .itemMiscInfoPrimary,
-    body.layout-desktop #itemDetailPage .itemMiscInfo-primary {
-        order: 2 !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        gap: 8px !important;
-    }
-
-    .layout-desktop #itemDetailPage .itemMiscInfo > *,
-    .layout-desktop #itemDetailPage .mediaInfoCriticRating,
-    .layout-desktop #itemDetailPage .starRatingContainer,
-    .layout-desktop #itemDetailPage .officialRating,
-    body.layout-desktop #itemDetailPage .itemMiscInfo > *,
-    body.layout-desktop #itemDetailPage .mediaInfoCriticRating,
-    body.layout-desktop #itemDetailPage .starRatingContainer,
-    body.layout-desktop #itemDetailPage .officialRating {
-        min-height: 32px !important;
-        padding: 5px 12px !important;
-        font-size: 0.96rem !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailPageContent,
-    body.layout-desktop #itemDetailPage .detailPageContent {
-        margin-top: clamp(1.7rem, 3vh, 2.5rem) !important;
-        padding: 0 clamp(54px, 5vw, 96px) 5rem var(--tvos-detail-column) !important;
-    }
-
-    .layout-desktop #itemDetailPage .trackSelections,
-    body.layout-desktop #itemDetailPage .trackSelections {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: stretch !important;
-        gap: 10px !important;
-        width: min(900px, 100%) !important;
-        max-width: min(900px, 100%) !important;
-        margin: 0 0 1.75rem !important;
-        overflow: visible !important;
-    }
-
-    .layout-desktop #itemDetailPage .trackSelections .selectContainer,
-    body.layout-desktop #itemDetailPage .trackSelections .selectContainer {
-        display: grid !important;
-        grid-template-columns: 112px minmax(0, 1fr) !important;
-        align-items: center !important;
-        column-gap: 18px !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        min-height: 46px !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-
-    .layout-desktop #itemDetailPage .trackSelections label,
-    .layout-desktop #itemDetailPage .trackSelections .selectLabel,
-    body.layout-desktop #itemDetailPage .trackSelections label,
-    body.layout-desktop #itemDetailPage .trackSelections .selectLabel {
-        grid-column: 1 !important;
-        margin: 0 !important;
-        color: rgba(255, 255, 255, 0.84) !important;
-        font-weight: 600 !important;
-        white-space: nowrap !important;
-    }
-
-    .layout-desktop #itemDetailPage .trackSelections .detailTrackSelect,
-    .layout-desktop #itemDetailPage .trackSelections .emby-select,
-    body.layout-desktop #itemDetailPage .trackSelections .detailTrackSelect,
-    body.layout-desktop #itemDetailPage .trackSelections .emby-select {
-        grid-column: 2 !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 0 !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
-        white-space: nowrap !important;
-    }
-
-    .layout-desktop #itemDetailPage .tagline,
-    body.layout-desktop #itemDetailPage .tagline {
-        margin-top: 1.45rem !important;
-        margin-bottom: 1.4rem !important;
-        max-width: min(980px, 100%) !important;
-    }
-
-    .layout-desktop #itemDetailPage .overview,
-    .layout-desktop #itemDetailPage .itemOverview,
-    .layout-desktop #itemDetailPage .detailPageContent p,
-    body.layout-desktop #itemDetailPage .overview,
-    body.layout-desktop #itemDetailPage .itemOverview,
-    body.layout-desktop #itemDetailPage .detailPageContent p {
-        max-width: min(1040px, 100%) !important;
-        font-size: clamp(1.02rem, 1.08vw, 1.18rem) !important;
-    }
-}
-
-/* tvOS Detail Page No Overlap Fix */
-@media (min-width: 50.001em) {
-    .layout-desktop #itemDetailPage,
-    body.layout-desktop #itemDetailPage {
-        --tvos-detail-hero-height: clamp(560px, 62vh, 690px);
-    }
-
-    .layout-desktop #itemDetailPage .detailPagePrimaryContainer,
-    body.layout-desktop #itemDetailPage .detailPagePrimaryContainer {
-        min-height: var(--tvos-detail-hero-height) !important;
-        padding-bottom: clamp(38px, 5vh, 62px) !important;
-        box-sizing: border-box !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailPagePrimaryContent,
-    body.layout-desktop #itemDetailPage .detailPagePrimaryContent {
-        max-width: min(1120px, calc(100vw - var(--tvos-detail-column) - 96px)) !important;
-        padding-top: clamp(72px, 8vh, 116px) !important;
-        box-sizing: border-box !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailRibbon,
-    body.layout-desktop #itemDetailPage .detailRibbon {
-        position: relative !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        justify-content: flex-start !important;
-        gap: 14px !important;
-        min-height: 0 !important;
-        margin-top: 1.15rem !important;
-        margin-bottom: 0 !important;
-        padding-bottom: 0 !important;
-        overflow: visible !important;
-        clear: both !important;
-    }
-
-    .layout-desktop #itemDetailPage .mainDetailButtons,
-    body.layout-desktop #itemDetailPage .mainDetailButtons {
-        position: relative !important;
-        inset: auto !important;
-        order: 2 !important;
-        transform: none !important;
-        margin: 0 !important;
-    }
-
-    .layout-desktop #itemDetailPage .itemMiscInfo,
-    .layout-desktop #itemDetailPage .itemMiscInfoPrimary,
-    .layout-desktop #itemDetailPage .itemMiscInfo-primary,
-    body.layout-desktop #itemDetailPage .itemMiscInfo,
-    body.layout-desktop #itemDetailPage .itemMiscInfoPrimary,
-    body.layout-desktop #itemDetailPage .itemMiscInfo-primary {
-        order: 1 !important;
-        margin: 0 !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailPageContent,
-    body.layout-desktop #itemDetailPage .detailPageContent {
-        position: relative !important;
-        clear: both !important;
-        margin-top: 0 !important;
-        padding-top: clamp(24px, 3.5vh, 44px) !important;
-        box-sizing: border-box !important;
-        z-index: 1 !important;
-    }
-
-    .layout-desktop #itemDetailPage .trackSelections,
-    body.layout-desktop #itemDetailPage .trackSelections {
-        position: relative !important;
-        z-index: 1 !important;
-        margin-top: 0 !important;
-    }
-
-    .layout-desktop #itemDetailPage .trackSelections .selectContainer,
-    body.layout-desktop #itemDetailPage .trackSelections .selectContainer {
-        min-height: 52px !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailImageContainer .card,
-    body.layout-desktop #itemDetailPage .detailImageContainer .card {
-        top: clamp(138px, 13vh, 164px) !important;
-    }
-}
-
-/* tvOS Detail Page Apple Layout */
-@media (min-width: 50.001em) {
-    .layout-desktop #itemDetailPage,
-    body.layout-desktop #itemDetailPage {
-        --tvos-detail-left: clamp(58px, 5vw, 96px);
-        --tvos-detail-poster: clamp(250px, 17.5vw, 335px);
-        --tvos-detail-gap: clamp(58px, 5.5vw, 96px);
-        --tvos-detail-column: calc(var(--tvos-detail-left) + var(--tvos-detail-poster) + var(--tvos-detail-gap));
-        --tvos-detail-panel-width: min(880px, calc(100vw - var(--tvos-detail-column) - 96px));
-    }
-
-    .layout-desktop #itemDetailPage .detailPagePrimaryContainer,
-    body.layout-desktop #itemDetailPage .detailPagePrimaryContainer {
-        min-height: clamp(640px, 70vh, 760px) !important;
-        padding-top: clamp(118px, 13vh, 160px) !important;
-        padding-bottom: clamp(88px, 10vh, 128px) !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailImageContainer .card,
-    body.layout-desktop #itemDetailPage .detailImageContainer .card {
-        top: clamp(150px, 14vh, 178px) !important;
-        left: var(--tvos-detail-left) !important;
-        width: var(--tvos-detail-poster) !important;
-        max-width: var(--tvos-detail-poster) !important;
-        border-radius: 24px !important;
-        box-shadow: 0 42px 100px rgba(0, 0, 0, 0.74), 0 18px 36px rgba(0, 0, 0, 0.46) !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailImageContainer .cardImageContainer,
-    .layout-desktop #itemDetailPage .detailImageContainer .cardImage,
-    .layout-desktop #itemDetailPage .detailImageContainer .blurhash-canvas,
-    body.layout-desktop #itemDetailPage .detailImageContainer .cardImageContainer,
-    body.layout-desktop #itemDetailPage .detailImageContainer .cardImage,
-    body.layout-desktop #itemDetailPage .detailImageContainer .blurhash-canvas {
-        border-radius: 24px !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailPagePrimaryContent,
-    body.layout-desktop #itemDetailPage .detailPagePrimaryContent {
-        max-width: var(--tvos-detail-panel-width) !important;
-        padding: clamp(64px, 7vh, 96px) 0 0 var(--tvos-detail-column) !important;
-    }
-
-    .layout-desktop #itemDetailPage .itemName.infoText,
-    .layout-desktop #itemDetailPage .itemName.infoText.parentNameLast,
-    .layout-desktop #itemDetailPage .nameContainer .itemName,
-    body.layout-desktop #itemDetailPage .itemName.infoText,
-    body.layout-desktop #itemDetailPage .itemName.infoText.parentNameLast,
-    body.layout-desktop #itemDetailPage .nameContainer .itemName {
-        max-width: var(--tvos-detail-panel-width) !important;
-        margin: 0 0 1.05rem !important;
-        font-size: clamp(2.45rem, 3.8vw, 4.25rem) !important;
-        line-height: 1.02 !important;
-        font-weight: 700 !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailRibbon,
-    body.layout-desktop #itemDetailPage .detailRibbon {
-        width: var(--tvos-detail-panel-width) !important;
-        max-width: var(--tvos-detail-panel-width) !important;
-        margin: 1.05rem 0 0 var(--tvos-detail-column) !important;
-        padding: 0 0 clamp(56px, 7vh, 92px) !important;
-        gap: 18px !important;
-    }
-
-    .layout-desktop #itemDetailPage .itemMiscInfo,
-    .layout-desktop #itemDetailPage .itemMiscInfoPrimary,
-    .layout-desktop #itemDetailPage .itemMiscInfo-primary,
-    body.layout-desktop #itemDetailPage .itemMiscInfo,
-    body.layout-desktop #itemDetailPage .itemMiscInfoPrimary,
-    body.layout-desktop #itemDetailPage .itemMiscInfo-primary {
-        order: 1 !important;
-        display: flex !important;
-        flex-wrap: wrap !important;
-        gap: 9px !important;
-        width: 100% !important;
-    }
-
-    .layout-desktop #itemDetailPage .mainDetailButtons,
-    body.layout-desktop #itemDetailPage .mainDetailButtons {
-        order: 2 !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
-        gap: 18px !important;
-        width: 100% !important;
-        padding-top: 4px !important;
-        margin: 0 !important;
-    }
-
-    .layout-desktop #itemDetailPage .mainDetailButtons .emby-button,
-    .layout-desktop #itemDetailPage .mainDetailButtons .paper-icon-button-light,
-    .layout-desktop #itemDetailPage .detailButton,
-    body.layout-desktop #itemDetailPage .mainDetailButtons .emby-button,
-    body.layout-desktop #itemDetailPage .mainDetailButtons .paper-icon-button-light,
-    body.layout-desktop #itemDetailPage .detailButton {
-        width: 58px !important;
-        height: 58px !important;
-        min-width: 58px !important;
-        min-height: 58px !important;
-        background: rgba(255, 255, 255, 0.13) !important;
-        border: 1px solid rgba(255, 255, 255, 0.15) !important;
-    }
-
-    .layout-desktop #itemDetailPage .mainDetailButtons .btnPlay,
-    .layout-desktop #itemDetailPage .mainDetailButtons .btnResume,
-    .layout-desktop #itemDetailPage .mainDetailButtons .button-play,
-    .layout-desktop #itemDetailPage .mainDetailButtons [data-action="play"],
-    .layout-desktop #itemDetailPage .mainDetailButtons [data-action="resume"],
-    body.layout-desktop #itemDetailPage .mainDetailButtons .btnPlay,
-    body.layout-desktop #itemDetailPage .mainDetailButtons .btnResume,
-    body.layout-desktop #itemDetailPage .mainDetailButtons .button-play,
-    body.layout-desktop #itemDetailPage .mainDetailButtons [data-action="play"],
-    body.layout-desktop #itemDetailPage .mainDetailButtons [data-action="resume"] {
-        min-width: 148px !important;
-        background: rgba(255, 255, 255, 0.96) !important;
-        color: #050505 !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailPageContent,
-    body.layout-desktop #itemDetailPage .detailPageContent {
-        width: var(--tvos-detail-panel-width) !important;
-        max-width: var(--tvos-detail-panel-width) !important;
-        margin: 0 0 0 var(--tvos-detail-column) !important;
-        padding: clamp(28px, 4vh, 48px) 0 5rem !important;
-    }
-
-    .layout-desktop #itemDetailPage .trackSelections,
-    body.layout-desktop #itemDetailPage .trackSelections {
-        width: 100% !important;
-        max-width: 100% !important;
-        margin: 0 0 clamp(2rem, 4vh, 3rem) !important;
-        padding: 18px !important;
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 12px !important;
-        border: 1px solid rgba(255, 255, 255, 0.12) !important;
-        border-radius: 24px !important;
-        background: rgba(28, 28, 30, 0.56) !important;
-        -webkit-backdrop-filter: blur(32px) saturate(180%) !important;
-        backdrop-filter: blur(32px) saturate(180%) !important;
-        box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
-        box-sizing: border-box !important;
-    }
-
-    .layout-desktop #itemDetailPage .trackSelections .selectContainer,
-    body.layout-desktop #itemDetailPage .trackSelections .selectContainer {
-        display: grid !important;
-        grid-template-columns: 104px minmax(0, 1fr) !important;
-        align-items: center !important;
-        column-gap: 18px !important;
-        min-height: 50px !important;
-        width: 100% !important;
-    }
-
-    .layout-desktop #itemDetailPage .trackSelections label,
-    .layout-desktop #itemDetailPage .trackSelections .selectLabel,
-    body.layout-desktop #itemDetailPage .trackSelections label,
-    body.layout-desktop #itemDetailPage .trackSelections .selectLabel {
-        color: rgba(255, 255, 255, 0.78) !important;
-        font-size: 0.98rem !important;
-        font-weight: 600 !important;
-    }
-
-    .layout-desktop #itemDetailPage .trackSelections .detailTrackSelect,
-    .layout-desktop #itemDetailPage .trackSelections .emby-select,
-    body.layout-desktop #itemDetailPage .trackSelections .detailTrackSelect,
-    body.layout-desktop #itemDetailPage .trackSelections .emby-select {
-        min-height: 48px !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 0 !important;
-        padding-left: 16px !important;
-        padding-right: 44px !important;
-        border-radius: 16px !important;
-        background: rgba(255, 255, 255, 0.10) !important;
-        border: 1px solid rgba(255, 255, 255, 0.10) !important;
-        color: rgba(255, 255, 255, 0.9) !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
-        white-space: nowrap !important;
-        box-sizing: border-box !important;
-    }
-
-    .layout-desktop #itemDetailPage .tagline,
-    body.layout-desktop #itemDetailPage .tagline {
-        max-width: 100% !important;
-        margin: 0 0 1.35rem !important;
-        font-size: clamp(1.22rem, 1.45vw, 1.58rem) !important;
-    }
-
-    .layout-desktop #itemDetailPage .overview,
-    .layout-desktop #itemDetailPage .itemOverview,
-    .layout-desktop #itemDetailPage .detailPageContent p,
-    body.layout-desktop #itemDetailPage .overview,
-    body.layout-desktop #itemDetailPage .itemOverview,
-    body.layout-desktop #itemDetailPage .detailPageContent p {
-        max-width: 100% !important;
-        color: rgba(255, 255, 255, 0.82) !important;
-        font-size: clamp(1.02rem, 1.06vw, 1.16rem) !important;
-        line-height: 1.5 !important;
-    }
-}
-/* tvOS Detail Page Hero Layout */
-@media (min-width: 50.001em) {
-    body.layout-desktop:has(#itemDetailPage) {
-        background: #050505 !important;
-    }
-
-    body.layout-desktop:has(#itemDetailPage) .skinHeader {
-        min-height: 92px !important;
-        background: linear-gradient(180deg, rgba(0, 0, 0, 0.52) 0%, rgba(0, 0, 0, 0.16) 70%, rgba(0, 0, 0, 0) 100%) !important;
-        border-bottom: 0 !important;
-        box-shadow: none !important;
-        -webkit-backdrop-filter: none !important;
-        backdrop-filter: none !important;
-    }
-
-    body.layout-desktop:has(#itemDetailPage) .skinHeader-withBackground {
-        background: linear-gradient(180deg, rgba(0, 0, 0, 0.52) 0%, rgba(0, 0, 0, 0.16) 70%, rgba(0, 0, 0, 0) 100%) !important;
-    }
-
-    body.layout-desktop:has(#itemDetailPage) .backgroundContainer,
-    body.layout-desktop:has(#itemDetailPage) .backgroundContainer.withBackdrop {
-        position: fixed !important;
-        inset: 0 !important;
-        width: 100vw !important;
-        height: 100vh !important;
-        opacity: 1 !important;
-        background-color: #050505 !important;
-    }
-
-    .layout-desktop #itemDetailPage,
-    body.layout-desktop #itemDetailPage {
-        --tvos-hero-left: clamp(44px, 3.8vw, 72px);
-        --tvos-hero-bottom: clamp(40px, 5.2vh, 72px);
-        --tvos-hero-width: min(620px, 43vw);
-        min-height: 100vh !important;
-        overflow-x: hidden !important;
-        background: #050505 !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailPageWrapperContainer,
-    body.layout-desktop #itemDetailPage .detailPageWrapperContainer,
-    .layout-desktop #itemDetailPage .detailPagePrimaryContainer,
-    body.layout-desktop #itemDetailPage .detailPagePrimaryContainer {
-        min-height: 100vh !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        overflow: visible !important;
-        background: transparent !important;
-    }
-
-    .layout-desktop #itemDetailPage .itemBackdrop,
-    body.layout-desktop #itemDetailPage .itemBackdrop {
-        display: block !important;
-        position: fixed !important;
-        inset: 0 !important;
-        width: 100vw !important;
-        height: 100vh !important;
-        min-height: 100vh !important;
-        max-height: none !important;
-        margin: 0 !important;
-        z-index: 0 !important;
-        opacity: 1 !important;
-        filter: saturate(106%) brightness(72%) contrast(104%) !important;
-        background-size: cover !important;
-        background-position: center center !important;
-    }
-
-    .layout-desktop #itemDetailPage .itemBackdrop::before,
-    body.layout-desktop #itemDetailPage .itemBackdrop::before,
-    .layout-desktop #itemDetailPage .itemBackdrop::after,
-    body.layout-desktop #itemDetailPage .itemBackdrop::after {
-        content: "" !important;
-        position: fixed !important;
-        inset: 0 !important;
-        pointer-events: none !important;
-        z-index: 1 !important;
-    }
-
-    .layout-desktop #itemDetailPage .itemBackdrop::before,
-    body.layout-desktop #itemDetailPage .itemBackdrop::before {
-        background:
-            radial-gradient(circle at 64% 34%, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.32) 48%, rgba(0, 0, 0, 0.62) 100%),
-            linear-gradient(90deg, rgba(0, 0, 0, 0.70) 0%, rgba(0, 0, 0, 0.32) 32%, rgba(0, 0, 0, 0.08) 62%, rgba(0, 0, 0, 0.34) 100%) !important;
-    }
-
-    .layout-desktop #itemDetailPage .itemBackdrop::after,
-    body.layout-desktop #itemDetailPage .itemBackdrop::after {
-        background: linear-gradient(180deg, rgba(0, 0, 0, 0.22) 0%, rgba(0, 0, 0, 0.06) 38%, rgba(0, 0, 0, 0.52) 76%, rgba(0, 0, 0, 0.78) 100%) !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailImageContainer,
-    .layout-desktop #itemDetailPage .detailImageContainer .card,
-    .layout-desktop #itemDetailPage .detailPageContent > .card,
-    .layout-desktop #itemDetailPage .detailPageContent > .portraitCard,
-    .layout-desktop #itemDetailPage .detailPageContent > .detailImageContainer,
-    .layout-desktop #itemDetailPage .detailPageContent .card.portraitCard,
-    .layout-desktop #itemDetailPage .detailPageSecondaryContainer > .card,
-    .layout-desktop #itemDetailPage .detailPageSecondaryContainer > .portraitCard,
-    .layout-desktop #itemDetailPage .detailPageSecondaryContainer > .detailImageContainer,
-    body.layout-desktop #itemDetailPage .detailImageContainer,
-    body.layout-desktop #itemDetailPage .detailImageContainer .card,
-    body.layout-desktop #itemDetailPage .detailPageContent > .card,
-    body.layout-desktop #itemDetailPage .detailPageContent > .portraitCard,
-    body.layout-desktop #itemDetailPage .detailPageContent > .detailImageContainer,
-    body.layout-desktop #itemDetailPage .detailPageContent .card.portraitCard,
-    body.layout-desktop #itemDetailPage .detailPageSecondaryContainer > .card,
-    body.layout-desktop #itemDetailPage .detailPageSecondaryContainer > .portraitCard,
-    body.layout-desktop #itemDetailPage .detailPageSecondaryContainer > .detailImageContainer {
-        display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailPagePrimaryContent,
-    body.layout-desktop #itemDetailPage .detailPagePrimaryContent {
-        display: block !important;
-        position: fixed !important;
-        left: var(--tvos-hero-left) !important;
-        bottom: calc(var(--tvos-hero-bottom) + 210px) !important;
-        width: var(--tvos-hero-width) !important;
-        max-width: var(--tvos-hero-width) !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        z-index: 3 !important;
-        background: transparent !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailLogo,
-    body.layout-desktop #itemDetailPage .detailLogo {
-        display: block !important;
-        position: relative !important;
-        width: min(360px, var(--tvos-hero-width)) !important;
-        height: clamp(86px, 13vh, 150px) !important;
-        max-width: 100% !important;
-        margin: 0 0 0.95rem !important;
-        background-position: left bottom !important;
-        background-size: contain !important;
-        filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.66)) !important;
-    }
-
-    .layout-desktop #itemDetailPage .itemName.infoText,
-    .layout-desktop #itemDetailPage .itemName.infoText.parentNameLast,
-    .layout-desktop #itemDetailPage .nameContainer .itemName,
-    body.layout-desktop #itemDetailPage .itemName.infoText,
-    body.layout-desktop #itemDetailPage .itemName.infoText.parentNameLast,
-    body.layout-desktop #itemDetailPage .nameContainer .itemName {
-        display: block !important;
-        max-width: var(--tvos-hero-width) !important;
-        margin: 0 0 0.9rem !important;
-        color: rgba(255, 255, 255, 0.96) !important;
-        font-size: clamp(2.1rem, 3vw, 3.7rem) !important;
-        line-height: 1.02 !important;
-        font-weight: 700 !important;
-        text-shadow: 0 14px 34px rgba(0, 0, 0, 0.72) !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailRibbon,
-    body.layout-desktop #itemDetailPage .detailRibbon {
-        display: flex !important;
-        position: fixed !important;
-        left: var(--tvos-hero-left) !important;
-        bottom: var(--tvos-hero-bottom) !important;
-        width: var(--tvos-hero-width) !important;
-        max-width: var(--tvos-hero-width) !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        z-index: 4 !important;
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        justify-content: flex-start !important;
-        gap: 12px !important;
-        border: 0 !important;
-        background: transparent !important;
-        -webkit-backdrop-filter: none !important;
-        backdrop-filter: none !important;
-        box-shadow: none !important;
-    }
-
-    .layout-desktop #itemDetailPage .itemMiscInfo,
-    .layout-desktop #itemDetailPage .itemMiscInfoPrimary,
-    .layout-desktop #itemDetailPage .itemMiscInfo-primary,
-    body.layout-desktop #itemDetailPage .itemMiscInfo,
-    body.layout-desktop #itemDetailPage .itemMiscInfoPrimary,
-    body.layout-desktop #itemDetailPage .itemMiscInfo-primary {
-        order: 1 !important;
-        display: flex !important;
-        flex-wrap: wrap !important;
-        width: var(--tvos-hero-width) !important;
-        max-width: var(--tvos-hero-width) !important;
-        gap: 7px !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-
-    .layout-desktop #itemDetailPage .itemMiscInfo > *,
-    .layout-desktop #itemDetailPage .mediaInfoCriticRating,
-    .layout-desktop #itemDetailPage .starRatingContainer,
-    .layout-desktop #itemDetailPage .officialRating,
-    body.layout-desktop #itemDetailPage .itemMiscInfo > *,
-    body.layout-desktop #itemDetailPage .mediaInfoCriticRating,
-    body.layout-desktop #itemDetailPage .starRatingContainer,
-    body.layout-desktop #itemDetailPage .officialRating {
-        min-height: 24px !important;
-        padding: 3px 8px !important;
-        border-radius: 999px !important;
-        border: 1px solid rgba(255, 255, 255, 0.16) !important;
-        background: rgba(0, 0, 0, 0.42) !important;
-        color: rgba(255, 255, 255, 0.86) !important;
-        -webkit-backdrop-filter: blur(18px) saturate(170%) !important;
-        backdrop-filter: blur(18px) saturate(170%) !important;
-        font-size: 0.86rem !important;
-        font-weight: 600 !important;
-        line-height: 1 !important;
-        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.34) !important;
-    }
-
-    .layout-desktop #itemDetailPage .mainDetailButtons,
-    body.layout-desktop #itemDetailPage .mainDetailButtons {
-        order: 3 !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
-        gap: 12px !important;
-        width: var(--tvos-hero-width) !important;
-        margin: 0.35rem 0 0 !important;
-        padding: 0 !important;
-    }
-
-    .layout-desktop #itemDetailPage .mainDetailButtons .emby-button,
-    .layout-desktop #itemDetailPage .mainDetailButtons .paper-icon-button-light,
-    .layout-desktop #itemDetailPage .detailButton,
-    body.layout-desktop #itemDetailPage .mainDetailButtons .emby-button,
-    body.layout-desktop #itemDetailPage .mainDetailButtons .paper-icon-button-light,
-    body.layout-desktop #itemDetailPage .detailButton {
-        width: 50px !important;
-        height: 50px !important;
-        min-width: 50px !important;
-        min-height: 50px !important;
-        border-radius: 999px !important;
-        border: 1px solid rgba(255, 255, 255, 0.16) !important;
-        background: rgba(255, 255, 255, 0.13) !important;
-        color: rgba(255, 255, 255, 0.95) !important;
-        -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
-        backdrop-filter: blur(24px) saturate(180%) !important;
-        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.38) !important;
-    }
-
-    .layout-desktop #itemDetailPage .mainDetailButtons .btnPlay,
-    .layout-desktop #itemDetailPage .mainDetailButtons .btnResume,
-    .layout-desktop #itemDetailPage .mainDetailButtons .button-play,
-    .layout-desktop #itemDetailPage .mainDetailButtons [data-action="play"],
-    .layout-desktop #itemDetailPage .mainDetailButtons [data-action="resume"],
-    body.layout-desktop #itemDetailPage .mainDetailButtons .btnPlay,
-    body.layout-desktop #itemDetailPage .mainDetailButtons .btnResume,
-    body.layout-desktop #itemDetailPage .mainDetailButtons .button-play,
-    body.layout-desktop #itemDetailPage .mainDetailButtons [data-action="play"],
-    body.layout-desktop #itemDetailPage .mainDetailButtons [data-action="resume"] {
-        width: auto !important;
-        min-width: 188px !important;
-        height: 54px !important;
-        min-height: 54px !important;
-        padding: 0 30px !important;
-        background: rgba(255, 255, 255, 0.96) !important;
-        color: #050505 !important;
-        font-weight: 700 !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailPageContent,
-    body.layout-desktop #itemDetailPage .detailPageContent {
-        display: block !important;
-        position: fixed !important;
-        left: var(--tvos-hero-left) !important;
-        bottom: calc(var(--tvos-hero-bottom) + 92px) !important;
-        width: var(--tvos-hero-width) !important;
-        max-width: var(--tvos-hero-width) !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        z-index: 3 !important;
-        background: transparent !important;
-        pointer-events: none !important;
-    }
-
-    .layout-desktop #itemDetailPage .trackSelections,
-    .layout-desktop #itemDetailPage .itemDetailsGroup,
-    .layout-desktop #itemDetailPage .itemTags,
-    .layout-desktop #itemDetailPage .tagList,
-    .layout-desktop #itemDetailPage .keywords,
-    .layout-desktop #itemDetailPage .itemExternalLinks,
-    .layout-desktop #itemDetailPage .itemLinks,
-    .layout-desktop #itemDetailPage .externalLinks,
-    .layout-desktop #itemDetailPage .selectContainer:has(.detailTrackSelect),
-    .layout-desktop #itemDetailPage .detailTrackSelect,
-    body.layout-desktop #itemDetailPage .trackSelections,
-    body.layout-desktop #itemDetailPage .itemDetailsGroup,
-    body.layout-desktop #itemDetailPage .itemTags,
-    body.layout-desktop #itemDetailPage .tagList,
-    body.layout-desktop #itemDetailPage .keywords,
-    body.layout-desktop #itemDetailPage .itemExternalLinks,
-    body.layout-desktop #itemDetailPage .itemLinks,
-    body.layout-desktop #itemDetailPage .externalLinks,
-    body.layout-desktop #itemDetailPage .selectContainer:has(.detailTrackSelect),
-    body.layout-desktop #itemDetailPage .detailTrackSelect {
-        display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
-    }
-
-    .layout-desktop #itemDetailPage .tagline,
-    body.layout-desktop #itemDetailPage .tagline {
-        display: none !important;
-    }
-
-    .layout-desktop #itemDetailPage .overview,
-    .layout-desktop #itemDetailPage .itemOverview,
-    .layout-desktop #itemDetailPage .detailPageContent p,
-    body.layout-desktop #itemDetailPage .overview,
-    body.layout-desktop #itemDetailPage .itemOverview,
-    body.layout-desktop #itemDetailPage .detailPageContent p {
-        display: -webkit-box !important;
-        max-width: var(--tvos-hero-width) !important;
-        margin: 0 !important;
-        color: rgba(255, 255, 255, 0.82) !important;
-        font-size: clamp(0.98rem, 1.05vw, 1.12rem) !important;
-        font-weight: 500 !important;
-        line-height: 1.42 !important;
-        text-shadow: 0 10px 24px rgba(0, 0, 0, 0.62) !important;
-        -webkit-line-clamp: 3 !important;
-        -webkit-box-orient: vertical !important;
-        overflow: hidden !important;
-    }
-
-    /* tvOS Detail Page Hero Cleanup */
-    .layout-desktop #itemDetailPage .verticalSection,
-    .layout-desktop #itemDetailPage #scenesCollapsible,
-    .layout-desktop #itemDetailPage #similarCollapsible,
-    .layout-desktop #itemDetailPage [id*="scene" i],
-    .layout-desktop #itemDetailPage [id*="similar" i],
-    .layout-desktop #itemDetailPage [class*="scene" i],
-    .layout-desktop #itemDetailPage [class*="similar" i],
-    body.layout-desktop #itemDetailPage .verticalSection,
-    body.layout-desktop #itemDetailPage #scenesCollapsible,
-    body.layout-desktop #itemDetailPage #similarCollapsible,
-    body.layout-desktop #itemDetailPage [id*="scene" i],
-    body.layout-desktop #itemDetailPage [id*="similar" i],
-    body.layout-desktop #itemDetailPage [class*="scene" i],
-    body.layout-desktop #itemDetailPage [class*="similar" i] {
-        display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
-    }
-}
-
 /* Jellyfin-style My Media restore */
 
 #indexPage .homeSectionsContainer .verticalSection:has([data-type="CollectionFolder"]) .itemsContainer,
@@ -5017,939 +3593,3 @@ body:has(#itemDetailPage) .layout-desktop .detailPageContent {
         min-height: 40px !important;
     }
 }
-
-/* tvOS Detail Page Scroll Reset */
-@media (min-width: 50.001em) {
-    html:has(#itemDetailPage),
-    body.layout-desktop:has(#itemDetailPage) {
-        overflow-y: auto !important;
-        overflow-x: hidden !important;
-        background: #050505 !important;
-    }
-
-    body.layout-desktop:has(#itemDetailPage) .skinHeader,
-    body.layout-desktop:has(#itemDetailPage) .skinHeader-withBackground,
-    body.layout-desktop:has(#itemDetailPage) .skinHeader.semiTransparent {
-        min-height: 92px !important;
-        height: 92px !important;
-        padding: 0 clamp(28px, 3vw, 56px) !important;
-        background: linear-gradient(180deg, rgba(0, 0, 0, 0.58), rgba(0, 0, 0, 0.12) 74%, rgba(0, 0, 0, 0)) !important;
-        border-bottom: 0 !important;
-        box-shadow: none !important;
-        -webkit-backdrop-filter: none !important;
-        backdrop-filter: none !important;
-    }
-
-    .layout-desktop #itemDetailPage,
-    body.layout-desktop #itemDetailPage {
-        --tvos-detail-x: clamp(48px, 5vw, 96px);
-        --tvos-detail-width: min(660px, 44vw);
-        --tvos-detail-bottom: clamp(220px, 26vh, 300px);
-        position: relative !important;
-        min-height: 100vh !important;
-        overflow: visible !important;
-        background: #050505 !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailPageWrapperContainer,
-    body.layout-desktop #itemDetailPage .detailPageWrapperContainer {
-        position: relative !important;
-        min-height: 100vh !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        overflow: visible !important;
-        background: transparent !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailPagePrimaryContainer,
-    body.layout-desktop #itemDetailPage .detailPagePrimaryContainer {
-        position: relative !important;
-        z-index: 2 !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        justify-content: flex-end !important;
-        min-height: 100vh !important;
-        width: auto !important;
-        max-width: none !important;
-        margin: 0 !important;
-        padding: 128px var(--tvos-detail-x) var(--tvos-detail-bottom) !important;
-        overflow: visible !important;
-        background: transparent !important;
-    }
-
-    .layout-desktop #itemDetailPage .itemBackdrop,
-    body.layout-desktop #itemDetailPage .itemBackdrop {
-        display: block !important;
-        position: absolute !important;
-        inset: 0 0 auto 0 !important;
-        width: 100% !important;
-        height: 100vh !important;
-        min-height: 100vh !important;
-        max-height: none !important;
-        margin: 0 !important;
-        z-index: 0 !important;
-        opacity: 1 !important;
-        overflow: hidden !important;
-        pointer-events: none !important;
-        filter: saturate(108%) brightness(72%) contrast(104%) !important;
-        background-size: cover !important;
-        background-position: center center !important;
-    }
-
-    body.layout-desktop:has(#itemDetailPage) .backgroundContainer,
-    body.layout-desktop:has(#itemDetailPage) .backgroundContainer.withBackdrop,
-    body.layout-desktop:has(#itemDetailPage) .backdropImage {
-        position: fixed !important;
-        inset: 0 !important;
-        width: 100vw !important;
-        height: 100vh !important;
-        opacity: 1 !important;
-        pointer-events: none !important;
-        background-size: cover !important;
-        background-position: center center !important;
-        filter: saturate(108%) brightness(58%) contrast(104%) !important;
-    }
-
-    .layout-desktop #itemDetailPage .itemBackdrop::before,
-    body.layout-desktop #itemDetailPage .itemBackdrop::before,
-    .layout-desktop #itemDetailPage .itemBackdrop::after,
-    body.layout-desktop #itemDetailPage .itemBackdrop::after {
-        content: "" !important;
-        position: absolute !important;
-        inset: 0 !important;
-        pointer-events: none !important;
-    }
-
-    .layout-desktop #itemDetailPage .itemBackdrop::before,
-    body.layout-desktop #itemDetailPage .itemBackdrop::before {
-        background:
-            linear-gradient(90deg, rgba(0, 0, 0, 0.70) 0%, rgba(0, 0, 0, 0.38) 34%, rgba(0, 0, 0, 0.10) 68%, rgba(0, 0, 0, 0.42) 100%),
-            radial-gradient(circle at 62% 32%, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.36) 56%, rgba(0, 0, 0, 0.70) 100%) !important;
-    }
-
-    .layout-desktop #itemDetailPage .itemBackdrop::after,
-    body.layout-desktop #itemDetailPage .itemBackdrop::after {
-        background: linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.18) 48%, rgba(0, 0, 0, 0.78) 88%, #050505 100%) !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailImageContainer,
-    .layout-desktop #itemDetailPage .detailImageContainer .card,
-    .layout-desktop #itemDetailPage .detailPageContent > .card,
-    .layout-desktop #itemDetailPage .detailPageContent > .portraitCard,
-    .layout-desktop #itemDetailPage .detailPageContent .card.portraitCard,
-    body.layout-desktop #itemDetailPage .detailImageContainer,
-    body.layout-desktop #itemDetailPage .detailImageContainer .card,
-    body.layout-desktop #itemDetailPage .detailPageContent > .card,
-    body.layout-desktop #itemDetailPage .detailPageContent > .portraitCard,
-    body.layout-desktop #itemDetailPage .detailPageContent .card.portraitCard {
-        display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailPagePrimaryContent,
-    body.layout-desktop #itemDetailPage .detailPagePrimaryContent {
-        position: relative !important;
-        left: auto !important;
-        bottom: auto !important;
-        z-index: 3 !important;
-        display: block !important;
-        width: var(--tvos-detail-width) !important;
-        max-width: var(--tvos-detail-width) !important;
-        margin: 0 0 1rem !important;
-        padding: 0 !important;
-        background: transparent !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailLogo,
-    body.layout-desktop #itemDetailPage .detailLogo {
-        display: block !important;
-        position: relative !important;
-        width: min(360px, var(--tvos-detail-width)) !important;
-        height: clamp(82px, 12vh, 140px) !important;
-        margin: 0 0 0.85rem !important;
-        background-position: left bottom !important;
-        background-size: contain !important;
-        filter: drop-shadow(0 12px 30px rgba(0, 0, 0, 0.70)) !important;
-    }
-
-    .layout-desktop #itemDetailPage .itemName.infoText,
-    .layout-desktop #itemDetailPage .itemName.infoText.parentNameLast,
-    .layout-desktop #itemDetailPage .nameContainer .itemName,
-    body.layout-desktop #itemDetailPage .itemName.infoText,
-    body.layout-desktop #itemDetailPage .itemName.infoText.parentNameLast,
-    body.layout-desktop #itemDetailPage .nameContainer .itemName {
-        display: block !important;
-        max-width: var(--tvos-detail-width) !important;
-        margin: 0 !important;
-        color: rgba(255, 255, 255, 0.96) !important;
-        font-size: clamp(3rem, 5vw, 5.8rem) !important;
-        line-height: 0.96 !important;
-        font-weight: 700 !important;
-        letter-spacing: 0 !important;
-        text-shadow: 0 16px 44px rgba(0, 0, 0, 0.78) !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailRibbon,
-    body.layout-desktop #itemDetailPage .detailRibbon {
-        position: relative !important;
-        left: auto !important;
-        bottom: auto !important;
-        z-index: 3 !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        justify-content: flex-start !important;
-        gap: 1rem !important;
-        width: var(--tvos-detail-width) !important;
-        max-width: var(--tvos-detail-width) !important;
-        min-height: 0 !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        border: 0 !important;
-        background: transparent !important;
-        -webkit-backdrop-filter: none !important;
-        backdrop-filter: none !important;
-        box-shadow: none !important;
-    }
-
-    .layout-desktop #itemDetailPage .itemMiscInfo,
-    .layout-desktop #itemDetailPage .itemMiscInfoPrimary,
-    .layout-desktop #itemDetailPage .itemMiscInfo-primary,
-    body.layout-desktop #itemDetailPage .itemMiscInfo,
-    body.layout-desktop #itemDetailPage .itemMiscInfoPrimary,
-    body.layout-desktop #itemDetailPage .itemMiscInfo-primary {
-        order: 1 !important;
-        display: flex !important;
-        flex-wrap: wrap !important;
-        align-items: center !important;
-        gap: 8px !important;
-        width: var(--tvos-detail-width) !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-
-    .layout-desktop #itemDetailPage .itemMiscInfo > *,
-    .layout-desktop #itemDetailPage .mediaInfoCriticRating,
-    .layout-desktop #itemDetailPage .starRatingContainer,
-    .layout-desktop #itemDetailPage .officialRating,
-    body.layout-desktop #itemDetailPage .itemMiscInfo > *,
-    body.layout-desktop #itemDetailPage .mediaInfoCriticRating,
-    body.layout-desktop #itemDetailPage .starRatingContainer,
-    body.layout-desktop #itemDetailPage .officialRating {
-        display: inline-flex !important;
-        align-items: center !important;
-        min-height: 30px !important;
-        margin: 0 !important;
-        padding: 5px 11px !important;
-        border-radius: 999px !important;
-        border: 1px solid rgba(255, 255, 255, 0.16) !important;
-        background: rgba(20, 20, 20, 0.44) !important;
-        color: rgba(255, 255, 255, 0.88) !important;
-        -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
-        backdrop-filter: blur(20px) saturate(180%) !important;
-        font-size: 0.92rem !important;
-        font-weight: 600 !important;
-        line-height: 1 !important;
-        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35) !important;
-    }
-
-    .layout-desktop #itemDetailPage .mainDetailButtons,
-    body.layout-desktop #itemDetailPage .mainDetailButtons {
-        order: 2 !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
-        gap: 14px !important;
-        width: var(--tvos-detail-width) !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        pointer-events: auto !important;
-    }
-
-    .layout-desktop #itemDetailPage .mainDetailButtons .emby-button,
-    .layout-desktop #itemDetailPage .mainDetailButtons .paper-icon-button-light,
-    .layout-desktop #itemDetailPage .detailButton,
-    body.layout-desktop #itemDetailPage .mainDetailButtons .emby-button,
-    body.layout-desktop #itemDetailPage .mainDetailButtons .paper-icon-button-light,
-    body.layout-desktop #itemDetailPage .detailButton {
-        width: 52px !important;
-        height: 52px !important;
-        min-width: 52px !important;
-        min-height: 52px !important;
-        padding: 0 !important;
-        border-radius: 999px !important;
-        border: 1px solid rgba(255, 255, 255, 0.16) !important;
-        background: rgba(255, 255, 255, 0.14) !important;
-        color: rgba(255, 255, 255, 0.95) !important;
-        -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
-        backdrop-filter: blur(24px) saturate(180%) !important;
-        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.40) !important;
-    }
-
-    .layout-desktop #itemDetailPage .mainDetailButtons .btnPlay,
-    .layout-desktop #itemDetailPage .mainDetailButtons .btnResume,
-    .layout-desktop #itemDetailPage .mainDetailButtons .button-play,
-    .layout-desktop #itemDetailPage .mainDetailButtons [data-action="play"],
-    .layout-desktop #itemDetailPage .mainDetailButtons [data-action="resume"],
-    body.layout-desktop #itemDetailPage .mainDetailButtons .btnPlay,
-    body.layout-desktop #itemDetailPage .mainDetailButtons .btnResume,
-    body.layout-desktop #itemDetailPage .mainDetailButtons .button-play,
-    body.layout-desktop #itemDetailPage .mainDetailButtons [data-action="play"],
-    body.layout-desktop #itemDetailPage .mainDetailButtons [data-action="resume"] {
-        width: auto !important;
-        min-width: 184px !important;
-        height: 56px !important;
-        min-height: 56px !important;
-        padding: 0 32px !important;
-        background: rgba(255, 255, 255, 0.96) !important;
-        color: #050505 !important;
-        font-weight: 700 !important;
-    }
-
-    .layout-desktop #itemDetailPage .trackSelections,
-    .layout-desktop #itemDetailPage .selectContainer:has(.detailTrackSelect),
-    .layout-desktop #itemDetailPage .detailTrackSelect,
-    body.layout-desktop #itemDetailPage .trackSelections,
-    body.layout-desktop #itemDetailPage .selectContainer:has(.detailTrackSelect),
-    body.layout-desktop #itemDetailPage .detailTrackSelect {
-        display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailPageContent,
-    body.layout-desktop #itemDetailPage .detailPageContent {
-        position: relative !important;
-        left: auto !important;
-        bottom: auto !important;
-        z-index: 3 !important;
-        display: block !important;
-        width: auto !important;
-        max-width: none !important;
-        margin: -190px var(--tvos-detail-x) 0 !important;
-        padding: 0 0 6rem !important;
-        background: transparent !important;
-        border: 0 !important;
-        box-shadow: none !important;
-        -webkit-backdrop-filter: none !important;
-        backdrop-filter: none !important;
-        pointer-events: auto !important;
-        overflow: visible !important;
-    }
-
-    .layout-desktop #itemDetailPage .overview,
-    .layout-desktop #itemDetailPage .itemOverview,
-    .layout-desktop #itemDetailPage .detailPageContent > p,
-    body.layout-desktop #itemDetailPage .overview,
-    body.layout-desktop #itemDetailPage .itemOverview,
-    body.layout-desktop #itemDetailPage .detailPageContent > p {
-        display: -webkit-box !important;
-        width: var(--tvos-detail-width) !important;
-        max-width: var(--tvos-detail-width) !important;
-        margin: 0 0 3.5rem !important;
-        color: rgba(255, 255, 255, 0.82) !important;
-        font-size: clamp(1rem, 1.05vw, 1.18rem) !important;
-        font-weight: 500 !important;
-        line-height: 1.42 !important;
-        text-shadow: 0 10px 26px rgba(0, 0, 0, 0.66) !important;
-        -webkit-line-clamp: 3 !important;
-        -webkit-box-orient: vertical !important;
-        overflow: hidden !important;
-        pointer-events: auto !important;
-    }
-
-    .layout-desktop #itemDetailPage .btnMoreOverview,
-    .layout-desktop #itemDetailPage .showMoreButton,
-    .layout-desktop #itemDetailPage .readMoreButton,
-    body.layout-desktop #itemDetailPage .btnMoreOverview,
-    body.layout-desktop #itemDetailPage .showMoreButton,
-    body.layout-desktop #itemDetailPage .readMoreButton {
-        display: none !important;
-    }
-
-    .layout-desktop #itemDetailPage .verticalSection,
-    .layout-desktop #itemDetailPage #scenesCollapsible,
-    .layout-desktop #itemDetailPage #similarCollapsible,
-    .layout-desktop #itemDetailPage .moreFromSeasonSection,
-    body.layout-desktop #itemDetailPage .verticalSection,
-    body.layout-desktop #itemDetailPage #scenesCollapsible,
-    body.layout-desktop #itemDetailPage #similarCollapsible,
-    body.layout-desktop #itemDetailPage .moreFromSeasonSection {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        position: relative !important;
-        z-index: 4 !important;
-        width: calc(100vw - (var(--tvos-detail-x) * 2)) !important;
-        max-width: calc(100vw - (var(--tvos-detail-x) * 2)) !important;
-        margin: 3.25rem 0 0 !important;
-        padding: 0 !important;
-        overflow: visible !important;
-        pointer-events: auto !important;
-    }
-
-    .layout-desktop #itemDetailPage .itemsContainer,
-    .layout-desktop #itemDetailPage .emby-scrollbuttons,
-    .layout-desktop #itemDetailPage .scrollSlider,
-    body.layout-desktop #itemDetailPage .itemsContainer,
-    body.layout-desktop #itemDetailPage .emby-scrollbuttons,
-    body.layout-desktop #itemDetailPage .scrollSlider {
-        pointer-events: auto !important;
-    }
-}
-
-/* NeutralFin Detail Rebase
-   Detail layout adapted from KartoffelChipss/NeutralFin, with Abyss tvOS controls retained. */
-@media (min-width: 50.001em) {
-    body.layout-desktop:has(#itemDetailPage) {
-        --sidePadding: 3.3%;
-        --itemColumnGap: 0.5em;
-        --primaryItemPageNegativeSpace: 14vh;
-        --secondaryItemPageNegativeSpace: 60vh;
-        --clearLogoBottomSpace: 11em;
-        --darkerGradientPoint: #050505;
-        --darkerGradientPointAlpha: rgba(5, 5, 5, 0.86);
-        --lighterGradientPointAlpha: rgba(30, 30, 30, 0.78);
-        --borderColor: rgba(255, 255, 255, 0.16);
-        --defaultBorder: 1px solid rgba(255, 255, 255, 0.14);
-        --textColor: rgba(245, 245, 247, 0.92);
-        --dimTextColor: rgba(245, 245, 247, 0.62);
-        --itemBackdropMask: linear-gradient(180deg, rgba(0, 0, 0, 0.8), 75%, transparent);
-        overflow-y: auto !important;
-        overflow-x: hidden !important;
-        background: #050505 !important;
-    }
-
-    body.layout-desktop:has(#itemDetailPage) .skinHeader,
-    body.layout-desktop:has(#itemDetailPage) .skinHeader-withBackground,
-    body.layout-desktop:has(#itemDetailPage) .skinHeader.semiTransparent {
-        min-height: 5em !important;
-        height: 5em !important;
-        padding: 0 var(--sidePadding) !important;
-        background: linear-gradient(180deg, rgba(0, 0, 0, 0.58), 70%, transparent) !important;
-        border-bottom: 0 !important;
-        box-shadow: none !important;
-        -webkit-backdrop-filter: none !important;
-        backdrop-filter: none !important;
-    }
-
-    .layout-desktop #itemDetailPage,
-    body.layout-desktop #itemDetailPage {
-        position: relative !important;
-        min-height: 100vh !important;
-        overflow: visible !important;
-        background: #050505 !important;
-        font-family: var(--tvos-font-stack) !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailPageWrapperContainer,
-    body.layout-desktop #itemDetailPage .detailPageWrapperContainer {
-        position: relative !important;
-        min-height: 46vh !important;
-        margin-top: unset !important;
-        padding-top: unset !important;
-        overflow: visible !important;
-        background: linear-gradient(180deg, transparent, 17vh, var(--darkerGradientPointAlpha) 50vh) !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailPagePrimaryContainer,
-    body.layout-desktop #itemDetailPage .detailPagePrimaryContainer {
-        position: relative !important;
-        z-index: 2 !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-content: space-between !important;
-        align-items: center !important;
-        justify-content: end !important;
-        min-height: 0 !important;
-        width: auto !important;
-        max-width: none !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        overflow: visible !important;
-        text-align: left !important;
-        background: transparent !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailPagePrimaryContainer > .detailPagePrimaryContent,
-    .layout-desktop #itemDetailPage [dir="ltr"] .detailPagePrimaryContainer > .detailRibbon,
-    .layout-desktop #itemDetailPage [dir="ltr"] .detailPagePrimaryContainer.detailRibbon,
-    body.layout-desktop #itemDetailPage .detailPagePrimaryContainer > .detailPagePrimaryContent,
-    body.layout-desktop #itemDetailPage [dir="ltr"] .detailPagePrimaryContainer > .detailRibbon,
-    body.layout-desktop #itemDetailPage [dir="ltr"] .detailPagePrimaryContainer.detailRibbon {
-        padding-left: var(--sidePadding) !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailPagePrimaryContent,
-    body.layout-desktop #itemDetailPage .detailPagePrimaryContent {
-        position: static !important;
-        left: auto !important;
-        bottom: auto !important;
-        display: block !important;
-        width: auto !important;
-        max-width: none !important;
-        margin: 0 !important;
-        padding-top: 0 !important;
-        background: transparent !important;
-        z-index: 3 !important;
-    }
-
-    .layout-desktop #itemDetailPage .itemBackdrop,
-    body.layout-desktop #itemDetailPage .itemBackdrop {
-        display: block !important;
-        position: relative !important;
-        inset: auto !important;
-        width: 100% !important;
-        height: calc(100vh - 27vh - var(--primaryItemPageNegativeSpace)) !important;
-        min-height: 0 !important;
-        max-height: none !important;
-        margin: 0 !important;
-        opacity: 1 !important;
-        overflow: hidden !important;
-        pointer-events: none !important;
-        filter: saturate(108%) brightness(74%) contrast(104%) !important;
-        background-size: cover !important;
-        background-position: center center !important;
-    }
-
-    .layout-desktop #itemDetailPage .itemBackdrop::before,
-    .layout-desktop #itemDetailPage .itemBackdrop::after,
-    body.layout-desktop #itemDetailPage .itemBackdrop::before,
-    body.layout-desktop #itemDetailPage .itemBackdrop::after {
-        content: "" !important;
-        position: absolute !important;
-        inset: 0 !important;
-        pointer-events: none !important;
-    }
-
-    .layout-desktop #itemDetailPage .itemBackdrop::before,
-    body.layout-desktop #itemDetailPage .itemBackdrop::before {
-        background: linear-gradient(90deg, rgba(0, 0, 0, 0.66), rgba(0, 0, 0, 0.22) 42%, rgba(0, 0, 0, 0.42)) !important;
-    }
-
-    .layout-desktop #itemDetailPage .itemBackdrop::after,
-    body.layout-desktop #itemDetailPage .itemBackdrop::after {
-        background: linear-gradient(180deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.18) 52%, rgba(0, 0, 0, 0.82) 88%, #050505 100%) !important;
-    }
-
-    #itemDetailPage:has(.subtitle) .itemBackdrop,
-    #itemDetailPage:has(.musicParentName) .itemBackdrop,
-    #itemDetailPage:has(.detailImageContainer .backdropCard) .itemBackdrop,
-    #itemDetailPage:has(.detailImageContainer .person) .itemBackdrop,
-    #itemDetailPage:has(.detailImageContainer .queue) .itemBackdrop,
-    #itemDetailPage:has(.detailImageContainer .book) .itemBackdrop,
-    #itemDetailPage:has(.detailImageContainer .live_tv) .itemBackdrop {
-        height: calc(100vh - 27vh - var(--secondaryItemPageNegativeSpace)) !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailLogo,
-    body.layout-desktop #itemDetailPage .detailLogo {
-        display: var(--clearLogoVisibility, block) !important;
-        position: absolute !important;
-        top: calc(100vh - var(--clearLogoBottomSpace) - var(--primaryItemPageNegativeSpace)) !important;
-        left: 0 !important;
-        width: 40% !important;
-        height: 25vh !important;
-        margin: auto 30% !important;
-        transform: translateY(-100%) !important;
-        background-position: bottom !important;
-        background-size: contain !important;
-        z-index: 3 !important;
-        filter: drop-shadow(0 14px 34px rgba(0, 0, 0, 0.74)) !important;
-        pointer-events: none !important;
-    }
-
-    .layout-desktop #itemDetailPage:has(.subtitle) .detailLogo,
-    body.layout-desktop #itemDetailPage:has(.subtitle) .detailLogo {
-        top: calc(100vh - 6em - var(--secondaryItemPageNegativeSpace)) !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1,
-    body.layout-desktop #itemDetailPage .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1 {
-        display: var(--itemTitleVisibility, none) !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailLogo.hide ~ .detailPageWrapperContainer .nameContainer h1,
-    .layout-desktop #itemDetailPage .detailImageContainer:has(.backdropCard, .squareCard) ~ .nameContainer h1,
-    body.layout-desktop #itemDetailPage .detailLogo.hide ~ .detailPageWrapperContainer .nameContainer h1,
-    body.layout-desktop #itemDetailPage .detailImageContainer:has(.backdropCard, .squareCard) ~ .nameContainer h1 {
-        display: block !important;
-    }
-
-    .layout-desktop #itemDetailPage .itemName.infoText,
-    .layout-desktop #itemDetailPage .itemName.infoText.parentNameLast,
-    .layout-desktop #itemDetailPage .nameContainer .itemName,
-    body.layout-desktop #itemDetailPage .itemName.infoText,
-    body.layout-desktop #itemDetailPage .itemName.infoText.parentNameLast,
-    body.layout-desktop #itemDetailPage .nameContainer .itemName {
-        max-width: min(860px, 58vw) !important;
-        margin: 0 auto 0.55rem !important;
-        color: rgba(255, 255, 255, 0.96) !important;
-        font-size: clamp(3rem, 5vw, 5.6rem) !important;
-        line-height: 0.96 !important;
-        font-weight: 700 !important;
-        letter-spacing: 0 !important;
-        text-align: center !important;
-        text-shadow: 0 16px 44px rgba(0, 0, 0, 0.78) !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailImageContainer,
-    body.layout-desktop #itemDetailPage .detailImageContainer {
-        display: block !important;
-        visibility: visible !important;
-        position: static !important;
-        width: auto !important;
-        max-width: none !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        opacity: 1 !important;
-        pointer-events: auto !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailImageContainer .card,
-    body.layout-desktop #itemDetailPage .detailImageContainer .card {
-        display: none !important;
-        position: relative !important;
-        width: 22vh !important;
-        float: none !important;
-        left: 0 !important;
-        top: 0 !important;
-        right: 0 !important;
-        margin: auto auto 0 !important;
-        place-self: center !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailImageContainer > .backdropCard,
-    .layout-desktop #itemDetailPage .detailImageContainer > .squareCard,
-    .layout-desktop #itemDetailPage .detailImageContainer > .card:has(.book),
-    .layout-desktop #itemDetailPage .detailImageContainer > .card:has(.person),
-    .layout-desktop #itemDetailPage .detailImageContainer > .card:has(.album),
-    .layout-desktop #itemDetailPage .detailImageContainer > .card:has(.queue),
-    .layout-desktop #itemDetailPage .detailImageContainer > .card:has(.live_tv),
-    body.layout-desktop #itemDetailPage .detailImageContainer > .backdropCard,
-    body.layout-desktop #itemDetailPage .detailImageContainer > .squareCard,
-    body.layout-desktop #itemDetailPage .detailImageContainer > .card:has(.book),
-    body.layout-desktop #itemDetailPage .detailImageContainer > .card:has(.person),
-    body.layout-desktop #itemDetailPage .detailImageContainer > .card:has(.album),
-    body.layout-desktop #itemDetailPage .detailImageContainer > .card:has(.queue),
-    body.layout-desktop #itemDetailPage .detailImageContainer > .card:has(.live_tv) {
-        display: block !important;
-    }
-
-    .layout-desktop #itemDetailPage .infoWrapper,
-    body.layout-desktop #itemDetailPage .infoWrapper {
-        display: grid !important;
-        place-items: center !important;
-        align-content: end !important;
-        text-align: center !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailRibbon,
-    body.layout-desktop #itemDetailPage .detailRibbon {
-        position: static !important;
-        left: auto !important;
-        bottom: auto !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
-        width: auto !important;
-        max-width: none !important;
-        height: 100% !important;
-        min-height: 25vh !important;
-        margin-top: unset !important;
-        padding: 0 var(--sidePadding) !important;
-        gap: 0.85rem !important;
-        border: 0 !important;
-        background: transparent !important;
-        -webkit-backdrop-filter: none !important;
-        backdrop-filter: none !important;
-        box-shadow: none !important;
-        pointer-events: auto !important;
-        z-index: 3 !important;
-    }
-
-    .layout-desktop #itemDetailPage .itemMiscInfo,
-    .layout-desktop #itemDetailPage .itemMiscInfoPrimary,
-    .layout-desktop #itemDetailPage .itemMiscInfo-primary,
-    body.layout-desktop #itemDetailPage .itemMiscInfo,
-    body.layout-desktop #itemDetailPage .itemMiscInfoPrimary,
-    body.layout-desktop #itemDetailPage .itemMiscInfo-primary {
-        display: flex !important;
-        flex-wrap: wrap !important;
-        align-items: center !important;
-        justify-content: center !important;
-        gap: 0.5em !important;
-        width: auto !important;
-        max-width: min(900px, 76vw) !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-
-    .layout-desktop #itemDetailPage .itemMiscInfo > *,
-    .layout-desktop #itemDetailPage .mediaInfoCriticRating,
-    .layout-desktop #itemDetailPage .starRatingContainer,
-    .layout-desktop #itemDetailPage .officialRating,
-    body.layout-desktop #itemDetailPage .itemMiscInfo > *,
-    body.layout-desktop #itemDetailPage .mediaInfoCriticRating,
-    body.layout-desktop #itemDetailPage .starRatingContainer,
-    body.layout-desktop #itemDetailPage .officialRating {
-        display: inline-flex !important;
-        align-items: center !important;
-        min-height: 30px !important;
-        margin: 0 !important;
-        padding: 5px 11px !important;
-        border: 1px solid rgba(255, 255, 255, 0.16) !important;
-        border-radius: 999px !important;
-        background: rgba(22, 22, 22, 0.52) !important;
-        color: rgba(255, 255, 255, 0.88) !important;
-        -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
-        backdrop-filter: blur(20px) saturate(180%) !important;
-        font-weight: 600 !important;
-        line-height: 1 !important;
-    }
-
-    .layout-desktop #itemDetailPage .mainDetailButtons,
-    body.layout-desktop #itemDetailPage .mainDetailButtons {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        flex-wrap: wrap !important;
-        gap: 0.75rem !important;
-        width: auto !important;
-        max-width: min(900px, 76vw) !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        pointer-events: auto !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailButton:not(.btnPlay),
-    body.layout-desktop #itemDetailPage .detailButton:not(.btnPlay) {
-        width: 52px !important;
-        height: 52px !important;
-        min-width: 52px !important;
-        min-height: 52px !important;
-        margin: 0 !important;
-        padding: 0.6em !important;
-        border-radius: 50% !important;
-        border: 1px solid rgba(255, 255, 255, 0.16) !important;
-        background: rgba(255, 255, 255, 0.14) !important;
-        color: rgba(255, 255, 255, 0.95) !important;
-        -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
-        backdrop-filter: blur(24px) saturate(180%) !important;
-        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4) !important;
-    }
-
-    .layout-desktop #itemDetailPage .btnPlay.detailButton,
-    body.layout-desktop #itemDetailPage .btnPlay.detailButton {
-        width: auto !important;
-        min-width: 10em !important;
-        height: 3.25em !important;
-        min-height: 3.25em !important;
-        margin: 0 0.35em 0 0 !important;
-        padding: 0 2em !important;
-        border-radius: 3em !important;
-        border-color: rgba(255, 255, 255, 0.72) !important;
-        background: rgba(255, 255, 255, 0.96) !important;
-        color: #050505 !important;
-        font-weight: 700 !important;
-        flex-direction: row !important;
-        box-shadow: 0 18px 42px rgba(0, 0, 0, 0.44) !important;
-    }
-
-    .layout-desktop #itemDetailPage .btnPlay:not(.formDialogFooterItem):not(.play-button)::after,
-    body.layout-desktop #itemDetailPage .btnPlay:not(.formDialogFooterItem):not(.play-button)::after {
-        content: attr(title) !important;
-        padding: 0 1ch !important;
-    }
-
-    .layout-desktop #itemDetailPage .btnPlay > .detailButton-content,
-    body.layout-desktop #itemDetailPage .btnPlay > .detailButton-content {
-        display: flex !important;
-        flex-direction: row !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailButton:hover,
-    .layout-desktop #itemDetailPage .detailButton:focus,
-    body.layout-desktop #itemDetailPage .detailButton:hover,
-    body.layout-desktop #itemDetailPage .detailButton:focus {
-        transform: scale(1.08) !important;
-        background: #fff !important;
-        color: #000 !important;
-        box-shadow: var(--tvos-focus-shadow) !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailPageContent,
-    body.layout-desktop #itemDetailPage .detailPageContent {
-        position: static !important;
-        left: auto !important;
-        bottom: auto !important;
-        display: block !important;
-        width: auto !important;
-        max-width: none !important;
-        margin: 0 !important;
-        padding: 0 var(--sidePadding) 5rem !important;
-        gap: 1em !important;
-        border: 0 !important;
-        background: transparent !important;
-        -webkit-backdrop-filter: none !important;
-        backdrop-filter: none !important;
-        box-shadow: none !important;
-        overflow: visible !important;
-        pointer-events: auto !important;
-        z-index: 2 !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailSection,
-    body.layout-desktop #itemDetailPage .detailSection {
-        display: grid !important;
-        grid-template-columns: 25% 1fr 1fr 1fr !important;
-        row-gap: 1em !important;
-        column-gap: 3em !important;
-        max-width: unset !important;
-        margin-bottom: 1.5em !important;
-        pointer-events: auto !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailSectionContent,
-    body.layout-desktop #itemDetailPage .detailSectionContent {
-        display: grid !important;
-        align-content: end !important;
-        min-height: 16vh !important;
-        order: 1 !important;
-        grid-column: 1 / -1 !important;
-        pointer-events: auto !important;
-    }
-
-    .layout-desktop #itemDetailPage .overview,
-    .layout-desktop #itemDetailPage .itemOverview,
-    .layout-desktop #itemDetailPage .detailPageContent p,
-    body.layout-desktop #itemDetailPage .overview,
-    body.layout-desktop #itemDetailPage .itemOverview,
-    body.layout-desktop #itemDetailPage .detailPageContent p {
-        display: block !important;
-        width: auto !important;
-        max-width: min(980px, 78vw) !important;
-        margin: 0 !important;
-        color: rgba(255, 255, 255, 0.82) !important;
-        font-size: clamp(1rem, 1.05vw, 1.18rem) !important;
-        font-weight: 500 !important;
-        line-height: 1.5 !important;
-        text-shadow: 0 10px 26px rgba(0, 0, 0, 0.66) !important;
-        -webkit-line-clamp: unset !important;
-        -webkit-box-orient: unset !important;
-        overflow: visible !important;
-        pointer-events: auto !important;
-    }
-
-    .layout-desktop #itemDetailPage .trackSelections,
-    body.layout-desktop #itemDetailPage .trackSelections {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        order: 3 !important;
-        grid-column: 3 / 5 !important;
-        max-width: unset !important;
-        margin-top: 1em !important;
-        padding: 1em !important;
-        border: var(--defaultBorder) !important;
-        border-radius: 14px !important;
-        background: rgba(30, 30, 30, 0.58) !important;
-        -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
-        backdrop-filter: blur(20px) saturate(180%) !important;
-        pointer-events: auto !important;
-    }
-
-    .layout-desktop #itemDetailPage .trackSelections .selectContainer,
-    .layout-desktop #itemDetailPage .detailTrackSelect,
-    body.layout-desktop #itemDetailPage .trackSelections .selectContainer,
-    body.layout-desktop #itemDetailPage .detailTrackSelect {
-        display: flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        pointer-events: auto !important;
-        max-width: unset !important;
-        align-items: baseline !important;
-    }
-
-    .layout-desktop #itemDetailPage .itemDetailsGroup,
-    body.layout-desktop #itemDetailPage .itemDetailsGroup {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        order: 2 !important;
-        grid-column: 1 / 3 !important;
-        margin-top: 1em !important;
-        overflow: hidden !important;
-        border: 0 !important;
-        border-radius: 14px !important;
-        background: rgba(30, 30, 30, 0.58) !important;
-        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14) !important;
-        pointer-events: auto !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailsGroupItem,
-    body.layout-desktop #itemDetailPage .detailsGroupItem {
-        max-width: unset !important;
-        margin: 0 !important;
-        padding: 0.5em 0.9em !important;
-        justify-content: space-between !important;
-        align-items: baseline !important;
-    }
-
-    .layout-desktop #itemDetailPage .detailsGroupItem:not(:last-child),
-    body.layout-desktop #itemDetailPage .detailsGroupItem:not(:last-child) {
-        border-bottom: var(--defaultBorder) !important;
-    }
-
-    .layout-desktop #itemDetailPage .verticalSection,
-    .layout-desktop #itemDetailPage #scenesCollapsible,
-    .layout-desktop #itemDetailPage #similarCollapsible,
-    .layout-desktop #itemDetailPage .moreFromSeasonSection,
-    body.layout-desktop #itemDetailPage .verticalSection,
-    body.layout-desktop #itemDetailPage #scenesCollapsible,
-    body.layout-desktop #itemDetailPage #similarCollapsible,
-    body.layout-desktop #itemDetailPage .moreFromSeasonSection {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        position: relative !important;
-        z-index: 3 !important;
-        width: auto !important;
-        max-width: none !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        overflow: visible !important;
-        pointer-events: auto !important;
-    }
-
-    .layout-desktop #itemDetailPage .emby-scroller-container,
-    .layout-desktop #itemDetailPage .emby-scroller,
-    .layout-desktop #itemDetailPage .scrollX,
-    body.layout-desktop #itemDetailPage .emby-scroller-container,
-    body.layout-desktop #itemDetailPage .emby-scroller,
-    body.layout-desktop #itemDetailPage .scrollX {
-        margin: 0 calc(-1 * var(--sidePadding)) !important;
-        padding: 0 var(--sidePadding) !important;
-        padding-left: calc(var(--sidePadding) - 0.375em) !important;
-        overflow-x: auto !important;
-        overflow-y: visible !important;
-        pointer-events: auto !important;
-    }
-
-    .layout-desktop #itemDetailPage .itemsContainer,
-    .layout-desktop #itemDetailPage .emby-scrollbuttons,
-    .layout-desktop #itemDetailPage .emby-scrollbuttons-button,
-    body.layout-desktop #itemDetailPage .itemsContainer,
-    body.layout-desktop #itemDetailPage .emby-scrollbuttons,
-    body.layout-desktop #itemDetailPage .emby-scrollbuttons-button {
-        pointer-events: auto !important;
-    }
-}
-

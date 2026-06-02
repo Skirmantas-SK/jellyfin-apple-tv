@@ -2743,26 +2743,45 @@ body.layout-desktop:has(#itemDetailPage) .skinHeader-withBackground.semiTranspar
 
 body.layout-desktop:has(#itemDetailPage) .backgroundContainer,
 body.layout-desktop:has(#itemDetailPage) .backgroundContainer.withBackdrop,
+body.layout-desktop:has(#itemDetailPage) .backdropContainer,
 body.layout-desktop:has(#itemDetailPage) .backdropImage,
 body:has(#itemDetailPage) .backgroundContainer,
 body:has(#itemDetailPage) .backgroundContainer.withBackdrop,
+body:has(#itemDetailPage) .backdropContainer,
 body:has(#itemDetailPage) .backdropImage {
+    display: block !important;
     position: fixed !important;
     inset: 0 !important;
+    z-index: 0 !important;
     width: 100vw !important;
     height: 100vh !important;
+    visibility: visible !important;
     opacity: 1 !important;
     pointer-events: none !important;
     background-color: transparent !important;
     background-size: cover !important;
     background-position: center top !important;
-    filter: saturate(112%) brightness(102%) contrast(104%) !important;
-    -webkit-filter: saturate(112%) brightness(102%) contrast(104%) !important;
+    object-fit: cover !important;
+    filter: saturate(120%) brightness(118%) contrast(106%) !important;
+    -webkit-filter: saturate(120%) brightness(118%) contrast(106%) !important;
+}
+
+body.layout-desktop:has(#itemDetailPage) .backgroundContainer::before,
+body.layout-desktop:has(#itemDetailPage) .backgroundContainer::after,
+body.layout-desktop:has(#itemDetailPage) .backdropContainer::before,
+body.layout-desktop:has(#itemDetailPage) .backdropContainer::after,
+body:has(#itemDetailPage) .backgroundContainer::before,
+body:has(#itemDetailPage) .backgroundContainer::after,
+body:has(#itemDetailPage) .backdropContainer::before,
+body:has(#itemDetailPage) .backdropContainer::after {
+    display: none !important;
+    content: none !important;
 }
 
 .layout-desktop #itemDetailPage,
 body.layout-desktop #itemDetailPage {
     position: relative !important;
+    z-index: 1 !important;
     min-height: 100vh !important;
     overflow: visible !important;
     background: transparent !important;

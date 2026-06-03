@@ -27,6 +27,7 @@ THEME_FILES=(
     "scripts/spotlight/spotlight.html"
     "scripts/spotlight/spotlight.css"
     "scripts/spotlight/home-html.chunk.js"
+    "scripts/player/tvos-player.js"
 )
 
 log() { echo "**** [abyss-tvos] $* ****"; }
@@ -59,7 +60,7 @@ download_theme_files() {
 install_ui_files() {
     mkdir -p "$UI_DIR"
 
-    for f in abyss.css spotlight.html spotlight.css; do
+    for f in abyss.css spotlight.html spotlight.css tvos-player.js; do
         src="${STAGE_DIR}/${f}"
         dest="${UI_DIR}/${f}"
 
@@ -201,16 +202,20 @@ from pathlib import Path
 path = Path(os.environ["INDEX_FILE"])
 cache = os.environ["THEME_CACHE_BUSTER"]
 marker = "abyss-tvos-css"
+script_marker = "abyss-tvos-player-js"
 link = f'<link id="{marker}" rel="stylesheet" href="/web/ui/abyss.css?v={cache}">'
+script = f'<script id="{script_marker}" defer src="/web/ui/tvos-player.js?v={cache}"></script>'
 
 html = path.read_text(encoding="utf-8")
 html = re.sub(r'\s*<link[^>]+id=["\']abyss-tvos-css["\'][^>]*>\s*', "\n", html, flags=re.I)
 html = re.sub(r'\s*<link[^>]+href=["\']/web/ui/abyss\.css[^"\']*["\'][^>]*>\s*', "\n", html, flags=re.I)
+html = re.sub(r'\s*<script[^>]+id=["\']abyss-tvos-player-js["\'][^>]*>\s*</script>\s*', "\n", html, flags=re.I)
+html = re.sub(r'\s*<script[^>]+src=["\']/web/ui/tvos-player\.js[^"\']*["\'][^>]*>\s*</script>\s*', "\n", html, flags=re.I)
 
 if "</head>" in html:
-    html = html.replace("</head>", f"  {link}\n</head>", 1)
+    html = html.replace("</head>", f"  {link}\n  {script}\n</head>", 1)
 else:
-    html = f"{link}\n{html}"
+    html = f"{link}\n{script}\n{html}"
 
 path.write_text(html, encoding="utf-8")
 PY
@@ -222,17 +227,23 @@ patch_index_css_link_with_sed() {
     sed \
         -e '/id=["'\'']abyss-tvos-css["'\'']/d' \
         -e '/href=["'\'']\/web\/ui\/abyss\.css/d' \
+        -e '/id=["'\'']abyss-tvos-player-js["'\'']/d' \
+        -e '/src=["'\'']\/web\/ui\/tvos-player\.js/d' \
         "$INDEX_FILE" > "$tmp_file"
 
-    awk -v link="<link id=\"abyss-tvos-css\" rel=\"stylesheet\" href=\"/web/ui/abyss.css?v=${THEME_CACHE_BUSTER}\">" '
+    awk \
+        -v link="<link id=\"abyss-tvos-css\" rel=\"stylesheet\" href=\"/web/ui/abyss.css?v=${THEME_CACHE_BUSTER}\">" \
+        -v script="<script id=\"abyss-tvos-player-js\" defer src=\"/web/ui/tvos-player.js?v=${THEME_CACHE_BUSTER}\"></script>" '
         /<\/head>/ && inserted == 0 {
             print "  " link
+            print "  " script
             inserted = 1
         }
         { print }
         END {
             if (inserted == 0) {
                 print link
+                print script
             }
         }
     ' "$tmp_file" > "${tmp_file}.patched"
@@ -253,7 +264,7 @@ patch_index_css_link() {
         patch_index_css_link_with_sed
     fi
 
-    log "Patched: index.html direct cache-busted Abyss stylesheet link"
+    log "Patched: index.html direct cache-busted Abyss stylesheet and player helper"
 }
 
 patch_home_chunk() {

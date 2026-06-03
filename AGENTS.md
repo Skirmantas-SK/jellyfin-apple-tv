@@ -47,6 +47,7 @@ Installed theme files live inside the container at:
 /usr/share/jellyfin/web/ui/abyss.css
 /usr/share/jellyfin/web/ui/spotlight.html
 /usr/share/jellyfin/web/ui/spotlight.css
+/usr/share/jellyfin/web/ui/tvos-player.js
 ```
 
 The injected home chunk lives at:
@@ -62,9 +63,11 @@ The Docker installer is `scripts/docker/abyss-spotlight.sh`. It is designed for 
 The script:
 
 - Downloads `abyss.css`, `spotlight.html`, `spotlight.css`, and `home-html.chunk.js` from `REPO` and `BRANCH`.
+- Downloads `tvos-player.js`, which provides the tvOS-style quiet seek overlay during playback.
 - Installs UI files into `/usr/share/jellyfin/web/ui`.
 - Updates `/config/config/branding.xml` while preserving other branding fields.
 - Adds a cache-busted direct stylesheet link to `/usr/share/jellyfin/web/index.html`.
+- Adds a cache-busted `tvos-player.js` script tag to `/usr/share/jellyfin/web/index.html`.
 - Patches `home-html.*.chunk.js` on every container start.
 - Creates a `.bak` for the original home chunk once.
 - Verifies that installed `abyss.css` contains the expected marker.
@@ -238,7 +241,7 @@ Important lessons:
 
 - Do not use `position: fixed` for `.detailLogo`; it follows the user while scrolling.
 - Do not force `.detailImageContainer .card` visible for movie detail pages. It can create duplicate poster images over text.
-- Episode pages can render duplicate landscape art in `.detailImageContainer`. There are two known forms: multiple direct `.backdropCard` siblings, and a direct `.cardImageContainer.coveredImage.cardContent` sibling beside `.cardBox` inside one `.backdropCard` or `.detailImageContainer`. Hide sibling `.backdropCard ~ .backdropCard`; if both `.cardImageContainer.coveredImage.cardContent` and `.cardBox` exist at the same level, collapse one of them with a page-scoped hard hide.
+- Episode pages can render duplicate landscape art in `.detailImageContainer`. There are two known forms: multiple direct `.backdropCard` siblings, and a direct `.cardImageContainer.coveredImage.cardContent` sibling beside `.cardBox` inside one `.backdropCard` or `.detailImageContainer`. Hide sibling `.backdropCard ~ .backdropCard`; if this still leaves duplicate episode thumbnails, collapse the whole detail image strip with `.detailImageContainer:has(.backdropCard)` and `.detailImageContainer:has(.cardImageContainer.coveredImage.cardContent)`. In this full-backdrop layout, the hero art is already present and the small episode thumbnail strip is expendable.
 - Do not globally restore `.verticalSection`; it can resurrect hidden schedule/program-guide sections.
 - `Schedule` on detail pages came from Jellyfin's schedule/program guide blocks being forced visible. The fix was to exclude and hide:
 
@@ -344,7 +347,7 @@ Rules for player safety:
 - Do not give global `.backgroundContainer`, `.backdropImage`, or overlay rules that affect the video player.
 - Keep OSD styling scoped to player controls only.
 - If TV episodes play audio with controls but no picture, check whether `#itemDetailPage` remains in the DOM above the player. Suppress `#itemDetailPage` and its backdrop when `.videoPlayerContainer-onTop`, `#videoOsdPage`, `#videoDialog`, or `.videoOsdBottom` is active, and raise the actual player container above detail-page z-indexes. Do not force `video` or `canvas` to `position: fixed` or a black background; that can cover the decoded picture or OSD. Jellyfin's HTML player already uses a fixed `.videoPlayerContainer` and raises it with `.videoPlayerContainer-onTop`.
-- To make seek forward/back feel more like tvOS, CSS can hide passive `.videoOsdBottom` and `.osdHeader` unless they are hovered or focused. This does not stop Jellyfin's JavaScript from toggling OSD state, but it prevents the full controls from visually popping up during remote/keyboard seek actions while keeping the player layers safe.
+- To make seek forward/back feel more like tvOS, CSS alone is not enough because Jellyfin's JavaScript wakes the OSD. Use `/web/ui/tvos-player.js`: it listens on `window` in capture phase, intercepts left/right seek keys and `.btnRewind` / `.btnFastForward` clicks while a video player is active, updates `video.currentTime` by 15 seconds, adds `body.tvos-seeking`, and shows `#abyss-tvos-seek-overlay`. CSS then hides `.videoOsdBottom`, `.nowPlayingBar`, `.osdControls`, and `.osdHeader` while `body.tvos-seeking` is present.
 - If fixing detail pages, verify playback afterward.
 
 ## Cache And Verification

@@ -3162,6 +3162,27 @@ body.layout-desktop #itemDetailPage .detailImageContainer > .backdropCard > .car
     display: none !important;
 }
 
+/* tvOS Detail Image Container Duplicate Removal */
+.layout-desktop #itemDetailPage .detailImageContainer:has(.backdropCard),
+.layout-desktop #itemDetailPage .detailImageContainer:has(.cardImageContainer.coveredImage.cardContent),
+body.layout-desktop #itemDetailPage .detailImageContainer:has(.backdropCard),
+body.layout-desktop #itemDetailPage .detailImageContainer:has(.cardImageContainer.coveredImage.cardContent) {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    max-width: 0 !important;
+    max-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+}
+
 .layout-desktop #itemDetailPage .infoWrapper,
 body.layout-desktop #itemDetailPage .infoWrapper {
     display: grid !important;
@@ -4304,6 +4325,19 @@ body:has(#videoDialog) .nowPlayingBar {
 }
 
 /* tvOS Quiet Seek OSD */
+body.tvos-seeking #videoOsdPage .videoOsdBottom,
+body.tvos-seeking .videoOsdPage .videoOsdBottom,
+body.tvos-seeking #videoOsdPage .osdControls,
+body.tvos-seeking .videoOsdPage .osdControls,
+body.tvos-seeking #videoOsdPage .nowPlayingBar,
+body.tvos-seeking .videoOsdPage .nowPlayingBar,
+body.tvos-seeking #videoOsdPage .osdHeader,
+body.tvos-seeking .videoOsdPage .osdHeader {
+    opacity: 0 !important;
+    transform: translateY(18px) !important;
+    pointer-events: none !important;
+}
+
 #videoOsdPage .videoOsdBottom:not(:hover):not(:focus-within),
 .videoOsdPage .videoOsdBottom:not(:hover):not(:focus-within) {
     opacity: 0 !important;
@@ -4340,6 +4374,60 @@ body:has(#videoDialog) .nowPlayingBar {
 .videoOsdPage .osdHeader:focus-within {
     opacity: 1 !important;
     transform: none !important;
+}
+
+#abyss-tvos-seek-overlay {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    z-index: 100060 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 7.4rem !important;
+    min-height: 4.6rem !important;
+    padding: 0.7rem 1.35rem !important;
+    border-radius: 999px !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    background: rgba(28, 28, 30, 0.72) !important;
+    color: rgba(255, 255, 255, 0.96) !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+    font-size: clamp(1.6rem, 3.2vw, 3.1rem) !important;
+    font-weight: 700 !important;
+    letter-spacing: 0 !important;
+    line-height: 1 !important;
+    text-align: center !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+    transform: translate(-50%, -50%) scale(0.86) !important;
+    -webkit-backdrop-filter: blur(32px) saturate(185%) !important;
+    backdrop-filter: blur(32px) saturate(185%) !important;
+    box-shadow:
+        0 28px 70px rgba(0, 0, 0, 0.62),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18) !important;
+}
+
+#abyss-tvos-seek-overlay.is-visible {
+    animation: abyss-tvos-seek-pop 0.86s cubic-bezier(0.33, 1, 0.68, 1) both !important;
+}
+
+@keyframes abyss-tvos-seek-pop {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.82);
+    }
+    14% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    72% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1.08);
+    }
 }
 
 body:has(.videoPlayerContainer-onTop) .toast,

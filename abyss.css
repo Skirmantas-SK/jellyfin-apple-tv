@@ -2816,8 +2816,8 @@ body:has(#itemDetailPage) .backdropImage {
     box-shadow: none !important;
     -webkit-backdrop-filter: none !important;
     backdrop-filter: none !important;
-    filter: saturate(106%) brightness(92%) contrast(102%) !important;
-    -webkit-filter: saturate(106%) brightness(92%) contrast(102%) !important;
+    filter: saturate(104%) brightness(84%) contrast(101%) !important;
+    -webkit-filter: saturate(104%) brightness(84%) contrast(101%) !important;
 }
 
 body.layout-desktop:has(#itemDetailPage) .backgroundContainer::before,
@@ -2909,8 +2909,8 @@ body.layout-desktop #itemDetailPage .itemBackdrop {
     opacity: 0 !important;
     overflow: hidden !important;
     pointer-events: none !important;
-    filter: saturate(106%) brightness(92%) contrast(102%) !important;
-    -webkit-filter: saturate(106%) brightness(92%) contrast(102%) !important;
+    filter: saturate(104%) brightness(84%) contrast(101%) !important;
+    -webkit-filter: saturate(104%) brightness(84%) contrast(101%) !important;
     background-size: cover !important;
     background-position: center top !important;
 }
@@ -3038,6 +3038,48 @@ body.layout-desktop #itemDetailPage .detailImageContainer > .card:has(.album),
 body.layout-desktop #itemDetailPage .detailImageContainer > .card:has(.queue),
 body.layout-desktop #itemDetailPage .detailImageContainer > .card:has(.live_tv) {
     display: block !important;
+}
+
+.layout-desktop #itemDetailPage .detailImageContainer > .backdropCard,
+body.layout-desktop #itemDetailPage .detailImageContainer > .backdropCard {
+    width: clamp(178px, 13.5vw, 252px) !important;
+    min-width: clamp(178px, 13.5vw, 252px) !important;
+    max-width: clamp(178px, 13.5vw, 252px) !important;
+    margin: 0.35rem 0 0.2rem var(--detailContentOffset, 64px) !important;
+    border-radius: 18px !important;
+    overflow: hidden !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    box-shadow:
+        0 22px 48px rgba(0, 0, 0, 0.48),
+        inset 0 1px 0 rgba(255, 255, 255, 0.14) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+}
+
+.layout-desktop #itemDetailPage .detailImageContainer > .backdropCard .cardImageContainer,
+.layout-desktop #itemDetailPage .detailImageContainer > .backdropCard .cardContent,
+body.layout-desktop #itemDetailPage .detailImageContainer > .backdropCard .cardImageContainer,
+body.layout-desktop #itemDetailPage .detailImageContainer > .backdropCard .cardContent {
+    border-radius: 18px !important;
+    aspect-ratio: 16 / 9 !important;
+    overflow: hidden !important;
+}
+
+.layout-desktop #itemDetailPage .detailImageContainer > .backdropCard ~ .backdropCard,
+body.layout-desktop #itemDetailPage .detailImageContainer > .backdropCard ~ .backdropCard {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    max-width: 0 !important;
+    max-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
 }
 
 .layout-desktop #itemDetailPage .infoWrapper,
@@ -4012,7 +4054,28 @@ body.layout-desktop #itemDetailPage .scrollX::-webkit-scrollbar-thumb {
 
 #videoOsdPage,
 .videoOsdPage {
-    background: transparent !important;
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 10000 !important;
+    overflow: hidden !important;
+    background: #000 !important;
+    isolation: isolate !important;
+}
+
+body:has(#videoOsdPage) #itemDetailPage,
+body:has(.videoOsdBottom) #itemDetailPage,
+body:has(#videoOsdPage) #itemDetailPage::before,
+body:has(#videoOsdPage) #itemDetailPage::after,
+body:has(.videoOsdBottom) #itemDetailPage::before,
+body:has(.videoOsdBottom) #itemDetailPage::after,
+body:has(#videoOsdPage) #itemDetailPage .itemBackdrop,
+body:has(.videoOsdBottom) #itemDetailPage .itemBackdrop {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
 }
 
 body:has(#videoOsdPage) .backgroundContainer,
@@ -4043,12 +4106,33 @@ body:has(.videoOsdBottom) .videoPlayerContainer,
 body:has(.videoOsdBottom) .videoContainer,
 body:has(.videoOsdBottom) .playerVideo,
 body:has(.videoOsdBottom) canvas {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: none !important;
+    max-height: none !important;
+    z-index: 10001 !important;
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
+    object-fit: contain !important;
     filter: none !important;
     -webkit-filter: none !important;
     background: #000 !important;
+    transform: none !important;
+    pointer-events: auto !important;
+}
+
+body:has(#videoOsdPage) .videoOsdBottom,
+body:has(.videoOsdBottom) .videoOsdBottom,
+body:has(#videoOsdPage) .osdHeader,
+body:has(.videoOsdBottom) .osdHeader,
+body:has(#videoOsdPage) .osdControls,
+body:has(.videoOsdBottom) .osdControls,
+body:has(#videoOsdPage) .nowPlayingBar,
+body:has(.videoOsdBottom) .nowPlayingBar {
+    z-index: 10005 !important;
 }
 
 #videoOsdPage .skinHeader.osdHeader {

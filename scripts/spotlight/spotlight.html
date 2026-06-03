@@ -95,9 +95,146 @@
 				return span;
 			}
 
+			function getTopWindow() {
+				try { return window.top || window; }
+				catch { return window; }
+			}
+
+			function getCredentialServer() {
+				const stores = [];
+				try { stores.push(getTopWindow().localStorage); } catch { }
+				try { if (!stores.includes(localStorage)) stores.push(localStorage); } catch { }
+
+				for (const store of stores) {
+					try {
+						const creds = JSON.parse(store.getItem('jellyfin_credentials') || '{}');
+						const servers = creds?.Servers || [];
+						const server = servers.find(s => s?.AccessToken === token) || servers[0];
+						if (server) return server;
+					} catch { }
+				}
+
+				return null;
+			}
+
+			function getServerId() {
+				const server = getCredentialServer();
+				return server?.Id || server?.ServerId || '';
+			}
+
+			function buildRoute(path, params = {}) {
+				const search = new URLSearchParams();
+				const serverId = getServerId();
+				if (serverId) search.set('serverId', serverId);
+				Object.entries(params).forEach(([key, value]) => {
+					if (value !== undefined && value !== null && value !== '') search.set(key, value);
+				});
+				const query = search.toString();
+				return query ? `${path}?${query}` : path;
+			}
+
+			function buildDetailRoute(id) {
+				return buildRoute('/details', { id });
+			}
+
+			function buildVideoRoute(id) {
+				return buildRoute('/video', { id });
+			}
+
+			function normalizeHashRoute(route) {
+				if (route.startsWith('#')) return route;
+				return `#${route.startsWith('/') ? route : `/${route}`}`;
+			}
+
 			function navigateTo(route) {
-				try { window.top.location.hash = route; }
-				catch { window.location.hash = route; }
+				const target = getTopWindow();
+				const hashRoute = normalizeHashRoute(route);
+				const appRoute = hashRoute.slice(1);
+
+				try {
+					if (target.Emby?.Page?.show) {
+						target.Emby.Page.show(appRoute);
+						return;
+					}
+					if (target.AppRouter?.show) {
+						target.AppRouter.show(appRoute);
+						return;
+					}
+				} catch (err) {
+					console.warn('[Abyss Spotlight] App router navigation failed:', err);
+				}
+
+				try { target.location.hash = hashRoute; }
+				catch { window.location.hash = hashRoute; }
+			}
+
+			async function fetchJson(url) {
+				try {
+					const res = await fetch(url, { headers });
+					if (!res.ok) return null;
+					return await res.json();
+				} catch (err) {
+					console.warn('[Abyss Spotlight] API fetch failed:', err);
+					return null;
+				}
+			}
+
+			async function resolvePlayableId(item) {
+				if (item.Type === 'Movie' || item.Type === 'Episode') return item.Id;
+				if (item.Type !== 'Series') return item.Id;
+
+				const seriesId = encodeURIComponent(item.Id);
+				const user = encodeURIComponent(userId);
+				const nextUp = await fetchJson(`${base}/Shows/NextUp?UserId=${user}&SeriesId=${seriesId}&Limit=1&Fields=${FIELDS}`);
+				if (nextUp?.Items?.[0]?.Id) return nextUp.Items[0].Id;
+
+				const episodes = await fetchJson(`${base}/Shows/${seriesId}/Episodes?UserId=${user}&Limit=1&Fields=${FIELDS}&SortBy=ParentIndexNumber,IndexNumber`);
+				return episodes?.Items?.[0]?.Id || null;
+			}
+
+			function clickParentPlaybackAction(itemId) {
+				try {
+					const parentDoc = getTopWindow().document;
+					const escapedId = CSS.escape(itemId);
+					const actionBtn = parentDoc.querySelector(
+						`[data-id="${escapedId}"][data-action="resume"],` +
+						`[data-id="${escapedId}"] [data-action="resume"],` +
+						`[data-id="${escapedId}"][data-action="play"],` +
+						`[data-id="${escapedId}"] [data-action="play"]`
+					);
+					if (actionBtn) {
+						actionBtn.click();
+						return true;
+					}
+				} catch (err) {
+					console.warn('[Abyss Spotlight] Could not click parent playback action:', err);
+				}
+
+				return false;
+			}
+
+			async function startPlayback(item, fallbackDetailRoute) {
+				const playableId = await resolvePlayableId(item);
+				if (!playableId) {
+					navigateTo(fallbackDetailRoute);
+					return;
+				}
+
+				if (clickParentPlaybackAction(playableId)) return;
+
+				try {
+					const target = getTopWindow();
+					const manager = target.PlaybackManager || target.playbackManager;
+					const startPositionTicks = item.UserData?.PlaybackPositionTicks || item.PlaybackPositionTicks || 0;
+					if (manager?.play) {
+						await manager.play({ ids: [playableId], serverId: getServerId(), startPositionTicks });
+						return;
+					}
+				} catch (err) {
+					console.warn('[Abyss Spotlight] PlaybackManager failed:', err);
+				}
+
+				navigateTo(buildVideoRoute(playableId));
 			}
 
 			async function fetchImageBlob(url, headers) {
@@ -304,8 +441,7 @@
 				const isSeries = item.Type === 'Series';
 				const logoId = isEp ? (item.SeriesId || item.Id) : item.Id;
 				const detailId = isEp ? (item.SeriesId || item.Id) : item.Id;
-				const detailRoute = `/details?id=${detailId}`;
-				const playRoute = isSeries ? detailRoute : `/video?id=${item.Id}`;
+				const detailRoute = buildDetailRoute(detailId);
 
 				// Backdrop
 				const backdropImgEl = $('backdrop-img');
@@ -369,34 +505,17 @@
 				buttonsEl.innerHTML = '';
 
 				const playBtn = document.createElement('button');
+				playBtn.type = 'button';
 				playBtn.className = 'btn btn-play';
 				const isResume = item._source === 'resume';
 				const btnLabel = isResume
 					? (isEp ? `Continue ${episodePrefix}` : 'Resume')
-					: (isSeries ? 'View Series' : (isEp ? `Play ${episodePrefix}`.trim() : 'Play'));
+					: (isEp ? `Play ${episodePrefix}`.trim() : 'Play');
 				playBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M320-273v-414q0-17 12-28.5t28-11.5q5 0 10.5 1.5T381-721l326 207q9 6 13.5 15t4.5 19q0 10-4.5 19T707-446L381-239q-5 3-10.5 4.5T360-233q-16 0-28-11.5T320-273Z"/></svg>${btnLabel}`;
 
-				playBtn.onclick = e => {
+				playBtn.onclick = async e => {
 					e.preventDefault();
-					if (isSeries) { navigateTo(detailRoute); return; }
-					try {
-						const parentDoc = window.top.document;
-						// Try resume then play action buttons first
-						const actionBtn = parentDoc.querySelector(
-							`[data-id="${item.Id}"][data-action="resume"],` +
-							`[data-id="${item.Id}"] [data-action="resume"],` +
-							`[data-id="${item.Id}"][data-action="play"],` +
-							`[data-id="${item.Id}"] [data-action="play"]`
-						);
-						if (actionBtn) { actionBtn.click(); return; }
-						// Fallback: click the card
-						const card = parentDoc.querySelector(`[data-id="${item.Id}"]`);
-						if (card) { card.click(); return; }
-					} catch (err) {
-						console.warn('[Abyss Spotlight] Could not trigger playback:', err);
-					}
-					// Final fallback: navigate via hash
-					navigateTo(playRoute);
+					await startPlayback(item, detailRoute);
 				};
 				buttonsEl.appendChild(playBtn);
 

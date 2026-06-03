@@ -181,6 +181,7 @@ Important Spotlight visual behavior:
 - Glass info button.
 - Metadata pills are rounded glass capsules.
 - Background is dimmed, but not so blurred that the user cannot read the poster/backdrop.
+- Spotlight Play must target the parent Jellyfin app, not the iframe hash. Use a real `type="button"` button, resolve `serverId` from `jellyfin_credentials`, and route to `#/video?serverId=...&id=...` through Jellyfin's app router when available. For Series items, resolve a playable episode first with `Shows/NextUp` and then `Shows/{SeriesId}/Episodes` as fallback.
 
 ## My Media / Library Cards
 
@@ -237,6 +238,7 @@ Important lessons:
 
 - Do not use `position: fixed` for `.detailLogo`; it follows the user while scrolling.
 - Do not force `.detailImageContainer .card` visible for movie detail pages. It can create duplicate poster images over text.
+- Episode pages can render more than one landscape `.backdropCard` in `.detailImageContainer`. Keep the first `.backdropCard` as a small polished thumbnail and hide sibling `.backdropCard` entries so duplicate episode art does not stack.
 - Do not globally restore `.verticalSection`; it can resurrect hidden schedule/program-guide sections.
 - `Schedule` on detail pages came from Jellyfin's schedule/program guide blocks being forced visible. The fix was to exclude and hide:
 
@@ -341,6 +343,7 @@ Rules for player safety:
 - Do not apply item detail backdrop rules to `#videoOsdPage`.
 - Do not give global `.backgroundContainer`, `.backdropImage`, or overlay rules that affect the video player.
 - Keep OSD styling scoped to player controls only.
+- If TV episodes play audio with controls but no picture, check whether `#itemDetailPage` remains in the DOM above the player. Suppress `#itemDetailPage` and its backdrop when `#videoOsdPage` or `.videoOsdBottom` is active, and pin the actual video/container layer to the viewport above detail-page z-indexes.
 - If fixing detail pages, verify playback afterward.
 
 ## Cache And Verification
@@ -472,7 +475,7 @@ Follow-up 3: Detail overview text can get an "extra bump" if both a direct `.det
 
 Follow-up 4: If the full-screen movie artwork looks missing but the clear logo still appears, the backdrop is probably being rendered but buried by old `.backdropImage` filters or container overlays. Reset `body:has(#itemDetailPage) .backgroundContainer`, `.backdropContainer`, and `.backdropImage` with `display: block`, `visibility: visible`, `opacity: 1`, `object-fit/background-size: cover`, a bright non-blur filter, and keep that layer below `#itemDetailPage` with z-index.
 
-Follow-up 5: Do not over-brighten the restored backdrop. `brightness(118%)` can blow out light artwork and make whites look clipped. A safer detail-page grade is around `saturate(106%) brightness(92%) contrast(102%)`, with a long bottom fade instead of a hard black stop.
+Follow-up 5: Do not over-brighten the restored backdrop. `brightness(118%)` can blow out light artwork and make whites look clipped. A safer detail-page grade is around `saturate(104%) brightness(84%) contrast(101%)`, with a long bottom fade instead of a hard black stop.
 
 Follow-up 6: Do not put a second hero fade gradient on `.detailPageWrapperContainer`. That wrapper sits over the full-screen backdrop and creates a visible horizontal dark band across the lower artwork. Keep the wrapper background transparent and let `.itemBackdrop::after` own the hero-to-content fade.
 
@@ -489,3 +492,5 @@ Follow-up 11: If the user wants the gradient controlled by the backdrop layer, e
 Follow-up 12: Do not use `bottom: -100vh` on `.detailPageContent::before`. It hides backdrop bleed, but it also creates extra dead scroll space at the bottom of item detail pages. Use a short negative bottom such as `-4.5rem`, reduce `.detailPageContent` bottom padding, and extend the pseudo-element right edge past `--sidePadding` plus a small scrollbar gutter so the fixed backdrop cannot shine through beside the horizontal rail controls.
 
 Follow-up 13: If the far-right screen gutter shows the movie backdrop, check the global scrollbar rules before adding masks or forced scrollbar styling. The practical fix is the dark-theme pattern `* { scrollbar-width: none; }`; in `abyss.css`, pair that with `::-webkit-scrollbar { width: 0; height: 0; }` so Chromium also removes the reserved right-side scrollbar gutter.
+
+Follow-up 14: If episode pages show duplicate landscape thumbnails, the active culprit is usually multiple direct `.backdropCard` children inside `#itemDetailPage .detailImageContainer`. Style the first `.backdropCard` as one compact 16:9 thumbnail and hide `.backdropCard ~ .backdropCard`; do not restore every `.detailImageContainer .card`.

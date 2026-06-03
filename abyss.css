@@ -2865,7 +2865,6 @@ body.layout-desktop #itemDetailPage .detailPagePrimaryContainer {
     max-width: none !important;
     min-height: 0 !important;
     margin: 0 !important;
-    padding: 0 var(--sidePadding) 0 !important;
     overflow: visible !important;
     background: transparent !important;
 }
@@ -3253,7 +3252,7 @@ body.layout-desktop #itemDetailPage .detailPageContent::before {
     left: calc(-1 * var(--detailContentOffset, 64px)) !important;
     right: calc(-1 * (var(--sidePadding, 3.3%) + var(--detailScrollbarGutter, 28px))) !important;
     top: -8rem !important;
-    bottom: -4.5rem !important;
+    bottom: -5rem !important;
     z-index: 0 !important;
     pointer-events: none !important;
     background:
@@ -3279,7 +3278,7 @@ body.layout-desktop #itemDetailPage .detailSection {
     column-gap: clamp(1.5rem, 2.4vw, 3rem) !important;
     width: var(--detailWideWidth, calc(100vw - 128px)) !important;
     max-width: var(--detailWideWidth, calc(100vw - 128px)) !important;
-    margin: 0 0 1.75rem var(--detailContentOffset, 64px) !important;
+    margin: 0 0 6rem var(--detailContentOffset, 64px) !important;
     pointer-events: auto !important;
 }
 

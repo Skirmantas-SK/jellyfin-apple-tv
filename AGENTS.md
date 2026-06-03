@@ -343,7 +343,7 @@ Rules for player safety:
 - Do not apply item detail backdrop rules to `#videoOsdPage`.
 - Do not give global `.backgroundContainer`, `.backdropImage`, or overlay rules that affect the video player.
 - Keep OSD styling scoped to player controls only.
-- If TV episodes play audio with controls but no picture, check whether `#itemDetailPage` remains in the DOM above the player. Suppress `#itemDetailPage` and its backdrop when `#videoOsdPage`, `#videoDialog`, or `.videoOsdBottom` is active, and pin the actual video/container layer to the viewport above detail-page z-indexes. Jellyfin's HTML video player can use `#videoDialog`, so player safety rules must include it alongside `#videoOsdPage`.
+- If TV episodes play audio with controls but no picture, check whether `#itemDetailPage` remains in the DOM above the player. Suppress `#itemDetailPage` and its backdrop when `.videoPlayerContainer-onTop`, `#videoOsdPage`, `#videoDialog`, or `.videoOsdBottom` is active, and raise the actual player container above detail-page z-indexes. Do not force `video` or `canvas` to `position: fixed` or a black background; that can cover the decoded picture or OSD. Jellyfin's HTML player already uses a fixed `.videoPlayerContainer` and raises it with `.videoPlayerContainer-onTop`.
 - If fixing detail pages, verify playback afterward.
 
 ## Cache And Verification

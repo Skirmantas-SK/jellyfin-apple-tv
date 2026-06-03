@@ -4053,30 +4053,47 @@ body.layout-desktop #itemDetailPage .scrollX::-webkit-scrollbar-thumb {
 /* tvOS Playback OSD */
 
 #videoOsdPage,
-.videoOsdPage,
-#videoDialog,
-.videoDialog {
+.videoOsdPage {
+    background: transparent !important;
+}
+
+body:has(.videoPlayerContainer-onTop) #videoOsdPage,
+body:has(.videoPlayerContainer-onTop) .videoOsdPage,
+body:has(#videoDialog) #videoOsdPage,
+body:has(#videoDialog) .videoOsdPage {
     position: fixed !important;
     inset: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    z-index: 10000 !important;
-    overflow: hidden !important;
-    background: #000 !important;
-    isolation: isolate !important;
+    z-index: 100020 !important;
+    pointer-events: none !important;
+    background: transparent !important;
+}
+
+body:has(.videoPlayerContainer-onTop) #videoOsdPage .videoOsdBottom,
+body:has(.videoPlayerContainer-onTop) .videoOsdPage .videoOsdBottom,
+body:has(#videoDialog) #videoOsdPage .videoOsdBottom,
+body:has(#videoDialog) .videoOsdPage .videoOsdBottom,
+body:has(.videoPlayerContainer-onTop) #videoOsdPage .osdHeader,
+body:has(.videoPlayerContainer-onTop) .videoOsdPage .osdHeader,
+body:has(#videoDialog) #videoOsdPage .osdHeader,
+body:has(#videoDialog) .videoOsdPage .osdHeader {
+    pointer-events: auto !important;
 }
 
 body:has(#videoOsdPage) #itemDetailPage,
 body:has(#videoDialog) #itemDetailPage,
+body:has(.videoPlayerContainer-onTop) #itemDetailPage,
 body:has(.videoOsdBottom) #itemDetailPage,
 body:has(#videoOsdPage) #itemDetailPage::before,
 body:has(#videoOsdPage) #itemDetailPage::after,
 body:has(#videoDialog) #itemDetailPage::before,
 body:has(#videoDialog) #itemDetailPage::after,
+body:has(.videoPlayerContainer-onTop) #itemDetailPage::before,
+body:has(.videoPlayerContainer-onTop) #itemDetailPage::after,
 body:has(.videoOsdBottom) #itemDetailPage::before,
 body:has(.videoOsdBottom) #itemDetailPage::after,
 body:has(#videoOsdPage) #itemDetailPage .itemBackdrop,
 body:has(#videoDialog) #itemDetailPage .itemBackdrop,
+body:has(.videoPlayerContainer-onTop) #itemDetailPage .itemBackdrop,
 body:has(.videoOsdBottom) #itemDetailPage .itemBackdrop {
     display: none !important;
     visibility: hidden !important;
@@ -4092,6 +4109,10 @@ body:has(#videoDialog) .backgroundContainer,
 body:has(#videoDialog) .backgroundContainer.withBackdrop,
 body:has(#videoDialog) .backdropContainer,
 body:has(#videoDialog) .backdropImage,
+body:has(.videoPlayerContainer-onTop) .backgroundContainer,
+body:has(.videoPlayerContainer-onTop) .backgroundContainer.withBackdrop,
+body:has(.videoPlayerContainer-onTop) .backdropContainer,
+body:has(.videoPlayerContainer-onTop) .backdropImage,
 body:has(.videoOsdBottom) .backgroundContainer,
 body:has(.videoOsdBottom) .backgroundContainer.withBackdrop,
 body:has(.nowPlayingBar) .backgroundContainer.withBackdrop {
@@ -4104,58 +4125,69 @@ body:has(.nowPlayingBar) .backgroundContainer.withBackdrop {
     filter: none !important;
 }
 
-body:has(#videoOsdPage) video,
-body:has(#videoOsdPage) .htmlvideoplayer,
 body:has(#videoOsdPage) .videoPlayerContainer,
 body:has(#videoOsdPage) .videoPlayerContainer-onTop,
-body:has(#videoOsdPage) .videoContainer,
-body:has(#videoOsdPage) .playerVideo,
-body:has(#videoOsdPage) canvas,
-body:has(#videoDialog) video,
-body:has(#videoDialog) .htmlvideoplayer,
 body:has(#videoDialog) .videoPlayerContainer,
 body:has(#videoDialog) .videoPlayerContainer-onTop,
-body:has(#videoDialog) .videoContainer,
-body:has(#videoDialog) .playerVideo,
-body:has(#videoDialog) canvas,
-body:has(.videoOsdBottom) video,
-body:has(.videoOsdBottom) .htmlvideoplayer,
 body:has(.videoOsdBottom) .videoPlayerContainer,
 body:has(.videoOsdBottom) .videoPlayerContainer-onTop,
-body:has(.videoOsdBottom) .videoContainer,
-body:has(.videoOsdBottom) .playerVideo,
-body:has(.videoOsdBottom) canvas {
+.videoPlayerContainer-onTop {
     position: fixed !important;
     inset: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
+    z-index: 100000 !important;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: #000 !important;
+    filter: none !important;
+    -webkit-filter: none !important;
+    transform: none !important;
+}
+
+body:has(#videoOsdPage) .videoPlayerContainer video,
+body:has(#videoOsdPage) .htmlvideoplayer,
+body:has(#videoDialog) .videoPlayerContainer video,
+body:has(#videoDialog) .htmlvideoplayer,
+body:has(.videoOsdBottom) .videoPlayerContainer video,
+body:has(.videoOsdBottom) .htmlvideoplayer,
+.videoPlayerContainer .htmlvideoplayer {
+    position: static !important;
+    width: 100% !important;
+    height: 100% !important;
     max-width: none !important;
     max-height: none !important;
-    z-index: 10001 !important;
+    margin: 0 !important;
+    padding: 0 !important;
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
     object-fit: contain !important;
     filter: none !important;
     -webkit-filter: none !important;
-    background: #000 !important;
+    background: transparent !important;
     transform: none !important;
     pointer-events: auto !important;
 }
 
 body:has(#videoOsdPage) .videoOsdBottom,
 body:has(.videoOsdBottom) .videoOsdBottom,
+body:has(.videoPlayerContainer-onTop) .videoOsdBottom,
 body:has(#videoDialog) .videoOsdBottom,
 body:has(#videoOsdPage) .osdHeader,
 body:has(.videoOsdBottom) .osdHeader,
+body:has(.videoPlayerContainer-onTop) .osdHeader,
 body:has(#videoDialog) .osdHeader,
 body:has(#videoOsdPage) .osdControls,
 body:has(.videoOsdBottom) .osdControls,
+body:has(.videoPlayerContainer-onTop) .osdControls,
 body:has(#videoDialog) .osdControls,
 body:has(#videoOsdPage) .nowPlayingBar,
 body:has(.videoOsdBottom) .nowPlayingBar,
+body:has(.videoPlayerContainer-onTop) .nowPlayingBar,
 body:has(#videoDialog) .nowPlayingBar {
-    z-index: 10005 !important;
+    z-index: 100030 !important;
 }
 
 #videoOsdPage .skinHeader.osdHeader {

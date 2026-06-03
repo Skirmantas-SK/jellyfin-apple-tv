@@ -238,7 +238,7 @@ Important lessons:
 
 - Do not use `position: fixed` for `.detailLogo`; it follows the user while scrolling.
 - Do not force `.detailImageContainer .card` visible for movie detail pages. It can create duplicate poster images over text.
-- Episode pages can render duplicate landscape art in `.detailImageContainer`. There are two known forms: multiple direct `.backdropCard` siblings, and a direct `.cardImageContainer.coveredImage.cardContent` sibling beside `.cardBox` inside one `.backdropCard`. Keep `.cardBox` as the canonical Jellyfin card path, hide direct sibling `.cardImageContainer.coveredImage.cardContent:not(:only-child)`, and hide sibling `.backdropCard ~ .backdropCard`.
+- Episode pages can render duplicate landscape art in `.detailImageContainer`. There are two known forms: multiple direct `.backdropCard` siblings, and a direct `.cardImageContainer.coveredImage.cardContent` sibling beside `.cardBox` inside one `.backdropCard` or `.detailImageContainer`. Hide sibling `.backdropCard ~ .backdropCard`; if both `.cardImageContainer.coveredImage.cardContent` and `.cardBox` exist at the same level, collapse one of them with a page-scoped hard hide.
 - Do not globally restore `.verticalSection`; it can resurrect hidden schedule/program-guide sections.
 - `Schedule` on detail pages came from Jellyfin's schedule/program guide blocks being forced visible. The fix was to exclude and hide:
 
@@ -344,6 +344,7 @@ Rules for player safety:
 - Do not give global `.backgroundContainer`, `.backdropImage`, or overlay rules that affect the video player.
 - Keep OSD styling scoped to player controls only.
 - If TV episodes play audio with controls but no picture, check whether `#itemDetailPage` remains in the DOM above the player. Suppress `#itemDetailPage` and its backdrop when `.videoPlayerContainer-onTop`, `#videoOsdPage`, `#videoDialog`, or `.videoOsdBottom` is active, and raise the actual player container above detail-page z-indexes. Do not force `video` or `canvas` to `position: fixed` or a black background; that can cover the decoded picture or OSD. Jellyfin's HTML player already uses a fixed `.videoPlayerContainer` and raises it with `.videoPlayerContainer-onTop`.
+- To make seek forward/back feel more like tvOS, CSS can hide passive `.videoOsdBottom` and `.osdHeader` unless they are hovered or focused. This does not stop Jellyfin's JavaScript from toggling OSD state, but it prevents the full controls from visually popping up during remote/keyboard seek actions while keeping the player layers safe.
 - If fixing detail pages, verify playback afterward.
 
 ## Cache And Verification

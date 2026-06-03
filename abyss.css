@@ -3100,6 +3100,35 @@ body.layout-desktop #itemDetailPage .detailImageContainer > .backdropCard > .car
     pointer-events: none !important;
 }
 
+/* tvOS Episode Duplicate Thumbnail Hard Hide */
+.layout-desktop #itemDetailPage .detailImageContainer:has(> .cardImageContainer.coveredImage.cardContent) > .cardBox,
+body.layout-desktop #itemDetailPage .detailImageContainer:has(> .cardImageContainer.coveredImage.cardContent) > .cardBox,
+.layout-desktop #itemDetailPage .detailImageContainer > .backdropCard:has(> .cardImageContainer.coveredImage.cardContent) > .cardBox,
+body.layout-desktop #itemDetailPage .detailImageContainer > .backdropCard:has(> .cardImageContainer.coveredImage.cardContent) > .cardBox,
+.layout-desktop #itemDetailPage .detailImageContainer > .cardImageContainer.coveredImage.cardContent ~ .cardBox,
+body.layout-desktop #itemDetailPage .detailImageContainer > .cardImageContainer.coveredImage.cardContent ~ .cardBox,
+.layout-desktop #itemDetailPage .detailImageContainer > .cardBox ~ .cardImageContainer.coveredImage.cardContent,
+body.layout-desktop #itemDetailPage .detailImageContainer > .cardBox ~ .cardImageContainer.coveredImage.cardContent,
+.layout-desktop #itemDetailPage .detailImageContainer > .backdropCard > .cardImageContainer.coveredImage.cardContent ~ .cardBox,
+body.layout-desktop #itemDetailPage .detailImageContainer > .backdropCard > .cardImageContainer.coveredImage.cardContent ~ .cardBox,
+.layout-desktop #itemDetailPage .detailImageContainer > .backdropCard > .cardBox ~ .cardImageContainer.coveredImage.cardContent,
+body.layout-desktop #itemDetailPage .detailImageContainer > .backdropCard > .cardBox ~ .cardImageContainer.coveredImage.cardContent {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    max-width: 0 !important;
+    max-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+}
+
 .layout-desktop #itemDetailPage .detailImageContainer > .backdropCard > .cardBox,
 body.layout-desktop #itemDetailPage .detailImageContainer > .backdropCard > .cardBox {
     display: block !important;
@@ -4272,6 +4301,58 @@ body:has(#videoDialog) .nowPlayingBar {
     padding: 0 28px max(28px, env(safe-area-inset-bottom)) !important;
     background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.52)) !important;
     pointer-events: none !important;
+}
+
+/* tvOS Quiet Seek OSD */
+#videoOsdPage .videoOsdBottom:not(:hover):not(:focus-within),
+.videoOsdPage .videoOsdBottom:not(:hover):not(:focus-within) {
+    opacity: 0 !important;
+    transform: translateY(18px) !important;
+    transition:
+        opacity 0.18s cubic-bezier(0.33, 1, 0.68, 1),
+        transform 0.18s cubic-bezier(0.33, 1, 0.68, 1) !important;
+}
+
+#videoOsdPage .videoOsdBottom:hover,
+#videoOsdPage .videoOsdBottom:focus-within,
+#videoOsdPage .videoOsdBottom:has(button:focus),
+#videoOsdPage .videoOsdBottom:has(input:focus),
+.videoOsdPage .videoOsdBottom:hover,
+.videoOsdPage .videoOsdBottom:focus-within,
+.videoOsdPage .videoOsdBottom:has(button:focus),
+.videoOsdPage .videoOsdBottom:has(input:focus) {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+#videoOsdPage .osdHeader:not(:hover):not(:focus-within),
+.videoOsdPage .osdHeader:not(:hover):not(:focus-within) {
+    opacity: 0 !important;
+    transform: translateY(-10px) !important;
+    transition:
+        opacity 0.18s cubic-bezier(0.33, 1, 0.68, 1),
+        transform 0.18s cubic-bezier(0.33, 1, 0.68, 1) !important;
+}
+
+#videoOsdPage .osdHeader:hover,
+#videoOsdPage .osdHeader:focus-within,
+.videoOsdPage .osdHeader:hover,
+.videoOsdPage .osdHeader:focus-within {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+body:has(.videoPlayerContainer-onTop) .toast,
+body:has(#videoOsdPage) .toast,
+body:has(#videoDialog) .toast {
+    z-index: 100050 !important;
+    border-radius: 999px !important;
+    padding: 0.72rem 1.1rem !important;
+    background: rgba(28, 28, 30, 0.72) !important;
+    color: rgba(255, 255, 255, 0.94) !important;
+    -webkit-backdrop-filter: blur(30px) saturate(180%) !important;
+    backdrop-filter: blur(30px) saturate(180%) !important;
+    box-shadow: 0 18px 46px rgba(0, 0, 0, 0.52), inset 0 1px 0 rgba(255, 255, 255, 0.16) !important;
 }
 
 #videoOsdPage .videoOsdBottom .osdControls,

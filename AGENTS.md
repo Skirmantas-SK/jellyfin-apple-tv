@@ -294,12 +294,20 @@ Common selectors:
 #itemDetailPage .emby-scrollbuttons-button
 ```
 
+TV-show pages also use:
+
+```css
+#itemDetailPage .nextUpSection
+#itemDetailPage #listChildrenCollapsible
+```
+
 Desired behavior:
 
 - Cards stay visible and scrollable.
 - Scrollbars are hidden or extremely faint.
 - Arrow buttons are very faint until hover/focus.
 - End-of-rail controls should not visually collapse or disappear in a jarring way.
+- Next Up and Seasons should be stacked full-width rails, not split across the two-column info grid. Keep `.detailSection > .nextUpSection` and `.detailSection > #listChildrenCollapsible` on `grid-column: 1 / -1`.
 
 To prevent disappearing controls, account for possible states:
 

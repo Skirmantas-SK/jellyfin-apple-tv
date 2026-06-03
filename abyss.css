@@ -2838,7 +2838,7 @@ body.layout-desktop #itemDetailPage {
     z-index: 1 !important;
     min-height: 100vh !important;
     overflow: visible !important;
-    background: linear-gradient(180deg, transparent 0, transparent 72vh, rgba(5, 5, 5, 0.86) 84vh, #050505 94vh, #050505 100%) !important;
+    /*background: linear-gradient(180deg, transparent 0, transparent 72vh, rgba(5, 5, 5, 0.86) 84vh, #050505 94vh, #050505 100%) !important;*/
     font-family: var(--tvos-font-stack) !important;
 }
 

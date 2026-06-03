@@ -165,10 +165,10 @@ The home page is not Jellyfin's normal home markup. `scripts/spotlight/home-html
 The iframe currently starts at:
 
 ```css
-margin-top: 80px;
+margin-top: 0;
 ```
 
-This was tuned because the Spotlight image must begin under the Jellyfin top navigation, not from the absolute top of the page. Raising it too far creates a visible gap; lowering it causes the top of the poster/backdrop to hide under the menu.
+This is intentional because the header container is transparent and only the navigation buttons should float over the artwork. If the visible header chrome comes back, fix the header transparency instead of pushing Spotlight down with margin.
 
 Spotlight uses `scripts/spotlight/spotlight.css` and `scripts/spotlight/spotlight.html`. It should use the local Apple/system stack, not remote Google fonts.
 
@@ -395,6 +395,8 @@ Symptom: Home Spotlight image began at the top of the viewport and was hidden by
 Root cause: The injected iframe needed to start at the menu height rather than at `0`.
 
 Fix: `scripts/spotlight/home-html.chunk.js` uses `.featurediframe { margin-top: 80px; }`.
+
+Follow-up 2026-06-03: After the header container was made transparent, the desired behavior changed. Spotlight should start at `margin-top: 0` and run behind the floating buttons; the iframe is taller (`82vh` desktop baseline) so the hero reaches further down the page.
 
 ### 2026-06-02 - My Media had blank tiles or double titles
 

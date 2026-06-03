@@ -181,7 +181,7 @@ Important Spotlight visual behavior:
 - Glass info button.
 - Metadata pills are rounded glass capsules.
 - Background is dimmed, but not so blurred that the user cannot read the poster/backdrop.
-- Spotlight Play must target the parent Jellyfin app, not the iframe hash. Use a real `type="button"` button, resolve `serverId` from `jellyfin_credentials`, and route to `#/video?serverId=...&id=...` through Jellyfin's app router when available. For Series items, resolve a playable episode first with `Shows/NextUp` and then `Shows/{SeriesId}/Episodes` as fallback.
+- Spotlight Play must target the parent Jellyfin app, not the iframe hash. Use a real `type="button"` button, resolve `serverId` from `jellyfin_credentials`, and route to `#/video?serverId=...&id=...` through Jellyfin's app router when available. For Series items, resolve a playable episode first with `Shows/NextUp` and then `Shows/{SeriesId}/Episodes` as fallback. The injected iframe should use a cache-busted `spotlight.html?v=...` URL because the browser can otherwise keep an older iframe document even when Docker installed a newer file.
 
 ## My Media / Library Cards
 
@@ -343,7 +343,7 @@ Rules for player safety:
 - Do not apply item detail backdrop rules to `#videoOsdPage`.
 - Do not give global `.backgroundContainer`, `.backdropImage`, or overlay rules that affect the video player.
 - Keep OSD styling scoped to player controls only.
-- If TV episodes play audio with controls but no picture, check whether `#itemDetailPage` remains in the DOM above the player. Suppress `#itemDetailPage` and its backdrop when `#videoOsdPage` or `.videoOsdBottom` is active, and pin the actual video/container layer to the viewport above detail-page z-indexes.
+- If TV episodes play audio with controls but no picture, check whether `#itemDetailPage` remains in the DOM above the player. Suppress `#itemDetailPage` and its backdrop when `#videoOsdPage`, `#videoDialog`, or `.videoOsdBottom` is active, and pin the actual video/container layer to the viewport above detail-page z-indexes. Jellyfin's HTML video player can use `#videoDialog`, so player safety rules must include it alongside `#videoOsdPage`.
 - If fixing detail pages, verify playback afterward.
 
 ## Cache And Verification

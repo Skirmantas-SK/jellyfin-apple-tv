@@ -4053,7 +4053,9 @@ body.layout-desktop #itemDetailPage .scrollX::-webkit-scrollbar-thumb {
 /* tvOS Playback OSD */
 
 #videoOsdPage,
-.videoOsdPage {
+.videoOsdPage,
+#videoDialog,
+.videoDialog {
     position: fixed !important;
     inset: 0 !important;
     width: 100vw !important;
@@ -4065,12 +4067,16 @@ body.layout-desktop #itemDetailPage .scrollX::-webkit-scrollbar-thumb {
 }
 
 body:has(#videoOsdPage) #itemDetailPage,
+body:has(#videoDialog) #itemDetailPage,
 body:has(.videoOsdBottom) #itemDetailPage,
 body:has(#videoOsdPage) #itemDetailPage::before,
 body:has(#videoOsdPage) #itemDetailPage::after,
+body:has(#videoDialog) #itemDetailPage::before,
+body:has(#videoDialog) #itemDetailPage::after,
 body:has(.videoOsdBottom) #itemDetailPage::before,
 body:has(.videoOsdBottom) #itemDetailPage::after,
 body:has(#videoOsdPage) #itemDetailPage .itemBackdrop,
+body:has(#videoDialog) #itemDetailPage .itemBackdrop,
 body:has(.videoOsdBottom) #itemDetailPage .itemBackdrop {
     display: none !important;
     visibility: hidden !important;
@@ -4082,6 +4088,10 @@ body:has(#videoOsdPage) .backgroundContainer,
 body:has(#videoOsdPage) .backgroundContainer.withBackdrop,
 body:has(#videoOsdPage) .backdropContainer,
 body:has(#videoOsdPage) .backdropImage,
+body:has(#videoDialog) .backgroundContainer,
+body:has(#videoDialog) .backgroundContainer.withBackdrop,
+body:has(#videoDialog) .backdropContainer,
+body:has(#videoDialog) .backdropImage,
 body:has(.videoOsdBottom) .backgroundContainer,
 body:has(.videoOsdBottom) .backgroundContainer.withBackdrop,
 body:has(.nowPlayingBar) .backgroundContainer.withBackdrop {
@@ -4097,12 +4107,21 @@ body:has(.nowPlayingBar) .backgroundContainer.withBackdrop {
 body:has(#videoOsdPage) video,
 body:has(#videoOsdPage) .htmlvideoplayer,
 body:has(#videoOsdPage) .videoPlayerContainer,
+body:has(#videoOsdPage) .videoPlayerContainer-onTop,
 body:has(#videoOsdPage) .videoContainer,
 body:has(#videoOsdPage) .playerVideo,
 body:has(#videoOsdPage) canvas,
+body:has(#videoDialog) video,
+body:has(#videoDialog) .htmlvideoplayer,
+body:has(#videoDialog) .videoPlayerContainer,
+body:has(#videoDialog) .videoPlayerContainer-onTop,
+body:has(#videoDialog) .videoContainer,
+body:has(#videoDialog) .playerVideo,
+body:has(#videoDialog) canvas,
 body:has(.videoOsdBottom) video,
 body:has(.videoOsdBottom) .htmlvideoplayer,
 body:has(.videoOsdBottom) .videoPlayerContainer,
+body:has(.videoOsdBottom) .videoPlayerContainer-onTop,
 body:has(.videoOsdBottom) .videoContainer,
 body:has(.videoOsdBottom) .playerVideo,
 body:has(.videoOsdBottom) canvas {
@@ -4126,12 +4145,16 @@ body:has(.videoOsdBottom) canvas {
 
 body:has(#videoOsdPage) .videoOsdBottom,
 body:has(.videoOsdBottom) .videoOsdBottom,
+body:has(#videoDialog) .videoOsdBottom,
 body:has(#videoOsdPage) .osdHeader,
 body:has(.videoOsdBottom) .osdHeader,
+body:has(#videoDialog) .osdHeader,
 body:has(#videoOsdPage) .osdControls,
 body:has(.videoOsdBottom) .osdControls,
+body:has(#videoDialog) .osdControls,
 body:has(#videoOsdPage) .nowPlayingBar,
-body:has(.videoOsdBottom) .nowPlayingBar {
+body:has(.videoOsdBottom) .nowPlayingBar,
+body:has(#videoDialog) .nowPlayingBar {
     z-index: 10005 !important;
 }
 

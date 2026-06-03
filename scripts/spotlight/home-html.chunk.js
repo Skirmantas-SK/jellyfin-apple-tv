@@ -34,7 +34,7 @@
   </style>
 
   <div class="tabContent pageTabContent" id="homeTab" data-index="0">
-    <iframe class="featurediframe" src="/web/ui/spotlight.html"></iframe>
+    <iframe class="featurediframe" src="/web/ui/spotlight.html?v=${Date.now()}"></iframe>
     <div class="sections"></div>
   </div>
 

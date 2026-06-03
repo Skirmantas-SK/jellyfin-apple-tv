@@ -396,7 +396,7 @@ Root cause: The injected iframe needed to start at the menu height rather than a
 
 Fix: `scripts/spotlight/home-html.chunk.js` uses `.featurediframe { margin-top: 80px; }`.
 
-Follow-up 2026-06-03: After the header container was made transparent, the desired behavior changed. Spotlight should start at `margin-top: 0` and run behind the floating buttons; the iframe is taller (`82vh` desktop baseline) so the hero reaches further down the page.
+Follow-up 2026-06-03: After the header container was made transparent, the desired behavior changed. Spotlight should start at `margin-top: 0` and run behind the floating buttons; the iframe is taller (`88vh` desktop baseline, up to `92vh` on wide screens) so the hero reaches further down the page.
 
 ### 2026-06-02 - My Media had blank tiles or double titles
 
@@ -467,6 +467,8 @@ Follow-up 5: Do not over-brighten the restored backdrop. `brightness(118%)` can 
 Follow-up 6: Do not put a second hero fade gradient on `.detailPageWrapperContainer`. That wrapper sits over the full-screen backdrop and creates a visible horizontal dark band across the lower artwork. Keep the wrapper background transparent and let `.itemBackdrop::after` own the hero-to-content fade.
 
 Follow-up 7: The lower detail page still needs its own dark surface. If `.detailPageContent` is transparent, the fixed backdrop bleeds through Cast & Crew, Scenes, and More Like This, and it can look like a stray horizontal image strip below the hero. Keep `.detailPageWrapperContainer` transparent, but give `.detailPageContent` a top fade into `#050505`.
+
+Follow-up 9: Do not use `bottom: -100vh` on `.detailPageContent::before`. It hides backdrop bleed, but it also creates extra dead scroll space at the bottom of item detail pages. Use a short negative bottom such as `-4.5rem`, reduce `.detailPageContent` bottom padding, and extend the pseudo-element right edge past `--sidePadding` plus a small scrollbar gutter so the fixed backdrop cannot shine through beside the horizontal rail controls.
 
 Follow-up 8: A short, dark `.skinHeader` gradient can look like a rectangular filter on top of the movie artwork. For detail pages, keep the header scrim lighter and continue it below the header with a small `::after` fade so there is no hard horizontal cutoff.
 

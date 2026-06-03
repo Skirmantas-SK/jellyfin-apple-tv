@@ -2726,6 +2726,7 @@ body.layout-desktop:has(#itemDetailPage),
     --detailContentOffset: max(var(--detailRailInset), calc(var(--sidePadding) + 1.2rem));
     --detailReadableWidth: min(1120px, calc(100vw - var(--detailContentOffset) - var(--sidePadding)));
     --detailWideWidth: min(1500px, calc(100vw - var(--detailContentOffset) - var(--sidePadding)));
+    --detailScrollbarGutter: 28px;
     --detailPanelRadius: 26px;
     --detailPanelBorder: rgba(255, 255, 255, 0.12);
     --detailPanelBg: rgba(18, 18, 18, 0.56);
@@ -2821,7 +2822,7 @@ body.layout-desktop #itemDetailPage {
     z-index: 1 !important;
     min-height: 100vh !important;
     overflow: visible !important;
-    background: transparent !important;
+    background: linear-gradient(180deg, transparent 0, transparent 72vh, rgba(5, 5, 5, 0.86) 84vh, #050505 94vh, #050505 100%) !important;
     font-family: var(--tvos-font-stack) !important;
 }
 
@@ -3216,7 +3217,7 @@ body.layout-desktop #itemDetailPage .detailPageContent {
     width: auto !important;
     max-width: none !important;
     margin: 0 !important;
-    padding: 0 var(--sidePadding) 12rem 0 !important;
+    padding: 0 var(--sidePadding) clamp(2.5rem, 5vh, 4.5rem) 0 !important;
     gap: 1em !important;
     border: 0 !important;
     background: transparent !important;
@@ -3233,10 +3234,10 @@ body.layout-desktop #itemDetailPage .detailPageContent {
 body.layout-desktop #itemDetailPage .detailPageContent::before {
     content: "" !important;
     position: absolute !important;
-    left: 0 !important;
-    right: 0 !important;
+    left: calc(-1 * var(--detailContentOffset, 64px)) !important;
+    right: calc(-1 * (var(--sidePadding, 3.3%) + var(--detailScrollbarGutter, 28px))) !important;
     top: -8rem !important;
-    bottom: -100vh !important;
+    bottom: -4.5rem !important;
     z-index: 0 !important;
     pointer-events: none !important;
     background:

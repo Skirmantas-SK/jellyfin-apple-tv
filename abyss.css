@@ -3451,6 +3451,7 @@ body.layout-desktop #itemDetailPage .itemDetailsGroup {
         var(--detailPanelBg) !important;
     box-shadow: var(--detailPanelShadow) !important;
     pointer-events: auto !important;
+    backdrop-filter: blur(30px) saturate(190%) !important;
 }
 
 .layout-desktop #itemDetailPage .detailsGroupItem,

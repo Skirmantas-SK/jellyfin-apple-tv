@@ -2750,6 +2750,8 @@ body.layout-desktop:has(#itemDetailPage),
 .layout-desktop:has(#itemDetailPage) {
     overflow-y: auto !important;
     overflow-x: hidden !important;
+    margin-right: 0 !important;
+    padding-right: 0 !important;
     background: #050505 !important;
 }
 
@@ -2757,51 +2759,8 @@ html:has(#itemDetailPage),
 body:has(#itemDetailPage),
 body:has(#itemDetailPage) #reactRoot,
 body:has(#itemDetailPage) .mainAnimatedPages {
-    scrollbar-gutter: stable !important;
-    scrollbar-width: auto !important;
-    scrollbar-color: rgba(245, 245, 247, 0.46) #050505 !important;
-}
-
-html:has(#itemDetailPage)::-webkit-scrollbar,
-body:has(#itemDetailPage)::-webkit-scrollbar,
-body:has(#itemDetailPage) #reactRoot::-webkit-scrollbar,
-body:has(#itemDetailPage) .mainAnimatedPages::-webkit-scrollbar {
-    width: 14px !important;
-    height: 14px !important;
-}
-
-html:has(#itemDetailPage)::-webkit-scrollbar-track,
-body:has(#itemDetailPage)::-webkit-scrollbar-track,
-body:has(#itemDetailPage) #reactRoot::-webkit-scrollbar-track,
-body:has(#itemDetailPage) .mainAnimatedPages::-webkit-scrollbar-track,
-html:has(#itemDetailPage)::-webkit-scrollbar-track-piece,
-body:has(#itemDetailPage)::-webkit-scrollbar-track-piece,
-body:has(#itemDetailPage) #reactRoot::-webkit-scrollbar-track-piece,
-body:has(#itemDetailPage) .mainAnimatedPages::-webkit-scrollbar-track-piece,
-html:has(#itemDetailPage)::-webkit-scrollbar-corner,
-body:has(#itemDetailPage)::-webkit-scrollbar-corner,
-body:has(#itemDetailPage) #reactRoot::-webkit-scrollbar-corner,
-body:has(#itemDetailPage) .mainAnimatedPages::-webkit-scrollbar-corner {
-    background: #050505 !important;
-    background-color: #050505 !important;
-}
-
-html:has(#itemDetailPage)::-webkit-scrollbar-thumb,
-body:has(#itemDetailPage)::-webkit-scrollbar-thumb,
-body:has(#itemDetailPage) #reactRoot::-webkit-scrollbar-thumb,
-body:has(#itemDetailPage) .mainAnimatedPages::-webkit-scrollbar-thumb {
-    min-height: 60px !important;
-    border: 4px solid #050505 !important;
-    border-radius: 999px !important;
-    background: rgba(245, 245, 247, 0.46) !important;
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12) !important;
-}
-
-html:has(#itemDetailPage)::-webkit-scrollbar-thumb:hover,
-body:has(#itemDetailPage)::-webkit-scrollbar-thumb:hover,
-body:has(#itemDetailPage) #reactRoot::-webkit-scrollbar-thumb:hover,
-body:has(#itemDetailPage) .mainAnimatedPages::-webkit-scrollbar-thumb:hover {
-    background: rgba(245, 245, 247, 0.68) !important;
+    margin-right: 0 !important;
+    padding-right: 0 !important;
 }
 
 body.layout-desktop:has(#itemDetailPage) .skinHeader,

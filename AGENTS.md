@@ -468,12 +468,14 @@ Follow-up 6: Do not put a second hero fade gradient on `.detailPageWrapperContai
 
 Follow-up 7: The lower detail page still needs its own dark surface. If `.detailPageContent` is transparent, the fixed backdrop bleeds through Cast & Crew, Scenes, and More Like This, and it can look like a stray horizontal image strip below the hero. Keep `.detailPageWrapperContainer` transparent, but give `.detailPageContent` a top fade into `#050505`.
 
-Follow-up 9: Do not use `bottom: -100vh` on `.detailPageContent::before`. It hides backdrop bleed, but it also creates extra dead scroll space at the bottom of item detail pages. Use a short negative bottom such as `-4.5rem`, reduce `.detailPageContent` bottom padding, and extend the pseudo-element right edge past `--sidePadding` plus a small scrollbar gutter so the fixed backdrop cannot shine through beside the horizontal rail controls.
-
 Follow-up 8: A short, dark `.skinHeader` gradient can look like a rectangular filter on top of the movie artwork. For detail pages, keep the header scrim lighter and continue it below the header with a small `::after` fade so there is no hard horizontal cutoff.
 
-Follow-up 9: If the top scrim still reads like a box, do not extend a fixed `.skinHeader::after` over the artwork. Put the top fade on `.itemBackdrop::before` instead, because it scrolls with the hero image. Use `.detailPageContent::before` for the lower fade, with a negative top and a large negative bottom, so the black surface starts before the content and covers past the page end.
+Follow-up 9: If the top scrim still reads like a box, do not extend a fixed `.skinHeader::after` over the artwork. Put the top fade on `.itemBackdrop::before` instead, because it scrolls with the hero image. Use `.detailPageContent::before` for the lower fade, with a negative top and a short negative bottom, so the black surface starts before the content without creating scroll slack.
 
 Follow-up 10: Avoid a visible gap between `.itemBackdrop::after` and `.detailPageContent::before`. The two fades should overlap: make the hero bottom fade darken before the lower content begins, and start `.detailPageContent::before` with a nonzero dark tint instead of `rgba(..., 0)`.
 
 Follow-up 11: If the user wants the gradient controlled by the backdrop layer, extend the item backdrop pseudo-elements instead of darkening content globally: use `inset: 0 0 -8rem 0` on `.itemBackdrop::before` and `.itemBackdrop::after`, keep the lower `.detailPageContent::before` fade starting from transparent, and let the backdrop bottom fade reach `#050505`.
+
+Follow-up 12: Do not use `bottom: -100vh` on `.detailPageContent::before`. It hides backdrop bleed, but it also creates extra dead scroll space at the bottom of item detail pages. Use a short negative bottom such as `-4.5rem`, reduce `.detailPageContent` bottom padding, and extend the pseudo-element right edge past `--sidePadding` plus a small scrollbar gutter so the fixed backdrop cannot shine through beside the horizontal rail controls.
+
+Follow-up 13: The lower right rail/control gutter can still show the fixed backdrop if the rail arrows are faint or hidden. Fill that edge with a scoped, fixed `#itemDetailPage::after` mask behind content: start it below the hero, keep `pointer-events: none`, and use a left-to-right fade into `#050505` so the empty slider area is covered without looking like a hard rectangle.

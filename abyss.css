@@ -3515,6 +3515,33 @@ body.layout-desktop #itemDetailPage .detailsGroupItem:has(> :last-child:empty) {
     display: none !important;
 }
 
+/* TV/Season Detail Metadata Panel Cleanup */
+.layout-desktop #itemDetailPage .itemDetailsGroup:empty,
+.layout-desktop #itemDetailPage .itemDetailsGroup:not(:has(.detailsGroupItem)),
+.layout-desktop #itemDetailPage .itemDetailsGroup:not(:has(.detailsGroupItem > :last-child:not(:empty))),
+.layout-desktop #itemDetailPage:has(.trackSelections.hide):has(#listChildrenCollapsible) .itemDetailsGroup,
+.layout-desktop #itemDetailPage:has(.trackSelections.hide):has(#childrenCollapsible) .itemDetailsGroup,
+body.layout-desktop #itemDetailPage .itemDetailsGroup:empty,
+body.layout-desktop #itemDetailPage .itemDetailsGroup:not(:has(.detailsGroupItem)),
+body.layout-desktop #itemDetailPage .itemDetailsGroup:not(:has(.detailsGroupItem > :last-child:not(:empty))),
+body.layout-desktop #itemDetailPage:has(.trackSelections.hide):has(#listChildrenCollapsible) .itemDetailsGroup,
+body.layout-desktop #itemDetailPage:has(.trackSelections.hide):has(#childrenCollapsible) .itemDetailsGroup {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    max-width: 0 !important;
+    max-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+}
+
 .layout-desktop #itemDetailPage .detailSection > .nextUpSection,
 body.layout-desktop #itemDetailPage .detailSection > .nextUpSection {
     order: 5 !important;

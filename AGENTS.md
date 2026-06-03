@@ -279,6 +279,7 @@ Avoid:
 - Too much border contrast.
 - Making `<select>` controls `display: grid`; wrapper rows can be grid, actual selects should stay normal controls.
 - Whole TV-show pages can render `.trackSelections hide focuscontainer-x` with empty controls. Do not force `.trackSelections` visible globally. Hide `.trackSelections.hide` and `.recordingFields.hide` after any broad visible track-selector rule, and let `.trackSelections.hide ~ .itemDetailsGroup` or `.trackSelections.hide ~ .recordingFields.hide ~ .itemDetailsGroup` become the single lower info panel. Movies and episodes keep selectors because their `.trackSelections` is not `.hide`.
+- TV show and season-style pages can leave an `.itemDetailsGroup` panel that looks useless beside the Seasons/episodes rails. Hide it when `#itemDetailPage` has hidden track selectors plus `#listChildrenCollapsible` or `#childrenCollapsible`; keep movie and episode metadata panels visible.
 
 ## Detail Page Rails And Sliders
 

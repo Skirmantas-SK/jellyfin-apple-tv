@@ -3434,8 +3434,12 @@ body.layout-desktop #itemDetailPage .detailTrackSelect {
 
 .layout-desktop #itemDetailPage .trackSelections.hide,
 .layout-desktop #itemDetailPage .trackSelections.hide *,
+.layout-desktop #itemDetailPage .recordingFields.hide,
+.layout-desktop #itemDetailPage .recordingFields.hide *,
 body.layout-desktop #itemDetailPage .trackSelections.hide,
-body.layout-desktop #itemDetailPage .trackSelections.hide * {
+body.layout-desktop #itemDetailPage .trackSelections.hide *,
+body.layout-desktop #itemDetailPage .recordingFields.hide,
+body.layout-desktop #itemDetailPage .recordingFields.hide * {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
@@ -3573,15 +3577,19 @@ body.layout-desktop #itemDetailPage .detailSection > #listChildrenCollapsible {
 .layout-desktop #itemDetailPage .collectionItems,
 .layout-desktop #itemDetailPage .programGuideSection,
 .layout-desktop #itemDetailPage .nextUpSection.hide ~ #listChildrenCollapsible,
+.layout-desktop #itemDetailPage .trackSelections.hide ~ .itemDetailsGroup,
 .layout-desktop #itemDetailPage .trackSelections.hide ~ .recordingFields.hide ~ .itemDetailsGroup,
 body.layout-desktop #itemDetailPage .collectionItems,
 body.layout-desktop #itemDetailPage .programGuideSection,
 body.layout-desktop #itemDetailPage .nextUpSection.hide ~ #listChildrenCollapsible,
+body.layout-desktop #itemDetailPage .trackSelections.hide ~ .itemDetailsGroup,
 body.layout-desktop #itemDetailPage .trackSelections.hide ~ .recordingFields.hide ~ .itemDetailsGroup {
     grid-column: 1 / -1 !important;
 }
 
+.layout-desktop #itemDetailPage .trackSelections.hide ~ .itemDetailsGroup,
 .layout-desktop #itemDetailPage .trackSelections.hide ~ .recordingFields.hide ~ .itemDetailsGroup,
+body.layout-desktop #itemDetailPage .trackSelections.hide ~ .itemDetailsGroup,
 body.layout-desktop #itemDetailPage .trackSelections.hide ~ .recordingFields.hide ~ .itemDetailsGroup {
     width: min(100%, var(--detailReadableWidth, calc(100vw - 128px))) !important;
     max-width: min(100%, var(--detailReadableWidth, calc(100vw - 128px))) !important;

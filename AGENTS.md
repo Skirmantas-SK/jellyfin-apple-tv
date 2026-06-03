@@ -238,7 +238,7 @@ Important lessons:
 
 - Do not use `position: fixed` for `.detailLogo`; it follows the user while scrolling.
 - Do not force `.detailImageContainer .card` visible for movie detail pages. It can create duplicate poster images over text.
-- Episode pages can render more than one landscape `.backdropCard` in `.detailImageContainer`. Keep the first `.backdropCard` as a small polished thumbnail and hide sibling `.backdropCard` entries so duplicate episode art does not stack.
+- Episode pages can render duplicate landscape art in `.detailImageContainer`. There are two known forms: multiple direct `.backdropCard` siblings, and a direct `.cardImageContainer.coveredImage.cardContent` sibling beside `.cardBox` inside one `.backdropCard`. Keep `.cardBox` as the canonical Jellyfin card path, hide direct sibling `.cardImageContainer.coveredImage.cardContent:not(:only-child)`, and hide sibling `.backdropCard ~ .backdropCard`.
 - Do not globally restore `.verticalSection`; it can resurrect hidden schedule/program-guide sections.
 - `Schedule` on detail pages came from Jellyfin's schedule/program guide blocks being forced visible. The fix was to exclude and hide:
 
@@ -493,4 +493,4 @@ Follow-up 12: Do not use `bottom: -100vh` on `.detailPageContent::before`. It hi
 
 Follow-up 13: If the far-right screen gutter shows the movie backdrop, check the global scrollbar rules before adding masks or forced scrollbar styling. The practical fix is the dark-theme pattern `* { scrollbar-width: none; }`; in `abyss.css`, pair that with `::-webkit-scrollbar { width: 0; height: 0; }` so Chromium also removes the reserved right-side scrollbar gutter.
 
-Follow-up 14: If episode pages show duplicate landscape thumbnails, the active culprit is usually multiple direct `.backdropCard` children inside `#itemDetailPage .detailImageContainer`. Style the first `.backdropCard` as one compact 16:9 thumbnail and hide `.backdropCard ~ .backdropCard`; do not restore every `.detailImageContainer .card`.
+Follow-up 14: If episode pages show duplicate landscape thumbnails, inspect both the outer and inner card structure. Multiple direct `.backdropCard` children need `.backdropCard ~ .backdropCard` hidden. A single `.backdropCard` can also contain both `.cardBox` and a direct `.cardImageContainer.coveredImage.cardContent`; in that case hide the direct `.cardImageContainer...:not(:only-child)` and normalize `.cardBox > .cardScalable` as the single 16:9 thumbnail.

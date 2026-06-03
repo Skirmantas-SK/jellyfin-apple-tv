@@ -3082,6 +3082,57 @@ body.layout-desktop #itemDetailPage .detailImageContainer > .backdropCard ~ .bac
     pointer-events: none !important;
 }
 
+.layout-desktop #itemDetailPage .detailImageContainer > .backdropCard > .cardImageContainer.coveredImage.cardContent:not(:only-child),
+body.layout-desktop #itemDetailPage .detailImageContainer > .backdropCard > .cardImageContainer.coveredImage.cardContent:not(:only-child) {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    max-width: 0 !important;
+    max-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+}
+
+.layout-desktop #itemDetailPage .detailImageContainer > .backdropCard > .cardBox,
+body.layout-desktop #itemDetailPage .detailImageContainer > .backdropCard > .cardBox {
+    display: block !important;
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-radius: inherit !important;
+    overflow: hidden !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.layout-desktop #itemDetailPage .detailImageContainer > .backdropCard > .cardBox > .cardScalable,
+body.layout-desktop #itemDetailPage .detailImageContainer > .backdropCard > .cardBox > .cardScalable {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    aspect-ratio: 16 / 9 !important;
+    overflow: hidden !important;
+    border-radius: inherit !important;
+}
+
+.layout-desktop #itemDetailPage .detailImageContainer > .backdropCard > .cardBox > .cardScalable > .cardPadder,
+body.layout-desktop #itemDetailPage .detailImageContainer > .backdropCard > .cardBox > .cardScalable > .cardPadder {
+    display: none !important;
+}
+
 .layout-desktop #itemDetailPage .infoWrapper,
 body.layout-desktop #itemDetailPage .infoWrapper {
     display: grid !important;

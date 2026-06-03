@@ -347,7 +347,7 @@ Rules for player safety:
 - Do not give global `.backgroundContainer`, `.backdropImage`, or overlay rules that affect the video player.
 - Keep OSD styling scoped to player controls only.
 - If TV episodes play audio with controls but no picture, check whether `#itemDetailPage` remains in the DOM above the player. Suppress `#itemDetailPage` and its backdrop when `.videoPlayerContainer-onTop`, `#videoOsdPage`, `#videoDialog`, or `.videoOsdBottom` is active, and raise the actual player container above detail-page z-indexes. Do not force `video` or `canvas` to `position: fixed` or a black background; that can cover the decoded picture or OSD. Jellyfin's HTML player already uses a fixed `.videoPlayerContainer` and raises it with `.videoPlayerContainer-onTop`.
-- To make seek forward/back feel more like tvOS, CSS alone is not enough because Jellyfin's JavaScript wakes the OSD. Use `/web/ui/tvos-player.js`: it listens on `window` in capture phase, intercepts left/right seek keys and `.btnRewind` / `.btnFastForward` clicks while a video player is active, updates `video.currentTime` by 15 seconds, adds `body.tvos-seeking`, and shows `#abyss-tvos-seek-overlay`. CSS then hides `.videoOsdBottom`, `.nowPlayingBar`, `.osdControls`, and `.osdHeader` while `body.tvos-seeking` is present.
+- To make seek forward/back feel more like tvOS, CSS alone is not enough because Jellyfin's JavaScript wakes the OSD. Use `/web/ui/tvos-player.js`: it listens on `window` in capture phase, intercepts left/right seek keys and `.btnRewind` / `.btnFastForward` clicks while a video player is active, updates `video.currentTime` by 15 seconds, adds `body.tvos-seeking`, and shows `#abyss-tvos-seek-overlay`. The overlay is intentionally volume-HUD-like: `.seek-icon`, `.seek-track`, `.seek-fill`, and `.seek-label`, with `--seek-position` set from the current video time. CSS then hides `.videoOsdBottom`, `.nowPlayingBar`, `.osdControls`, and `.osdHeader` while `body.tvos-seeking` is present.
 - If fixing detail pages, verify playback afterward.
 
 ## Cache And Verification
@@ -498,3 +498,19 @@ Follow-up 12: Do not use `bottom: -100vh` on `.detailPageContent::before`. It hi
 Follow-up 13: If the far-right screen gutter shows the movie backdrop, check the global scrollbar rules before adding masks or forced scrollbar styling. The practical fix is the dark-theme pattern `* { scrollbar-width: none; }`; in `abyss.css`, pair that with `::-webkit-scrollbar { width: 0; height: 0; }` so Chromium also removes the reserved right-side scrollbar gutter.
 
 Follow-up 14: If episode pages show duplicate landscape thumbnails, inspect both the outer and inner card structure. Multiple direct `.backdropCard` children need `.backdropCard ~ .backdropCard` hidden. A single `.backdropCard` can also contain both `.cardBox` and a direct `.cardImageContainer.coveredImage.cardContent`; in that case hide the direct `.cardImageContainer...:not(:only-child)` and normalize `.cardBox > .cardScalable` as the single 16:9 thumbnail.
+
+### 2026-06-04 - Skip buttons woke the full player controls
+
+Symptom: Forward/back skip buttons and arrow-key skipping brought up the full Jellyfin player controls instead of a small tvOS-style feedback popup.
+
+Root cause: CSS could hide controls after they appeared, but Jellyfin's player JavaScript still received the seek action and woke the OSD.
+
+Fix: `scripts/player/tvos-player.js` intercepts seek keys and `.btnRewind` / `.btnFastForward` clicks in capture phase, updates `video.currentTime`, then shows `#abyss-tvos-seek-overlay` with `.seek-icon`, `.seek-track`, `.seek-fill`, and `.seek-label`. `abyss.css` styles this as a compact volume-like HUD and uses `body.tvos-seeking` to suppress the full OSD during the short feedback window.
+
+### 2026-06-04 - Episode pages showed duplicate inline thumbnails
+
+Symptom: Episode detail pages showed two identical landscape thumbnails stacked under the clear logo.
+
+Root cause: Jellyfin can render both `.cardBox` and `.cardImageContainer.coveredImage.cardContent` inside `.detailImageContainer`, and older rules alternated between hiding and re-showing those children.
+
+Fix: In the full-backdrop detail layout, the inline detail-image strip is not needed. Collapse `#itemDetailPage .detailImageContainer` and its direct children with the marker `tvOS Detail Inline Image Strip Removal`; keep cast, season, scenes, and related-item cards untouched because they are outside `.detailImageContainer`.

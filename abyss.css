@@ -3183,6 +3183,27 @@ body.layout-desktop #itemDetailPage .detailImageContainer:has(.cardImageContaine
     pointer-events: none !important;
 }
 
+/* tvOS Detail Inline Image Strip Removal */
+.layout-desktop #itemDetailPage .detailImageContainer,
+body.layout-desktop #itemDetailPage .detailImageContainer,
+.layout-desktop #itemDetailPage .detailImageContainer > *,
+body.layout-desktop #itemDetailPage .detailImageContainer > * {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    max-width: 0 !important;
+    max-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+}
+
 .layout-desktop #itemDetailPage .infoWrapper,
 body.layout-desktop #itemDetailPage .infoWrapper {
     display: grid !important;
@@ -4381,25 +4402,26 @@ body.tvos-seeking .videoOsdPage .osdHeader {
     top: 50% !important;
     left: 50% !important;
     z-index: 100060 !important;
-    display: flex !important;
+    display: grid !important;
+    grid-template-columns: 42px minmax(130px, 1fr) 4.2rem !important;
     align-items: center !important;
-    justify-content: center !important;
-    min-width: 7.4rem !important;
-    min-height: 4.6rem !important;
-    padding: 0.7rem 1.35rem !important;
+    gap: 14px !important;
+    width: clamp(260px, 27vw, 420px) !important;
+    min-height: 64px !important;
+    padding: 10px 14px !important;
     border-radius: 999px !important;
     border: 1px solid rgba(255, 255, 255, 0.18) !important;
     background: rgba(28, 28, 30, 0.72) !important;
     color: rgba(255, 255, 255, 0.96) !important;
     font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
-    font-size: clamp(1.6rem, 3.2vw, 3.1rem) !important;
-    font-weight: 700 !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
     letter-spacing: 0 !important;
     line-height: 1 !important;
     text-align: center !important;
     pointer-events: none !important;
     opacity: 0 !important;
-    transform: translate(-50%, -50%) scale(0.86) !important;
+    transform: translate(-50%, -44%) scale(0.94) !important;
     -webkit-backdrop-filter: blur(32px) saturate(185%) !important;
     backdrop-filter: blur(32px) saturate(185%) !important;
     box-shadow:
@@ -4407,26 +4429,77 @@ body.tvos-seeking .videoOsdPage .osdHeader {
         inset 0 1px 0 rgba(255, 255, 255, 0.18) !important;
 }
 
-#abyss-tvos-seek-overlay.is-visible {
-    animation: abyss-tvos-seek-pop 0.86s cubic-bezier(0.33, 1, 0.68, 1) both !important;
+#abyss-tvos-seek-overlay .seek-icon {
+    display: grid !important;
+    width: 42px !important;
+    height: 42px !important;
+    place-items: center !important;
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, 0.13) !important;
+    color: rgba(255, 255, 255, 0.96) !important;
+    font-size: 1rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0 !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16) !important;
 }
 
-@keyframes abyss-tvos-seek-pop {
+#abyss-tvos-seek-overlay.is-forward .seek-icon::before {
+    content: ">>" !important;
+}
+
+#abyss-tvos-seek-overlay.is-back .seek-icon::before {
+    content: "<<" !important;
+}
+
+#abyss-tvos-seek-overlay .seek-track {
+    position: relative !important;
+    display: block !important;
+    height: 8px !important;
+    overflow: hidden !important;
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, 0.22) !important;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.36) !important;
+}
+
+#abyss-tvos-seek-overlay .seek-fill {
+    position: absolute !important;
+    inset: 0 auto 0 0 !important;
+    width: var(--seek-position, 50%) !important;
+    border-radius: inherit !important;
+    background: rgba(255, 255, 255, 0.94) !important;
+    box-shadow: 0 0 18px rgba(255, 255, 255, 0.24) !important;
+    transition: width 0.16s cubic-bezier(0.33, 1, 0.68, 1) !important;
+}
+
+#abyss-tvos-seek-overlay .seek-label {
+    min-width: 4.2rem !important;
+    color: rgba(255, 255, 255, 0.94) !important;
+    font-size: 1.08rem !important;
+    font-weight: 700 !important;
+    text-align: right !important;
+    letter-spacing: 0 !important;
+}
+
+#abyss-tvos-seek-overlay.is-visible {
+    animation: abyss-tvos-seek-hud 0.94s cubic-bezier(0.33, 1, 0.68, 1) both !important;
+}
+
+@keyframes abyss-tvos-seek-hud {
     0% {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(0.82);
+        transform: translate(-50%, -40%) scale(0.92);
     }
     14% {
         opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
+        transform: translate(-50%, -44%) scale(1);
     }
     72% {
         opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
+        transform: translate(-50%, -44%) scale(1);
     }
     100% {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(1.08);
+        transform: translate(-50%, -48%) scale(1.02);
     }
 }
 

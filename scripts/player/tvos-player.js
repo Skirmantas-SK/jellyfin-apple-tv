@@ -53,16 +53,33 @@
             overlay.id = "abyss-tvos-seek-overlay";
             overlay.setAttribute("aria-live", "polite");
             overlay.setAttribute("role", "status");
+            overlay.innerHTML = [
+                '<span class="seek-icon" aria-hidden="true"></span>',
+                '<span class="seek-track" aria-hidden="true"><span class="seek-fill"></span></span>',
+                '<span class="seek-label"></span>'
+            ].join("");
             document.body.appendChild(overlay);
         }
 
         return overlay;
     }
 
-    function showSeekOverlay(deltaSeconds) {
+    function showSeekOverlay(deltaSeconds, video) {
         const overlay = ensureOverlay();
-        overlay.textContent = `${deltaSeconds > 0 ? "+" : "-"}${Math.abs(deltaSeconds)}s`;
-        overlay.classList.remove("is-visible");
+        const label = overlay.querySelector(".seek-label");
+        const directionClass = deltaSeconds > 0 ? "is-forward" : "is-back";
+        const duration = Number.isFinite(video.duration) && video.duration > 0 ? video.duration : 0;
+        const currentTime = Number.isFinite(video.currentTime) ? video.currentTime : 0;
+        const progress = duration ? Math.max(0, Math.min(100, (currentTime / duration) * 100)) : 50;
+
+        if (label) {
+            label.textContent = `${deltaSeconds > 0 ? "+" : "-"}${Math.abs(deltaSeconds)}s`;
+        }
+
+        overlay.style.setProperty("--seek-position", `${progress.toFixed(2)}%`);
+        overlay.classList.remove("is-forward", "is-back", "is-visible");
+        overlay.classList.add(directionClass);
+        overlay.setAttribute("aria-label", `${deltaSeconds > 0 ? "Forward" : "Back"} ${Math.abs(deltaSeconds)} seconds`);
         void overlay.offsetWidth;
         overlay.classList.add("is-visible");
 
@@ -93,7 +110,7 @@
         video.dispatchEvent(new Event("timeupdate", { bubbles: true }));
 
         hidePassiveOsd();
-        showSeekOverlay(deltaSeconds);
+        showSeekOverlay(deltaSeconds, video);
         return true;
     }
 

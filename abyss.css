@@ -3432,6 +3432,31 @@ body.layout-desktop #itemDetailPage .detailTrackSelect {
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
 }
 
+/* TV Show Detail Hidden TrackSelections */
+.layout-desktop #itemDetailPage .trackSelections.hide,
+.layout-desktop #itemDetailPage .trackSelections.hide *,
+.layout-desktop #itemDetailPage .recordingFields.hide,
+.layout-desktop #itemDetailPage .recordingFields.hide *,
+body.layout-desktop #itemDetailPage .trackSelections.hide,
+body.layout-desktop #itemDetailPage .trackSelections.hide *,
+body.layout-desktop #itemDetailPage .recordingFields.hide,
+body.layout-desktop #itemDetailPage .recordingFields.hide * {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    max-width: 0 !important;
+    max-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+}
+
 .layout-desktop #itemDetailPage .itemDetailsGroup,
 body.layout-desktop #itemDetailPage .itemDetailsGroup {
     display: grid !important;
@@ -3483,6 +3508,11 @@ body.layout-desktop #itemDetailPage .detailsGroupItem > :last-child {
 .layout-desktop #itemDetailPage .detailsGroupItem:not(:last-child),
 body.layout-desktop #itemDetailPage .detailsGroupItem:not(:last-child) {
     border-bottom: var(--defaultBorder) !important;
+}
+
+.layout-desktop #itemDetailPage .detailsGroupItem:has(> :last-child:empty),
+body.layout-desktop #itemDetailPage .detailsGroupItem:has(> :last-child:empty) {
+    display: none !important;
 }
 
 .layout-desktop #itemDetailPage .detailSection > .nextUpSection,
@@ -3548,12 +3578,26 @@ body.layout-desktop #itemDetailPage .detailSection > #listChildrenCollapsible {
 .layout-desktop #itemDetailPage .collectionItems,
 .layout-desktop #itemDetailPage .programGuideSection,
 .layout-desktop #itemDetailPage .nextUpSection.hide ~ #listChildrenCollapsible,
+.layout-desktop #itemDetailPage .trackSelections.hide ~ .itemDetailsGroup,
 .layout-desktop #itemDetailPage .trackSelections.hide ~ .recordingFields.hide ~ .itemDetailsGroup,
 body.layout-desktop #itemDetailPage .collectionItems,
 body.layout-desktop #itemDetailPage .programGuideSection,
 body.layout-desktop #itemDetailPage .nextUpSection.hide ~ #listChildrenCollapsible,
+body.layout-desktop #itemDetailPage .trackSelections.hide ~ .itemDetailsGroup,
 body.layout-desktop #itemDetailPage .trackSelections.hide ~ .recordingFields.hide ~ .itemDetailsGroup {
     grid-column: 1 / -1 !important;
+}
+
+.layout-desktop #itemDetailPage .trackSelections.hide ~ .itemDetailsGroup,
+.layout-desktop #itemDetailPage .trackSelections.hide ~ .recordingFields.hide ~ .itemDetailsGroup,
+body.layout-desktop #itemDetailPage .trackSelections.hide ~ .itemDetailsGroup,
+body.layout-desktop #itemDetailPage .trackSelections.hide ~ .recordingFields.hide ~ .itemDetailsGroup {
+    width: min(100%, var(--detailReadableWidth, calc(100vw - 128px))) !important;
+    max-width: min(100%, var(--detailReadableWidth, calc(100vw - 128px))) !important;
+    margin-top: 1.35rem !important;
+    padding: 1.25rem 1.45rem !important;
+    align-self: start !important;
+    justify-self: start !important;
 }
 
 .layout-desktop #itemDetailPage .verticalSection:not(.hide):not(#seriesTimerScheduleSection):not(.programGuideSection),

@@ -3432,6 +3432,7 @@ body.layout-desktop #itemDetailPage .detailTrackSelect {
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
 }
 
+/* TV Show Detail Hidden TrackSelections */
 .layout-desktop #itemDetailPage .trackSelections.hide,
 .layout-desktop #itemDetailPage .trackSelections.hide *,
 .layout-desktop #itemDetailPage .recordingFields.hide,

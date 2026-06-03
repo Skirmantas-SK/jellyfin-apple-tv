@@ -278,6 +278,7 @@ Avoid:
 - Flat `rgba(30, 30, 30, 0.58)` without highlight.
 - Too much border contrast.
 - Making `<select>` controls `display: grid`; wrapper rows can be grid, actual selects should stay normal controls.
+- Whole TV-show pages can render `.trackSelections hide focuscontainer-x` with empty controls. Do not force `.trackSelections` visible globally. Hide `.trackSelections.hide` after any broad visible track-selector rule, and let `.trackSelections.hide ~ .recordingFields.hide ~ .itemDetailsGroup` become the single lower info panel. Movies and episodes keep selectors because their `.trackSelections` is not `.hide`.
 
 ## Detail Page Rails And Sliders
 

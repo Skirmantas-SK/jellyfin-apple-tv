@@ -86,6 +86,12 @@ body {
 
 * {
     scrollbar-color: rgba(var(--abyss-accent), 0.8) #0000 !important;
+    scrollbar-width: none !important;
+}
+
+::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
 }
 
 ::-webkit-scrollbar-track-piece {

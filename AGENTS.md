@@ -63,7 +63,7 @@ The Docker installer is `scripts/docker/abyss-spotlight.sh`. It is designed for 
 The script:
 
 - Downloads `abyss.css`, `spotlight.html`, `spotlight.css`, and `home-html.chunk.js` from `REPO` and `BRANCH`.
-- Downloads `tvos-player.js`, which provides the tvOS-style quiet seek overlay during playback.
+- Downloads `tvos-player.js`, currently a passive compatibility helper. Earlier quiet-seek interception was removed because it was less reliable than Jellyfin's native player controls.
 - Installs UI files into `/usr/share/jellyfin/web/ui`.
 - Updates `/config/config/branding.xml` while preserving other branding fields.
 - Adds a cache-busted direct stylesheet link to `/usr/share/jellyfin/web/index.html`.
@@ -347,7 +347,7 @@ Rules for player safety:
 - Do not give global `.backgroundContainer`, `.backdropImage`, or overlay rules that affect the video player.
 - Keep OSD styling scoped to player controls only.
 - If TV episodes play audio with controls but no picture, check whether `#itemDetailPage` remains in the DOM above the player. Suppress `#itemDetailPage` and its backdrop when `.videoPlayerContainer-onTop`, `#videoOsdPage`, `#videoDialog`, or `.videoOsdBottom` is active, and raise the actual player container above detail-page z-indexes. Do not force `video` or `canvas` to `position: fixed` or a black background; that can cover the decoded picture or OSD. Jellyfin's HTML player already uses a fixed `.videoPlayerContainer` and raises it with `.videoPlayerContainer-onTop`.
-- To make seek forward/back feel more like tvOS, CSS alone is not enough because Jellyfin's JavaScript wakes the OSD. Use `/web/ui/tvos-player.js`: it listens on `window` in capture phase, intercepts left/right seek keys and `.btnRewind` / `.btnFastForward` clicks while a video player is active, updates `video.currentTime` by 15 seconds, adds `body.tvos-seeking`, and shows `#abyss-tvos-seek-overlay`. The overlay is intentionally volume-HUD-like: `.seek-icon`, `.seek-track`, `.seek-fill`, and `.seek-label`, with `--seek-position` set from the current video time. CSS then hides `.videoOsdBottom`, `.nowPlayingBar`, `.osdControls`, and `.osdHeader` while `body.tvos-seeking` is present.
+- The quiet-seek experiment in `/web/ui/tvos-player.js` was removed. Do not reintroduce global seek interception without testing real Jellyfin player behavior; the current helper is intentionally passive so native seek buttons and remote/key behavior stay intact.
 - If fixing detail pages, verify playback afterward.
 
 ## Cache And Verification
@@ -506,6 +506,16 @@ Symptom: Forward/back skip buttons and arrow-key skipping brought up the full Je
 Root cause: CSS could hide controls after they appeared, but Jellyfin's player JavaScript still received the seek action and woke the OSD.
 
 Fix: `scripts/player/tvos-player.js` intercepts seek keys and `.btnRewind` / `.btnFastForward` clicks in capture phase, updates `video.currentTime`, then shows `#abyss-tvos-seek-overlay` with `.seek-icon`, `.seek-track`, `.seek-fill`, and `.seek-label`. `abyss.css` styles this as a compact volume-like HUD and uses `body.tvos-seeking` to suppress the full OSD during the short feedback window.
+
+Follow-up: This was scrapped because it did not behave reliably enough in the real player. `scripts/player/tvos-player.js` is now a passive stub and native Jellyfin seek behavior is restored. For testing, `abyss.css` uses marker `tvOS Transparent Main Player Controls Test` to make `.videoOsdBottom.videoOsdBottom-maincontrols` and its nested control surface transparent.
+
+### 2026-06-04 - Spotlight play bounced some items back home
+
+Symptom: Spotlight Play worked for some movies, while others returned the user to the home page.
+
+Root cause: Spotlight tried to click matching playback buttons in the parent document before using Jellyfin's playback manager. That depended on whether a matching parent-page element existed and could trigger inconsistent navigation.
+
+Fix: `scripts/spotlight/spotlight.html` now resolves the playable item, gets the parent Jellyfin `playbackManager` directly or through the AMD `require(['playbackManager'])` module path, passes a real `serverId` from the item or credentials, and only falls back to a direct hash video route when playback manager is unavailable.
 
 ### 2026-06-04 - Episode pages showed duplicate inline thumbnails
 

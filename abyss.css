@@ -4531,6 +4531,21 @@ body:has(#videoDialog) .toast {
     pointer-events: auto !important;
 }
 
+/* tvOS Transparent Main Player Controls Test */
+#videoOsdPage .videoOsdBottom.videoOsdBottom-maincontrols,
+.videoOsdPage .videoOsdBottom.videoOsdBottom-maincontrols,
+#videoOsdPage .videoOsdBottom.videoOsdBottom-maincontrols .osdControls,
+.videoOsdPage .videoOsdBottom.videoOsdBottom-maincontrols .osdControls,
+#videoOsdPage .videoOsdBottom.videoOsdBottom-maincontrols .nowPlayingBar,
+.videoOsdPage .videoOsdBottom.videoOsdBottom-maincontrols .nowPlayingBar {
+    background: transparent !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+}
+
 #videoOsdPage .osdControls {
     color: rgba(255, 255, 255, 0.92) !important;
 }

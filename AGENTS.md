@@ -348,6 +348,7 @@ Rules for player safety:
 - Keep OSD styling scoped to player controls only.
 - If TV episodes play audio with controls but no picture, check whether `#itemDetailPage` remains in the DOM above the player. Suppress `#itemDetailPage` and its backdrop when `.videoPlayerContainer-onTop`, `#videoOsdPage`, `#videoDialog`, or `.videoOsdBottom` is active, and raise the actual player container above detail-page z-indexes. Do not force `video` or `canvas` to `position: fixed` or a black background; that can cover the decoded picture or OSD. Jellyfin's HTML player already uses a fixed `.videoPlayerContainer` and raises it with `.videoPlayerContainer-onTop`.
 - The quiet-seek experiment in `/web/ui/tvos-player.js` was removed. Do not reintroduce global seek interception without testing real Jellyfin player behavior; the current helper is intentionally passive so native seek buttons and remote/key behavior stay intact.
+- Jellyfin's next-episode and Intro Skipper prompts can be hidden accidentally by idle OSD rules. If `.videoOsdBottom:not(:hover):not(:focus-within)` is faded out, explicitly restore the prompt parent when it `:has(.upNextContainer:not(.hide):not([hidden]))`, `:has(#skipIntro:not(.hide):not([hidden]))`, or `:has(#skipCredits:not(.hide):not([hidden]))`, then hide only `.osdControls` and `.nowPlayingBar` under that parent.
 - If fixing detail pages, verify playback afterward.
 
 ## Cache And Verification
@@ -524,3 +525,11 @@ Symptom: Episode detail pages showed two identical landscape thumbnails stacked 
 Root cause: Jellyfin can render both `.cardBox` and `.cardImageContainer.coveredImage.cardContent` inside `.detailImageContainer`, and older rules alternated between hiding and re-showing those children.
 
 Fix: In the full-backdrop detail layout, the inline detail-image strip is not needed. Collapse `#itemDetailPage .detailImageContainer` and its direct children with the marker `tvOS Detail Inline Image Strip Removal`; keep cast, season, scenes, and related-item cards untouched because they are outside `.detailImageContainer`.
+
+### 2026-06-04 - Up Next / Intro Skipper prompt disappeared
+
+Symptom: Near the end of an episode, Jellyfin hid the full player controls but did not show the old next-episode prompt. The user also uses the Intro Skipper addon, so skip prompt visibility matters.
+
+Root cause: The tvOS player styling faded `.videoOsdBottom` when idle. If Jellyfin renders `.upNextContainer`, `#skipIntro`, or `#skipCredits` inside that bottom OSD container, the prompt can be faded with the controls.
+
+Fix: `abyss.css` now has marker `tvOS Up Next / Media Segment Prompt Restore`. It makes `.videoOsdBottom` visible when it contains an active `.upNextContainer`, `#skipIntro`, or `#skipCredits`, hides only `.osdControls` and `.nowPlayingBar`, and promotes the prompt to a high-z-index tvOS glass card/pill.

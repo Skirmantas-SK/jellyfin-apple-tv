@@ -4546,6 +4546,97 @@ body:has(#videoDialog) .toast {
     backdrop-filter: none !important;
 }
 
+/* tvOS Up Next / Media Segment Prompt Restore */
+#videoOsdPage .videoOsdBottom:has(.upNextContainer:not(.hide):not([hidden])),
+.videoOsdPage .videoOsdBottom:has(.upNextContainer:not(.hide):not([hidden])),
+#videoOsdPage .videoOsdBottom:has(#skipIntro:not(.hide):not([hidden])),
+.videoOsdPage .videoOsdBottom:has(#skipIntro:not(.hide):not([hidden])),
+#videoOsdPage .videoOsdBottom:has(#skipCredits:not(.hide):not([hidden])),
+.videoOsdPage .videoOsdBottom:has(#skipCredits:not(.hide):not([hidden])) {
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: none !important;
+}
+
+#videoOsdPage .videoOsdBottom:has(.upNextContainer:not(.hide):not([hidden])) .osdControls,
+.videoOsdPage .videoOsdBottom:has(.upNextContainer:not(.hide):not([hidden])) .osdControls,
+#videoOsdPage .videoOsdBottom:has(.upNextContainer:not(.hide):not([hidden])) .nowPlayingBar,
+.videoOsdPage .videoOsdBottom:has(.upNextContainer:not(.hide):not([hidden])) .nowPlayingBar {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+#videoOsdPage .upNextContainer:not(.hide):not([hidden]),
+.videoOsdPage .upNextContainer:not(.hide):not([hidden]),
+body:has(.videoPlayerContainer-onTop) .upNextContainer:not(.hide):not([hidden]),
+body:has(#videoDialog) .upNextContainer:not(.hide):not([hidden]) {
+    position: fixed !important;
+    right: max(32px, calc(env(safe-area-inset-right) + 32px)) !important;
+    bottom: max(34px, calc(env(safe-area-inset-bottom) + 34px)) !important;
+    z-index: 100070 !important;
+    width: min(420px, calc(100vw - 48px)) !important;
+    max-width: min(420px, calc(100vw - 48px)) !important;
+    margin: 0 !important;
+    padding: 14px !important;
+    overflow: hidden !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    pointer-events: auto !important;
+    border-radius: 28px !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.04) 46%, rgba(0, 0, 0, 0.18)),
+        rgba(28, 28, 30, 0.74) !important;
+    -webkit-backdrop-filter: blur(34px) saturate(180%) !important;
+    backdrop-filter: blur(34px) saturate(180%) !important;
+    box-shadow:
+        0 30px 70px rgba(0, 0, 0, 0.58),
+        inset 0 1px 0 rgba(255, 255, 255, 0.16) !important;
+}
+
+#videoOsdPage .upNextContainer:not(.hide):not([hidden]) *,
+.videoOsdPage .upNextContainer:not(.hide):not([hidden]) * {
+    visibility: visible !important;
+}
+
+#videoOsdPage .upNextContainer:not(.hide):not([hidden]) button,
+#videoOsdPage .upNextContainer:not(.hide):not([hidden]) .emby-button,
+.videoOsdPage .upNextContainer:not(.hide):not([hidden]) button,
+.videoOsdPage .upNextContainer:not(.hide):not([hidden]) .emby-button {
+    pointer-events: auto !important;
+}
+
+#videoOsdPage #skipIntro:not(.hide):not([hidden]),
+#videoOsdPage #skipCredits:not(.hide):not([hidden]),
+.videoOsdPage #skipIntro:not(.hide):not([hidden]),
+.videoOsdPage #skipCredits:not(.hide):not([hidden]),
+body:has(.videoPlayerContainer-onTop) #skipIntro:not(.hide):not([hidden]),
+body:has(.videoPlayerContainer-onTop) #skipCredits:not(.hide):not([hidden]) {
+    position: fixed !important;
+    right: max(42px, calc(env(safe-area-inset-right) + 42px)) !important;
+    bottom: max(42px, calc(env(safe-area-inset-bottom) + 42px)) !important;
+    z-index: 100075 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    pointer-events: auto !important;
+}
+
+#videoOsdPage #skipIntro:not(.hide):not([hidden]) .emby-button,
+#videoOsdPage #skipCredits:not(.hide):not([hidden]) .emby-button,
+.videoOsdPage #skipIntro:not(.hide):not([hidden]) .emby-button,
+.videoOsdPage #skipCredits:not(.hide):not([hidden]) .emby-button {
+    min-height: 52px !important;
+    padding: 0 24px !important;
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, 0.94) !important;
+    color: #000 !important;
+    font-weight: 700 !important;
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.5) !important;
+}
+
 #videoOsdPage .osdControls {
     color: rgba(255, 255, 255, 0.92) !important;
 }
